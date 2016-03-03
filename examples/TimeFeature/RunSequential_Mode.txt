@@ -1,0 +1,92 @@
+# Demostration of TOPAS time modes: Sequential Time Mode
+
+#============================================================================#
+#--- Time Feature for Energy and Number of particles
+#============================================================================#
+s:Tf/Energies/Function = "Step"
+dv:Tf/Energies/Times    = 5 1 2 3 4 5  s
+dv:Tf/Energies/Values  = 5 110.0 100.0 90.0 80.0 70.0 MeV
+
+s:Tf/Particles/Function = "Step"
+dv:Tf/Particles/Times   = 5 1 2 3 4 5  s
+iv:Tf/Particles/Values  = 5 1000 800 600 400 200
+
+#============================================================================#
+#--- Timeline setting
+#============================================================================#
+d:Tf/TimelineStart  = 0.0 s
+d:Tf/TimelineEnd    = 5.0 s
+
+#For Sequential Time Mode
+i:Tf/NumberOfSequentialTimes = 5
+
+#============================================================================#
+#--- Assign particles
+#============================================================================#
+#Change number of particles per time stamps
+#total particles are 1000 + 800 + 600 + 400 + 200 = 300
+i:So/Default/NumberOfHistoriesInRun = Tf/Particles/Value
+
+#Energy changes
+So/Default/BeamEnergy = Tf/Energies/Value MeV
+#From 10.0 cm
+Ge/BeamPosition/TransZ = 10.0 cm
+
+#============================================================================#
+#--- Water phantom target
+#============================================================================#
+s:Ge/waterphantom/Type     = "TsBox"
+s:Ge/waterphantom/Parent   = "World"
+s:Ge/waterphantom/Material = "G4_WATER" 
+d:Ge/waterphantom/HLX      = 5 cm
+d:Ge/waterphantom/HLY      = 5 cm
+d:Ge/waterphantom/HLZ      = 6 cm
+d:Ge/waterphantom/TransX   = 0. cm
+d:Ge/waterphantom/TransY   = 0. cm
+d:Ge/waterphantom/Upstream = 0.0 cm
+d:Ge/waterphantom/TransZ   = -1.0 * Ge/waterphantom/HLZ cm
+d:Ge/waterphantom/RotX     = 0. deg
+d:Ge/waterphantom/RotY     = 0. deg
+d:Ge/waterphantom/RotZ     = 0. deg
+i:Ge/waterphantom/XBins    = 1
+i:Ge/waterphantom/YBins    = 1
+i:Ge/waterphantom/ZBins    = 1
+s:Ge/waterphantom/Color    = "red"
+
+#============================================================================#
+#--- Dose grid for 1D PDD
+#============================================================================#
+s:Ge/dosegrid/Type      = "TsCylinder"
+s:Ge/dosegrid/Parent    = "waterphantom"
+d:Ge/dosegrid/RMin      = 0.0 cm
+d:Ge/dosegrid/RMax      = 5 cm 
+d:Ge/dosegrid/SPhi      = 0.0 deg
+d:Ge/dosegrid/DPhi      = 360.0 deg
+d:Ge/dosegrid/HL        = Ge/waterphantom/HLZ cm
+d:Ge/dosegrid/TransX    = 0. cm
+d:Ge/dosegrid/TransY    = 0. cm
+d:Ge/dosegrid/TransZ    = 0. cm
+d:Ge/dosegrid/RotX      = 0. deg
+d:Ge/dosegrid/RotY      = 0. deg
+d:Ge/dosegrid/RotZ      = 0. deg
+i:Ge/dosegrid/RBins     = 1
+i:Ge/dosegrid/PhiBins   = 1
+i:Ge/dosegrid/ZBins     = 120 
+b:Ge/dosegrid/IsParallel = "T"
+
+#============================================================================#
+#--- Dose for DoseGrid
+#============================================================================#
+s:Sc/dose/Quantity        	    = "DoseToMedium"
+s:Sc/dose/Component       	    = "dosegrid"
+s:Sc/dose/OutputFile      	    = "Dose_Seq"
+s:Sc/dose/OutputType                = "binary"
+b:Sc/dose/OutputToConsole           = "F"
+b:Sc/dose/Visualize                 = "F"
+s:Sc/dose/IfOutputFileAlreadyExists = "Overwrite"
+
+#============================================================================#
+#--- Summary 
+#============================================================================#
+b:Ts/ShowCPUTime                = "tRuE" #For checking case sensitivity
+i:Ts/ShowHistoryCountAtInterval = 10000

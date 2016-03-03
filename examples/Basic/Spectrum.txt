@@ -1,0 +1,28 @@
+# Demonstrates use of BeamSpectrum.
+# Resulting particles can be seen in ASCIIOutput.phsp
+
+s:Ge/World/Material="Vacuum"
+
+d:So/Default/BeamEnergy = 100. MeV
+u:So/Default/BeamEnergySpread = 0.
+s:So/Default/BeamSpectrum = "Continuous"
+dv:So/Default/BeamSpectrumEnergies = 3 50. 100. 150. MeV
+uv:So/Default/BeamSpectrumWeights = 3 .20 .60 .20
+
+s:Ge/VacFilm/Type="TsBox"
+s:Ge/VacFilm/Parent="World"
+s:Ge/VacFilm/Material="Vacuum"
+d:Ge/VacFilm/HLX=50.0 cm
+d:Ge/VacFilm/HLY=50.0 cm
+d:Ge/VacFilm/HLZ=1.0 cm
+
+s:Sc/PhaseSpaceAtVacFilm/Quantity = "PhaseSpace"
+b:Sc/PhaseSpaceAtVacFilm/OutputToConsole = "True"
+s:Sc/PhaseSpaceAtVacFilm/Surface = "VacFilm/ZMinusSurface"
+s:Sc/PhaseSpaceAtVacFilm/OutputType = "ASCII" # ASCII, Binary or Limited
+s:Sc/PhaseSpaceAtVacFilm/OutputFile = "ASCIIOutput"
+s:Sc/PhaseSpaceAtVacFilm/IfOutputFileAlreadyExists = "Overwrite"
+
+So/Default/NumberOfHistoriesInRun=1000
+
+Ts/ShowHistoryCountAtInterval = 10

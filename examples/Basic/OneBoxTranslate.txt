@@ -1,0 +1,7 @@
+# Demonstrates use of includeFile.
+# Translates box by a value of -3 times the value
+# of TransX that was inherited from the includeFile.
+
+includeFile = OneBox.txt
+
+Ge/MyBox/TransX= inheritedValue m * -3

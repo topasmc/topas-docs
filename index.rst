@@ -1,7 +1,7 @@
 Welcome to TOPAS's documentation!
 =================================
 
-TOPAS is super-awesome!
+.. warning:: This site is under construction.
 
 
 .. toctree::
@@ -37,7 +37,16 @@ TOPAS is super-awesome!
     :maxdepth: 1
     :caption: Example Parameter Files
 
-    examples/basic
+    examples-docs/Basic/index
+    examples-docs/Graphics/index
+    examples-docs/Scoring/index
+    examples-docs/PhaseSpace/index
+    examples-docs/TimeFeature/index
+    examples-docs/DICOM/index
+    examples-docs/Nozzle/index
+    examples-docs/SpecialComponents/index
+    examples-docs/VarianceReduction/index
+    examples-docs/Optical/index
 
 
 .. toctree::

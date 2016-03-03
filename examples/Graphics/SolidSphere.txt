@@ -1,0 +1,33 @@
+# Demonstrate effect of drawing style and hidden line removal
+
+s:Ge/Sphere/Type="TsSphere"
+s:Ge/Sphere/Parent="World"
+s:Ge/Sphere/Material="Water"
+d:Ge/Sphere/RMin=0. m
+d:Ge/Sphere/RMax=2. m
+d:Ge/Sphere/SPhi=0. deg
+d:Ge/Sphere/DPhi=360. deg
+d:Ge/Sphere/STheta=0. deg
+d:Ge/Sphere/DTheta=180. deg
+d:Ge/Sphere/TransX=0. m
+d:Ge/Sphere/TransY=0. m
+d:Ge/Sphere/TransZ=0. m
+d:Ge/Sphere/RotX=0. deg
+d:Ge/Sphere/RotY=0. deg
+d:Ge/Sphere/RotZ=0. deg
+s:Ge/Sphere/DrawingStyle = "Solid"
+
+s:Gr/MyOGL/Type = "OpenGL"
+i:Gr/MyOGL/WindowSizeX = 600
+i:Gr/MyOGL/WindowSizeY = 600
+i:Gr/MyOGL/WindowPosX = 0
+i:Gr/MyOGL/WindowPosY = 0
+d:Gr/MyOGL/Theta = 30. deg
+d:Gr/MyOGL/Phi = 30. deg
+u:Gr/MyOGL/Zoom = 3.
+s:Gr/MyOGL/ColorBy = "particletype"
+b:Gr/MyOGL/HiddenLineRemovalForTrajectories = "True"
+
+So/Default/NumberOfHistoriesInRun = 100
+
+Ts/PauseBeforeQuit = "True"

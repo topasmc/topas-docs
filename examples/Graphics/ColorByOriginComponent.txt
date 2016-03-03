@@ -1,0 +1,73 @@
+# Demonstrates changing color scheme of trajectories.
+# Trajectories that originate in the component named Outer
+# or any of its subcomponents will be colored red.
+# All others will be colored grey.
+
+s:Ge/Box/Type="TsBox"
+s:Ge/Box/Parent="World"
+s:Ge/Box/Material="Water"
+d:Ge/Box/HLX=4. m
+d:Ge/Box/HLY=4. m
+d:Ge/Box/HLZ=.4 m
+d:Ge/Box/TransX=0. m
+d:Ge/Box/TransY=0. m
+d:Ge/Box/TransZ=-2. m
+d:Ge/Box/RotX=0. deg
+d:Ge/Box/RotY=0. deg
+d:Ge/Box/RotZ=0. deg
+
+s:Ge/Outer/Type="TsBox"
+s:Ge/Outer/Parent="World"
+s:Ge/Outer/Material="Water"
+d:Ge/Outer/HLX=2.01 m
+d:Ge/Outer/HLY=2.01 m
+d:Ge/Outer/HLZ=.11 m
+d:Ge/Outer/TransX=0. m
+d:Ge/Outer/TransY=0. m
+d:Ge/Outer/TransZ=2. m
+d:Ge/Outer/RotX=0. deg
+d:Ge/Outer/RotY=0. deg
+d:Ge/Outer/RotZ=0. deg
+
+s:Ge/Film1/Type="TsBox"
+s:Ge/Film1/Parent="Outer"
+s:Ge/Film1/Material="Water"
+d:Ge/Film1/HLX=2. m
+d:Ge/Film1/HLY=2. m
+d:Ge/Film1/HLZ=.1 m
+d:Ge/Film1/TransX=0. m
+d:Ge/Film1/TransY=0. m
+d:Ge/Film1/TransZ=0. m
+d:Ge/Film1/RotX=0. deg
+d:Ge/Film1/RotY=0. deg
+d:Ge/Film1/RotZ=0. deg
+i:Ge/Film1/XBins=2
+i:Ge/Film1/YBins=2
+i:Ge/Film1/ZBins=2
+
+s:Ge/Film2/Type="TsBox"
+s:Ge/Film2/Parent="World"
+s:Ge/Film2/Material="Water"
+d:Ge/Film2/HLX=3. m
+d:Ge/Film2/HLY=3. m
+d:Ge/Film2/HLZ=.1 m
+d:Ge/Film2/TransX=0. m
+d:Ge/Film2/TransY=0. m
+d:Ge/Film2/TransZ=0. m
+d:Ge/Film2/RotX=0. deg
+d:Ge/Film2/RotY=0. deg
+d:Ge/Film2/RotZ=0. deg
+
+s:Gr/MyOGL/Type = "OpenGL"
+i:Gr/MyOGL/WindowSizeX = 600
+i:Gr/MyOGL/WindowSizeY = 600
+i:Gr/MyOGL/WindowPosX = 0
+i:Gr/MyOGL/WindowPosY = 0
+s:Gr/MyOGL/ColorBy = "OriginComponentOrSubComponentOf"
+sv:Gr/MyOGL/ColorByOriginComponentNames = 1 "Outer"
+sv:Gr/MyOGL/ColorByOriginComponentColors = 1 "Red"
+
+d:So/Default/BeamEnergy = 400 MeV
+i:So/Default/NumberOfHistoriesInRun = 10
+
+Ts/PauseBeforeQuit = "True"

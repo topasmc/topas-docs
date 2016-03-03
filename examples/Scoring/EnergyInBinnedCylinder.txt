@@ -1,0 +1,41 @@
+# Demonstrates binning by R, Phi and Z in a cylinder
+
+Ge/World/Material = "Vacuum"
+Ge/World/HLX = 1.0 m
+Ge/World/HLY = 1.0 m
+Ge/World/HLZ = 1.0 m
+d:Ge/World/MaxStepSize = 1.0 m
+
+s:Ge/ScoringCylinder/Type = "TsCylinder"
+s:Ge/ScoringCylinder/Parent = "World"
+s:Ge/ScoringCylinder/Material = "Water"
+d:Ge/ScoringCylinder/RMin = 2. cm
+d:Ge/ScoringCylinder/RMax = 40. cm
+d:Ge/ScoringCylinder/HL = 40. cm
+d:Ge/ScoringCylinder/SPhi = 0. deg
+d:Ge/ScoringCylinder/DPhi = 360. deg
+i:Ge/ScoringCylinder/RBins = 6
+i:Ge/ScoringCylinder/PhiBins = 6
+i:Ge/ScoringCylinder/ZBins = 6
+
+s:Sc/MyScorer/Quantity = "EnergyDeposit"
+s:Sc/MyScorer/Component = "ScoringCylinder"
+s:Sc/MyScorer/OutputFile = "Energy_Test"
+s:Sc/MyScorer/OutputType = "csv"
+b:Sc/MyScorer/OutputToConsole = "False"
+s:Sc/MyScorer/IfOutputFileAlreadyExists = "Overwrite"
+
+s:Gr/ViewA/Type = "OpenGL"
+i:Gr/ViewA/WindowSizeX = 1024
+i:Gr/ViewA/WindowSizeY = 768
+d:Gr/ViewA/Theta = 55 deg
+d:Gr/ViewA/Phi = 20 deg
+s:Gr/ViewA/Projection = "Perspective"
+d:Gr/ViewA/PerspectiveAngle = 30 deg
+u:Gr/ViewA/Zoom = 2.
+b:Gr/ViewA/HiddenLineRemovalForTrajectories = "True"
+
+So/Default/NumberOfHistoriesInRun = 1000
+
+Ts/ShowHistoryCountAtInterval = 100
+Ts/PauseBeforeQuit = "True"

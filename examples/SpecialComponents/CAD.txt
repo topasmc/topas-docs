@@ -1,0 +1,56 @@
+# Builds components on-the-fly from information in CAD files.
+# The first component is built from the PLY format.
+# The second component is built from the STL format.
+
+Ge/World/HLX = 10 cm 
+Ge/World/HLY = 10 cm
+Ge/World/HLZ = 10 cm 
+
+d:Ge/BeamPosition/TransZ = -7 cm
+d:Ge/BeamPosition/RotX = 0 deg
+
+s:Ge/CADVolumePly/Parent = "World"
+s:Ge/CADVolumePly/Material = "Brass"
+s:Ge/CADVolumePly/Type = "TsCAD"
+s:Ge/CADVolumePly/InputFile = "Aperture_cm"
+s:Ge/CADVolumePly/FileFormat = "ply"
+d:Ge/CADVolumePly/Units = 0.5 cm
+d:Ge/CADVolumePly/TransX = -4 cm 
+d:Ge/CADVolumePly/TransY = -4 cm 
+d:Ge/CADVolumePly/TransZ = -6.5 cm
+d:Ge/CADVolumePly/RotX = 0 deg
+d:Ge/CADVolumePly/RotY = 0 deg
+d:Ge/CADVolumePly/RotZ = 0 deg
+
+s:Ge/CADVolumeStl/Parent = "World"
+s:Ge/CADVolumeStl/Material = "Lead"
+s:Ge/CADVolumeStl/Type = "TsCAD"
+s:Ge/CADVolumeStl/InputFile = "Aperture_cm"
+s:Ge/CADVolumeStl/FileFormat = "stl"
+d:Ge/CADVolumeStl/Units = 0.5 cm
+d:Ge/CADVolumeStl/TransX = -4 cm
+d:Ge/CADVolumeStl/TransY = -4 cm
+d:Ge/CADVolumeStl/TransZ = 0 cm
+d:Ge/CADVolumeStl/RotX = 0 deg
+d:Ge/CADVolumeStl/RotY = 0 deg
+d:Ge/CADVolumeStl/RotZ = 0 deg
+
+s:Gr/view/Type  = "OpenGl"
+d:Gr/view/Theta = 45 deg
+d:Gr/view/Phi   = 45 deg
+u:Gr/view/Zoom  = 1.5
+b:Gr/view/IncludeAxes = "True"
+d:Gr/view/AxesSize = 8 cm
+
+s:So/Default/Type = "Beam"
+s:So/Default/Shape = "Ellipse"
+d:So/Default/BeamEnergy = 150 MeV
+d:So/Default/BeamHWX = 3 cm
+d:So/Default/BeamHWY = 3 cm
+s:So/Default/BeamXYDistribution = "Flat"
+So/Default/NumberOfHistoriesInRun = 30
+
+Ph/Default/Modules = 1 "g4em-standard_opt0"
+
+Ts/ShowHistoryCountAtInterval = 10
+Ts/PauseBeforeQuit = "True"

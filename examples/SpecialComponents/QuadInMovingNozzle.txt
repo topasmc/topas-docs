@@ -1,0 +1,67 @@
+# Magnet mounted in a rotating nozzle
+
+s:So/Default/Component = "ExitWindow"
+d:So/Default/BeamHWX = 3.0 cm
+d:So/Default/BeamHWY = 3.0 cm
+s:So/Default/BeamParticle = "chargedgeantino"
+d:So/Default/BeamEnergy= 169.23 MeV
+u:So/Default/BeamEnergySpread = 0.0
+s:So/Default/BeamXYDistribution = "Flat"
+i:So/Default/NumberOfHistoriesInRun = 100
+
+Ph/Default/Modules = 1 "g4em-standard_opt0"
+
+b:Ts/PauseBeforeQuit = "True"
+
+s:Tf/NozzleRotation/Function = "Linear deg"
+d:Tf/NozzleRotation/Rate = 15. deg/ms
+d:Tf/NozzleRotation/StartValue = .0 deg
+d:Tf/NozzleRotation/RepetitionInterval = 360. ms
+d:Tf/TimelineEnd= 20.0 ms
+i:Tf/NumberOfSequentialTimes = 20
+
+d:Ge/World/HLX=2.0 m
+d:Ge/World/HLY=2.0 m
+d:Ge/World/HLZ=2.0 m
+b:Ge/World/Invisible = "True"
+
+s:Ge/Nozzle/Type="Group"
+s:Ge/Nozzle/Parent="World"
+d:Ge/Nozzle/RotX = Tf/NozzleRotation/value deg
+
+s:Ge/ExitWindow/Type    = "G4Tubs"
+s:Ge/ExitWindow/Parent  = "Nozzle"
+s:Ge/ExitWindow/Material= "Mylar"
+d:Ge/ExitWindow/RMax    = 50.0 mm
+d:Ge/ExitWindow/HL      = 0.05 mm
+d:Ge/ExitWindow/TransZ  = 40. cm
+d:Ge/ExitWindow/RotY    = 180.0 deg
+s:Ge/ExitWindow/DrawingStyle = "Solid"
+
+s:Ge/MagnetBox/Type="G4Box"
+s:Ge/MagnetBox/Parent="Nozzle"
+s:Ge/MagnetBox/Material= "G4_AIR"
+d:Ge/MagnetBox/HLX = 18 cm
+d:Ge/MagnetBox/HLY = 10 cm
+d:Ge/MagnetBox/HLZ = 20 cm
+
+#s:Ge/MagnetBox/MagneticField = "Dipole"
+#u:Ge/MagnetBox/DirectionX = 1.0
+#u:Ge/MagnetBox/DirectionY = 1.0
+#u:Ge/MagnetBox/DirectionZ = 0.0
+#d:Ge/MagnetBox/Strength= 1.0 tesla
+
+s:Ge/MagnetBox/MagneticField = "Quadrupole"
+d:Ge/MagnetBox/GradientX= .1 tesla/cm
+d:Ge/MagnetBox/GradientY= .1 tesla/cm
+
+s:Gr/ViewA/Type = "OpenGL"
+i:Gr/ViewA/WindowSizeX = 1024
+i:Gr/ViewA/WindowSizeY = 768
+d:Gr/ViewA/Theta = 55 deg
+d:Gr/ViewA/Phi = 20 deg
+s:Gr/ViewA/Projection = "Perspective"
+d:Gr/ViewA/PerspectiveAngle = 30 deg
+u:Gr/ViewA/Zoom = 1.
+b:Gr/ViewA/IncludeStepPoints = "True"
+#i:Gr/ViewA/MagneticFieldArrowDensity = 10

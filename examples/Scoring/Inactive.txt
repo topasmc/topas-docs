@@ -1,0 +1,30 @@
+# Demonstrate effect of setting a scorer inactive
+
+s:Ge/Box/Type="TsBox"
+s:Ge/Box/Parent="World"
+s:Ge/Box/Material="Water"
+d:Ge/Box/HLX=1. m
+d:Ge/Box/HLY=1. m
+d:Ge/Box/HLZ=.4 m
+
+s:Sc/WasActive/Quantity = "Fluence"
+s:Sc/WasActive/Component = "Box"
+s:Sc/WasActive/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/WasActive/OutputToConsole = "True"
+
+s:Sc/WasInActive/Quantity = "Fluence"
+s:Sc/WasInActive/Component = "Box"
+s:Sc/WasInActive/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/WasInActive/OutputToConsole = "True"
+b:Sc/WasInActive/Active = "False"
+
+s:Gr/MyOGL/Type = "OpenGL"
+i:Gr/MyOGL/WindowSizeX = 600
+i:Gr/MyOGL/WindowSizeY = 600
+i:Gr/MyOGL/WindowPosX = 0
+i:Gr/MyOGL/WindowPosY = 0
+
+So/Default/NumberOfHistoriesInRun = 100
+
+Ts/ShowHistoryCountAtInterval = 10
+Ts/PauseBeforeQuit = "True"

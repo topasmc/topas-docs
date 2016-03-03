@@ -1,0 +1,27 @@
+# Score charge in a sphere
+
+Ge/World/Material = "Vacuum"
+Ge/World/HLX=2.0 m
+Ge/World/HLY=2.0 m
+Ge/World/HLZ=2.0 m
+b:Ge/World/Invisible = "TRUE"
+
+s:Ge/Sphere/Type="TsSphere"
+s:Ge/Sphere/Parent="World"
+s:Ge/Sphere/Material="Air"
+d:Ge/Sphere/RMax=55.0 cm
+s:Ge/Sphere/DrawingStyle = "FullWireFrame"
+
+s:Sc/Charge/Quantity    = "Charge"
+s:Sc/Charge/Component   = "Sphere"
+b:Sc/Charge/OutputToConsole = "TRUE"
+s:Sc/Charge/IfOutputFileAlreadyExists = "Overwrite" 
+sv:Sc/Charge/OnlyIncludeParticlesNamed = 1 "proton"
+#s:Sc/Charge/OnlyIncludeParticlesOfGeneration = "secondary"
+
+s:Gr/ViewA/Type = "OpenGL"
+
+So/Default/NumberOfHistoriesInRun = 500
+
+Ts/ShowHistoryCountAtInterval = 10
+Ts/PauseBeforeQuit = "True"

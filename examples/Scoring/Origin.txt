@@ -1,0 +1,61 @@
+# Particles pass through Film1Container which contains a divided box, Film1.
+# We score fluence in a phantom, filtering several different ways based on
+# origin of the scored particle.
+
+s:Ge/Film1Container/Type="TsBox"
+s:Ge/Film1Container/Parent="World"
+s:Ge/Film1Container/Material="Water"
+d:Ge/Film1Container/HLX=2.1 m
+d:Ge/Film1Container/HLY=2.1 m
+d:Ge/Film1Container/HLZ=.15 m
+d:Ge/Film1Container/TransZ=1. m
+
+s:Ge/Film1/Type="TsBox"
+s:Ge/Film1/Parent="Film1Container"
+s:Ge/Film1/Material="Water"
+d:Ge/Film1/HLX=2. m
+d:Ge/Film1/HLY=2. m
+d:Ge/Film1/HLZ=.1 m
+i:Ge/Film1/XBins=2
+i:Ge/Film1/YBins=2
+i:Ge/Film1/ZBins=2
+
+s:Ge/Phantom/Type="TsBox"
+s:Ge/Phantom/Parent="World"
+s:Ge/Phantom/Material="Water"
+d:Ge/Phantom/HLX=3. m
+d:Ge/Phantom/HLY=3. m
+d:Ge/Phantom/HLZ=0.5 m
+d:Ge/Phantom/TransZ = -1. m
+i:Ge/Phantom/XBins=1
+i:Ge/Phantom/YBins=1
+i:Ge/Phantom/ZBins=1
+
+s:Sc/ParticlesFromFilm1ContainerAndSubcomponents/Quantity = "Fluence"
+s:Sc/ParticlesFromFilm1ContainerAndSubcomponents/Component = "Phantom"
+s:Sc/ParticlesFromFilm1ContainerAndSubcomponents/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/ParticlesFromFilm1ContainerAndSubcomponents/OutputToConsole = "True"
+sv:Sc/ParticlesFromFilm1ContainerAndSubcomponents/OnlyIncludeParticlesFromComponentOrSubComponentsOf = 1 "Film1Container"
+
+s:Sc/ParticlesFromFilm1ContainerButNotSubcomponents/Quantity = "Fluence"
+s:Sc/ParticlesFromFilm1ContainerButNotSubcomponents/Component = "Phantom"
+s:Sc/ParticlesFromFilm1ContainerButNotSubcomponents/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/ParticlesFromFilm1ContainerButNotSubcomponents/OutputToConsole = "True"
+sv:Sc/ParticlesFromFilm1ContainerButNotSubcomponents/OnlyIncludeParticlesFromComponent = 1 "Film1Container"
+
+s:Sc/ParticlesFromFilm1/Quantity = "Fluence"
+s:Sc/ParticlesFromFilm1/Component = "Phantom"
+s:Sc/ParticlesFromFilm1/IfOutputFileAlreadyExists = "Overwrite"
+b:Sc/ParticlesFromFilm1/OutputToConsole = "True"
+sv:Sc/ParticlesFromFilm1/OnlyIncludeParticlesFromComponentOrSubComponentsOf = 1 "Film1"
+
+s:Gr/MyOGL/Type = "OpenGL"
+i:Gr/MyOGL/WindowSizeX = 600
+i:Gr/MyOGL/WindowSizeY = 600
+i:Gr/MyOGL/WindowPosX = 0
+i:Gr/MyOGL/WindowPosY = 0
+
+d:So/Default/BeamEnergy = 400 MeV
+i:So/Default/NumberOfHistoriesInRun = 100
+
+Ts/PauseBeforeQuit = "True"

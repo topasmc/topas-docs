@@ -1,0 +1,21 @@
+includeFile = Emittance_Gaussian.txt
+
+#!!! You can choose one from these three options
+So/Default/Distribution   = "twiss_gaussian"
+#So/Default/Distribution   = "twiss_kv"
+#So/Default/Distribution   = "twiss_waterbag"
+
+u:So/Default/AlphaX      = 0.2
+d:So/Default/BetaX       = 600.0 mm #
+d:So/Default/EmittanceX  = 0.01 mm  #we don't multiply pi
+
+u:So/Default/AlphaY      = 2.5
+d:So/Default/BetaY       = 1400.0  mm
+d:So/Default/EmittanceY  = 0.02 mm 
+
+#+ twiss gaussian option only
+#0.9 means that 90 % particles will be included in ellipse circle
+u:So/Default/ParticleFractionX      = 0.90
+u:So/Default/ParticleFractionY      = 0.90
+
+Sc/Beam/OutputFile = "BeamTwiss"
