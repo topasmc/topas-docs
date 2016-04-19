@@ -2,19 +2,19 @@
 
 includeFile = RangeModulator.txt
 
-Ge/RangeModulatorA/Rotz = Tf/RMW_Rotation/Value deg
+d:Ge/RangeModulatorA/Rotz = Tf/RMW_Rotation/Value deg
 
-So/Default/NumberOfHistoriesInRun= 3
+i:So/Example/NumberOfHistoriesInRun = 3
 
-d:Tf/TimelineEnd=12.0 ms
-i:Tf/NumberOfSequentialTimes=20
+d:Tf/TimelineEnd             = 12.0 ms
+i:Tf/NumberOfSequentialTimes = 20
 
-s:Tf/RMW_Rotation/Function = "Linear deg"
-d:Tf/RMW_Rotation/Rate = 3.6 deg/ms
-d:Tf/RMW_Rotation/StartValue = 0.0 deg
+s:Tf/RMW_Rotation/Function           = "Linear deg"
+d:Tf/RMW_Rotation/Rate               = 3.6 deg/ms
+d:Tf/RMW_Rotation/StartValue         = 0.0 deg
 d:Tf/RMW_Rotation/RepetitionInterval = 100. ms
 
-Ts/PauseBeforeQuit = "False"
+b:Ts/PauseBeforeQuit = "False"
 i:Ts/ShowHistoryCountAtInterval = 0
 
 # Show time feature steps on console

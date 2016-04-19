@@ -4,26 +4,26 @@
 # three different time phases of a simplified lung phantom.
 # This phantom consists of a tumor in a cylinder of water in a tube of air.
 
-includeFile = HUtoMaterialSchneider.txt 
+includeFile = HUtoMaterialSchneider.txt
 
 # Geometry
-Ge/World/Material = "Vacuum"
-Ge/World/HLX=2.0 m
-Ge/World/HLY=2.0 m
-Ge/World/HLZ=2.0 m
+s:Ge/World/Material  = "Vacuum"
+d:Ge/World/HLX       = 2.0 m
+d:Ge/World/HLY       = 2.0 m
+d:Ge/World/HLZ       = 2.0 m
 b:Ge/World/Invisible = "TRUE"
 
-s:Ge/Patient/Parent="World"
-s:Ge/Patient/Material="Water"
-d:Ge/Patient/TransX= 0. cm # -8. cm
-d:Ge/Patient/TransY= 0. cm # -8. cm
-d:Ge/Patient/TransZ=0. m
-d:Ge/Patient/RotX=90. deg
-d:Ge/Patient/RotY=0. deg
-d:Ge/Patient/RotZ=0. deg
-s:Ge/Patient/Type= "TsDicomPatient"
-s:Ge/Patient/DicomDirectory = Tf/ImageName/Value
-#b:Ge/Patient/PreLoadAllMaterials = "True"
+s:Ge/Patient/Parent               = "World"
+s:Ge/Patient/Material             = "G4_WATER"
+d:Ge/Patient/TransX               = 0. cm # -8. cm
+d:Ge/Patient/TransY               = 0. cm # -8. cm
+d:Ge/Patient/TransZ               = 0. m
+d:Ge/Patient/RotX                 = 90. deg
+d:Ge/Patient/RotY                 = 0. deg
+d:Ge/Patient/RotZ                 = 0. deg
+s:Ge/Patient/Type                 = "TsDicomPatient"
+s:Ge/Patient/DicomDirectory       = Tf/ImageName/Value
+#b:Ge/Patient/PreLoadAllMaterials  = "True"
 
 # Specify which slices to show.
 # Comment this out or set to zero to show all slices.
@@ -35,65 +35,68 @@ iv:Ge/Patient/ShowSpecificSlicesY = 1 -1
 
 # Time feature, load different CTs at different times
 s:Tf/ImageName/Function = "Step"
-dv:Tf/ImageName/Times = 3 10 20 30 ms
-sv:Tf/ImageName/Values = 3 "synthetic_lung/lung-1" "synthetic_lung/lung-2" "synthetic_lung/lung-3"
+dv:Tf/ImageName/Times   = 3 10 20 30 ms
+sv:Tf/ImageName/Values  = 3 "synthetic_lung/lung-1" "synthetic_lung/lung-2" "synthetic_lung/lung-3"
 
-Tf/TimelineEnd = 120.0 ms
-Tf/NumberOfSequentialTimes = 12
+d:Tf/TimelineEnd = 120.0 ms
+i:Tf/NumberOfSequentialTimes = 12
 i:Tf/Verbosity = 1
 
-s:Tf/Zoom/Function = "Step"
-dv:Tf/Zoom/Times = 3 30 60 180 ms
-uv:Tf/Zoom/Values = 3 1.4 3. 9.
+s:Tf/Zoom/Function           = "Step"
+dv:Tf/Zoom/Times             = 3 30 60 180 ms
+uv:Tf/Zoom/Values            = 3 1.4 3. 9.
 d:Tf/Zoom/RepetitionInterval = 360. ms
 
-s:Tf/Pan/Function = "Step"
-dv:Tf/Pan/Times = 3 30 60 180 ms
-uv:Tf/Pan/Values = 3 0. .1 .1
-d:Tf/Pan/RepetitionInterval = 360. ms
+s:Tf/Pan/Function            = "Step"
+dv:Tf/Pan/Times              = 3 30 60 180 ms
+uv:Tf/Pan/Values             = 3 0. .1 .1
+d:Tf/Pan/RepetitionInterval  = 360. ms
 
-s:Tf/PanY/Function = "Step"
-dv:Tf/PanY/Times = 3 30 60 180 ms
-uv:Tf/PanY/Values = 3 0. -.05 -.05
+s:Tf/PanY/Function           = "Step"
+dv:Tf/PanY/Times             = 3 30 60 180 ms
+uv:Tf/PanY/Values            = 3 0. -.05 -.05
 d:Tf/PanY/RepetitionInterval = 360. ms
 
 # Uncomment to enable scoring
-#s:Sc/DoseAtPhantom/Quantity    = "DoseToMedium"
-s:Sc/DoseAtPhantom/Component   = "Patient"
-b:Sc/DoseAtPhantom/OutputToConsole = "True"
+s:Sc/DoseAtPhantom/Quantity                  = "DoseToMedium"
+s:Sc/DoseAtPhantom/Component                 = "Patient"
+b:Sc/DoseAtPhantom/OutputToConsole           = "True"
 s:Sc/DoseAtPhantom/IfOutputFileAlreadyExists = "Overwrite"
-s:Sc/DoseAtPhantom/OutputType = "DICOM"
-u:Sc/DoseAtPhantom/DICOMOutputScaleFactor = 1.0E12
+s:Sc/DoseAtPhantom/OutputType                = "DICOM"
+u:Sc/DoseAtPhantom/DICOMOutputScaleFactor    = 1.0E12
 b:Sc/DoseAtPhantom/DICOMOutput32BitsPerPixel = "False"
 
 # Uncomment to split scoring by ImageName
 #s:Sc/DoseAtPhantom/SplitByTimeFeature = "ImageName"
 
-So/Default/BeamEnergy = 120. MeV
-So/Default/NumberOfHistoriesInRun = 100
-So/Default/BeamHWX = .5 cm
-So/Default/BeamHWY = .5 cm
-So/Default/BeamAngularSpreadX = 0.0 rad
-So/Default/BeamAngularSpreadY = 0.0 rad
-So/Default/BeamXYDistribution = "Flat"
+s:So/Example/Type                     = "Beam"
+s:So/Example/Component                = "BeamPosition"
+s:So/Example/BeamParticle             = "proton"
+d:So/Example/BeamEnergy               = 120. MeV
+u:So/Example/BeamEnergySpread         = 0.757504
+s:So/Example/BeamPositionDistribution = "Flat"
+s:So/Example/BeamPositionCutoffShape  = "Ellipse"
+d:So/Example/BeamPositionCutoffX      = 0.5 cm
+d:So/Example/BeamPositionCutoffY      = 0.5 cm
+s:So/Example/BeamAngularDistribution  = "Point"
+i:So/Example/NumberOfHistoriesInRun   = 100
 
-Ph/Default/Modules = 1 "g4em-standard_opt0"
+sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
 
 # Graphics
-s:Gr/ViewA/Type = "OpenGL"
 b:Gr/ViewA/HiddenLineRemovalForTrajectories = "True"
+s:Gr/ViewA/Type        = "OpenGL"
 i:Gr/ViewA/WindowSizeX = 900
 i:Gr/ViewA/WindowSizeY = 900
-d:Gr/ViewA/Theta = 45 deg
-d:Gr/ViewA/Phi = 45 deg
-u:Gr/ViewA/Zoom = Tf/Zoom/Value
-u:Gr/ViewA/TransX = Tf/Pan/Value
-u:Gr/ViewA/TransY = Tf/PanY/Value
+d:Gr/ViewA/Theta       = 45 deg
+d:Gr/ViewA/Phi         = 45 deg
+u:Gr/ViewA/Zoom        = Tf/Zoom/Value
+u:Gr/ViewA/TransX      = Tf/Pan/Value
+u:Gr/ViewA/TransY      = Tf/PanY/Value
 
 # Extra graphics options to handle complex voxel geometries
 i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 2100000
-i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 2100000
 
-Ts/ShowHistoryCountAtInterval = 5000
+i:Ts/ShowHistoryCountAtInterval = 5000
 
-Ts/PauseBeforeQuit = "False"
+b:Ts/PauseBeforeQuit = "False"

@@ -3,4 +3,4 @@
 
 includeFile = OneBox.txt
 
-Ge/MyBox/RotX=45. deg
+d:Ge/MyBox/RotX = 45. deg

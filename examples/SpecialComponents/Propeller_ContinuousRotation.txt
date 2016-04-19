@@ -2,15 +2,15 @@
 
 includeFile = Propeller.txt
 
-Ts/PauseBeforeQuit = "False"
+b:Ts/PauseBeforeQuit = "False"
 
-d:Ge/PropellerA/RotZ       = Tf/PropellerRot/Value deg
+d:Ge/PropellerA/RotZ = Tf/PropellerRot/Value deg
 
-s:Tf/PropellerRot/Function   ="Linear deg"
-d:Tf/PropellerRot/Rate       = 3.6 deg/ms
-d:Tf/PropellerRot/StartValue = 0.0 deg
-d:Tf/PropellerRot/RepetitionInterval    = 100.0 ms
+s:Tf/PropellerRot/Function           = "Linear deg"
+d:Tf/PropellerRot/Rate               = 3.6 deg/ms
+d:Tf/PropellerRot/StartValue         = 0.0 deg
+d:Tf/PropellerRot/RepetitionInterval = 100.0 ms
 
-d:Tf/TimelineEnd=100.0 ms
+d:Tf/TimelineEnd             = 100.0 ms
 i:Tf/NumberOfSequentialTimes = 100
-i:Tf/Verbosity= 1
+i:Tf/Verbosity               = 1

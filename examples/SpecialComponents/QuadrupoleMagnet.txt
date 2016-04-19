@@ -1,55 +1,62 @@
 # MagnetBox magnet
 
-d:Ge/World/HLX=2.0 m
-d:Ge/World/HLY=2.0 m
-d:Ge/World/HLZ=2.0 m
+d:Ge/World/HLX       = 2.0 m
+d:Ge/World/HLY       = 2.0 m
+d:Ge/World/HLZ       = 2.0 m
 b:Ge/World/Invisible = "True"
 
-s:Ge/Nozzle/Type="Group"
-s:Ge/Nozzle/Parent="World"
+s:Ge/Nozzle/Type   = "Group"
+s:Ge/Nozzle/Parent = "World"
 
-s:Ge/MagnetBox/Type="G4Box"
-s:Ge/MagnetBox/Parent="Nozzle"
-s:Ge/MagnetBox/Material= "G4_AIR"
-d:Ge/MagnetBox/HLX = 10 cm
-d:Ge/MagnetBox/HLY = 10 cm
-d:Ge/MagnetBox/HLZ = 20 cm
-d:Ge/MagnetBox/RotY = 0 deg
-d:Ge/MagnetBox/RotX = 0 deg
+s:Ge/MagnetBox/Type     = "G4Box"
+s:Ge/MagnetBox/Parent   = "Nozzle"
+s:Ge/MagnetBox/Material = "G4_AIR"
+d:Ge/MagnetBox/HLX      = 10 cm
+d:Ge/MagnetBox/HLY      = 10 cm
+d:Ge/MagnetBox/HLZ      = 20 cm
+d:Ge/MagnetBox/RotY     = 0 deg
+d:Ge/MagnetBox/RotX     = 0 deg
 
 #s:Ge/MagnetBox/MagneticField = "Dipole"
-#u:Ge/MagnetBox/DirectionX = 1.0
-#u:Ge/MagnetBox/DirectionY = 1.0
-#u:Ge/MagnetBox/DirectionZ = 0.0
-#d:Ge/MagnetBox/Strength= 1.0 tesla
+#u:Ge/MagnetBox/DirectionX    = 1.0
+#u:Ge/MagnetBox/DirectionY    = 1.0
+#u:Ge/MagnetBox/DirectionZ    = 0.0
+#d:Ge/MagnetBox/Strength      = 1.0 tesla
 
 s:Ge/MagnetBox/MagneticField = "Quadrupole"
-d:Ge/MagnetBox/GradientX = .1 tesla/cm
-d:Ge/MagnetBox/GradientY = .1 tesla/cm
-d:Ge/MagnetBox/TransX = 0 cm
+d:Ge/MagnetBox/GradientX     = .1 tesla/cm
+d:Ge/MagnetBox/GradientY     = .1 tesla/cm
+d:Ge/MagnetBox/TransX        = 0 cm
 
-d:Ge/BeamPosition/TransZ=Ge/World/HLZ cm
-d:Ge/BeamPosition/RotX=180. deg
+d:Ge/BeamPosition/TransZ = Ge/World/HLZ cm
+d:Ge/BeamPosition/RotX   = 180. deg
 
-d:So/Default/BeamHWX = 3.0 cm
-d:So/Default/BeamHWY = 3.0 cm
-s:So/Default/BeamParticle ="chargedgeantino"
-d:So/Default/BeamEnergy= 169.23 MeV
-u:So/Default/BeamEnergySpread = 0.0
-s:So/Default/BeamXYDistribution = "Flat"
+s:So/Example/Type                     = "Beam"
+s:So/Example/Component                = "BeamPosition"
+s:So/Example/BeamParticle             = "chargedgeantino"
+d:So/Example/BeamEnergy               = 169.23 MeV
+u:So/Example/BeamEnergySpread         = 0.0
+s:So/Example/BeamPositionDistribution = "Flat"
+s:So/Example/BeamPositionCutoffShape  = "Ellipse"
+d:So/Example/BeamPositionCutoffX      = 3.0 cm
+d:So/Example/BeamPositionCutoffY      = 3.0 cm
+s:So/Example/BeamAngularDistribution  = "Gaussian"
+d:So/Example/BeamAngularCutoffX       = 90. deg
+d:So/Example/BeamAngularCutoffY       = 90. deg
+d:So/Example/BeamAngularSpreadX       = 0.0032 rad
+d:So/Example/BeamAngularSpreadY       = 0.0032 rad
+i:So/Example/NumberOfHistoriesInRun   = 100
 
-s:Gr/ViewA/Type = "OpenGL"
-i:Gr/ViewA/WindowSizeX = 1024
-i:Gr/ViewA/WindowSizeY = 768
-d:Gr/ViewA/Theta = 55 deg
-d:Gr/ViewA/Phi = 20 deg
-s:Gr/ViewA/Projection = "Perspective"
-d:Gr/ViewA/PerspectiveAngle = 30 deg
-u:Gr/ViewA/Zoom = 1.
+s:Gr/ViewA/Type              = "OpenGL"
+i:Gr/ViewA/WindowSizeX       = 1024
+i:Gr/ViewA/WindowSizeY       = 768
+d:Gr/ViewA/Theta             = 55 deg
+d:Gr/ViewA/Phi               = 20 deg
+s:Gr/ViewA/Projection        = "Perspective"
+d:Gr/ViewA/PerspectiveAngle  = 30 deg
+u:Gr/ViewA/Zoom              = 1.
 b:Gr/ViewA/IncludeStepPoints = "True"
 
-Ph/Default/Modules = 1 "g4em-standard_opt0"
-
-i:So/Default/NumberOfHistoriesInRun=100
+sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
 
 b:Ts/PauseBeforeQuit = "True"

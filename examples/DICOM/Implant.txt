@@ -9,23 +9,23 @@
 # Until then, one useful trick is that if you iconize the graphics window,
 # then un-inconize it when drawing is done, the drawing will go much faster.
 
-includeFile = HUtoMaterialSchneider.txt 
+includeFile = HUtoMaterialSchneider.txt
 
-Ge/World/Material = "Vacuum"
-Ge/World/HLX=2.0 m
-Ge/World/HLY=2.0 m
-Ge/World/HLZ=2.0 m
+s:Ge/World/Material  = "Vacuum"
+d:Ge/World/HLX       = 2.0 m
+d:Ge/World/HLY       = 2.0 m
+d:Ge/World/HLZ       = 2.0 m
 b:Ge/World/Invisible = "TRUE"
 
-s:Ge/Patient/Parent="World"
-s:Ge/Patient/Material="Water"
-d:Ge/Patient/TransX=0. m
-d:Ge/Patient/TransY=0. m
-d:Ge/Patient/TransZ=0. m
-d:Ge/Patient/RotX=0. deg
-d:Ge/Patient/RotY=0. deg
-d:Ge/Patient/RotZ=0. deg
-s:Ge/Patient/Type= "TsDicomPatient"
+s:Ge/Patient/Parent         = "World"
+s:Ge/Patient/Material       = "G4_WATER"
+d:Ge/Patient/TransX         = 0. m
+d:Ge/Patient/TransY         = 0. m
+d:Ge/Patient/TransZ         = 0. m
+d:Ge/Patient/RotX           = 0. deg
+d:Ge/Patient/RotY           = 0. deg
+d:Ge/Patient/RotZ           = 0. deg
+s:Ge/Patient/Type           = "TsDicomPatient"
 s:Ge/Patient/DicomDirectory = "DICOM_Box"
 
 # Specify which slices to show.
@@ -37,69 +37,73 @@ iv:Ge/Patient/ShowSpecificSlicesY = 1 -2
 iv:Ge/Patient/ShowSpecificSlicesZ = 1 -2
 
 # Overlay implant in a parallel world using Layered Mass Geometry.
-s:Ge/Implant/Type="TsSphere"
-s:Ge/Implant/Parent="Patient"
+s:Ge/Implant/Type       = "TsSphere"
+s:Ge/Implant/Parent     = "Patient"
 b:Ge/Implant/IsParallel = "True"
-s:Ge/Implant/Material="Titanium"
-d:Ge/Implant/RMin=0. cm
-d:Ge/Implant/RMax=5.0 cm
-d:Ge/Implant/SPhi=0.0 deg
-d:Ge/Implant/DPhi=360. deg
-d:Ge/Implant/STheta=0 deg
-d:Ge/Implant/DTheta=180 deg
-d:Ge/Implant/TransX=0. cm
-d:Ge/Implant/TransY=0. cm
-d:Ge/Implant/TransZ= 15. cm
-d:Ge/Implant/RotX=0. deg
-d:Ge/Implant/RotY= 0.0 deg
-d:Ge/Implant/RotZ=0. deg
-s:Ge/Implant/Color="yellow"
+s:Ge/Implant/Material   = "Titanium"
+d:Ge/Implant/RMin       = 0. cm
+d:Ge/Implant/RMax       = 5.0 cm
+d:Ge/Implant/SPhi       = 0.0 deg
+d:Ge/Implant/DPhi       = 360. deg
+d:Ge/Implant/STheta     = 0 deg
+d:Ge/Implant/DTheta     = 180 deg
+d:Ge/Implant/TransX     = 0. cm
+d:Ge/Implant/TransY     = 0. cm
+d:Ge/Implant/TransZ     = 15. cm
+d:Ge/Implant/RotX       = 0. deg
+d:Ge/Implant/RotY       = 0.0 deg
+d:Ge/Implant/RotZ       = 0. deg
+s:Ge/Implant/Color      = "yellow"
 
-Ph/Default/Modules = 1 "g4em-standard_opt0"
+sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
 sv:Ph/Default/LayeredMassGeometryWorlds = 1 "Implant"
 
-So/Default/BeamEnergy = 30. MeV
-So/Default/NumberOfHistoriesInRun = Tf/Num/Value
-So/Default/BeamHWX = 5 cm
-So/Default/BeamHWY = 20 cm
-So/Default/BeamAngularSpreadX = 0.0 rad
-So/Default/BeamAngularSpreadY = 0.0 rad
-So/Default/BeamXYDistribution = "Flat"
+s:So/Example/Type                     = "Beam"
+s:So/Example/Component                = "BeamPosition"
+s:So/Example/BeamParticle             = "proton"
+d:So/Example/BeamEnergy               = 30. MeV
+u:So/Example/BeamEnergySpread         = 0.757504
+s:So/Example/BeamPositionDistribution = "Flat"
+s:So/Example/BeamPositionCutoffShape  = "Ellipse"
+d:So/Example/BeamPositionCutoffX      = 5 cm
+d:So/Example/BeamPositionCutoffY      = 20 cm
+s:So/Example/BeamAngularDistribution  = "Point"
+i:So/Example/NumberOfHistoriesInRun   = Tf/Num/Value
 
 # Graphics
-s:Gr/ViewA/Type = "OpenGL"
+s:Gr/ViewA/Type           = "OpenGL"
 sv:Gr/ViewA/VisibleWorlds = 1 "All"
-i:Gr/ViewA/WindowSizeX = 900
-i:Gr/ViewA/WindowSizeY = 900
-d:Gr/ViewA/Theta = 90 deg
-d:Gr/ViewA/Phi = 0 deg
-u:Gr/ViewA/Zoom = Tf/Zoom/Value
-u:Gr/ViewA/TransX = Tf/Pan/Value
+i:Gr/ViewA/WindowSizeX    = 900
+i:Gr/ViewA/WindowSizeY    = 900
+d:Gr/ViewA/Theta          = 90 deg
+d:Gr/ViewA/Phi            = 0 deg
+u:Gr/ViewA/Zoom           = Tf/Zoom/Value
+u:Gr/ViewA/TransX         = Tf/Pan/Value
 
 # Graphics options to handle complex voxel geometries
 i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 2100000
 i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 210
 
 # Add zoom in over time
-s:Tf/Zoom/Function = "Step"
-dv:Tf/Zoom/Times = 2 1 2 ms
-uv:Tf/Zoom/Values = 2 1. 2.
+s:Tf/Zoom/Function           = "Step"
+dv:Tf/Zoom/Times             = 2 1 2 ms
+uv:Tf/Zoom/Values            = 2 1. 2.
 d:Tf/Zoom/RepetitionInterval = 360. ms
 
-s:Tf/Num/Function = "Step"
-dv:Tf/Num/Times = 2 1 2 ms
-iv:Tf/Num/Values = 2 250 1000
-d:Tf/Num/RepetitionInterval = 360. ms
+s:Tf/Num/Function            = "Step"
+dv:Tf/Num/Times              = 2 1 2 ms
+iv:Tf/Num/Values             = 2 250 1000
+d:Tf/Num/RepetitionInterval  = 360. ms
 
-s:Tf/Pan/Function = "Step"
-dv:Tf/Pan/Times = 2 1 2 ms
-uv:Tf/Pan/Values = 2 0. -.1
-d:Tf/Pan/RepetitionInterval = 360. ms
+s:Tf/Pan/Function            = "Step"
+dv:Tf/Pan/Times              = 2 1 2 ms
+uv:Tf/Pan/Values             = 2 0. -.1
+d:Tf/Pan/RepetitionInterval  = 360. ms
 
-Tf/TimelineEnd = 2.0 ms
-Tf/NumberOfSequentialTimes = 2
+d:Tf/TimelineEnd = 2.0 ms
+i:Tf/NumberOfSequentialTimes = 2
 i:Tf/Verbosity = 1
 
-Ts/ShowHistoryCountAtInterval = 5000
+i:Ts/ShowHistoryCountAtInterval = 5000
 
-Ts/PauseBeforeQuit = "False"
+b:Ts/PauseBeforeQuit = "False"

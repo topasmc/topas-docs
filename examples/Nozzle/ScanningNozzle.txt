@@ -1,6 +1,6 @@
 # Scanning nozzle used in some demonstrations.
 
-includeFile = ConstantsForNozzles.txt 
+includeFile = ConstantsForNozzles.txt
 
 #Ts/DumpParameters = "T"
 
@@ -8,25 +8,25 @@ includeFile = ConstantsForNozzles.txt
 #1. Beam Exit Window
 #100 um thickness Mylar window
 ########################################
-s:Ge/ExitWindow/Parent  = "Gantry"
-s:Ge/ExitWindow/Type    = "G4Tubs"
-s:Ge/ExitWindow/Material= "Mylar"
-d:Ge/ExitWindow/RMin    = 0.0  mm
-d:Ge/ExitWindow/RMax    = 50.0 mm
-d:Ge/ExitWindow/HL      = 0.05 mm
-d:Ge/ExitWindow/SPhi    = 0.0   deg
-d:Ge/ExitWindow/DPhi    = 360.0 deg
-d:Ge/ExitWindow/TransX  = 0.0 mm
-d:Ge/ExitWindow/TransY  = 0.0 mm
-d:Ge/ExitWindow/TransZ  = 299.8 cm
-d:Ge/ExitWindow/RotX    = 0.0 deg
-d:Ge/ExitWindow/RotY    = 0.0 deg
-d:Ge/ExitWindow/RotZ    = 0.0 deg
-b:Ge/ExitWindow/Include = "TRUE"
+s:Ge/ExitWindow/Parent       = "Gantry"
+s:Ge/ExitWindow/Type         = "G4Tubs"
+s:Ge/ExitWindow/Material     = "Mylar"
+d:Ge/ExitWindow/RMin         = 0.0  mm
+d:Ge/ExitWindow/RMax         = 50.0 mm
+d:Ge/ExitWindow/HL           = 0.05 mm
+d:Ge/ExitWindow/SPhi         = 0.0   deg
+d:Ge/ExitWindow/DPhi         = 360.0 deg
+d:Ge/ExitWindow/TransX       = 0.0 mm
+d:Ge/ExitWindow/TransY       = 0.0 mm
+d:Ge/ExitWindow/TransZ       = 299.8 cm
+d:Ge/ExitWindow/RotX         = 0.0 deg
+d:Ge/ExitWindow/RotY         = 0.0 deg
+d:Ge/ExitWindow/RotZ         = 0.0 deg
+b:Ge/ExitWindow/Include      = "TRUE"
 s:Ge/ExitWindow/DrawingStyle = "Solid"
 
 d:Ge/DistanceOf_CenterExitWindow_To_TopMon1 = -30.0 mm
-d:Ge/ZPlusOf_Mon1   = Ge/ExitWindow/TransZ + Ge/DistanceOf_CenterExitWindow_To_TopMon1 cm 
+d:Ge/ZPlusOf_Mon1 = Ge/ExitWindow/TransZ + Ge/DistanceOf_CenterExitWindow_To_TopMon1 cm
 
 ########################################
 #2. Monitor chamber 1.
@@ -111,12 +111,12 @@ d:Ge/ZPlusOf_Pipe   = Ge/ZMinusOf_Mon1 + Ge/DistanceOf_BottomMon1_To_TopPipe mm
 ############################################
 #Gap      Quad1   Gap   Quad2  Gap
 #2.0 cm + 5.0*2 + 4.0 + 5.0*2 + 2.0 = 28.0 cm
-d:Ge/HLOf_PipeInQuads = 14.0 cm 
-d:Ge/HLOf_Quad1 = 5.0 cm
-d:Ge/HLOf_Quad2 = Ge/HLOf_Quad1 cm 
-d:Ge/Gap_Top_Quad1     = 2.0 cm
-d:Ge/Gap_Quad1_Quad2   = 4.0 cm
-d:Ge/Gap_Quad2_Bottom  = 2.0 cm
+d:Ge/HLOf_PipeInQuads = 14.0 cm
+d:Ge/HLOf_Quad1       = 5.0 cm
+d:Ge/HLOf_Quad2       = Ge/HLOf_Quad1 cm
+d:Ge/Gap_Top_Quad1    = 2.0 cm
+d:Ge/Gap_Quad1_Quad2  = 4.0 cm
+d:Ge/Gap_Quad2_Bottom = 2.0 cm
 
 d:Ge/HLxyOf_Quads         = 47.0 mm
 d:Ge/HLxyOf_Dipoles       = 77.0 mm
@@ -125,232 +125,232 @@ s:Ge/MaterialOf_PipeWall  = "Aluminum"
 s:Ge/MaterialOf_PipeGas   = "HeGas"
 #s:Ge/MaterialOf_PipeGas   = "Vacuum"
 
-d:Ge/FLOf_PipeConnector         = 10.0 cm 
+d:Ge/FLOf_PipeConnector   = 10.0 cm
 
-d:Ge/HLOf_Dipole1 = 10.5 cm
-d:Ge/HLOf_Dipole2 = 13.0 cm
-d:Ge/DistanceOf_Coil1_Dipole1 = 6.0 cm
-d:Ge/DistanceOf_Coil2_Dipole2 = 8.0 cm
-d:Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2  = 1.0 cm
-d:Ge/DistanceOf_BottomPipe_To_TopBPM1 = -1.0 mm
-d:Ge/DistanceOf_BottomBPM1_To_PipeExtension = -0.0 mm
-d:Ge/DistanceOf_BottomPipeExtension_To_BPM2 = -0.0 mm
+d:Ge/HLOf_Dipole1                                   = 10.5 cm
+d:Ge/HLOf_Dipole2                                   = 13.0 cm
+d:Ge/DistanceOf_Coil1_Dipole1                       = 6.0 cm
+d:Ge/DistanceOf_Coil2_Dipole2                       = 8.0 cm
+d:Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 = 1.0 cm
+d:Ge/DistanceOf_BottomPipe_To_TopBPM1               = -1.0 mm
+d:Ge/DistanceOf_BottomBPM1_To_PipeExtension         = -0.0 mm
+d:Ge/DistanceOf_BottomPipeExtension_To_BPM2         = -0.0 mm
 
 #########################################################
 #Calculated parameters from input
 #Don't modify following calculations
 
-d:Ge/HLOf_DipoleCoil1 = Ge/HLOf_Dipole1 + Ge/DistanceOf_Coil1_Dipole1 cm
-d:Ge/HLOf_DipoleCoil2 = Ge/HLOf_Dipole2 + Ge/DistanceOf_Coil2_Dipole2 cm
-d:Ge/MinusHLOf_DipoleCoil1 = Ge/HLOf_DipoleCoil1 cm * -1.0
-d:Ge/MinusHLOf_DipoleCoil2 = Ge/HLOf_DipoleCoil2 cm * -1.0
+d:Ge/HLOf_DipoleCoil1             = Ge/HLOf_Dipole1 + Ge/DistanceOf_Coil1_Dipole1 cm
+d:Ge/HLOf_DipoleCoil2             = Ge/HLOf_Dipole2 + Ge/DistanceOf_Coil2_Dipole2 cm
+d:Ge/MinusHLOf_DipoleCoil1        = Ge/HLOf_DipoleCoil1 cm * -1.0
+d:Ge/MinusHLOf_DipoleCoil2        = Ge/HLOf_DipoleCoil2 cm * -1.0
 
-d:Ge/FLOf_DipoleCoil1 = Ge/HLOf_DipoleCoil1 cm * 2.0
-d:Ge/FLOf_DipoleCoil2 = Ge/HLOf_DipoleCoil2 cm * 2.0
-d:Ge/FLOf_DipoleCoil1_DipoleCoil2 =Ge/FLOf_DipoleCoil1 + Ge/FLOf_DipoleCoil2  cm
+d:Ge/FLOf_DipoleCoil1             = Ge/HLOf_DipoleCoil1 cm * 2.0
+d:Ge/FLOf_DipoleCoil2             = Ge/HLOf_DipoleCoil2 cm * 2.0
+d:Ge/FLOf_DipoleCoil1_DipoleCoil2 = Ge/FLOf_DipoleCoil1 + Ge/FLOf_DipoleCoil2  cm
 
-d:Ge/FLOf_PipeInQuads  = 2.0 * Ge/HLOf_PipeInQuads cm
+d:Ge/FLOf_PipeInQuads             = 2.0 * Ge/HLOf_PipeInQuads cm
 
-d:Ge/HLOf_PipeConnector     = Ge/FLOf_PipeConnector cm * 0.5
-d:Ge/MinusHLOf_PipeConnector= Ge/FLOf_PipeConnector cm * -0.5
+d:Ge/HLOf_PipeConnector           = Ge/FLOf_PipeConnector cm * 0.5
+d:Ge/MinusHLOf_PipeConnector      = Ge/FLOf_PipeConnector cm * -0.5
 
-d:Ge/FLOf_PipeInDipoles = Ge/FLOf_DipoleCoil1_DipoleCoil2 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
-d:Ge/HLOf_PipeInDipoles = Ge/FLOf_PipeInDipoles cm * 0.5
-d:Ge/MinusHLOf_PipeInDipoles  = Ge/FLOf_PipeInDipoles cm * -0.5
+d:Ge/FLOf_PipeInDipoles           = Ge/FLOf_DipoleCoil1_DipoleCoil2 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
+d:Ge/HLOf_PipeInDipoles           = Ge/FLOf_PipeInDipoles cm * 0.5
+d:Ge/MinusHLOf_PipeInDipoles      = Ge/FLOf_PipeInDipoles cm * -0.5
 
-d:Ge/FLOf_QuadsDipoles = Ge/FLOf_PipeInDipoles + Ge/FLOf_PipeInQuads cm
+d:Ge/FLOf_QuadsDipoles            = Ge/FLOf_PipeInDipoles + Ge/FLOf_PipeInQuads cm
 
-d:Ge/FLOf_Pipe      = Ge/FLOf_QuadsDipoles  + Ge/FLOf_PipeConnector cm
-d:Ge/HLOf_Pipe      = Ge/FLOf_Pipe cm * 0.5 
+d:Ge/FLOf_Pipe                    = Ge/FLOf_QuadsDipoles  + Ge/FLOf_PipeConnector cm
+d:Ge/HLOf_Pipe                    = Ge/FLOf_Pipe cm * 0.5
 ########################################################
 
 ########################################
 # Pipe through Quads/Dipoles/
 ########################################
-s:Ge/BeamPipeInQuadsDipoles/Parent="Gantry"
-s:Ge/BeamPipeInQuadsDipoles/Type  ="Group"
-d:Ge/BeamPipeInQuadsDipoles/TransX= 0. m
-d:Ge/BeamPipeInQuadsDipoles/TransY= 0. m
-d:Ge/BeamPipeInQuadsDipoles/TransZ= Ge/ZPlusOf_Pipe - Ge/HLOf_Pipe mm
-d:Ge/BeamPipeInQuadsDipoles/RotX= 0. deg
-d:Ge/BeamPipeInQuadsDipoles/RotY= 0. deg
-d:Ge/BeamPipeInQuadsDipoles/RotZ= 0. deg
+s:Ge/BeamPipeInQuadsDipoles/Parent = "Gantry"
+s:Ge/BeamPipeInQuadsDipoles/Type   = "Group"
+d:Ge/BeamPipeInQuadsDipoles/TransX = 0. m
+d:Ge/BeamPipeInQuadsDipoles/TransY = 0. m
+d:Ge/BeamPipeInQuadsDipoles/TransZ = Ge/ZPlusOf_Pipe - Ge/HLOf_Pipe mm
+d:Ge/BeamPipeInQuadsDipoles/RotX   = 0. deg
+d:Ge/BeamPipeInQuadsDipoles/RotY   = 0. deg
+d:Ge/BeamPipeInQuadsDipoles/RotZ   = 0. deg
 
-s:Ge/PipeInQuads/Parent="BeamPipeInQuadsDipoles"
-s:Ge/PipeInQuads/Type="G4Box"
-s:Ge/PipeInQuads/Material = Ge/MaterialOf_PipeWall 
+s:Ge/PipeInQuads/Parent   = "BeamPipeInQuadsDipoles"
+s:Ge/PipeInQuads/Type     = "G4Box"
+s:Ge/PipeInQuads/Material = Ge/MaterialOf_PipeWall
 d:Ge/PipeInQuads/HLX      = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
 d:Ge/PipeInQuads/HLY      = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeInQuads/HLZ      = Ge/HLOf_PipeInQuads cm 
-d:Ge/PipeInQuads/TransX=0.0 mm
-d:Ge/PipeInQuads/TransY=0.0 mm
-d:Ge/PipeInQuads/TransZ= Ge/HLOf_Pipe -  Ge/HLOf_PipeInQuads  cm
-d:Ge/PipeInQuads/RotX=0.0 deg
-d:Ge/PipeInQuads/RotY=0.0 deg
-d:Ge/PipeInQuads/RotZ=0.0 deg
+d:Ge/PipeInQuads/HLZ      = Ge/HLOf_PipeInQuads cm
+d:Ge/PipeInQuads/TransX   = 0.0 mm
+d:Ge/PipeInQuads/TransY   = 0.0 mm
+d:Ge/PipeInQuads/TransZ   = Ge/HLOf_Pipe -  Ge/HLOf_PipeInQuads  cm
+d:Ge/PipeInQuads/RotX     = 0.0 deg
+d:Ge/PipeInQuads/RotY     = 0.0 deg
+d:Ge/PipeInQuads/RotZ     = 0.0 deg
 
-s:Ge/PipeInQuads/Gas/Parent="PipeInQuads"
-s:Ge/PipeInQuads/Gas/Type="G4Box"
-s:Ge/PipeInQuads/Gas/Material = Ge/MaterialOf_PipeGas 
+s:Ge/PipeInQuads/Gas/Parent   = "PipeInQuads"
+s:Ge/PipeInQuads/Gas/Type     = "G4Box"
+s:Ge/PipeInQuads/Gas/Material = Ge/MaterialOf_PipeGas
 d:Ge/PipeInQuads/Gas/HLX      = Ge/HLxyOf_Quads   mm
 d:Ge/PipeInQuads/Gas/HLY      = Ge/HLxyOf_Quads  mm
 d:Ge/PipeInQuads/Gas/HLZ      = Ge/PipeInQuads/HLZ cm
-d:Ge/PipeInQuads/Gas/TransX=0.0 mm
-d:Ge/PipeInQuads/Gas/TransY=0.0 mm
-d:Ge/PipeInQuads/Gas/TransZ=0.0 mm
-d:Ge/PipeInQuads/Gas/RotX=0.0 deg
-d:Ge/PipeInQuads/Gas/RotY=0.0 deg
-d:Ge/PipeInQuads/Gas/RotZ=0.0 deg
+d:Ge/PipeInQuads/Gas/TransX   = 0.0 mm
+d:Ge/PipeInQuads/Gas/TransY   = 0.0 mm
+d:Ge/PipeInQuads/Gas/TransZ   = 0.0 mm
+d:Ge/PipeInQuads/Gas/RotX     = 0.0 deg
+d:Ge/PipeInQuads/Gas/RotY     = 0.0 deg
+d:Ge/PipeInQuads/Gas/RotZ     = 0.0 deg
 
 ########################################
 #3. Quadrupole 1 and Quadrupole 2 in pipe
 ########################################
-s:Ge/Quad1/Type    ="G4Box"
-s:Ge/Quad1/Parent  ="PipeInQuads/Gas"
-s:Ge/Quad1/Material="parent"
-d:Ge/Quad1/HLX     = Ge/PipeInQuads/Gas/HLX cm
-d:Ge/Quad1/HLY     = Ge/PipeInQuads/Gas/HLX cm
-d:Ge/Quad1/HLZ     = Ge/HLOf_Quad1  cm
-d:Ge/Quad1/TransX = 0.0 cm
-d:Ge/Quad1/TransY = 0.0 cm
-d:Ge/Quad1/Upstream   = Ge/PipeInQuads/Gas/HLZ - Ge/Gap_Top_Quad1 cm
-d:Ge/Quad1/TransZ     = Ge/Quad1/Upstream - Ge/Quad1/HLZ cm
-d:Ge/Quad1/Downstream = Ge/Quad1/TransZ - Ge/Quad1/HLZ cm
-d:Ge/Quad1/RotX = 0.0 deg
-d:Ge/Quad1/RotY = 0.0 deg
-d:Ge/Quad1/RotZ = 0.0 deg
+s:Ge/Quad1/Type          = "G4Box"
+s:Ge/Quad1/Parent        = "PipeInQuads/Gas"
+s:Ge/Quad1/Material      = "parent"
+d:Ge/Quad1/HLX           = Ge/PipeInQuads/Gas/HLX cm
+d:Ge/Quad1/HLY           = Ge/PipeInQuads/Gas/HLX cm
+d:Ge/Quad1/HLZ           = Ge/HLOf_Quad1  cm
+d:Ge/Quad1/TransX        = 0.0 cm
+d:Ge/Quad1/TransY        = 0.0 cm
+d:Ge/Quad1/Upstream      = Ge/PipeInQuads/Gas/HLZ - Ge/Gap_Top_Quad1 cm
+d:Ge/Quad1/TransZ        = Ge/Quad1/Upstream - Ge/Quad1/HLZ cm
+d:Ge/Quad1/Downstream    = Ge/Quad1/TransZ - Ge/Quad1/HLZ cm
+d:Ge/Quad1/RotX          = 0.0 deg
+d:Ge/Quad1/RotY          = 0.0 deg
+d:Ge/Quad1/RotZ          = 0.0 deg
 s:Ge/Quad1/MagneticField = "Quadrupole"
-u:Ge/Quad1/DirectionX = -1
-u:Ge/Quad1/DirectionY = 2.0
-u:Ge/Quad1/DirectionZ = 3.0
-d:Ge/Quad1/GradientX = 0.0 tesla/cm
-d:Ge/Quad1/GradientY = 0.0 tesla/cm
+u:Ge/Quad1/DirectionX    = -1
+u:Ge/Quad1/DirectionY    = 2.0
+u:Ge/Quad1/DirectionZ    = 3.0
+d:Ge/Quad1/GradientX     = 0.0 tesla/cm
+d:Ge/Quad1/GradientY     = 0.0 tesla/cm
 
-s:Ge/Quad2/Type    ="G4Box"
-s:Ge/Quad2/Parent  ="PipeInQuads/Gas"
-s:Ge/Quad2/Material="parent"
-d:Ge/Quad2/HLX     = Ge/PipeInQuads/Gas/HLX cm
-d:Ge/Quad2/HLY     = Ge/PipeInQuads/Gas/HLX cm
-d:Ge/Quad2/HLZ     = Ge/HLOf_Quad2  cm
-d:Ge/Quad2/TransX = 0.0 cm
-d:Ge/Quad2/TransY = 0.0 cm
-d:Ge/Quad2/Upstream = Ge/Quad1/Downstream - Ge/Gap_Quad1_Quad2 cm
-d:Ge/Quad2/TransZ = Ge/Quad2/Upstream - Ge/Quad2/HLZ cm
-d:Ge/Quad2/RotX = 0.0 deg
-d:Ge/Quad2/RotY = 0.0 deg
-d:Ge/Quad2/RotZ = 0.0 deg
+s:Ge/Quad2/Type          = "G4Box"
+s:Ge/Quad2/Parent        = "PipeInQuads/Gas"
+s:Ge/Quad2/Material      = "parent"
+d:Ge/Quad2/HLX           = Ge/PipeInQuads/Gas/HLX cm
+d:Ge/Quad2/HLY           = Ge/PipeInQuads/Gas/HLX cm
+d:Ge/Quad2/HLZ           = Ge/HLOf_Quad2  cm
+d:Ge/Quad2/TransX        = 0.0 cm
+d:Ge/Quad2/TransY        = 0.0 cm
+d:Ge/Quad2/Upstream      = Ge/Quad1/Downstream - Ge/Gap_Quad1_Quad2 cm
+d:Ge/Quad2/TransZ        = Ge/Quad2/Upstream - Ge/Quad2/HLZ cm
+d:Ge/Quad2/RotX          = 0.0 deg
+d:Ge/Quad2/RotY          = 0.0 deg
+d:Ge/Quad2/RotZ          = 0.0 deg
 s:Ge/Quad2/MagneticField = "Quadrupole"
-u:Ge/Quad2/DirectionX = -1
-u:Ge/Quad2/DirectionY = 2.0
-u:Ge/Quad2/DirectionZ = 3.0
-d:Ge/Quad2/GradientX = 0.0 tesla/cm
-d:Ge/Quad2/GradientY = 0.0 tesla/cm
+u:Ge/Quad2/DirectionX    = -1
+u:Ge/Quad2/DirectionY    = 2.0
+u:Ge/Quad2/DirectionZ    = 3.0
+d:Ge/Quad2/GradientX     = 0.0 tesla/cm
+d:Ge/Quad2/GradientY     = 0.0 tesla/cm
 
-d:Ge/ZPlusPipeConnector = Ge/PipeInQuads/TransZ - Ge/HLOf_PipeInQuads cm 
+d:Ge/ZPlusPipeConnector = Ge/PipeInQuads/TransZ - Ge/HLOf_PipeInQuads cm
 
-s:Ge/PipeConnector/Parent="BeamPipeInQuadsDipoles"
-s:Ge/PipeConnector/Type="G4Trd"
-s:Ge/PipeConnector/Material= Ge/MaterialOf_PipeWall
-d:Ge/PipeConnector/HLX2= Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeConnector/HLY2= Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeConnector/HLX1= Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeConnector/HLY1= Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeConnector/HLZ = Ge/HLOf_PipeConnector  mm
-d:Ge/PipeConnector/TransX=0.0 mm
-d:Ge/PipeConnector/TransY=0.0 mm
-d:Ge/PipeConnector/TransZ=Ge/ZPlusPipeConnector + Ge/MinusHLOf_PipeConnector mm
-d:Ge/PipeConnector/RotX=0.0 deg
-d:Ge/PipeConnector/RotY=0.0 deg
-d:Ge/PipeConnector/RotZ=0.0 deg
-b:Ge/PipeConnector/Include="TRUE"
+s:Ge/PipeConnector/Parent   = "BeamPipeInQuadsDipoles"
+s:Ge/PipeConnector/Type     = "G4Trd"
+s:Ge/PipeConnector/Material = Ge/MaterialOf_PipeWall
+d:Ge/PipeConnector/HLX2     = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeConnector/HLY2     = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeConnector/HLX1     = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeConnector/HLY1     = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeConnector/HLZ      = Ge/HLOf_PipeConnector  mm
+d:Ge/PipeConnector/TransX   = 0.0 mm
+d:Ge/PipeConnector/TransY   = 0.0 mm
+d:Ge/PipeConnector/TransZ   = Ge/ZPlusPipeConnector + Ge/MinusHLOf_PipeConnector mm
+d:Ge/PipeConnector/RotX     = 0.0 deg
+d:Ge/PipeConnector/RotY     = 0.0 deg
+d:Ge/PipeConnector/RotZ     = 0.0 deg
+b:Ge/PipeConnector/Include  = "TRUE"
 
-s:Ge/PipeConnector/Gas/Parent="PipeConnector"
-s:Ge/PipeConnector/Gas/Type="G4Trd"
-s:Ge/PipeConnector/Gas/Material= Ge/MaterialOf_PipeGas 
-d:Ge/PipeConnector/Gas/HLX2= Ge/HLxyOf_Quads mm
-d:Ge/PipeConnector/Gas/HLY2= Ge/HLxyOf_Quads mm
-d:Ge/PipeConnector/Gas/HLX1= Ge/HLxyOf_Dipoles mm
-d:Ge/PipeConnector/Gas/HLY1= Ge/HLxyOf_Dipoles mm
-d:Ge/PipeConnector/Gas/HLZ = Ge/PipeConnector/HLZ mm
-d:Ge/PipeConnector/Gas/TransX=0.0 mm
-d:Ge/PipeConnector/Gas/TransY=0.0 mm
-d:Ge/PipeConnector/Gas/TransZ=0.0 mm
-d:Ge/PipeConnector/Gas/RotX=0.0 deg
-d:Ge/PipeConnector/Gas/RotY=0.0 deg
-d:Ge/PipeConnector/Gas/RotZ=0.0 deg
-b:Ge/PipeConnector/Gas/Include="TRUE"
+s:Ge/PipeConnector/Gas/Parent   = "PipeConnector"
+s:Ge/PipeConnector/Gas/Type     = "G4Trd"
+s:Ge/PipeConnector/Gas/Material = Ge/MaterialOf_PipeGas
+d:Ge/PipeConnector/Gas/HLX2     = Ge/HLxyOf_Quads mm
+d:Ge/PipeConnector/Gas/HLY2     = Ge/HLxyOf_Quads mm
+d:Ge/PipeConnector/Gas/HLX1     = Ge/HLxyOf_Dipoles mm
+d:Ge/PipeConnector/Gas/HLY1     = Ge/HLxyOf_Dipoles mm
+d:Ge/PipeConnector/Gas/HLZ      = Ge/PipeConnector/HLZ mm
+d:Ge/PipeConnector/Gas/TransX   = 0.0 mm
+d:Ge/PipeConnector/Gas/TransY   = 0.0 mm
+d:Ge/PipeConnector/Gas/TransZ   = 0.0 mm
+d:Ge/PipeConnector/Gas/RotX     = 0.0 deg
+d:Ge/PipeConnector/Gas/RotY     = 0.0 deg
+d:Ge/PipeConnector/Gas/RotZ     = 0.0 deg
+b:Ge/PipeConnector/Gas/Include  = "TRUE"
 
-d:Ge/ZPlusPipeInDipoles = Ge/PipeConnector/TransZ + Ge/MinusHLOf_PipeConnector cm 
+d:Ge/ZPlusPipeInDipoles = Ge/PipeConnector/TransZ + Ge/MinusHLOf_PipeConnector cm
 
-s:Ge/PipeInDipoles/Parent="BeamPipeInQuadsDipoles"
-s:Ge/PipeInDipoles/Type="G4Box"
-s:Ge/PipeInDipoles/Material= Ge/MaterialOf_PipeWall
-d:Ge/PipeInDipoles/HLX = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeInDipoles/HLY = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
-d:Ge/PipeInDipoles/HLZ = Ge/HLOf_PipeInDipoles cm 
-d:Ge/PipeInDipoles/TransX = 0.0 mm
-d:Ge/PipeInDipoles/TransY = 0.0 mm
-d:Ge/PipeInDipoles/TransZ = Ge/ZPlusPipeInDipoles + Ge/MinusHLOf_PipeInDipoles cm
-d:Ge/PipeInDipoles/RotX=0.0 deg
-d:Ge/PipeInDipoles/RotY=0.0 deg
-d:Ge/PipeInDipoles/RotZ=0.0 deg
-b:Ge/PipeInDipoles/Include="TRUE"
+s:Ge/PipeInDipoles/Parent   = "BeamPipeInQuadsDipoles"
+s:Ge/PipeInDipoles/Type     = "G4Box"
+s:Ge/PipeInDipoles/Material = Ge/MaterialOf_PipeWall
+d:Ge/PipeInDipoles/HLX      = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeInDipoles/HLY      = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
+d:Ge/PipeInDipoles/HLZ      = Ge/HLOf_PipeInDipoles cm
+d:Ge/PipeInDipoles/TransX   = 0.0 mm
+d:Ge/PipeInDipoles/TransY   = 0.0 mm
+d:Ge/PipeInDipoles/TransZ   = Ge/ZPlusPipeInDipoles + Ge/MinusHLOf_PipeInDipoles cm
+d:Ge/PipeInDipoles/RotX     = 0.0 deg
+d:Ge/PipeInDipoles/RotY     = 0.0 deg
+d:Ge/PipeInDipoles/RotZ     = 0.0 deg
+b:Ge/PipeInDipoles/Include  = "TRUE"
 
-s:Ge/PipeInDipoles/Gas/Parent  = "PipeInDipoles"
-s:Ge/PipeInDipoles/Gas/Type    = "G4Box"
-s:Ge/PipeInDipoles/Gas/Material= Ge/MaterialOf_PipeGas
-d:Ge/PipeInDipoles/Gas/HLX     = Ge/HLxyOf_Dipoles  mm
-d:Ge/PipeInDipoles/Gas/HLY     = Ge/HLxyOf_Dipoles  mm
-d:Ge/PipeInDipoles/Gas/HLZ     = Ge/HLOf_PipeInDipoles cm
-d:Ge/PipeInDipoles/Gas/TransX  = 0.0 mm
-d:Ge/PipeInDipoles/Gas/TransY  = 0.0 mm
-d:Ge/PipeInDipoles/Gas/TransZ  = 0.0 mm
-d:Ge/PipeInDipoles/Gas/RotX    = 0.0 deg
-d:Ge/PipeInDipoles/Gas/RotY    = 0.0 deg
-d:Ge/PipeInDipoles/Gas/RotZ    = 0.0 deg
-b:Ge/PipeInDipoles/Gas/Include = "TRUE"
+s:Ge/PipeInDipoles/Gas/Parent   = "PipeInDipoles"
+s:Ge/PipeInDipoles/Gas/Type     = "G4Box"
+s:Ge/PipeInDipoles/Gas/Material = Ge/MaterialOf_PipeGas
+d:Ge/PipeInDipoles/Gas/HLX      = Ge/HLxyOf_Dipoles  mm
+d:Ge/PipeInDipoles/Gas/HLY      = Ge/HLxyOf_Dipoles  mm
+d:Ge/PipeInDipoles/Gas/HLZ      = Ge/HLOf_PipeInDipoles cm
+d:Ge/PipeInDipoles/Gas/TransX   = 0.0 mm
+d:Ge/PipeInDipoles/Gas/TransY   = 0.0 mm
+d:Ge/PipeInDipoles/Gas/TransZ   = 0.0 mm
+d:Ge/PipeInDipoles/Gas/RotX     = 0.0 deg
+d:Ge/PipeInDipoles/Gas/RotY     = 0.0 deg
+d:Ge/PipeInDipoles/Gas/RotZ     = 0.0 deg
+b:Ge/PipeInDipoles/Gas/Include  = "TRUE"
 
 ########################################
-#5. Dipole 1 and 2. in Pipe 
+#5. Dipole 1 and 2. in Pipe
 ########################################
-s:Ge/Dipole1/Type    ="G4Box"
-s:Ge/Dipole1/Parent  = "PipeInDipoles/Gas"
-s:Ge/Dipole1/Material= "parent"
-d:Ge/Dipole1/HLX     = Ge/PipeInDipoles/Gas/HLX mm
-d:Ge/Dipole1/HLY     = Ge/PipeInDipoles/Gas/HLY mm 
-d:Ge/Dipole1/HLZ     = Ge/HLOf_Dipole1 mm
-d:Ge/Dipole1/TransX  = 0.0 cm
-d:Ge/Dipole1/TransY  = 0.0 cm
-d:Ge/Dipole1/TransZ  = Ge/HLOf_PipeInDipoles + Ge/MinusHLOf_DipoleCoil1  mm
-d:Ge/Dipole1/RotX    = 0.0 deg
-d:Ge/Dipole1/RotY    = 0.0 deg
-d:Ge/Dipole1/RotZ    = 0.0 deg
+s:Ge/Dipole1/Type          = "G4Box"
+s:Ge/Dipole1/Parent        = "PipeInDipoles/Gas"
+s:Ge/Dipole1/Material      = "parent"
+d:Ge/Dipole1/HLX           = Ge/PipeInDipoles/Gas/HLX mm
+d:Ge/Dipole1/HLY           = Ge/PipeInDipoles/Gas/HLY mm
+d:Ge/Dipole1/HLZ           = Ge/HLOf_Dipole1 mm
+d:Ge/Dipole1/TransX        = 0.0 cm
+d:Ge/Dipole1/TransY        = 0.0 cm
+d:Ge/Dipole1/TransZ        = Ge/HLOf_PipeInDipoles + Ge/MinusHLOf_DipoleCoil1  mm
+d:Ge/Dipole1/RotX          = 0.0 deg
+d:Ge/Dipole1/RotY          = 0.0 deg
+d:Ge/Dipole1/RotZ          = 0.0 deg
 s:Ge/Dipole1/MagneticField = "Dipole"
-u:Ge/Dipole1/DirectionX = 1.0
-u:Ge/Dipole1/DirectionY = 0.0
-u:Ge/Dipole1/DirectionZ = 0.0
-d:Ge/Dipole1/Strength   = 0.0 tesla
+u:Ge/Dipole1/DirectionX    = 1.0
+u:Ge/Dipole1/DirectionY    = 0.0
+u:Ge/Dipole1/DirectionZ    = 0.0
+d:Ge/Dipole1/Strength      = 0.0 tesla
 
 d:Ge/ZMinusOf_Dipole1 = Ge/Dipole1/TransZ + Ge/MinusHLOf_DipoleCoil1 mm
 d:Ge/ZPlusOf_Dipole2  = Ge/ZMinusOf_Dipole1 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
 
-s:Ge/Dipole2/Type    = "G4Box"
-s:Ge/Dipole2/Parent  = "PipeInDipoles/Gas"
-s:Ge/Dipole2/Material= "parent"
-d:Ge/Dipole2/HLX     = Ge/PipeInDipoles/Gas/HLX mm
-d:Ge/Dipole2/HLY     = Ge/PipeInDipoles/Gas/HLY mm 
-d:Ge/Dipole2/HLZ     = Ge/HLOf_Dipole2 mm
-d:Ge/Dipole2/TransX  = 0.0 cm
-d:Ge/Dipole2/TransY  = 0.0 cm
-d:Ge/Dipole2/TransZ  = Ge/ZPlusOf_Dipole2 + Ge/MinusHLOf_DipoleCoil2  mm
-d:Ge/Dipole2/RotX    = 0.0 deg
-d:Ge/Dipole2/RotY    = 0.0 deg
-d:Ge/Dipole2/RotZ    = 0.0 deg
+s:Ge/Dipole2/Type          = "G4Box"
+s:Ge/Dipole2/Parent        = "PipeInDipoles/Gas"
+s:Ge/Dipole2/Material      = "parent"
+d:Ge/Dipole2/HLX           = Ge/PipeInDipoles/Gas/HLX mm
+d:Ge/Dipole2/HLY           = Ge/PipeInDipoles/Gas/HLY mm
+d:Ge/Dipole2/HLZ           = Ge/HLOf_Dipole2 mm
+d:Ge/Dipole2/TransX        = 0.0 cm
+d:Ge/Dipole2/TransY        = 0.0 cm
+d:Ge/Dipole2/TransZ        = Ge/ZPlusOf_Dipole2 + Ge/MinusHLOf_DipoleCoil2  mm
+d:Ge/Dipole2/RotX          = 0.0 deg
+d:Ge/Dipole2/RotY          = 0.0 deg
+d:Ge/Dipole2/RotZ          = 0.0 deg
 s:Ge/Dipole2/MagneticField = "Dipole"
-u:Ge/Dipole2/DirectionX = 0.0
-u:Ge/Dipole2/DirectionY = 1.0
-u:Ge/Dipole2/DirectionZ = 0.0
-d:Ge/Dipole2/Strength   = 0.0 tesla
+u:Ge/Dipole2/DirectionX    = 0.0
+u:Ge/Dipole2/DirectionY    = 1.0
+u:Ge/Dipole2/DirectionZ    = 0.0
+d:Ge/Dipole2/Strength      = 0.0 tesla
 
 d:Ge/ZMinusOf_Pipe = Ge/BeamPipeInQuadsDipoles/TransZ - Ge/HLOf_Pipe mm
 d:Ge/ZPlusOf_BPM1  = Ge/ZMinusOf_Pipe + Ge/DistanceOf_BottomPipe_To_TopBPM1  mm
@@ -361,20 +361,20 @@ d:Ge/ZPlusOf_BPM1  = Ge/ZMinusOf_Pipe + Ge/DistanceOf_BottomPipe_To_TopBPM1  mm
 # 2 Mylar windows
 # 2 sets of Multi-wire chamber
 ########################################
-s:Ge/BeamProfileMonitor1/Parent  = "Gantry"
-s:Ge/BeamProfileMonitor1/Type    = "G4Box"
-s:Ge/BeamProfileMonitor1/Material= "NiGas"
-d:Ge/BeamProfileMonitor1/HLX	 = 92.0 mm
-d:Ge/BeamProfileMonitor1/HLY	 = 92.0 mm
-d:Ge/BeamProfileMonitor1/HLZ	 = 22.0 mm
-d:Ge/BeamProfileMonitor1/MinusHL = Ge/BeamProfileMonitor1/HLZ mm * -1.0	 
-d:Ge/BeamProfileMonitor1/TransX  = 0.0   mm
-d:Ge/BeamProfileMonitor1/TransY  = 0.0   mm
-d:Ge/BeamProfileMonitor1/TransZ  = Ge/ZPlusOf_BPM1 + Ge/BeamProfileMonitor1/MinusHL cm
-d:Ge/BeamProfileMonitor1/RotX    = 0.0 deg
-d:Ge/BeamProfileMonitor1/RotY    = 0.0 deg
-d:Ge/BeamProfileMonitor1/RotZ    = 0.0 deg
-b:Ge/BeamProfileMonitor1/Include="TRUE"
+s:Ge/BeamProfileMonitor1/Parent   = "Gantry"
+s:Ge/BeamProfileMonitor1/Type     = "G4Box"
+s:Ge/BeamProfileMonitor1/Material = "NiGas"
+d:Ge/BeamProfileMonitor1/HLX      = 92.0 mm
+d:Ge/BeamProfileMonitor1/HLY      = 92.0 mm
+d:Ge/BeamProfileMonitor1/HLZ      = 22.0 mm
+d:Ge/BeamProfileMonitor1/MinusHL  = Ge/BeamProfileMonitor1/HLZ mm * -1.0
+d:Ge/BeamProfileMonitor1/TransX   = 0.0   mm
+d:Ge/BeamProfileMonitor1/TransY   = 0.0   mm
+d:Ge/BeamProfileMonitor1/TransZ   = Ge/ZPlusOf_BPM1 + Ge/BeamProfileMonitor1/MinusHL cm
+d:Ge/BeamProfileMonitor1/RotX     = 0.0 deg
+d:Ge/BeamProfileMonitor1/RotY     = 0.0 deg
+d:Ge/BeamProfileMonitor1/RotZ     = 0.0 deg
+b:Ge/BeamProfileMonitor1/Include  = "TRUE"
 
 s:Ge/BeamProfileMonitor1/Window1/Parent   = "BeamProfileMonitor1"
 s:Ge/BeamProfileMonitor1/Window1/Type     = "G4Box"
@@ -402,28 +402,28 @@ d:Ge/BeamProfileMonitor1/Window2/RotX     = 0.0 deg
 d:Ge/BeamProfileMonitor1/Window2/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor1/Window2/RotZ     = 0.0 deg
 
-s:Ge/MWC_In_BPM1/Parent="BeamProfileMonitor1"
-s:Ge/MWC_In_BPM1/Type="TsMultiWireChamber"
-s:Ge/MWC_In_BPM1/Material= "parent"
-d:Ge/MWC_In_BPM1/HLX=88.0  mm
-d:Ge/MWC_In_BPM1/HLY=88.0  mm
-d:Ge/MWC_In_BPM1/HLZ=13.0   mm
-d:Ge/MWC_In_BPM1/TransX=0.0 mm
-d:Ge/MWC_In_BPM1/TransY=0.0 mm
-d:Ge/MWC_In_BPM1/TransZ=0.0 mm
-d:Ge/MWC_In_BPM1/RotX=0.0   deg
-d:Ge/MWC_In_BPM1/RotY=0.0   deg
-d:Ge/MWC_In_BPM1/RotZ=0.0   deg
-i:Ge/MWC_In_BPM1/NbOfLayers=2
+s:Ge/MWC_In_BPM1/Parent     = "BeamProfileMonitor1"
+s:Ge/MWC_In_BPM1/Type       = "TsMultiWireChamber"
+s:Ge/MWC_In_BPM1/Material   = "parent"
+d:Ge/MWC_In_BPM1/HLX        = 88.0 mm
+d:Ge/MWC_In_BPM1/HLY        = 88.0 mm
+d:Ge/MWC_In_BPM1/HLZ        = 13.0 mm
+d:Ge/MWC_In_BPM1/TransX     = 0.0 mm
+d:Ge/MWC_In_BPM1/TransY     = 0.0 mm
+d:Ge/MWC_In_BPM1/TransZ     = 0.0 mm
+d:Ge/MWC_In_BPM1/RotX       = 0.0 deg
+d:Ge/MWC_In_BPM1/RotY       = 0.0 deg
+d:Ge/MWC_In_BPM1/RotZ       = 0.0 deg
+i:Ge/MWC_In_BPM1/NbOfLayers = 2
 
-d:Ge/MWC_In_BPM1/Layer1/RMin=0.0 mm
-d:Ge/MWC_In_BPM1/Layer1/RMax=0.02 mm
-s:Ge/MWC_In_BPM1/Layer1/Material="Brass"
-d:Ge/MWC_In_BPM1/Layer1/HL=85.0 mm
-s:Ge/MWC_In_BPM1/Layer1/Align="X"
-d:Ge/MWC_In_BPM1/Layer1/PosZ=5.0 mm
-s:Ge/MWC_In_BPM1/Layer1/DrawingStyle="FullWireFrame"
-dv:Ge/MWC_In_BPM1/Layer1/Displacement=72
+d:Ge/MWC_In_BPM1/Layer1/RMin          = 0.0 mm
+d:Ge/MWC_In_BPM1/Layer1/RMax          = 0.02 mm
+s:Ge/MWC_In_BPM1/Layer1/Material      = "Brass"
+d:Ge/MWC_In_BPM1/Layer1/HL            = 85.0 mm
+s:Ge/MWC_In_BPM1/Layer1/Align         = "X"
+d:Ge/MWC_In_BPM1/Layer1/PosZ          = 5.0 mm
+s:Ge/MWC_In_BPM1/Layer1/DrawingStyle  = "FullWireFrame"
+dv:Ge/MWC_In_BPM1/Layer1/Displacement = 72
 -71.9855 -69.9855 -67.9855 -65.9855 -63.9855 -61.9855 -59.9855 -57.9855 -55.9855 -53.9855
 -51.9855 -49.9855 -47.9855 -45.9855 -43.9855 -41.9855 -39.9855 -37.9855 -35.9855 -33.9855
 -31.9855 -29.9855 -27.9855 -25.9855 -23.9855 -21.9855 -19.9855 -17.9855 -15.9855 -13.9855
@@ -433,15 +433,15 @@ dv:Ge/MWC_In_BPM1/Layer1/Displacement=72
  48.0145  50.0145  52.0145  54.0145  56.0145 58.0145  60.0145  62.0145  64.0145  66.0145
  68.0145  70.0145 mm
 
-d:Ge/MWC_In_BPM1/Layer2/RMin=0.0 mm
-d:Ge/MWC_In_BPM1/Layer2/RMax=0.02 mm
-s:Ge/MWC_In_BPM1/Layer2/Material="Brass"
-d:Ge/MWC_In_BPM1/Layer2/HL=85.0 mm
-s:Ge/MWC_In_BPM1/Layer2/Align="Y"
-d:Ge/MWC_In_BPM1/Layer2/PosZ=-5.0 mm
-s:Ge/MWC_In_BPM1/Layer2/DrawingStyle= "FullWireFrame"
-s:Ge/MWC_In_BPM1/Layer2/Color="red"
-dv:Ge/MWC_In_BPM1/Layer2/Displacement=72
+d:Ge/MWC_In_BPM1/Layer2/RMin          = 0.0 mm
+d:Ge/MWC_In_BPM1/Layer2/RMax          = 0.02 mm
+s:Ge/MWC_In_BPM1/Layer2/Material      = "Brass"
+d:Ge/MWC_In_BPM1/Layer2/HL            = 85.0 mm
+s:Ge/MWC_In_BPM1/Layer2/Align         = "Y"
+d:Ge/MWC_In_BPM1/Layer2/PosZ          = -5.0 mm
+s:Ge/MWC_In_BPM1/Layer2/DrawingStyle  =  "FullWireFrame"
+s:Ge/MWC_In_BPM1/Layer2/Color         = "red"
+dv:Ge/MWC_In_BPM1/Layer2/Displacement = 72
 -71.9855 -69.9855 -67.9855 -65.9855 -63.9855 -61.9855 -59.9855 -57.9855 -55.9855 -53.9855
 -51.9855 -49.9855 -47.9855 -45.9855 -43.9855 -41.9855 -39.9855 -37.9855 -35.9855 -33.9855
 -31.9855 -29.9855 -27.9855 -25.9855 -23.9855 -21.9855 -19.9855 -17.9855 -15.9855 -13.9855
@@ -454,72 +454,72 @@ dv:Ge/MWC_In_BPM1/Layer2/Displacement=72
 d:Ge/ZMinusOf_BPM1         = Ge/BeamProfileMonitor1/TransZ + Ge/BeamProfileMonitor1/MinusHL mm
 d:Ge/ZPlusOf_PipeExtension =  Ge/ZMinusOf_BPM1  + Ge/DistanceOf_BottomBPM1_To_PipeExtension mm
 
-d:Ge/FLOf_PipeExtension     = 80.0 cm
+d:Ge/FLOf_PipeExtension      = 80.0 cm
 d:Ge/HLOf_PipeExtension      = Ge/FLOf_PipeExtension cm * 0.5
 d:Ge/MinusHLOf_PipeExtension = Ge/FLOf_PipeExtension cm * -0.5
 
 
 ########################################
 #6. Beam pipe extension
-#HLx, HLy, (9.2, 9.2) 
+#HLx, HLy, (9.2, 9.2)
 #HLx, HLy, HLz (1
 # 2 Mylar windows
 # 2 sets of Multi-wire chamber
 ########################################
-s:Ge/PipeExtension/Parent="Gantry"
-s:Ge/PipeExtension/Type="G4Trd"
-s:Ge/PipeExtension/Material= "Aluminum"
-d:Ge/PipeExtension/HLX2=92.0   mm
-d:Ge/PipeExtension/HLY2=92.0   mm
-d:Ge/PipeExtension/HLX1=122.0   mm
-d:Ge/PipeExtension/HLY1=122.0   mm
-d:Ge/PipeExtension/HLZ =Ge/HLOf_PipeExtension  mm
-d:Ge/PipeExtension/TransX=0.0 mm
-d:Ge/PipeExtension/TransY=0.0 mm
-d:Ge/PipeExtension/TransZ=Ge/ZPlusOf_PipeExtension + Ge/MinusHLOf_PipeExtension mm
-d:Ge/PipeExtension/RotX=0.0 deg
-d:Ge/PipeExtension/RotY=0.0 deg
-d:Ge/PipeExtension/RotZ=0.0 deg
-b:Ge/PipeExtension/Include="TRUE"
+s:Ge/PipeExtension/Parent   = "Gantry"
+s:Ge/PipeExtension/Type     = "G4Trd"
+s:Ge/PipeExtension/Material = "Aluminum"
+d:Ge/PipeExtension/HLX2     = 92.0   mm
+d:Ge/PipeExtension/HLY2     = 92.0   mm
+d:Ge/PipeExtension/HLX1     = 122.0   mm
+d:Ge/PipeExtension/HLY1     = 122.0   mm
+d:Ge/PipeExtension/HLZ      = Ge/HLOf_PipeExtension  mm
+d:Ge/PipeExtension/TransX   = 0.0 mm
+d:Ge/PipeExtension/TransY   = 0.0 mm
+d:Ge/PipeExtension/TransZ   = Ge/ZPlusOf_PipeExtension + Ge/MinusHLOf_PipeExtension mm
+d:Ge/PipeExtension/RotX     = 0.0 deg
+d:Ge/PipeExtension/RotY     = 0.0 deg
+d:Ge/PipeExtension/RotZ     = 0.0 deg
+b:Ge/PipeExtension/Include  = "TRUE"
 
-s:Ge/PipeExtension/Gas/Parent="PipeExtension"
-s:Ge/PipeExtension/Gas/Type="G4Trd"
-s:Ge/PipeExtension/Gas/Material= Ge/PipeInQuads/Gas/Material
-d:Ge/PipeExtension/Gas/HLX2=90.0  mm
-d:Ge/PipeExtension/Gas/HLY2=90.0  mm
-d:Ge/PipeExtension/Gas/HLX1=120.0  mm
-d:Ge/PipeExtension/Gas/HLY1=120.0  mm
-d:Ge/PipeExtension/Gas/HLZ =Ge/PipeExtension/HLZ mm
-d:Ge/PipeExtension/Gas/TransX=0.0 mm
-d:Ge/PipeExtension/Gas/TransY=0.0 mm
-d:Ge/PipeExtension/Gas/TransZ=0.0 mm
-d:Ge/PipeExtension/Gas/RotX=0.0 deg
-d:Ge/PipeExtension/Gas/RotY=0.0 deg
-d:Ge/PipeExtension/Gas/RotZ=0.0 deg
-b:Ge/PipeExtension/Gas/Include="TRUE"
+s:Ge/PipeExtension/Gas/Parent   = "PipeExtension"
+s:Ge/PipeExtension/Gas/Type     = "G4Trd"
+s:Ge/PipeExtension/Gas/Material = Ge/PipeInQuads/Gas/Material
+d:Ge/PipeExtension/Gas/HLX2     = 90.0  mm
+d:Ge/PipeExtension/Gas/HLY2     = 90.0  mm
+d:Ge/PipeExtension/Gas/HLX1     = 120.0  mm
+d:Ge/PipeExtension/Gas/HLY1     = 120.0  mm
+d:Ge/PipeExtension/Gas/HLZ      = Ge/PipeExtension/HLZ mm
+d:Ge/PipeExtension/Gas/TransX   = 0.0 mm
+d:Ge/PipeExtension/Gas/TransY   = 0.0 mm
+d:Ge/PipeExtension/Gas/TransZ   = 0.0 mm
+d:Ge/PipeExtension/Gas/RotX     = 0.0 deg
+d:Ge/PipeExtension/Gas/RotY     = 0.0 deg
+d:Ge/PipeExtension/Gas/RotZ     = 0.0 deg
+b:Ge/PipeExtension/Gas/Include  = "TRUE"
 
 d:Ge/ZMinusOf_PipeExtension = Ge/PipeExtension/TransZ + Ge/MinusHLOf_PipeExtension mm
 d:Ge/ZPlusOf_BPM2 = Ge/ZMinusOf_PipeExtension  + Ge/DistanceOf_BottomPipeExtension_To_BPM2 mm
 
 ########################################
-#6. Beam profile monitor 2 
+#6. Beam profile monitor 2
 # 2 Mylar windows
 # 2 sets of Multi-wire chamber
 ########################################
-s:Ge/BeamProfileMonitor2/Parent  = "Gantry"
-s:Ge/BeamProfileMonitor2/Type    = "G4Box"
-s:Ge/BeamProfileMonitor2/Material= "NiGas"
-d:Ge/BeamProfileMonitor2/HLX	 = 152.0 mm
-d:Ge/BeamProfileMonitor2/HLY	 = 152.0 mm
-d:Ge/BeamProfileMonitor2/HLZ	 = 25.0 mm
-d:Ge/BeamProfileMonitor2/MinusHL = Ge/BeamProfileMonitor2/HLZ mm * -1.0	 
-d:Ge/BeamProfileMonitor2/TransX  = 0.0   mm
-d:Ge/BeamProfileMonitor2/TransY  = 0.0   mm
-d:Ge/BeamProfileMonitor2/TransZ  = Ge/ZPlusOf_BPM2 + Ge/BeamProfileMonitor2/MinusHL mm
-d:Ge/BeamProfileMonitor2/RotX    = 0.0 deg
-d:Ge/BeamProfileMonitor2/RotY    = 0.0 deg
-d:Ge/BeamProfileMonitor2/RotZ    = 0.0 deg
-b:Ge/BeamProfileMonitor2/Include="TRUE"
+s:Ge/BeamProfileMonitor2/Parent   = "Gantry"
+s:Ge/BeamProfileMonitor2/Type     = "G4Box"
+s:Ge/BeamProfileMonitor2/Material = "NiGas"
+d:Ge/BeamProfileMonitor2/HLX      = 152.0 mm
+d:Ge/BeamProfileMonitor2/HLY      = 152.0 mm
+d:Ge/BeamProfileMonitor2/HLZ      = 25.0 mm
+d:Ge/BeamProfileMonitor2/MinusHL  = Ge/BeamProfileMonitor2/HLZ mm * -1.0
+d:Ge/BeamProfileMonitor2/TransX   = 0.0   mm
+d:Ge/BeamProfileMonitor2/TransY   = 0.0   mm
+d:Ge/BeamProfileMonitor2/TransZ   = Ge/ZPlusOf_BPM2 + Ge/BeamProfileMonitor2/MinusHL mm
+d:Ge/BeamProfileMonitor2/RotX     = 0.0 deg
+d:Ge/BeamProfileMonitor2/RotY     = 0.0 deg
+d:Ge/BeamProfileMonitor2/RotZ     = 0.0 deg
+b:Ge/BeamProfileMonitor2/Include  = "TRUE"
 
 s:Ge/BeamProfileMonitor2/Window1/Parent   = "BeamProfileMonitor2"
 s:Ge/BeamProfileMonitor2/Window1/Type     = "G4Box"
@@ -547,28 +547,28 @@ d:Ge/BeamProfileMonitor2/Window2/RotX     = 0.0 deg
 d:Ge/BeamProfileMonitor2/Window2/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor2/Window2/RotZ     = 0.0 deg
 
-s:Ge/MWC_In_BPM2/Parent="BeamProfileMonitor2"
-s:Ge/MWC_In_BPM2/Type="TsMultiWireChamber"
-s:Ge/MWC_In_BPM2/Material= "parent"
-d:Ge/MWC_In_BPM2/HLX=148.0  mm
-d:Ge/MWC_In_BPM2/HLY=148.0  mm
-d:Ge/MWC_In_BPM2/HLZ=13.0   mm
-d:Ge/MWC_In_BPM2/TransX=0.0 mm
-d:Ge/MWC_In_BPM2/TransY=0.0 mm
-d:Ge/MWC_In_BPM2/TransZ=0.0 mm
-d:Ge/MWC_In_BPM2/RotX=0.0   deg
-d:Ge/MWC_In_BPM2/RotY=0.0   deg
-d:Ge/MWC_In_BPM2/RotZ=0.0   deg
-i:Ge/MWC_In_BPM2/NbOfLayers=2
+s:Ge/MWC_In_BPM2/Parent     = "BeamProfileMonitor2"
+s:Ge/MWC_In_BPM2/Type       = "TsMultiWireChamber"
+s:Ge/MWC_In_BPM2/Material   = "parent"
+d:Ge/MWC_In_BPM2/HLX        = 148.0  mm
+d:Ge/MWC_In_BPM2/HLY        = 148.0  mm
+d:Ge/MWC_In_BPM2/HLZ        = 13.0   mm
+d:Ge/MWC_In_BPM2/TransX     = 0.0 mm
+d:Ge/MWC_In_BPM2/TransY     = 0.0 mm
+d:Ge/MWC_In_BPM2/TransZ     = 0.0 mm
+d:Ge/MWC_In_BPM2/RotX       = 0.0   deg
+d:Ge/MWC_In_BPM2/RotY       = 0.0   deg
+d:Ge/MWC_In_BPM2/RotZ       = 0.0   deg
+i:Ge/MWC_In_BPM2/NbOfLayers = 2
 
-d:Ge/MWC_In_BPM2/Layer1/RMin=0.0 mm
-d:Ge/MWC_In_BPM2/Layer1/RMax=0.02 mm
-s:Ge/MWC_In_BPM2/Layer1/Material="Brass"
-d:Ge/MWC_In_BPM2/Layer1/HL=147.0 mm
-s:Ge/MWC_In_BPM2/Layer1/Align="X"
-d:Ge/MWC_In_BPM2/Layer1/PosZ=5.0 mm
-s:Ge/MWC_In_BPM2/Layer1/DrawingStyle="Solid"
-dv:Ge/MWC_In_BPM2/Layer1/Displacement=81
+d:Ge/MWC_In_BPM2/Layer1/RMin          = 0.0 mm
+d:Ge/MWC_In_BPM2/Layer1/RMax          = 0.02 mm
+s:Ge/MWC_In_BPM2/Layer1/Material      = "Brass"
+d:Ge/MWC_In_BPM2/Layer1/HL            = 147.0 mm
+s:Ge/MWC_In_BPM2/Layer1/Align         = "X"
+d:Ge/MWC_In_BPM2/Layer1/PosZ          = 5.0 mm
+s:Ge/MWC_In_BPM2/Layer1/DrawingStyle  = "Solid"
+dv:Ge/MWC_In_BPM2/Layer1/Displacement = 81
 -140. -136.5 -133.  -129.5 -126.  -122.5 -119.  -115.5
 -112. -108.5 -105.  -101.5  -98.   -94.5  -91.   -87.5
 -84.  -80.5   -77.   -73.5  -70.   -66.5  -63.   -59.5
@@ -581,15 +581,15 @@ dv:Ge/MWC_In_BPM2/Layer1/Displacement=81
 112.  115.5   119.   122.5  126.   129.5  133.   136.5
 140.  mm
 
-d:Ge/MWC_In_BPM2/Layer2/RMin=0.0 mm
-d:Ge/MWC_In_BPM2/Layer2/RMax=0.02 mm
-s:Ge/MWC_In_BPM2/Layer2/Material="Brass"
-d:Ge/MWC_In_BPM2/Layer2/HL=147.0 mm
-s:Ge/MWC_In_BPM2/Layer2/Align="Y"
-d:Ge/MWC_In_BPM2/Layer2/PosZ=-5.0 mm
-s:Ge/MWC_In_BPM2/Layer2/DrawingStyle= "Solid"
-s:Ge/MWC_In_BPM2/Layer2/Color="red"
-dv:Ge/MWC_In_BPM2/Layer2/Displacement=81
+d:Ge/MWC_In_BPM2/Layer2/RMin          = 0.0 mm
+d:Ge/MWC_In_BPM2/Layer2/RMax          = 0.02 mm
+s:Ge/MWC_In_BPM2/Layer2/Material      = "Brass"
+d:Ge/MWC_In_BPM2/Layer2/HL            = 147.0 mm
+s:Ge/MWC_In_BPM2/Layer2/Align         = "Y"
+d:Ge/MWC_In_BPM2/Layer2/PosZ          = -5.0 mm
+s:Ge/MWC_In_BPM2/Layer2/DrawingStyle  =  "Solid"
+s:Ge/MWC_In_BPM2/Layer2/Color         = "red"
+dv:Ge/MWC_In_BPM2/Layer2/Displacement = 81
 -140. -136.5 -133.  -129.5 -126.  -122.5 -119.  -115.5
 -112. -108.5 -105.  -101.5  -98.   -94.5  -91.   -87.5
 -84.  -80.5   -77.   -73.5  -70.   -66.5  -63.   -59.5
