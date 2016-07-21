@@ -14,14 +14,14 @@ class TopasLexer(RegexLexer):
         'root': [
             (r'#.*$', Comment),
             (r'(?i)(includefile|inheritedvalue)', Keyword.Namespace),
-            (r'^([bidus]v?)(:)', bygroups(Keyword.Type, Text)),
+            (r'^([bidus]v?)(:)', bygroups(Keyword.Type, Name)),
             (r'(?i)(ma|el|is|ge|gr|ph|so|sc|tf|ts|vr)([/\w]*/)([\w]+)',
-                bygroups(Name.Class, Name.Class, Name.Variable)),
+                bygroups(Name.Class, Name.Class, Name.Attribute)),
             (r'"(?i)(true|false|t|f|1|0)"', Keyword.Constant),
             (r'"', String, 'string'),
             (r'(?<!\w)[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?', Number),
             (r'[=+*-]', Operator),
-            (r'.', Text),
+            (r'.', Name),
         ],
         'string': [
             ('[^"]+', String),
