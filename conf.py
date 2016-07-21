@@ -95,7 +95,10 @@ exclude_patterns = ['.build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'emacs'
+
+# The default language used to highlight source code
+highlight_language = 'topas'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -362,3 +365,11 @@ epub_exclude_files = ['search.html']
 
 # If false, no index is generated.
 #epub_use_index = True
+
+def setup(sphinx):
+    sys.path.insert(0, os.path.abspath('./util'))
+    from topas_lexer import TopasLexer
+    sphinx.add_lexer("topas", TopasLexer())
+
+    from pygments.styles import STYLE_MAP
+    print(sorted(STYLE_MAP.keys()))
