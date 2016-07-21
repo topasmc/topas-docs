@@ -1,3 +1,16 @@
 codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .rst-content .literal-block div[class^='highlight'], div[class^='highlight'] div[class^='highlight'] {
     background-color: #272822 !important;
 }
+
+.highlight .nc {
+    color: #fd971f !important;
+    font-weight: normal !important;
+} /* Name.Class */
+
+.highlight .kt {
+    font-weight: italic !important;
+} /* Keyword.Type */
+
+.highlight .kc {
+    font-weight: normal !important;
+} /* Keyword.Constant */
