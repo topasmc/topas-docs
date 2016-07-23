@@ -225,7 +225,10 @@ latex_elements = {
 #'pointsize': '10pt',
 
 # Additional stuff for the LaTeX preamble.
-'preamble': '\setcounter{tocdepth}{1}',
+'preamble': r'''
+\setcounter{tocdepth}{1}
+\definecolor{VerbatimColor}{rgb}{0.15,0.16,0.13}
+''',
 
 # Latex figure (float) alignment
 #'figure_align': 'htbp',
