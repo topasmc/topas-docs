@@ -95,7 +95,7 @@ exclude_patterns = ['.build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'monokai'
+pygments_style = 'topas'
 
 # The default language used to highlight source code
 highlight_language = 'topas'
@@ -370,11 +370,5 @@ epub_exclude_files = ['search.html']
 #epub_use_index = True
 
 def setup(app):
-    sys.path.insert(0, os.path.abspath('./util'))
-    from topas_lexer import TopasLexer
-    app.add_lexer("topas", TopasLexer())
     app.add_stylesheet('pygments.css')
     app.add_stylesheet('dark_background.css')
-
-    from pygments.styles import STYLE_MAP
-    print(sorted(STYLE_MAP.keys()))

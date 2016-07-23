@@ -3,13 +3,8 @@ codeblock div[class^='highlight'], pre.literal-block div[class^='highlight'], .r
 }
 
 .highlight .nc {
-    color: #fd971f !important;
     font-weight: normal !important;
 } /* Name.Class */
-
-.highlight .kt {
-    font-weight: italic !important;
-} /* Keyword.Type */
 
 .highlight .kc {
     font-weight: normal !important;
