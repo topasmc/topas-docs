@@ -1,0 +1,279 @@
+3.0 Series
+----------
+
+The main features introduced by the 3.0 series were:
+
+* n-tuple output from custom scorers
+* new extensions mechanism
+* redesigned beam source parameter interface
+* generalized imaging to material conversion
+* electric fields
+* faster graphics performance
+
+We also updated the underlying Geant4 version to Geant4.10.2.p01.
+
+We took the opportunity of a major release to revise some parameter names with the benefit or hindsight and looking towards future releases. Consequently, we provided a ``topas2to3`` script to help in upgrading parameter files.
+
+
+3.0.1 (2015-06-02)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* drawing to multiple OpenGL graphics views not working correctly
+    We have been struggling with some issues in OpenGL graphics since we moved to Geant4.10.02. In particular, there were issues if you drew more than one view at a time. We now believe this is fixed, with the exception of the Debian8 build. Behavior is highly dependent on the specific operating system, and we (and Geant4) are still working to get this just right.
+
+*Fixed:* compiler issues when adding extensions
+    Building with extensions should now work on all operating systems. It is no longer necessary to run cmake twice in a row, and our cmake does a better job now of setting the required C++11 flags. You will still need to update your compiler if your default compiler does not support C++11. This is now discussed in the last section of the README.
+
+*Fixed:* bug in filter extensions
+    Can now add multiple filter extensions simultaneously.
+
+*Improved:* geometry component types now case-insensitive
+    It no longer matters what case you use in ``Ge/*/Type`` values. So, for example, you could use ``"tsBox"``, ``"TsBox"`` or ``"tsbox"``. This also applies to user-supplied extension components.
+
+
+
+3.0.0 (2016-06-01)
+~~~~~~~~~~~~~~~~~~
+
+*Added:* n-tuple output from custom scorers
+    If you’re not familiar with n-tuples, you may be interested to know that you’ve already been using a version of one if you were outputting particle information to phase space.
+
+    Our new design gives you very fine control over what information your scorer will write.
+
+    In your scorer's constructor you define each column and its data type. For floating point columns you also specify the unit string, similar to how the ``SetUnit()`` method is used in other scorers. In the ``ProcessHits()`` method, you then compute the variables you want to output and then call ``fNtuple->Fill()``. Buffered file writing is automatically handled. Output can be to ASCII, binary and ROOT data formats.
+
+*Added:* phase space scorers can be output to ROOT format
+    This is a binary data format associated with the ROOT data analysis framework.
+
+*Improved:* overhaul of extension mechanism
+    No more editing the CMakeLists file or adding a clause into the TsExtensionManager.cc.
+
+    Just create a folder anywhere on your computer, put your extensions into it (you can even organize them by subfolders within this folder), add one special comment line to the top of each cc file, and run CMake, telling it where your folder is with the ``–DTOPAS_EXTENSIONS_DIR`` option. Our CMake scripts will then automatically interweave your code in with ours, and all will work. Please note that, with the introduction of n-tuple scorers, existing scorers will require some additional modifications to distinguish them as “binned scorers”.
+
+*Improved:* revised parameter interface for beam and isotropic sources
+    You can now provide a cutoff (like a collimation) to the angular spread distribution. This improvement was sparked by a request from Christian Sommer.
+
+    The overall parameter set has been revised to be, we think, easier to understand and remember.
+
+    * Type = {Beam, Phasespace, Emittance, Isotropic}
+    * BeamPositionDistribution = {None, Flat, Gaussian} (if Beam)
+        * BeamPositionCutoffShape = {Rectangle, Ellipse} (if Flat/Gaussian)
+        * BeamPositionCutoffX/Y (if Flat/Gaussian)
+        * BeamPositionSpreadX/Y (if Gaussian)
+    * BeamAngularDistribution = {None, Flat, Gaussian} (if Beam)
+        * BeamAngularCutoffX/Y (if Flat/Gaussian)
+        * BeamAngularSpreadX/Y (if Gaussian)
+
+    The previous option ``BeamShape = “Point”`` is now chosen via ``BeamPositionDistribution = “None”``, and the previous option ``BeamShape = “Isotropic”`` is now chosen via ``Type = “Isotropic”``.
+
+    Here is the list of parameters that already existed, but now have new names:
+
+    * BeamXYDistribution --> BeamPositionDistribution
+    * BeamShape --> BeamPositionCutoffShape
+    * BeamHWX --> BeamPositionCutoffX
+    * BeamHWY --> BeamPositionCutoffY
+    * BeamStandardDeviationX --> BeamPositionSpreadX
+    * BeamStandardDeviationY --> BeamPositionSpreadY
+
+*Improved:* default source removed
+    The default particle source parameters, ``So/Default/*``, have been removed.
+    While revising particle sources, we changed our mind about whether we should provide any default particle source parameters.
+    We see so many differences in what different users need, that we now believe it is important that every user carefully consider all of their particle source parameters.
+    Accordingly, we removed the default parameters ``So/Default/*``.
+    All examples now include a full specification of their particle source parameters.
+
+    We still bundle a built-in source, but we have renamed it ``So/Demo`` to emphasize that it should be used only for demonstration and teaching purposes. Users who write their own parameter files should fully specify their Particle Source.
+
+*Improved:* changed the default water material
+    We removed our custom Water (mean excitation energy 75 eV) in favor of ``G4_WATER`` (78 eV).
+
+    For some time, we had been using a custom material, Water, with a mean excitation energy of 75 eV, instead of Geant4's pre-defined ``G4_WATER``, which has a mean excitation energy of 78 eV. With newer Geant4 physics, we find we get better agreement at MGH when we use 78 eV. Accordingly, we have removed our material Water and switched all of our examples to ``G4_WATER``.
+
+    We created a new material named ``Water_75eV`` in case you have calibrated with this material and really want to stick with that.
+
+*Added:* support for additional imaging to material conversion
+    Support Dual Energy CT, Multi-Energy CT and other complex ways of assigning material.
+    We have generalized our imaging to material conversion.
+    You can now provide your own extension class to control how TOPAS assigns materials in the patient.
+    Input can come from one or more image files and the imaging modality is not limited to CT.
+    TOPAS pulls the information out of the images for you, and gives your class the one or more values per voxel. Your class then determines what material to then assign for this voxel.
+
+    New parameters are::
+
+        i:Ge/Patient/NumberOfEnergies = 1 # defaults to 1
+        sv:Ge/Patient/DicomModalityTags = 1 "CT" # defaults to just CT
+        s:Ge/Patient/ImagingtoMaterialConverter = "Schneider"
+
+    You will note that we renamed the parameter ``HUtoMaterialConversionMethod`` to ``ImagingToMaterialConverter`` to emphasize that input need not necessarily be Hounsfield Units.
+
+*Added:* field handling extended to include electric fields
+    Where before we had::
+
+        Ge/MyComponent/MagneticField = "Dipole" # or "Quadrupole", "Map"
+
+    We now have::
+
+        Ge/MyComponent/Field = "DipoleMagnet" # or "QuadrupoleMagnet", "MappedMagnet", "UniformElectroMagnetic"
+
+    The latter can have both magnetic and electric components. To specify a pure electric field, use "UniformElectroMagnetic" while specifying a zero MagneticFieldStrength. You can also write your own extension field class that provides any other Electric, Magnetic or ElectroMagnetic field.
+
+    To make way for ElectricField parameters, we renamed some parameters:
+
+    * DirectionX --> MagneticFieldDirectionX
+    * DirectionY --> MagneticFieldDirectionY
+    * DirectionZ --> MagneticFieldDirectionZ
+    * Strength --> MagneticFieldStrength
+    * GradientX --> MagneticFieldGradientX
+    * GradientY --> MagneticFieldGradientY
+    * 3DTable --> MagneticField3DTable
+    * Stepper --> FieldStepper
+    * StepMinimum --> FieldStepMinimum
+    * DeltaChord --> FieldDeltaChord
+
+*Improved:* magnetic field setup from 3D field maps
+    The new code does a much better job of handling various field maps. Thanks to Eric Able of Varian Medical Systems for his extensive prototype work.
+
+*Added:* support for variable density materials
+    Driven by needs from imaging to material conversion, we have added a way that you can easily define a set of materials that differ only in density::
+
+        i:Ma/MyMaterial/VariableDensityBins = 100
+        u:Ma/MyMaterial/VariableDensityMin = .1
+        u:Ma/MyMaterial/VariableDensityMax = 10.
+
+    will generate 100 versions of MyMaterial, with densities varying from .1 x normal to 10. x normal.
+
+    The material names will then be like::
+
+        MyMaterial_VariableDensityBin_0
+        MyMaterial_VariableDensityBin_1
+        ...
+        MyMaterial_VariableDensityBin_99
+
+    Note that numbering starts at zero.
+
+*Improved:* support for multiple slice thicknesses in TsDicomPatient
+    This capability was previously restricted to the TsXioPatient.
+
+*Improved:* OpenGL graphics are dramatically faster
+    Especially true for patient geometry. If you were avoiding displaying patient geometry, it's time to try it again.
+
+*Added:* new export options for OpenGL Graphics
+    Where before we had::
+
+        Gr/MyView/CopyOpenGLToEPS
+
+    we now have that plus three new options::
+
+        Gr/MyView/CopyOpenGLToPDF
+        Gr/MyView/CopyOpenGLToSVG
+        Gr/MyView/CopyOpenGLToPS
+
+    .
+
+*Added:* new syntax for specifying vectors
+    New parameter expressions let you set vector parameters from other vector parameters::
+
+        dv = name_of_double_vector_parameter unit
+        dv = number * name_of_double_vector_parameter unit
+        dv = name_of_unitless_or_integer_parameter * name_of_double_vector_parameter unit
+        uv = name_of_unitless_vector_parameter
+        uv = number * name_of_unitless_vector_parameter
+        uv = name_of_unitless_or_integer_parameter * name_of_unitless_vector_parameter
+        iv = name_of_integer_vector_parameter
+        iv = integer * name_of_integer_vector_parameter
+        iv = name_of_integer_parameter * name_of_integer_vector_parameter
+        bv = name_of_boolean_vector_parameter
+        sv = name_of_string_vector_parameter
+
+    This makes it easier to adjust existing vector parameters in file hierarchies.
+
+*Improved:* G4Box, G4Tubs and G4Sphere components removed
+    You should instead use TsBox, TsCylinder and TsSphere.
+    These provide all the same functionality, but also support divisions.
+    We have done this both to simplify the underlying TOPAS code (simpler means less likelihood for bugs), and because we have seen many cases where someone tried to apply divisions to G4Box, G4Tubs or G4Sphere, and had a hard time figuring out why this wasn't working (this has even happened to us during live demos).
+
+*Added:* specify material per voxel for any divided component
+    This means you can create complex phantoms directly from the parameter system::
+
+        sv:Ge/Phantom/VoxelMaterials = 100 "G4_WATER" "G4_WATER" "Air" "Air" "G4_WATER" ...
+
+    Works for all three kinds of divided components: TsBox, TsCylinder and TsSphere.
+
+*Improved:* TsBox and TsCylinder allow parameterizations in parallel worlds
+    The underlying limitation that was preventing this has been resolved in the new Geant4 version.
+    The restriction against using parameterization within a parallel world now only applies to TsSphere (as the underlying issue for this case is still present in Geant4).
+
+*Improved:* support larger numbers of histories
+    Various Counters have been changed from ``int`` to ``long`` to accommodate larger numbers of histories.
+    With the move to multi-threading, we now have users running so many histories in a single session that various counters exceeded the size of our internal counters.
+    There remain some limits within Geant4 itself, so we enforce a maximum of 10^9 histories per run.
+
+    We also found a way to allow you to have more than 10^9 histories in a single TOPAS session.
+    The solution is to break these histories into multiple Geant4 runs.
+    Originally, the parameters ``Tf/TimeLineStart``, ``Tf/TimeLineEnd`` and ``Tf/NumberOfSequentialTimes`` were intended to let you have different runs at different times (TOPAS Time Features).
+    But if you leave ``TimeLineEnd`` the same as ``TimeLineStart`` (and by default they are both 0), and just set ``Tf/NumberOfSequentialTimes`` to some value greater than 1, you will have multiple runs, and each can have up to 10^9 histories, but the total can be much larger.
+
+*Improved:* ProtonLET scorer extended to very low density materials
+    Our current LET scorer gives values that are too high in air, where the mean path length between discrete processes can be larger than the voxel size. This can be avoided by neglecting secondary electrons, so we introduce the ``NeglectSecondariesBelowDensity`` parameter, whose default value is 0.1 g/cm3.
+
+    Even when you do this, rare events that produce very low energy protons (e.g. a recoiling hydrogen nucleus) will produce spikes in LET. This is also seen in the ``PreStepLookup`` version of the scorer. They are not seen in the fluence-averaged version of the scorer, since they are rare events. For this reason we introduce a ``UseFluenceWeightedBelowDensity`` parameter, whose default value is zero. We disable this by default because it is strange to mix both types of LET in a single distribution, and could be significantly wrong at the end of range. We expect users to want to enable this when making a pretty plot of LET to overlay on a CT scan, without spikes in cavities and outside the patient.
+
+*Improved:* convenience method GetIndex for custom scorers
+    Scorers can now easily obtain the voxel indices from hits in divided or parameterized components. The base class ``TsVScorer`` now provides a convenience method, ``G4int GetIndex(G4Step*)``.
+    This is convenient for some expert users and also hides the ``GetIndex`` method that we don't want people trying to use from the ``G4VPrimitiveScorer`` (since the latter doesn't perform as the user would expect).
+
+*Improved:* DoseToWater and DoseToWaterBinned scorers are unified
+    DoseToWaterBinned was a way of scoring dose to water that improved speed at some cost to accuracy by pre-calculating stopping power ratios. We now offer only one scorer, DoseToWater. To get the previous behavior of DoseToWaterBinned, add the optional parameter::
+
+        b:Sc/MyScorer/PreCalculateStoppingPowerRatios = "True" # defaults to "False"
+
+    The same parameter is also available for the DoseToMaterial scorer.
+
+*Improved:* removed our custom EM Physics Module from our Default Physics List
+    In TOPAS 2.0 we provided a custom EM physics module, ``tsem-standard_opt3_WVI``, that attempted to use the new WentzelVI model of multiple Coulomb scattering (MCS). Now that this MCS model has been fully incorporated into the Geant4 built-in physics module, ``g4em-standard_opt4``, we switch to using this in our default physics list and remove the custom module.
+
+*Improved:* removed the G4RadioactiveDecay module from our Default Physics List
+    We have found that the G4RadioactiveDecay process sometimes causes errors such as:
+
+    .. code-block:: none
+
+        G4Exception : de0001 issued by : G4AtomicTransitionManager::Shell()
+        No de-excitation for Z= 3  shellIndex= 2>=  numberOfShells= 2 AtomicShell not found
+
+    Since this module is not needed for most simulations, we have removed it from the default. If you really want this process, you can add it back to ``Ph/Default/Modules``.
+
+*Fixed:* renamed surfaces of TsCylinder and TsSphere
+    We have revised the names of Surfaces to have a more consistent overall design. Phi/Theta now have Plus/Minus afterwards, like X/Y/Z.
+
+    * PlusPhiSurface --> PhiPlusSurface
+    * MinusPhiSurface --> PhiMinusSurface
+    * PlusThetaSurface --> ThetaPlusSurface
+    * MinusThetaSurface --> ThetaMinusSurface
+
+*Fixed:* corrected some surface area calculations
+    * TsCylinder: calculation was wrong for area of Z surfaces and curved surfaces.
+    * TsSphere: calculation was wrong for area of curved surfaces when there was a phi cut.
+    * TsSphere: calculation was wrong for area of phi and theta cut surfaces.
+
+    We are sorry to have allowed these errors to slip through our testing process. Thanks to Christian Sommer for alerting us to the first of these (which led to a full review).
+
+*Added:* other minor features
+    * We added a way to have TOPAS list all processes in the currently selected physics list::
+
+        b:Ph/ListProcesses = "True"
+
+    * Topas can now tell you it's version information: just type: ``topas --version``
+
+*Fixed:* other minor bugs
+    * Removed need for BeamEnergy and BeamEnergySpread when source is spectrum.
+    * Removed the particle source type Twiss as source type Emittance does the same and more.
+    * The angular generation for Beam sources has been corrected so that it is valid beyond the small-angle approximation.
+    * The base class for scorers, ``TsVScorer.hh``, now includes ``G4SystemOfUnits.hh``. Scoring often uses units, and this should make everyone’s life easier.
+    * We removed the requirement that some water be present in the simulation when using the DoseToWater and DoseToMaterial scorers.
+    * In time feature random time mode, ``Ts/ShowHistoryCountAtInterval`` now counts runs rather than events.
+    * The material name ``Flourine`` has been corrected to ``Fluorine``.
+    * The parameter ``Ph/*/LamdaBins`` has been corrected to ``Ph/*/LambdaBins``.
+    * ``PhaseSpaceBufferSize`` is now called ``OutputBufferSize``. We renamed this parameter as it now applies not just to phase space but also to n-tuples.
+    * Sources now move correctly when the source component's parent component is moving. This situation used to work only when the source component's parent was a group component. It now works correctly for all cases. Thanks to Christian Sommer for showing us this bug.
+    * Phase space source now correctly handles all ions. Some ions were previously being forbidden in the phase space source. Thanks to Vadim Moskvin for reporting this bug.
+    * Solved bug that was causing part of phase space file to be used by two separate threads. When a multi-threaded session was using a phase space source, histories were being incorrectly assigned to the worker threads, causing some histories at the end of the file to be used more than once. Thanks to Hugo Moreira for showing us this bug.

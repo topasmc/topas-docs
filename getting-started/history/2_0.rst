@@ -1,0 +1,127 @@
+2.0 Series
+----------
+
+The main feature introduced by the 2.0 series was multithreading. In doing so we changed the underlying Geant4 to version Geant4.10.1.p02.
+This upgrade required extensive recoding within TOPAS, but was done in a way that required almost no changes to Parameter Files.
+
+
+
+2.0.3 (2016-01-12)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* bug affecting scoring in divided TsBoxes, TsCylinders and TsSpheres
+    This caused some of the dose due to secondary particles to be assigned to wrong divisions. This bug was introduced when we switched to the Geant4.10 series, so began at Topas 2.0.
+
+*Fixed:* bug in DICOM output
+    Dose value per voxel index was correct, but the entire structure was being drawn too small.
+
+*Fixed:* bug using "Map" magnetic field type
+    In multi-threaded mode, field only took effect after the first run.
+
+*Fixed:* bug in Phase Space output
+    Was crashing for cases of ``Ts/NumberOfThreads = 0`` (meaning use all threads).
+
+*Fixed:* a type in the header of DoseToWaterBinned scorer
+    Header had some extraneous text left over from an earlier design.
+
+*Improved:* restored two convenience methods to TsVScorer
+    ``GetRunID`` and ``GetEventID`` are once again available for use by user-written scorers.
+
+
+
+2.0.2 (2015-11-18)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* segfaults from secondary biasing
+    Filtering on whether a particle interacted in a given component was failing to notice the interactions. Thanks to Gray Lu and Christian Sommer for reporting these bugs.
+
+*Fixed:* first few histories could ignore filters when using multiple threads
+    In testing our fix for the particle interaction filter, we also found a more subtle bug that could cause the first few histories to ignore any filter when running on more than one thread.
+
+
+
+2.0.1 (2015-11-13)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* scorers report incorrect "Sum" in a specific case
+    Bug triggered when you have more than one bin (that is, where XBin, YBin, ZBin, RBin, PhiBin or ThetaBin is more than one) **and** the scorer's Report options are set to exactly "Sum" and "Mean".
+
+
+
+2.0.0 (2015-11-04)
+~~~~~~~~~~~~~~~~~~
+
+*Added:* multithreading support
+    Set ``i:Ts/NumberOfThreads`` to the number of CPU threads you want to use.
+    If set to a positive integer, TOPAS will use that number of threads.
+    If set to 0, TOPAS will use all of your computer's threads (may be number of hardware cores or number of virtual cores (which includes hyper-threading cores) depending on your hardware architecture.
+    If set to a negative number, TOPAS will use all BUT this number of threads, leaving you some threads reserved for other tasks (email, web browsing, etc.).
+
+*Improved:* updated physics lists for Geant4.10.1.p02
+    We have upgraded the default physics list to what we believe is the best option for proton therapy dose calculation in this Geant4 release. Remember that the default physics settings in TOPAS may not be the best settings for your own work. The only assurance we can give you is that the default settings are what we have currently chosen for proton therapy dose calculation research at our home institutions of MGH and UCSF. Geant4 physics changes in each release, and it is always the user's responsibility to perform any validations and adjustments that may be required.
+
+*Improved:* magnetic field is now just a parameter on any component
+    You no longer specify special components for magnetic fields.
+    Instead, the field is just an extra parameter that you can set for any of the standard components.
+    So where you used to have::
+
+        Ge/MyComponent/Type = "TsDipoleMagnet" # or "TsQuadrupoleMagnet", "TsTabulated3DField"
+
+    you now use::
+
+        Ge/MyComponent/Type = "TsBox" # or "TsCylinder", etc
+        Ge/MyComponent/MagneticField = "Dipole" # or "Quadrupole", "Map"
+
+    which gives more flexibility.
+
+*Added:* quadrupole magnetic more flexible
+    Can now have separate ``GradientX`` and ``GradientY``
+
+*Added:* visualization of magnetic fields
+    Field intensity and direction are represented as a set of arrows. The arrow density is controlled by::
+
+        i:Gr/ViewA/MagneticFieldArrowDensity = 10
+
+    Use with caution. When combined with rotation it sometimes causes crashes in polycone drawing (involved in drawing the arrowheads).
+
+*Added:* magnetic fields to extensions mechanism
+    :ref:`See here<extension_fields>` for how to add custom magnetic fields.
+
+*Improved:* overlap checking is more strict
+    Geometry Overlaps previously caused only a warning. This meant that users might not even notice that their simulation had this dangerous geometry problem. TOPAS now is set to quit if any overlap is detected.
+    If you really want TOPAS to continue, you can set::
+
+        Ge/QuitIfOverlapDetected = "False"
+
+    You will then still get a warning when the overlap is detected, an another warning at the end of the session.
+    As before, you can turn off overlap checking entirely with::
+
+        Ge/CheckForOverlaps = "False"
+
+    This saves a small amount of time at startup, but is only recommended in cases where you are running a setup that you have already extensively tested.
+
+*Added:* "Twiss" source type replaced by "Emittance"
+    The new source type provides more flexibility than the previous Twiss (:ref:`see here<primary_emittance>`).
+
+*Improved:* user extensions require updating
+    * If you have written your own Scorer in C++, you will need to add one additional argument to the constructor and pass this argument on to the TsVScorer.
+    * If you have written your own Particle Source in C++, you will need to redesign this to have separate TsSource and TsGenerator.
+
+*Fixed:* rare bug affecting some apertures
+    We have found rare cases in which an Aperture leaked dose (particles passed through one part of the aperture as material as if there was no material present). This was traced to an underlying bug in Geant4's TessellatedSolid. While the bug is not yet fixed in Geant4, we now trap it and interrupt the relevant history.
+    If this bug affects your session you will see warning message each time it occurs, plus a summary about this bug at the end of the console.
+    An additional parameter aborts the session if this bug is found more than a specified number of times::
+
+        i:/Ts/MaxInterruptedHistories = 10 # defaults to 10
+
+    We do not recommend setting this to be a significant fraction of the total number of simulated histories.
+
+*Added:* new examples
+    Random versus Sequential Time Feature modes are demonstrated in two new examples:
+
+    * examples/TimeFeature/RunRandom_Mode.txt
+    * examples/TimeFeature/RunSequential_Mode.txt
+
+    Bremsstrahlung splitting is demonstrated in a new example:
+
+    * examples/VarianceReduction/SecondaryBiasing.txt

@@ -1,0 +1,179 @@
+1.X Series
+----------
+
+1.3.0  (2015-10-21)
+~~~~~~~~~~~~~~~~~~~
+
+*Improved:* scoring report option "Min_Max" is split into "Min" and "Max"
+    If you have previously used the option "Min_Max", you will need to replace it with "Min" "Max".
+
+*Added:* new ways to dump parameters to text files
+    ``Ts/DumpParametersToSimpleFile`` takes a list of parameter names and dumps their types, names and values to a simple, human-readable file.
+    ``Ts/DumpParametersToSemicolonSeparatedFile`` takes a list of parameter names and dumps their types, names and values to a semicolon separated file, suitable for easy import into other applications.
+
+*Added:* method of defining elements
+    Elements can now be defined from specific combinations of isotopes (rather than from natural abundance).
+
+*Improved:* zero padding of RunID in output file names
+    For example, ``MyScorerOutput_Run_0001.csv`` rather than ``MyScorerOutput_Run_1.csv``, so that they will sort naturally in various file viewers. The number of padding places can be modified by the parameter ``i:Ts/RunIDPadding``.
+
+*Improved:* scoring filters can now specify ion charges
+    Source ions must be fully stripped (as before), but this restriction is no longer applied to scoring filters.
+    For example::
+
+        sv:Sc/IonsWithCharge3to5/OnlyIncludeParticlesNamed = 1 "GenericIon(6,12,5)"
+
+    will only score those carbon ions that have charge of 5.
+
+*Improved:* console output of phase space scorers
+    Additional information reported to the console.
+
+*Improved:* filtering example
+    Now includes InitialParticle filters (see :ref:`examples/Scoring/Filters.txt<example_scoring_filters>`).
+
+*Improved:* new LET scorer
+    The new version has a new name, ``ProtonLET``, to clarify that this calculation technique is only appropriate for protons. It uses a new "subscorer" mechanism by which the energy deposit and step length are internally scored by two separate scorers which are created for you on the fly and then divided to produce the final value.
+
+*Fixed:* phi divisions in TsCylinder and TsSphere
+    The phi order of the divisions was previously backwards.
+    For cases where the Cylinder or Sphere covered the full two Pi, this was only a numbering issue.
+    But for cases where the Cylinder or Sphere was cut to less than the full two Pi, this caused the phi divisions to extend outside of the mother volume.
+
+*Fixed:* excessive generation of parallel worlds
+    Some jobs were unnecessarily hitting the maximum number of parallel worlds (8).
+    TOPAS was generating parallel worlds where they were not needed for one very specific situation: when a component's name was a subset of a surface scorer's target component's name. So for example, when there was a component named ``MyComponent`` while a scorer was using ``MyComponent/SubComponentName``. (Yes, never mind the details, it's fixed.)
+
+*Fixed:* other minor bugs
+    * The phase space might not read all particles in the phase space file.
+    * Setting AssignToRegionNamed for a component that is unused creates a segfault.
+    * Using verbose scoring output from unsegmented components creates a segfault.
+    * Histogram IDs in xml and root files had incorrect run numbers.
+    * Quadrupole magnetic field incorrectly respected rotation of the component.
+
+
+1.2.2  (2015-06-12)
+~~~~~~~~~~~~~~~~~~~
+
+*Improved:* TOPAS now prevents Geant4 from hanging due to stuck particles
+    We check the particle's GetCurrentStepNumber at every step, killing the particle in the very rare case that the step numbers exceeds 100,000 (reasonable particles generally take no more than a few thousand steps). The limit can be adjusted by the parameter ``Ts/MaxStepNumber``, but there is unlikely to be any reason that you should do so (stuck particles are rare, and even taking 100,000 steps doesn't take very long). In principle, stuck particles should never occur, as Geant4 has a mechanism in place to gently nudge stuck particles, but this mechanism appears to have occasional failings (on the order a few per ten million histories). Because this mechanism now requires us to include a stepping action for every step in every region, we have checked carefully to evaluate its cost in CPU time. The cost appears to be only about 1%, well worth paying to avoid the workflow disruption that comes from stuck jobs. A message is printed at the bottom of the console if any particles have been killed by this new check. It tells the total number of particles affected and the total kinetic energy involved. More detailed information on each killed particle is provided earlier in the console log.
+
+*Improved:* testing of complex parameter file graphs
+    These are complex arrangements with multiple ``includeFile``. This fixes an issue in which our checks to prevent ambiguous parameter file graphs had been rejecting some valid graphs.
+
+*Fixed:* correctly handle non-zero timeline starting value
+    This fixes an issue in which geometry setup failed or reported overlaps at time zero, when time zero was not actually going to be used for any of the runs.
+
+*Fixed:* placement within parallel worlds
+    Components that are children of a parallel world group component are now placed correctly.
+
+*Improved:* error messages from sources
+    Particle sources now have improved checks and more helpful error messages when required parameters are missing.
+
+*Fixed:* bug in DVH output
+    DVH header files now give the correct name for their DVH data file. This fixes a minor issue in which the wrong file extension was shown in the header.
+
+*Improved:* specifying ions
+    Ion handling has been updated to reflect that Geant4 only handles fully stripped ions. The third parameter in GenericIon(Z, A, Charge) is now optional. If present, it must equal Z since Geant4 only handles fully stripped ions. Since this argument is redundant, you can also just specify GenericIon(Z, A).
+
+*Added:* IncludeCharge option for phase space output
+    This may be informative for ions that can lose charge as they move through material. Not available for Limited output format.
+
+
+
+1.2.1  (2015-05-15)
+~~~~~~~~~~~~~~~~~~~
+
+*Fixed:* bug in range modulator wheel component
+    The bug caused a mis-alignment in the position of the modulator wheel blocks. The magnitude of the effect depends on ones exact simulation (and hence was missed in our own SOBP tests). A review of changes shows that we introduced this bug just before we upgraded from our Beta releases to our Release 1.0. Thanks to Benjamin Lutz for identifying this bug.
+
+*Fixed:* incorrect RunID output by parameter dump
+    Triggered by diagnostic parameter dumps from ``Ts/DumpParametersToCsvFile``, etc.
+
+*Fixed:* remove extraneous debugging messages
+    Removed diagnostic output that was left over from recent development of the beam source spectrum feature.
+
+
+
+1.2.0  (2015-04-20)
+~~~~~~~~~~~~~~~~~~~
+
+*Added:* energy spectrum parameters to beam source
+    Beam particle source can sample energy from a user-defined spectrum (:ref:`see here<primary_beam>`).
+
+*Added:* particle sources to extension mechanism
+    :ref:`See here<extension_source>` for how to add custom particle sources.
+
+*Added:* new user hooks to extension mechanism
+    :ref:`See here<extension_hooks>` for how to add new methods: ``BeginSession``, ``BeginRun``, ``BeginHistory``, ``EndHistory``, ``EndRun``, ``EndSession`` .
+
+*Improved:* column ordering in scorer output can be customized
+    Whereas previously, the Report parameter just indicated which quantities to report (Sum, Mean, etc.), the parameter is now also used to tell the order of these output columns. Thus:
+    ``sv:Sc/MyScorer/Report = 2 "Sum" "Mean"``
+    now gives a different column order than
+    ``sv:Sc/MyScorer/Report = 2 "Mean" "Sum"``.
+
+*Improved:* removed trailing comma in csv output format
+    The trailing comma on each line caused problems for some Matlab users.
+
+*Added:* ability to read back and manipulate scorer output
+    Scoring Output can be read back in, so that one can then write out with different Report options::
+
+        Ts/RestoreResultsFromFile = "True" # defaults to "False"
+
+    will then expect each scorer to have::
+
+        s:Sc/MyScorer1/InputFile = "MySavedFileName"
+        s:Sc/MyScorer1/InputType = "csv" # "csv" or "binary"
+
+    Reads header of input file to check that input is appropriate for the given scorer.
+    Can be used to output with different Report options than the original file, such as different columns, different column order or creating a DVH.
+    Can also be used to translate from csv to binary or back again.
+
+*Added:* option to dump parameter values to csv file
+    Dumps the requested parameters to a txt file: TopasParameterDump_Run0.txt. Triggered by::
+
+        sv:Ts/DumpParametersToCsv = 2 "SomeParameter" "SomeOtherParameter"
+
+    When multiple runs are involved, makes a new file for each run.
+
+*Fixed:* by default, phase spaces do not output empty histories
+    ``PhaseSpaceIncludeEmptyHistories`` default value changed to False to match what was already in the User Guide.
+
+*Improved:* meaning of EBins = 1 and TimeBins = 1 has changed
+    Previously, setting these values to 1 meant "do not use binning".
+    But since even when there is only one bin the data in the underflow and overflow bins can be useful, we now have EBins = 1 mean create one bin, plus underflow and overflow bins.
+    To have no binning at all, set EBins = 0 (or don't set EBins at all).
+    A similar change was made for TimeBins = 1.
+
+*Fixed:* conflict between energy binning and some filters
+    Energy Binning was not working in presense of ``FilterByAtomicMass``, ``FilterByAtomicNumber`` and the example user-supplied filter, ``TsMyFilter1``.
+
+*Fixed:* memory bug in energy binning
+    Previously caused segfault on some systems when EBins was used.
+
+*Improved:* check vector parameter length is non-negative
+    Previously protected against this number being zero but not against this being negative.
+
+*Added:* example of rotation directions
+    See :ref:`examples/TimeFeature/Rotation.txt<example_timefeature_rotation>`.
+
+*Fixed:* size of parallel scoring component for DICOM and XiO patient
+    This is the parallel world TsBox that is created if you attempt to score a DICOM or XiO Patient in a different grid than the original input file.
+
+*Fixed:* visualization of parallel scoring component for DICOM and XiO patient
+    These parallel scoring components were often invisible. They now show correctly.
+
+
+
+1.1.0  (2015-02-23)
+~~~~~~~~~~~~~~~~~~~
+
+*Fixed:* bug in particle type filters
+    It corrects behavior of the following four types of filters: ``OnlyIncludeParticlesNamed``, ``OnlyIncludeParticlesNotNamed``, ``OnlyIncludeIfParticleOrAncestorNamed``, ``OnlyIncludeIfParticleOrAncestorNotNamed``,
+
+
+
+1.0.0  (2015-02-11)
+~~~~~~~~~~~~~~~~~~~
+
+First version of TOPAS was released! (Uses Geant4.9.6.p04)

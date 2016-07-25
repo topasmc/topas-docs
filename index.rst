@@ -8,11 +8,11 @@ Welcome to TOPAS's documentation!
     :maxdepth: 1
     :caption: Getting Started
 
-    intro
-    install
-    authors
-    citation
-    history
+    getting-started/intro
+    getting-started/install
+    getting-started/authors
+    getting-started/citation
+    getting-started/history/index
 
 
 .. toctree::
@@ -59,5 +59,5 @@ Welcome to TOPAS's documentation!
     extensions/physics
     extensions/scoring
     extensions/filtering
-    extensions/magnet
+    extensions/field
     extensions/user_hook

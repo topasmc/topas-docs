@@ -1,3 +1,5 @@
+.. _example_timefeature_rotation:
+
 Rotation.txt
 ------------
 

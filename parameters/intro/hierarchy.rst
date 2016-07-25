@@ -16,6 +16,7 @@ On most operating systems, the case of the file name matters - MyIncludeFile.txt
 ``includeFile`` can use either absolute or relative file positions, such as::
 
     includeFile = /Applications/topas/someDirectory/MyIncludeFile.txt
+    # or
     includeFile = ../someDirectory/MyIncludeFile.txt
 
 A file inherits all settings from its ``includeFile``s, and can override any of those included settings by setting the same parameter name to a new value.

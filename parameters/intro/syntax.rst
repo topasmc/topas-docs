@@ -159,32 +159,32 @@ String parameters::
 Dimensioned Double Vector parameters::
 
     dv:parameterName = number_of_values value1 value2 ... valueN unit
-    dv:parameterName = number_of_values value1 value2 ... valueN unit +  name_of_dimensioned_double_or_double_vector_parameter
-    dv:parameterName = number_of_values value1 value2 ... valueN unit -  name_of_dimensioned_double_or_double_vector_parameter
-    dv:parameterName = number_of_values value1 value2 ... valueN unit *  name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
-    dv:parameterName = number_of_values value1 value2 ... valueN *  name_of_dimensioned_double_or_double_vector_parameter unit
+    dv:parameterName = number_of_values value1 value2 ... valueN unit + name_of_dimensioned_double_or_double_vector_parameter
+    dv:parameterName = number_of_values value1 value2 ... valueN unit - name_of_dimensioned_double_or_double_vector_parameter
+    dv:parameterName = number_of_values value1 value2 ... valueN unit * name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
+    dv:parameterName = number_of_values value1 value2 ... valueN * name_of_dimensioned_double_or_double_vector_parameter unit
     dv:parameterName = name_of_dimensioned_double_vector_parameter unit
     dv:parameterName = number * name_of_dimensioned_double_vector_parameter unit
-    dv:parameterName = name_of_unitless_or_integer_parameter *  name_of_dimensioned_double_vector_parameter unit
+    dv:parameterName = name_of_unitless_or_integer_parameter * name_of_dimensioned_double_vector_parameter unit
     # value1, value2, etc. can be a numeric value or the name of a dimensioned double parameter.
 
 Unitless Vector parameters::
 
     uv:parameterName = number_of_values value1 value2 ... valueN
-    uv:parameterName = number_of_values value1 value2 ... valueN +  name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
-    uv:parameterName = number_of_values value1 value2 ... valueN -  name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
-    uv:parameterName = number_of_values value1 value2 ... valueN *  name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
+    uv:parameterName = number_of_values value1 value2 ... valueN + name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
+    uv:parameterName = number_of_values value1 value2 ... valueN - name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
+    uv:parameterName = number_of_values value1 value2 ... valueN * name_of_unitless_or_integer_or_unitless_vector_or_integer_vector
     uv:parameterName = name_of_unitless_vector_parameter
     uv:parameterName = number * name_of_unitless_vector_parameter
-    uv:parameterName = name_of_unitless_or_integer_parameter *  name_of_unitless_vector_parameter
+    uv:parameterName = name_of_unitless_or_integer_parameter * name_of_unitless_vector_parameter
     # value1, value2, etc. can be a numeric value or the name of a unitless parameter
 
 Integer Vector parameters::
 
     iv:parameterName = number_of_values value1 value2 ... valueN
     iv:parameterName = number_of_values value1 value2 ... valueN + name_of_integer_or_integer_vector_parameter
-    iv:parameterName = number_of_values value1 value2 ... valueN -  name_of_integer_or_integer_vector_parameter
-    iv:parameterName = number_of_values value1 value2 ... valueN *  name_of_integer_or_integer_vector_parameter
+    iv:parameterName = number_of_values value1 value2 ... valueN - name_of_integer_or_integer_vector_parameter
+    iv:parameterName = number_of_values value1 value2 ... valueN * name_of_integer_or_integer_vector_parameter
     iv:parameterName = name_of_integer_vector_parameter
     iv:parameterName = integer * name_of_integer_vector_parameter
     iv:parameterName = name_of_integer_parameter * name_of_integer_vector_parameter

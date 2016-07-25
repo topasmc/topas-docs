@@ -1,3 +1,5 @@
+.. _example_scoring_filters:
+
 Filters.txt
 -----------
 
