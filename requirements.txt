@@ -1,1 +1,2 @@
+Sphinx>=1.4.2
 -e git://github.com/davidchall/topas-pygments.git#egg=topas_pygments

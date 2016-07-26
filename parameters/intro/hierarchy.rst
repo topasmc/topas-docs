@@ -19,7 +19,7 @@ On most operating systems, the case of the file name matters - MyIncludeFile.txt
     # or
     includeFile = ../someDirectory/MyIncludeFile.txt
 
-A file inherits all settings from its ``includeFile``s, and can override any of those included settings by setting the same parameter name to a new value.
+A file inherits all settings from its ``includeFile`` statements, and can override any of those included settings by setting the same parameter name to a new value.
 
 Type and kind of units has to match type and kind of units for the same parameter name in any ``includeFile``.
 
