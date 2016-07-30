@@ -1,3 +1,5 @@
+.. _example_special_rmw_constant:
+
 RangeModulator_ConstantBeam.txt
 -------------------------------
 

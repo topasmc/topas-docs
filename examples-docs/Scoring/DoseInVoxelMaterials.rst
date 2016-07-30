@@ -1,3 +1,5 @@
+.. _example_scoring_voxelmaterials:
+
 DoseInVoxelMaterials.txt
 ------------------------
 

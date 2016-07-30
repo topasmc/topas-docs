@@ -21,3 +21,4 @@ SpecialComponents
 	RangeModulator_CurrentModulatedBeam
 	RidgeFilter
 	RotatingMagnet
+	UniformElectroMagneticField

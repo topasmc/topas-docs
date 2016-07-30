@@ -6,9 +6,10 @@ Geometry Components
 .. toctree::
     :maxdepth: 2
 
+    intro
     placement
     parallel_world
-    magnet
+    field
     visualization
     dividable
     generic

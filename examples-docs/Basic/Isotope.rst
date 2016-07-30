@@ -1,3 +1,5 @@
+.. _example_basic_isotope:
+
 Isotope.txt
 -----------
 
