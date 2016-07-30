@@ -226,7 +226,7 @@ latex_elements = {
 
 # Additional stuff for the LaTeX preamble.
 'preamble': r'''
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 \definecolor{VerbatimColor}{rgb}{0.15,0.16,0.13}
 ''',
 
