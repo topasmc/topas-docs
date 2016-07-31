@@ -1,3 +1,5 @@
+.. _example_dicom:
+
 DoseToCT.txt
 ------------
 

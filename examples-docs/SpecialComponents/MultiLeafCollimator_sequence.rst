@@ -1,3 +1,5 @@
+.. _example_special_mlc_sequence:
+
 MultiLeafCollimator_sequence.txt
 --------------------------------
 

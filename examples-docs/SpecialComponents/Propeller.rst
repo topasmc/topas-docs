@@ -1,3 +1,5 @@
+.. _example_special_propeller:
+
 Propeller.txt
 -------------
 

@@ -15,3 +15,4 @@ Geometry Components
     generic
     group
     specialized
+    patient

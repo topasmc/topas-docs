@@ -1,3 +1,5 @@
+.. _example_special_propeller_continuous:
+
 Propeller_ContinuousRotation.txt
 --------------------------------
 
