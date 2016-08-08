@@ -1,3 +1,5 @@
+.. _example_phsp_limited_write:
+
 WriteLimited.txt
 ----------------
 

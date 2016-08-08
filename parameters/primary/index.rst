@@ -6,7 +6,7 @@ Particle Sources
 .. toctree::
     :maxdepth: 2
 
-    particle
+    intro
     beam
     emittance
     phasespace

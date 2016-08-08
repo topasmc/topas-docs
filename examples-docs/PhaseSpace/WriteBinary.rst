@@ -1,3 +1,5 @@
+.. _example_phsp_binary_write:
+
 WriteBinary.txt
 ---------------
 
