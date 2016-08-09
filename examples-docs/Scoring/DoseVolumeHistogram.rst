@@ -1,3 +1,5 @@
+.. _example_scoring_DVH:
+
 DoseVolumeHistogram.txt
 -----------------------
 

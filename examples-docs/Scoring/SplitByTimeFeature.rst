@@ -1,3 +1,5 @@
+.. _example_scoring_timefeature:
+
 SplitByTimeFeature.txt
 ----------------------
 

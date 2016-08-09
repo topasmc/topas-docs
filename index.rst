@@ -27,7 +27,6 @@ Welcome to TOPAS's documentation!
     parameters/primary/index
     parameters/physics/index
     parameters/scoring/index
-    parameters/filtering
     parameters/graphics
     parameters/time
     parameters/variance/index
