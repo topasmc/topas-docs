@@ -81,7 +81,7 @@ Filter by Particle Name or the name of any of the particle’s ancestors. Use th
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorNamed = 1 "neutron"
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorNotNamed = 1 "neutron"
 
-Particle names are as described :ref:`here <primary_particle_names>`.
+Particle names are as described :ref:`here <particle_names>`.
 
 Filter by Particle’s Origin Volume, Component, or Component and Subcomponents::
 

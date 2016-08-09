@@ -101,7 +101,7 @@ This upgrade required extensive recoding within TOPAS, but was done in a way tha
     This saves a small amount of time at startup, but is only recommended in cases where you are running a setup that you have already extensively tested.
 
 *Added:* "Twiss" source type replaced by "Emittance"
-    The new source type provides more flexibility than the previous Twiss (:ref:`see here<primary_emittance>`).
+    The new source type provides more flexibility than the previous Twiss (:ref:`see here<source_emittance>`).
 
 *Improved:* user extensions require updating
     * If you have written your own Scorer in C++, you will need to add one additional argument to the constructor and pass this argument on to the TsVScorer.

@@ -1,4 +1,4 @@
-.. _primary:
+.. _source:
 
 Particle Sources
 ================

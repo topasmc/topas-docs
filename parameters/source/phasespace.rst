@@ -1,4 +1,4 @@
-.. _primary_phasespace:
+.. _source_phasespace:
 
 Phase Space Sources
 -------------------

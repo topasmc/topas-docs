@@ -1,4 +1,4 @@
-.. _primary_intro:
+.. _source_intro:
 
 Introduction
 ------------
@@ -22,7 +22,7 @@ Some examples place the source at a vacuum window at the entrance to a nozzle. T
 
 
 
-.. _primary_particle_names:
+.. _particle_names:
 
 Particle Names
 ~~~~~~~~~~~~~~

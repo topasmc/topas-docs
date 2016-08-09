@@ -12,6 +12,7 @@ Welcome to TOPAS's documentation!
     getting-started/install
     getting-started/authors
     getting-started/citation
+    getting-started/users
     getting-started/history/index
 
 
@@ -24,7 +25,7 @@ Welcome to TOPAS's documentation!
     parameters/overall/index
     parameters/material
     parameters/geometry/index
-    parameters/primary/index
+    parameters/source/index
     parameters/physics/index
     parameters/scoring/index
     parameters/graphics
@@ -54,7 +55,7 @@ Welcome to TOPAS's documentation!
 
     extensions/intro
     extensions/geometry
-    extensions/primary
+    extensions/source
     extensions/physics
     extensions/scoring
     extensions/filtering

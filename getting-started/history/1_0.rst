@@ -98,7 +98,7 @@
 ~~~~~~~~~~~~~~~~~~~
 
 *Added:* energy spectrum parameters to beam source
-    Beam particle source can sample energy from a user-defined spectrum (:ref:`see here<primary_beam>`).
+    Beam particle source can sample energy from a user-defined spectrum (:ref:`see here<source_beam>`).
 
 *Added:* particle sources to extension mechanism
     :ref:`See here<extension_source>` for how to add custom particle sources.

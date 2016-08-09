@@ -1,4 +1,4 @@
-.. _primary_beam:
+.. _source_beam:
 
 Beam Sources
 ------------

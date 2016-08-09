@@ -122,7 +122,7 @@ For ColorBy = ParticleType, colors are Geant4 defaults:
 * neutron = yellow
 * other = grey
 
-You can override these settings with (particle names are described :ref:`here <primary_particle_names>`)::
+You can override these settings with (particle names are described :ref:`here <particle_names>`)::
 
     sv:Gr/MyGraphic1/ColorByParticleTypeNames = 4 "e-" "gamma" "proton" "neutron" # any number of particle names
     sv:Gr/MyGraphic1/ColorByParticleTypeColors = 4 "red" "green" "blue" "yellow" # for each particle type above. All other particles will be set to grey.

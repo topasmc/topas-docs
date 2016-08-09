@@ -1,4 +1,4 @@
-.. _primary_emittance:
+.. _source_emittance:
 
 Emittance Sources
 -----------------

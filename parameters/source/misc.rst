@@ -53,7 +53,7 @@ Filter by Particle Name::
     sv:So/MySource/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     sv:So/MySource/OnlyIncludeParticlesNotNamed = 2 "proton" "neutron"
 
-Particle names are as described :ref:`here <primary_particle_names>`.
+Particle names are as described :ref:`here <particle_names>`.
 
 You may specify more than one filter. For example, to score protons with initial KE over 100 MeV::
 
