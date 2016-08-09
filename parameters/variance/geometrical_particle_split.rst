@@ -1,7 +1,7 @@
 Geometrical Particle Splitting
 ------------------------------
 
-TOPAS variance reduction is further described in: Ramos-Méndez et al, “Geometrical splitting technique to improve the computational efficiency in Monte Carlo calculations for proton therapy,” Med. Phys. 40, 041718 (2013)
+TOPAS variance reduction is further described in: Ramos-Mendez et al, “Geometrical splitting technique to improve the computational efficiency in Monte Carlo calculations for proton therapy,” Med. Phys. 40, 041718 (2013)
 This technique was designed for heavy charged particles. In this implementation, you must to specify if the beam entering into the subcomponenti has cylindrical symmetry or not, that is because the particles can be or not randomly redistributed around the SplitAxis. The Russian Roulette is applied in direction. That is, at the split plane and prior to be split, the particle is subject to Russian Roulette if its direction does not point towards a Region of Interest (ROI). Then the radius of the ROI and its position on the SplitAxis must to be defined too. Further, Russian Roulette can be turned on/off at specific surfaces between sub-components.
 
 .. code::

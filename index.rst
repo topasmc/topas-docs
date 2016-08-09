@@ -59,4 +59,5 @@ Welcome to TOPAS's documentation!
     extensions/scoring
     extensions/filtering
     extensions/field
+    extensions/imaging
     extensions/user_hook

@@ -78,3 +78,69 @@ The phase space scorer and any custom n-tuple scorers buffer output to avoid exc
     i:Sc/MyScorer/OutputBufferSize = 1000 # Number of particles in phase space buffer
 
 For more detail on Phase Space formats, see Miscellaneous Notes at the end of this User Guide.
+
+
+
+The Phase Space Format
+~~~~~~~~~~~~~~~~~~~~~~
+
+Phase Space refers to the technique of saving or replaying a set of particles crossing a given surface.
+
+* When one saves a phase space, one defines a surface and then saves the position, particle type, energy and momentum of some or all particles crossing that surface.
+* When one replays a phase space, one starts a set of particles from the saved positions, with the saved particle types, energy and momentum.
+
+Phase Space enables separating two parts of a simulation or analysis job, and can be used to transfer sets of particles among different codes.
+
+A Phase Space is stored as a pair of related files:
+
+* A .header file tells the number of histories, the number of saved particles and the order of information in the .phsp file
+* A .phsp file contains all the details of all the saved particles
+
+We support three formats for Phase Space:
+
+* Binary is a compact format, with data encoded in a stream of bytes. The header file tells the contents and byte order per particle.
+* ASCII provides the same information as Binary, but presents it as a much less compact, but easier to read simple text file, which data encoded as a series of columns of text. The header file tells the contents and column order per particle.
+* Limited is an alternate binary format compatible with some legacy codes. It has fewer options for what data can be expressed, but is compatible with codes such as that used by Varian for their TrueBeam phase space files
+
+For the Binary and ASCII formats, Particle ID is encoded using the large set of integer codes specified by the Particle Data Group (PDG):
+
+* 22 = photon
+* 11 = electron
+* -11 = positron
+* 2112 = neutron
+* 2212 = proton
+* Additional codes go all the way up to ten digit ion codes of the form ±10LZZZAAAI.
+* See the `PDG web site <http://pdg.lbl.gov/2012/mcdata/mc_particle_id_contents.html>`_ for a full explanation
+
+For the Limited format, only a few particle codes are supported, while other particle types are not scored at all (and so this format is not recommended unless you need to interface with legacy codes):
+
+* 1 = photon
+* 2 = electron
+* 3 = positron
+* 4 = neutron
+* 5 = proton
+
+The Binary and ASCII formats are self-describing, with the complete column or byte order documented in the associated header file. The exact set of columns will depend on which options are used to create the phase space file. Run the :ref:`example_phsp_ascii_write` and :ref:`example_phsp_binary_write` examples to see these headers.
+
+If you are attempting to create TOPAS Binary or ASCII phase space from some application other than TOPAS, be advised that the formatting requirements are very specific. It is best to compare your phase space header and phsp files to those produced by the TOPAS examples listed above.
+Some things to watch out for:
+
+* First line of header has to be exactly as produced by TOPAS, with no extra spaces, tabs, etc.
+* Integer values in the ASCII phase space must not contain decimal points
+
+The Limited format uses the following byte order (the format is not self-describing):
+
+* Particle ID 1 byte
+  Absolute value gives the particle code,
+  Sign of this value encodes the direction of the 3rd direction cosine
+* Energy 4 bytes
+  Absolute value gives the energy in MeV
+  Sign of this value is set to negative if this is the first scored particle from this history
+* X position 4 bytes
+* Y position 4 bytes
+* Z position 4 bytes
+* U (direction cosine of momentum with respect to X) 4 bytes
+* V (direction cosine of momentum with respect to Y) 4 bytes
+* Weight 4 bytes
+
+Direction cosines are consistent between Binary, ASCII and Limited formats. Descriptions can be found `on Wikipedia <https://en.wikipedia.org/wiki/Direction_cosine>`_ and `on MathWorld <http://mathworld.wolfram.com/DirectionCosine.html>`_. Direction cosines U, V and W correspond to direction cosines alpha, beta and gamma on those sites.
