@@ -129,7 +129,7 @@ If only sum is requested, simple accumulation is used.
 If mean, second moment, variance or standard deviation is requested, accumulation uses the more numerically stable algorithm from:
 Donald E. Knuth (1998). The Art of Computer Programming, volume 2: Seminumerical Algorithms, 3rd edn., p. 232. Boston: Addison-Wesley:
 
-.. code-block:: text
+.. code-block:: plain
 
     for x in data:
         n = n+1

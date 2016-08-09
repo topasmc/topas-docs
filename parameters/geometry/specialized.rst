@@ -122,7 +122,7 @@ A track pattern from the parameter above; (left) a complete set of the track vie
 
 When TOPAS builds the geometry, you will see the numbers are input properly from console output as:
 
-.. code-block:: text
+.. code-block:: plain
 
     ---UpperTrack1 , # of Blocks: 14
     0th Block
@@ -195,7 +195,7 @@ Here is the complete set of the parameters for the above Propeller::
 
 While TOPAS starts to build geometries, you can confirm whether the numbers you put are input properly from console output as:
 
-.. code-block:: text
+.. code-block:: plain
 
     Layer: "0" , Thickness: 0.0356 (cm), Angle: 63.15 (deg), Material: G4_POLYVINYL_ACETATE
       Blade "0", Angle (-31.575 deg, 31.575deg)
@@ -267,7 +267,7 @@ To check that the numbers are input properly::
 
 will generate console output as:
 
-.. code-block:: text
+.. code-block:: plain
 
     Ridge points (x,z) --- :8
       P initial : (0, 0) cm
@@ -345,7 +345,7 @@ The following parameters is full set for modeling the above multi wire chamber::
 
 When TOPAS starts to build geometries, you will see the numbers are input properly from console output as:
 
-.. code-block:: text
+.. code-block:: plain
 
     Layer: "0" , # of Wires: 3, Alignment: X, Wire (Rmin= 0 cm, Rmax= 1 cm, HL= 20 cm) , Z Position in the Chamber: 5 (cm)
       Wire "0", Position (0 cm, -10 cm)

@@ -24,7 +24,7 @@ The number of image files read by Topas is determined by the parameter:
 If this value is just 1, Topas will look for imaging files directly in your DicomDirectory.
 If this value is larger, Topas will expect your DicomDirectory to contain numbered subdirectories:
 
-.. code-block:: text
+.. code-block:: plain
 
     YourDicomDirectory/1
     YourDicomDirectory/2

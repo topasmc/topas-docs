@@ -15,7 +15,7 @@ By default, TOPAS will occupy just one CPU thread. To use more, adjust::
 
 By default, console output from various threads will be interleaved. Output from each worker thread will have a distinctive prefix, such as:
 
-.. code-block:: text
+.. code-block:: plain
 
     G4WT0 >
     G4WT1 >

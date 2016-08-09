@@ -197,7 +197,7 @@ Visualization control for a specific component is done as part of the Ge/ parame
 
 We sometimes see error messages from visualization of the following form:
 
-.. code-block:: text
+.. code-block:: plain
 
     G4PhysicalVolumeSearchScene::FindVolume:
     Required volume "PhantomCentralDose_1x1x40", copy no. 0, found more than once...

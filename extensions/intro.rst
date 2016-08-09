@@ -40,7 +40,7 @@ To build your new TOPAS executable that incorporates all of your extensions, you
 
 You can even have subdirectories within your extensions directory, so that you might for example have different subdirectories with extensions from different collaborators:
 
-.. code-block:: text
+.. code-block:: plain
 
     extensions/my_extensions_from_university_a
     extensions/my_estensions_from_company_b

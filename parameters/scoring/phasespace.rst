@@ -54,7 +54,7 @@ For the ASCII and Binary formats, you can turn on additional columns of phase sp
 
 The last of these gives the four variable parts of a random seed. Replaying this random seed will get you the same event back later. The full random seed should be a file of the form:
 
-.. code-block:: text
+.. code-block:: plain
 
     Uvec
     1878463799
@@ -68,7 +68,7 @@ To reuse a saved seed, create a file with the above five lines, replacing the fo
 
 And then typing:
 
-.. code-block:: text
+.. code-block:: plain
 
     /random/resetEngineFrom event1.rndm
     exit
