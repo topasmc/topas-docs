@@ -3,12 +3,12 @@ Patient Components
 
 TOPAS currently supports the following Patient Component types:
 
-=========================== ========================
-Geometry Component          Type
-=========================== ========================
-:ref:`geometry_dicom`       TsDicomPatient
-:ref:`geometry_xio`         TsXioPatient
-=========================== ========================
+==============================  ========================
+Geometry Component              Type
+==============================  ========================
+:ref:`geometry_patient_dicom`   TsDicomPatient
+:ref:`geometry_patient_xio`     TsXioPatient
+==============================  ========================
 
 It is also necessary to define how to convert the imaging data to material data, following a :ref:`imaging_material_conversion` scheme.
 
@@ -81,7 +81,7 @@ By default, OpenGL graphics switches its fast "Stored" mode to its more memory e
 
 
 
-.. _geometry_dicom:
+.. _geometry_patient_dicom:
 
 Patient in DICOM Format
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -132,7 +132,7 @@ To make TOPAS color the voxels by structure::
 
 
 
-.. _geometry_xio:
+.. _geometry_patient_xio:
 
 Patient in XiO Format
 ~~~~~~~~~~~~~~~~~~~~~

@@ -27,6 +27,8 @@ Additional Authors      * Jungwook Shin
                         * Jan Schuemann
                         * Jose Ramos
                         * David Hall
+Editors                 * Joseph Perl
+                        * David Hall
 User Contributions      * Aleksandra Biegun
                         * Fada Guan
 ====================    ============================

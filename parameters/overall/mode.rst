@@ -1,9 +1,13 @@
+.. _time_mode:
+
 Time mode
 ---------
 
 If you do nothing special, TOPAS will do a single run with no time variation. We call this "Fixed Time Mode". Other available modes are "Sequential" and "Random".
 
 
+
+.. _time_mode_fixed:
 
 Fixed Time Mode
 ~~~~~~~~~~~~~~~
@@ -19,6 +23,8 @@ If your parameter files include :ref:`time_feature`, they will all be evaluated 
 If you have more than one source, the run will continue until all sources have run all of their histories. For each Geant4 "beamOn", each source will get called, but only those that have more histories left to produce will actually produce any.
 
 
+
+.. _time_mode_sequential:
 
 Sequential Time Mode
 ~~~~~~~~~~~~~~~~~~~~
@@ -66,6 +72,8 @@ By default, scorers will output just once, after the entire session. But if you 
 * If this is True, we output after every run.
 
 
+
+.. _time_mode_random:
 
 Random Time Mode
 ~~~~~~~~~~~~~~~~

@@ -4,21 +4,23 @@ Miscellaneous
 Additional Control of Number of Histories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because TOPAS supports both sequential and random time, there are additional parameters that can control the number of histories in random mode. Read the last section of this document, TOPAS Overall Control, before using these parameters::
+Because TOPAS supports both sequential and random time, there are additional parameters that can control the number of histories in random mode. Read :ref:`time_mode` before using these parameters::
 
     i:So/Demo/NumberOfHistoriesInRandomJob = 100
     d:So/Demo/ProbabilityOfUsingAGivenRandomTime = 1.
 
 
 
+.. _source_filter:
+
 Filtering Sources
 ~~~~~~~~~~~~~~~~~
 
-Optionally filter what comes from the source. This is mainly intended for use with saved PhaseSpace, but is applied uniformly to all sources. Syntax is identical to that used for filtering in Scorers.
+Optionally filter what comes from the source. This is mainly intended for use with saved PhaseSpace, but is applied uniformly to all sources. Syntax is identical to that used for :ref:`filtering in Scorers <scoring_filter>`.
 
-You may write your own additional filters (see Extending TOPAS at the end of this user guide).
+You may write your own additional filters (see :ref:`extension_filter`).
 
-Filter by Charge. Accepts one or more of "Positive", "Negative" or "Neutral"::
+Filter by Charge. Accepts one or more of ``"Positive"``, ``"Negative"`` or ``"Neutral"``::
 
     sv:So/MySource/OnlyIncludeParticlesCharged = 1 "Negative"
     sv:So/MySource/OnlyIncludeParticlesNotCharged = 1 "Negative"
@@ -55,15 +57,15 @@ Filter by Particle Name::
 
 Particle names are as described :ref:`here <particle_names>`.
 
-You may specify more than one filter. For example, to score protons with initial KE over 100 MeV::
+You may specify more than one filter. For example, to emit protons with initial KE over 100 MeV::
 
     sv:So/MySource/OnlyIncludeParticlesNamed = 1 "proton"
     d:So/MySource/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
 
-You can invert the results of all previous filters. The following would score only particles that are Not protons with initial KE over 100 MeV::
+You can invert the results of all previous filters. The following would emit only particles that are Not protons with initial KE over 100 MeV::
 
     sv:So/MySource/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     d:So/MySource/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
     b:So/MySource/InvertFilter = "True"
 
-Any filter property can be set by time features if you wish, to produce time-dependent filtering.
+Any filter property can be set by :ref:`time_feature` if you wish, to produce time-dependent filtering.

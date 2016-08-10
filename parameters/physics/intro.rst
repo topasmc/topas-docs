@@ -12,10 +12,10 @@ Advanced users can set their own parameters to override some of these default se
 
 You can choose from two general types of physics lists:
 
-* "Reference" physics lists are pre-made, complete lists provided by Geant4.
-* "Modular" physics lists are lists where you mix and match a set of modules to create a customized complete list.
+* :ref:`physics_reference` are pre-made, complete lists provided by Geant4.
+* :ref:`physics_modular` are lists where you mix and match a set of modules to create a customized complete list.
 
-You can also provide your own physics list (not recommended unless you have significant Geant4 expertise).
+You can also provide your own physics list using :ref:`extension_physics` (not recommended unless you have significant Geant4 expertise).
 
 You can get a list of what processes are in your currently selected physics list by::
 

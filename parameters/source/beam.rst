@@ -3,7 +3,7 @@
 Beam Sources
 ------------
 
-By default there is a single source named "Demo" centered on a Component named "BeamPosition" that is placed at one end of the "World". The beam shape is an Ellipse. Each of these parameters is described in detail on the next few pages::
+By default there is a single source named ``Demo`` centered on a Component named ``BeamPosition`` that is placed at one end of the ``World``. The beam shape is an Ellipse. Each of these parameters is described in detail below::
 
     s:So/Demo/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
     s:So/Demo/Component = "BeamPosition"
@@ -23,7 +23,7 @@ By default there is a single source named "Demo" centered on a Component named "
     d:So/Demo/BeamAngularSpreadY = 0.0032 rad # Y angular distribution (if Gaussian)
     i:So/Demo/NumberOfHistoriesInRun = 0
 
-Where the default definition of "BeamPosition" is::
+Where the default definition of ``BeamPosition`` is::
 
     s:Ge/BeamPosition/Parent="World"
     s:Ge/BeamPosition/Type="Group"
@@ -34,15 +34,19 @@ Where the default definition of "BeamPosition" is::
     d:Ge/BeamPosition/RotY=0. deg
     d:Ge/BeamPosition/RotZ=0. deg
 
-Details on BeamEnergySpread:
+Details on ``BeamEnergySpread``:
 
-* The number is unitless because we find it more convenient generally to speak of the spread in terms of percentage of the mean energy, rather than in an absolute number. We could have chosen either representation, but this one seemed most consistent with what we see from other beam modeling applications.
+* The number is unitless because we find it more convenient generally to speak of the spread in terms of percentage of the mean energy, rather than as an absolute number. We could have chosen either representation, but this one seemed most consistent with what we see from other beam modeling applications.
 * This is a standard deviation. So the code we have is:
 
-    * fEnergySpread = BeamEnergySpread * fEnergy / 100.;
-    * p.kEnergy = CLHEP::RandGauss::shoot(fEnergy, fEnergySpread);
+.. code-block:: c++
 
-* So, for example, if you want a spread of 0.2 MeV, and your energy is 153 MeV, set BeamEnergySpread to::
+    fEnergySpread = BeamEnergySpread * fEnergy / 100.;
+    p.kEnergy = CLHEP::RandGauss::shoot(fEnergy, fEnergySpread);
+
+* So, for example, if you want a spread of 0.2 MeV, and your energy is 153 MeV, set ``BeamEnergySpread`` to:
+
+.. code-block:: plain
 
     0.2 MeV / 153 MeV * 100 = 0.13
 
@@ -50,7 +54,7 @@ To run generate histories using this demo source, set its number of histories to
 
     So/Demo/NumberOfHistoriesInRun = 10
 
-We recommend that you not use So/Demo for any serious work. This demonstration source is just there for simple demonstrations. For any serious work, please define your own source so that you do not just accidentally inherit any of the characteristics of our Demo source. Source characteristics vary greatly from one application to another. There is no meaningful "default" value that we can set for you.
+We recommend that you not use ``So/Demo`` for any serious work. This demonstration source is just there for simple demonstrations. For any serious work, please define your own source so that you do not just accidentally inherit any of the characteristics of our ``Demo`` source. Source characteristics vary greatly from one application to another. There is no meaningful "default" value that we can set for you.
 
 So when you set out on your own work, define a new source name, such as::
 
@@ -59,7 +63,7 @@ So when you set out on your own work, define a new source name, such as::
     i:So/MySource/NumberOfHistoriesInRun = 100
     ...
 
-You can provide an energy spectrum instead of a fixed energy by setting the following to "Discrete" or "Continuous"::
+You can provide an energy spectrum instead of a fixed energy by setting the following to ``"Discrete"`` or ``"Continuous"``::
 
     s:So/MySource/BeamSpectrum = "Continuous" # Either "None", "Discrete" or "Continuous"
 
@@ -70,11 +74,11 @@ and providing energies and weights as::
 
 An example is in :ref:`example_basic_spectrum`.
 
-Any source that has NumberOfHIstoriesInRun greater than zero will contribute primary particles.
+Any source that has ``NumberOfHIstoriesInRun`` greater than zero will contribute primary particles.
 
-The beam is emitted along the Z axis of the beam’s Component and may have some spread along the X and Y axes.
+The beam is emitted along the Z axis of the beam’s ``Component`` and may have some spread along the X and Y axes.
 
-For Type = "Beam", the beam shape can be further described by a set of parameters that control the position distribution of the start of the beam::
+For ``Type = "Beam"``, the beam shape can be further described by a set of parameters that control the position distribution of the start of the beam::
 
     s:So/Demo/BeamPositionDistribution = "Gaussian" # None, Flat or Gaussian
     s:So/Demo/BeamPositionCutoffShape = "Ellipse" # Rectangle or Ellipse (if Flat or Gaussian)
@@ -91,6 +95,6 @@ and a set of parameters that control how the beam spreads out from that start po
     d:So/Demo/BeamAngularSpreadX = 0.0032 rad # X angular distribution (if Gaussian)
     d:So/Demo/BeamAngularSpreadY = 0.0032 rad # Y angular distribution (if Gaussian)
 
-The Cutoff and Spread parameters are applied symmetrically.
+The ``Cutoff`` and ``Spread`` parameters are applied symmetrically.
 
-You will note that for Gaussian beams, the position and angular distribution are controlled both by Spread and by Cutoff parameters. The Spread control the standard deviation of the Gaussian, while the Cutoffs cut off the tails (which would otherwise be infinite). Inside TOPAS, when the Gaussian formula generates a starting point outside of this cutoff, that starting point is rejected and instead the random function is thrown again until a value is found that is within the specified cutoff.
+You will note that for Gaussian beams, the position and angular distribution are controlled both by ``Spread`` and by ``Cutoff`` parameters. The ``Spread`` control the standard deviation of the Gaussian, while the ``Cutoff`` cut off the tails (which would otherwise be infinite). Inside TOPAS, when the Gaussian formula generates a starting point outside of this cutoff, that starting point is rejected and instead the random function is thrown again until a value is found that is within the specified cutoff.

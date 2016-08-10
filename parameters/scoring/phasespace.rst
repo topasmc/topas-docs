@@ -1,14 +1,16 @@
-Phase Space Output
+.. _scoring_phasespace:
+
+Phase Space Scorer
 ------------------
 
-Phase Space refers to the technique of saving or replaying a set of particles crossing a given surface. It is the only one of our built-in scorers that saves data to n-tuple format, rather than storing accumulated overall data (counts or averages). However you can write extension scorers to use this generalized n-tuple capability to store other information on a per-particle basis (see Extending TOPAS at the end of this user guide).
+Phase Space refers to the technique of saving or replaying a set of particles crossing a given surface. It is the only one of our built-in scorers that saves data to n-tuple format, rather than storing accumulated overall data (counts or averages). However you can write extension scorers to use this generalized n-tuple capability to store other information on a per-particle basis (see :ref:`extension_scoring`).
 
 * When one saves a phase space, one defines a surface and then saves the position, particle type, energy and momentum of some or all particles crossing that surface.
 * When one replays a phase space, one starts a set of particles from the saved positions, with the saved particle types, energy and momentum.
 
 Phase Space enables separating two parts of a simulation or analysis job, and can be used to transfer sets of particles among different codes.
 
-If your Surface Scorer has ``Quantity = "PhaseSpace"``, the output will be a pair of Phase Space files:
+If your :ref:`Surface Scorer <scoring_surface>` has ``Quantity = "PhaseSpace"``, the output will be a pair of Phase Space files:
 
 * A .header file tells the number of histories, the number of saved particles and the order of information in the .phsp file
 * A .phsp file contains all the details of all the saved particles
@@ -19,7 +21,7 @@ We support three formats for Phase Space:
 * Binary provides the same information as ASCII, but in a much more compact format, with data encoded in a stream of bytes. The header file tells the contents and byte order per particle. Use Binary in cases where the ASCII format produces excessively large files.
 * Limited is an alternate binary format compatible with some legacy codes. It has fewer options for what data can be expressed, but is compatible with codes such as that used by Varian for their TrueBeam phase space files. Use Limited format only when you need to exchange phase space with legacy codes.
 
-You can additionally write phase space to ROOT files, however there is no corresponding ability to read phase space back in from these files.
+You can additionally write phase space to `ROOT files <https://root.cern.ch>`_, however there is no corresponding ability to read phase space back in from these files.
 
 You tell TOPAS what format to write out by setting::
 
@@ -38,7 +40,7 @@ All formats provide at least ten quantities for each scored particle:
 * Flag to tell if Third Direction Cosine is Negative (1 means true)
 * Flag to tell if this is the First Scored Particle from this History (1 means true) (Note that this may or may not be the primary, as the primary may or may not have made it all the way to the scoring plane).
 
-The positions are relative to the center of the World.
+The positions are relative to the center of the ``World``.
 
 For the ASCII and Binary formats, you can turn on additional columns of phase space output::
 
@@ -62,7 +64,7 @@ The last of these gives the four variable parts of a random seed. Replaying this
     1425618182
     1466214412
 
-To reuse a saved seed, create a file with the above five lines, replacing the four numeric parts with the four integers in the phase space file. Assuming you name that file "event1.rndm", you can then make TOPAS start from this random seed by having TOPAS wake up at the Geant4 command line, by using::
+To reuse a saved seed, create a file with the above five lines, replacing the four numeric parts with the four integers in the phase space file. Assuming you name that file ``event1.rndm``, you can then make TOPAS start from this random seed by having TOPAS wake up at the Geant4 command line, by using::
 
     Ts/PauseBeforeSequence = "True"
 
@@ -77,12 +79,12 @@ The phase space scorer and any custom n-tuple scorers buffer output to avoid exc
 
     i:Sc/MyScorer/OutputBufferSize = 1000 # Number of particles in phase space buffer
 
-For more detail on Phase Space formats, see Miscellaneous Notes at the end of this User Guide.
 
 
+.. _phasespace_format:
 
-The Phase Space Format
-~~~~~~~~~~~~~~~~~~~~~~
+Phase Space Format
+~~~~~~~~~~~~~~~~~~
 
 Phase Space refers to the technique of saving or replaying a set of particles crossing a given surface.
 
@@ -100,7 +102,9 @@ We support three formats for Phase Space:
 
 * Binary is a compact format, with data encoded in a stream of bytes. The header file tells the contents and byte order per particle.
 * ASCII provides the same information as Binary, but presents it as a much less compact, but easier to read simple text file, which data encoded as a series of columns of text. The header file tells the contents and column order per particle.
-* Limited is an alternate binary format compatible with some legacy codes. It has fewer options for what data can be expressed, but is compatible with codes such as that used by Varian for their TrueBeam phase space files
+* Limited is an alternate binary format compatible with some legacy codes. It has fewer options for what data can be expressed, but is compatible with codes such as that used by Varian for their TrueBeam phase space files.
+
+You can additionally write phase space to `ROOT files <https://root.cern.ch>`_, however there is no corresponding ability to read phase space back in from these files.
 
 For the Binary and ASCII formats, Particle ID is encoded using the large set of integer codes specified by the Particle Data Group (PDG):
 
@@ -112,7 +116,7 @@ For the Binary and ASCII formats, Particle ID is encoded using the large set of 
 * Additional codes go all the way up to ten digit ion codes of the form ±10LZZZAAAI.
 * See the `PDG web site <http://pdg.lbl.gov/2012/mcdata/mc_particle_id_contents.html>`_ for a full explanation
 
-For the Limited format, only a few particle codes are supported, while other particle types are not scored at all (and so this format is not recommended unless you need to interface with legacy codes):
+For the Limited format, only a few particle codes are supported, while other particle types are not scored at all (and so this format is only recommended if you need to interface with legacy codes):
 
 * 1 = photon
 * 2 = electron
@@ -130,17 +134,21 @@ Some things to watch out for:
 
 The Limited format uses the following byte order (the format is not self-describing):
 
-* Particle ID 1 byte
-  Absolute value gives the particle code,
-  Sign of this value encodes the direction of the 3rd direction cosine
-* Energy 4 bytes
-  Absolute value gives the energy in MeV
-  Sign of this value is set to negative if this is the first scored particle from this history
-* X position 4 bytes
-* Y position 4 bytes
-* Z position 4 bytes
-* U (direction cosine of momentum with respect to X) 4 bytes
-* V (direction cosine of momentum with respect to Y) 4 bytes
-* Weight 4 bytes
+=============   ========================================================
+Size            Quantity
+=============   ========================================================
+1 byte          | Particle ID
+                | Absolute value gives the particle code
+                | Sign of this value encodes the direction of the 3rd direction cosine
+4 bytes         | Energy
+                | Absolute value gives the energy in MeV
+                | Sign of this value is set to negative if this is the first scored particle from this history
+4 bytes         X position
+4 bytes         Y position
+4 bytes         Z position
+4 bytes         U (direction cosine of momentum with respect to X)
+4 bytes         V (direction cosine of momentum with respect to Y)
+4 bytes         Weight
+=============   ========================================================
 
 Direction cosines are consistent between Binary, ASCII and Limited formats. Descriptions can be found `on Wikipedia <https://en.wikipedia.org/wiki/Direction_cosine>`_ and `on MathWorld <http://mathworld.wolfram.com/DirectionCosine.html>`_. Direction cosines U, V and W correspond to direction cosines alpha, beta and gamma on those sites.

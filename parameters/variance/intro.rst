@@ -1,7 +1,7 @@
 Introduction
 ------------
 
-Please note that Variance Reduction is highly dependent on your specific geometry. Approach these features with caution and test all variance reduced setups against an equivalent setup without variance reduction.
+Please note that Variance Reduction (VR) is highly dependent on your specific geometry. Approach these features with caution and test all variance reduced setups against an equivalent setup without variance reduction.
 
 You should also review the Geant4 document that describes which cases are problematic `here <https://geant4.web.cern.ch/geant4/collaboration/working_groups/geometry/biasing/BiasScoreUseCases.html>`_.
 
@@ -13,26 +13,31 @@ To enable the particle split applied to protons::
 
 
 
-To Specify the Split Geometry
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Specify the Split Geometry
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The geometry for variance reduction must to be a parallel one. The type of component can be any standard solid (generic solid) defined in the geometry section. The geometry must to consists of a geometrical component with a set of geometrical sub-components as daughters. The sub- components must to be located in such a way that the borders in between coincide. The split process or Russian roulette will occur at that borders. In the next figure a simple scheme is shown.
+The geometry for variance reduction must be in a :ref:`parallel world <geometry_parallel>`. The type of component can be any standard solid (:ref:`geometry_dividable` or :ref:`geometry_generic`). The geometry must consist of a geometry component with a set of geometry sub-components as daughters. The sub-components must be located in such a way that the boundaries coincide. The split process or Russian roulette will occur at these boundaries. In the next figure a simple scheme is shown.
 
 .. image:: split_geometry.png
 
-Time features can be used to move or rotate the component or sub-components. But there is a restriction: the implementation of VRT does not allow to change the dimensions of the component and sub-components.
+:ref:`time_feature` can be used to move or rotate the component or sub-components. But there is a restriction: the implementation of VR does not allow you to change the dimensions of the component and sub-components.
 
-To set the geometry for VRT::
+To set the geometry for VR::
 
     s:Vr/ParticleSplit/Component = "MyComponent"
     sv:Vr/ParticleSplit/SubComponents = n "MySubComp_1" ... "MySubComp_n"
 
 
 
-To Define the Splitting Technique
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Define the Splitting Technique
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is three variance reduction techniques available: GeometricalParticleSplit, ImportanceSampling and WeightWindow
+There are three variance reduction techniques available:
+
+* :ref:`GeometricalParticleSplit <vr_geometrical_splitting>`
+* :ref:`ImportanceSampling <vr_importance_sampling>`
+* :ref:`WeightWindow <vr_weight_window>`
+
 To chose a technique, use for example::
 
     s:Vr/ParticleSplit/Type = "GeometricalParticleSplit"

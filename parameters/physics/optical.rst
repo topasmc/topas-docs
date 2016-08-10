@@ -4,9 +4,9 @@ Optical Physics
 Optical Photons
 ~~~~~~~~~~~~~~~
 
-A full description of the tracking of optical photons is available in the Geant4 Guide for Applications Developers.
+A full description of the tracking of optical photons is available in the `Geant4 Physics Reference Manual <http://geant4.cern.ch/G4UsersDocuments/UsersGuides/PhysicsReferenceManual/html/node66.html>`_ and the `Geant4 Guide for Applications Developers <http://geant4.cern.ch/G4UsersDocuments/UsersGuides/ForApplicationDeveloper/html/TrackingAndPhysics/physicsProcess.html#5.2.5>`_.
 
-Topas allows to include optical physics by means of the g4optical module in the physics list. The available optical processes included in the g4optical module are: scintillation, Cerenkov radiation, wavelength shifting, optical absorption, Rayleigh scattering and boundary processes. However, this module is not sufficient to set up the generation and tracking of optical photons. The optical properties of the material of the volumes must to be defined too (at the least the refractive index must to be defined). There exist two types of variables to define the optical properties: a vector based and constant based. The vector-based parameter allows to define a property (refractive index for example) in function of the photon’s energy. While the constant-based parameters allows to define an scalar (scintillation yield for example)
+TOPAS allows to include optical physics by means of the ``g4optical`` module in the physics list. The available optical processes included in the ``g4optical`` module are: scintillation, Cerenkov radiation, wavelength shifting, optical absorption, Rayleigh scattering and boundary processes. However, this module is not sufficient to set up the generation and tracking of optical photons. The optical properties of the material of the volumes must to be defined too (at the least the refractive index must to be defined). There exist two types of variables to define the optical properties: a vector based and constant based. The vector-based parameter allows to define a property (refractive index for example) as a function of the photon’s energy. While the constant-based parameters allows to define an scalar (scintillation yield for example).
 
 To activate the optical properties in a material one must to set::
 
@@ -59,7 +59,7 @@ u               BirksConstant (in mm/MeV)
 Optical Surfaces
 ~~~~~~~~~~~~~~~~
 
-If perfect smooth interface is between two dielectric materials, the users only needs to provide the refractive index. In all other cases, a surface or optical boundary needs to be defined. There exist two kinds of surfaces: the border surface that delimits the boundary between two components; and the skin surface which surrounds one single component.
+If a perfect smooth interface is between two dielectric materials, the user only needs to provide the refractive index. In all other cases, a surface or optical boundary needs to be defined. There exist two kinds of surfaces: the border surface that delimits the boundary between two components; and the skin surface which surrounds one single component.
 Border surface is ordered in the sense that the order of the components matters, two border surfaces can exists between a pair of components. Thus, the follow parameters define two surfaces for a pair of components::
 
     s:Ge/MyComponent1/OpticalBehaviorTo/MyComponent2 = "MySurface1"
@@ -81,7 +81,7 @@ Finally the finish::
 
     s:Su/MySurfaceName/Finish = "Polished"
 
-In addition, more detailed properties can be added by parameters described in the table 1. In such a case, the way to define would be for example (with prefix Su instead of Ma)::
+In addition, more detailed properties can be added by parameters described in the table below. In such a case, the way to define would be for example (with prefix ``Su`` instead of ``Ma``)::
 
     dv:Su/MySurfaceName/Energies = 2 1.0 4.0 eV
     uv:Su/MySurfaceName/Reflectivity = 2 0.8 0.8
@@ -97,7 +97,7 @@ string    Finish          | polished: *smooth perfectly polished surface*
                           | ground: *rough surface*
                           | groundfrontpainted: *rough top-layer (front) paint*
                           | groundbackpainted: *same as ground but with a back-paint*
-string    Model           | Unified: A. Levin and C. Moisan, A More Physical Approach to Model the Surface Treatment of Scintillation Counters and its Implementation into DETECT, TRIUMF Preprint TRI-PP-96-64, Oct. 1996.
+string    Model           | Unified: `reference <http://dx.doi.org/10.1109/NSSMIC.1996.591410>`_
                           | Glisur: original GEANT3.21 model
 unitless  SigmaAlpha      Between 0 and 1. By default 0
 ========  ==============  ===============================================================

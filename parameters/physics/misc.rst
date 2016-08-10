@@ -4,14 +4,14 @@ Miscellaneous
 User-Supplied Physics Lists
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See Extending TOPAS at the end of this user guide for details on how to provide your own physics list. This option is not recommended unless you have significant Geant4 expertise.
+See :ref:`extension_physics` for details on how to provide your own physics list. This option is not recommended unless you have significant Geant4 expertise.
 
 
 
 Multiple Physics Lists
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You can have more than one list defined at the same time, but only the one specified in Ph/ListName will actually be in effect::
+You can have more than one list defined at the same time, but only the one specified in ``Ph/ListName`` will actually be in effect::
 
     s:Ph/ListName = "MyList1"
     s:Ph/MyList1/Type= "QGSP_BERT_HP" # This list is in effect now
@@ -26,12 +26,10 @@ You can have more than one list defined at the same time, but only the one speci
 Production Thresholds
 ~~~~~~~~~~~~~~~~~~~~~
 
-Production Thresholds and range cuts are discussed in detail in the Geant4 Application Developers Guide. By default, appropriate limits are set by the physics list. You can override these defaults with::
+Production Thresholds and range cuts are discussed in detail in the `Geant4 Application Developers Guide <http://geant4.cern.ch/G4UsersDocuments/UsersGuides/ForApplicationDeveloper/html/TrackingAndPhysics/thresholdVScut.html>`_. By default, appropriate limits are set by the physics list. You can override these defaults with::
 
     d:Ph/MyPhysics/SetProductionCutLowerEdge = 200 eV
     d:Ph/MyPhysics/SetProductionCutHighEdge = 30 MeV
-
-For further discussion, see the Geant4 Application Developers Guide.
 
 
 

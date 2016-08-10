@@ -1,3 +1,5 @@
+.. _example_nozzle_scanning_horiz:
+
 ScanningTargetMovingHorizontal.txt
 ----------------------------------
 

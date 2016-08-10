@@ -548,6 +548,7 @@ A typical compensator has the following parameters (see :ref:`example_nozzle_sca
     * ...
     * nN deltaXn Xn Yn
     * D1 D2 ... DnN
+
   NumberOfRows = N defines how many rows of drill holes there are (in Y), the MainCylinderThickness. The DrillHoleDiameter is the diameter of the drill hole, we approximate this by a hexagon. The values ni are the number of drill holes in X for each row of drill holes in Y, deltaXi defines the step size (and direction) and Xi and Yi are the starting position of the drilling for this row.
 
 * ``"MGH"``: all sizes are in inches:

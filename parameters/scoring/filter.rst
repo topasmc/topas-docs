@@ -5,13 +5,13 @@ Filtering Scorers
 
 You may add filters to limit what is scored.
 
-You may write your own additional filters (see Extending TOPAS at the end of this user guide).
+You may write your own additional filters (see :ref:`extension_filter`).
 
-Filter by Generation. Accepts either "Primary" or "Secondary"::
+Filter by Generation. Accepts either ``"Primary"`` or ``"Secondary"``::
 
     s:Sc/MyScorer/OnlyIncludeParticlesOfGeneration = "Primary"
 
-Filter by Charge. Accepts one or more of "Positive", "Negative" or "Neutral"::
+Filter by Charge. Accepts one or more of ``"Positive"``, ``"Negative"`` or ``"Neutral"``::
 
     sv:Sc/MyScorer/OnlyIncludeParticlesCharged = 1 "Negative"
     sv:Sc/MyScorer/OnlyIncludeParticlesNotCharged = 1 "Negative"
@@ -32,7 +32,7 @@ Filter by Particle’s Initial Kinetic Energy::
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 10. MeV
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKENotAbove = 10. MeV
 
-When designing energy or momentum filters, keep in mind that since no vacuum is perfect in Geant4 (density can be low but cannot be exactly zero), even particles traveling through "Vacuum" will experience some energy loss.
+When designing energy or momentum filters, keep in mind that since no vacuum is perfect in Geant4 (density can be low but cannot be exactly zero), even particles traveling through ``"Vacuum"`` will experience some energy loss.
 
 Filter by Particle’s Initial Momentum::
 
@@ -147,16 +147,15 @@ Note that in this case, the material name must exactly match the case defined in
     i:Ma/Verbosity = 1
 
 Filter on DICOM RT Structure Sets:
-A structure set is an extra file in the DICOM directory that provides information on structures such as organs, tumors, PTVs, etc. that have been outlined (contoured) in the planing process. The data is stored as a set of polygons, up to one per slice for each contoured structure. TOPAS can color code DICOM components according to this structure information (see the TsDICOM Component above)
-and can filter scoring based on these structures::
+A structure set is an extra file in the DICOM directory that provides information on structures such as organs, tumors, PTVs, etc. that have been outlined (contoured) in the planing process. The data is stored as a set of polygons, up to one per slice for each contoured structure. TOPAS can color code DICOM components according to this structure information (see :ref:`geometry_patient_dicom`) and can filter scoring based on these structures::
 
     sv:Sc/MyScorer/OnlyIncludeIfInRTStructure = 2 "R_LUNG" "L_LUNG"
 
 If the structure name includes a space, substitute an underscore in the parameter. So, for example, if the structure name is "R LUNG", you should supply the parameter as "R_LUNG".
 
-For Surface Scorers, you can also filter by whether particle is going "In" or "Out" of scoring surface. Omit this filter to allow either option::
+For Surface Scorers, you can also filter by whether particle is going ``"In"`` or ``"Out"`` of scoring surface. Omit this filter to allow either option::
 
-    s:Sc/MyScorer/OnlyIncludeParticlesGoing = "in"
+    s:Sc/MyScorer/OnlyIncludeParticlesGoing = "In"
 
 You may specify more than one filter. For example, to score protons with initial KE over 100 MeV::
 
@@ -169,4 +168,4 @@ You can invert the results of all previous filters. The following would score on
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
     b:Sc/MyScorer/InvertFilter = "True"
 
-Any filter property can be set by time features if you wish, to produce time-dependent filtering.
+Any filter property can be set by :ref:`time_feature` if you wish, to produce time-dependent filtering.

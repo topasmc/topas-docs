@@ -1,3 +1,5 @@
+.. _example_nozzle_scattering_run:
+
 ScatteringNozzle_run.txt
 ------------------------
 

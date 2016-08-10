@@ -1,3 +1,5 @@
+.. _geometry_generic:
+
 Generic Components
 ------------------
 
