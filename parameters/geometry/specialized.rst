@@ -421,7 +421,7 @@ The supported CAD formats are:
 
 STL and PLY files describe a geometry as a tessellation, providing a set of vertices and faces of triangular or quadrangular surfaces to approximate the volume. While some STL and PLY files also contain additional information such as material and color, TOPAS does not currently accept such information. The STL and PLY files you provide to TOPAS must contain only the tessellation information. Internally, TOPAS represents this component as a ``G4TessellatedSolid``.
 
-Most CAD systems allows direct export of parts to the above formats. If your CAD system does not support one of those formats, you may be able to convert from some other CAD format by using a free conversion tool such as `MeshLab <meshlab.sourceforge.net>`_.
+Most CAD systems allows direct export of parts to the above formats. If your CAD system does not support one of those formats, you may be able to convert from some other CAD format by using a free conversion tool such as `MeshLab <http://meshlab.sourceforge.net>`_.
 
 ::
 
