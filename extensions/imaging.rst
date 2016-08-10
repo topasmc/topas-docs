@@ -1,3 +1,5 @@
+.. _extension_imaging_material_conversion:
+
 Custom Imaging to Material Conversion
 =====================================
 

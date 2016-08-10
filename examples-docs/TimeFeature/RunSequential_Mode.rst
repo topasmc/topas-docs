@@ -1,3 +1,5 @@
+.. _example_timefeature_sequential:
+
 RunSequential_Mode.txt
 ----------------------
 

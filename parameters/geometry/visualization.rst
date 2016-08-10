@@ -12,6 +12,6 @@ Parameters of the Component let you override this color and set other visualizat
     i:Ge/MyComponent/VisSegsPerCircle = 100 # Number of line segments to use to approximate a circle, defaults to 24
     b:Ge/MyComponent/Invisible = "True" # defaults to False meaning visible
 
-FullWireFrame includes drawing of additional edge lines that Geant4 calls "soft edges" - on many graphics devices WireFrame and FullWireFrame give the same result.
+``FullWireFrame`` includes drawing of additional edge lines that Geant4 calls "soft edges" - on many graphics devices ``WireFrame`` and ``FullWireFrame`` give the same result.
 
-Increase VisSegsPerCircle if you want a smoother curve.
+Increase ``VisSegsPerCircle`` if you want a smoother curve.

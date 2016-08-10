@@ -31,7 +31,7 @@
 *Improved:* filtering example
     Now includes InitialParticle filters (see :ref:`examples/Scoring/Filters.txt<example_scoring_filters>`).
 
-*Improved:* new LET scorer
+*Improved:* replaced the LET scorer
     The new version has a new name, ``ProtonLET``, to clarify that this calculation technique is only appropriate for protons. It uses a new "subscorer" mechanism by which the energy deposit and step length are internally scored by two separate scorers which are created for you on the fly and then divided to produce the final value.
 
 *Fixed:* phi divisions in TsCylinder and TsSphere

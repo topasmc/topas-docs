@@ -2,19 +2,21 @@ Specialized Components
 ----------------------
 
 =========================== ========================
-:ref:`geometry_rmw`         "TsRangeModulator"
-:ref:`geometry_propeller`   "TsPropeller"
-:ref:`geometry_ridgefilter` "TsRidgeFilter"
-:ref:`geometry_mwc`         "TsMultiWireChamber"
-:ref:`geometry_mlc`         "TsMultiLeafCollimator"
-:ref:`geometry_cad`         "TsCAD"
-:ref:`geometry_aperture`    "TsAperture"
-:ref:`geometry_compensator` "TsCompensator"
+Geometry Component          Type
+=========================== ========================
+:ref:`geometry_rmw`         TsRangeModulator
+:ref:`geometry_propeller`   TsPropeller
+:ref:`geometry_ridgefilter` TsRidgeFilter
+:ref:`geometry_mwc`         TsMultiWireChamber
+:ref:`geometry_mlc`         TsMultiLeafCollimator
+:ref:`geometry_cad`         TsCAD
+:ref:`geometry_aperture`    TsAperture
+:ref:`geometry_compensator` TsCompensator
 =========================== ========================
 
-Each of the specialized components has its own set of special parameters. Usage is best learned by studying the examples parameter files included in TOPAS (see below).
+Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
 
-You may write your own additional components (see Extending TOPAS at the end of this user guide).
+You may write your own additional components (see :ref:`extension_geometry`).
 
 The following figure from Samsung Medical Center shows how their very specific quadrupole magnet system was coded as a TOPAS geometry.
 
@@ -27,16 +29,16 @@ The following figure from Samsung Medical Center shows how their very specific q
 Range Modulator Wheel
 ~~~~~~~~~~~~~~~~~~~~~
 
-TOPAS Range modulator is designed to accommodate various specifications from a vendor. We suggest to create or model your Range Modulator Wheel (RMW) by following procedure:
+TOPAS Range modulator is designed to accommodate various specifications from a vendor. We suggest modeling your Range Modulator Wheel (RMW) by the following procedure:
 
 * Define the dimension of RMW drum, such as thickness and material of shell and hub (see figure below). Tracks will be placed in between the hub and the shell.
 * This space (in between hub and shell) is vertically divided into three sections named, "Upper", "Middle", and "Bottom" so that each section can have its own tracks. You can adjust heights of these sections. The sum of these heights is the total height of your RMW.
-* In order to reserve spaces for tracks, divide radially each section into as many as tracks you want by using the parameter, "RadialDivision."
-* Using vector parameters, configure the tracks individually such as each block’s height, span angle, and material. Then assign vector parameter to the parameter, called "Pattern."
+* In order to reserve spaces for tracks, divide radially each section into as many as tracks you want by using the parameter, ``RadialDivision``
+* Using vector parameters, configure the tracks individually such as each block’s height, span angle, and material. Then assign vector parameter to the parameter, called ``Pattern``
 
 .. image:: RMW_1.png
 
-Illustration for TOPAS RM dimensions. Tracks are placed in between Rout of Hub and Rin of Shell and this area is to be radially divided in case of placing multiple tracks. There are three vertical rooms, so it is possible to make double sided RMWs with an interface disk.
+Illustration for TOPAS RMW dimensions. Tracks are placed in between Rout of Hub and Rin of Shell and this area is to be radially divided in case of placing multiple tracks. There are three vertical rooms, so it is possible to make double sided RMWs with an interface disk.
 
 .. image:: RMW_2.png
 
@@ -109,7 +111,7 @@ Here is the complete set of the parameters for the above RMW (see :ref:`example_
     "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
     "Lexan" "Lexan" "Lexan" "Brass"
 
-In same way, you can configure other tracks.
+In the same way, you can configure other tracks.
 Then the track1 on upper area looks like following figure.
 
 .. image:: RMW_3.png
@@ -147,7 +149,7 @@ When TOPAS builds the geometry, you will see the numbers are input properly from
       Material: Ts_Lexan
     ...
 
-TOPAS RMW is a specialized geometry and so allows only the rotation around z-axis as well as the propeller rotation. Two examples demonstrate how to rotate RMW and modulate beam current (:ref:`example_special_rmw_constant` and :ref:`example_special_rmw_modulated`). The detail explanation for cooperating with Time Feature is followed later.
+TOPAS RMW is a specialized geometry and so allows only the rotation around z-axis as well as the propeller rotation. Two examples demonstrate how to rotate RMW and modulate beam current using :ref:`time_feature` (:ref:`example_special_rmw_constant` and :ref:`example_special_rmw_modulated`).
 
 
 .. _geometry_propeller:
@@ -155,7 +157,7 @@ TOPAS RMW is a specialized geometry and so allows only the rotation around z-axi
 Propeller
 ~~~~~~~~~
 
-A propeller is a component widely used to modulate range of Bragg peaks. TOPAS currently supports a symmetrical propeller, i.e., each blade is in same shape but in different placements. Users can specify number of blades with a spanning angle, thickness and materials of each layer.
+A propeller is a component widely used to modulate the range of Bragg peaks. TOPAS currently supports a symmetrical propeller, i.e., each blade has the same shape but in different placements. Users can specify the number of blades with a spanning angle, thickness and materials of each layer.
 Here is an example of a single-layer propeller having 4 blades.
 
 .. image:: Propeller_1.png
@@ -208,7 +210,7 @@ With different numbers of blades, the angle of each blade will look like:
 
 (Left) ``Ge/PropellerA/NbOfBlades = 2``, (Right) ``Ge/PropellerA/NbOfBlades = 3``.
 
-You can model a multiple layered propeller just by extending the vector parameters, such as Thickness, Angles, and Materials (for more detail, see :ref:`example_special_propeller`)::
+You can model a multiple layered propeller just by extending the vector parameters, such as ``Thickness``, ``Angles``, and ``Materials`` (for more detail, see :ref:`example_special_propeller`)::
 
     dv:Ge/PropellerA/Thickness=10
     0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 mm
@@ -219,9 +221,9 @@ You can model a multiple layered propeller just by extending the vector paramete
     "G4_POLYVINYL_ACETATE" "G4_POLYVINYL_ACETATE" "G4_POLYVINYL_ACETATE"
     "G4_POLYVINYL_ACETATE" "G4_POLYVINYL_ACETATE" "G4_POLYVINYL_ACETATE"
 
-Layers are compiled in order of its places in the parameter vector, i.e., Lexan is the bottom layer in this case, Water layer is the next, and so on. It is possible to make each layer with different thickness, angles, and materials. Note that all these three vector parameter has same number of vector elements.
+Layers are created in the order of the parameter vector, i.e., Lexan is the bottom layer in this case, Water layer is the next, and so on. It is possible to make each layer with different thickness, angles, and materials. Note that these three vector parameters have same number of elements.
 
-TOPAS propeller allows only the rotation around z-axis, which means that you can only assign rotation Time Feature to ``RotZ``, such as ``Ge/PropellerA/RotZ = Tf/ContinuousRotation/Value.`` Two examples demonstrate how to handle propeller rotations (:ref:`example_special_propeller_continuous` and :ref:`example_special_propeller_step`).
+TOPAS propeller allows only the rotation around z-axis, which means that you can only assign rotation :ref:`Time Feature <time_feature>` to ``RotZ``, such as ``Ge/PropellerA/RotZ = Tf/ContinuousRotation/Value.`` Two examples demonstrate how to handle propeller rotations (:ref:`example_special_propeller_continuous` and :ref:`example_special_propeller_step`).
 
 
 
@@ -230,13 +232,13 @@ TOPAS propeller allows only the rotation around z-axis, which means that you can
 Ridge Filter
 ~~~~~~~~~~~~
 
-A ridge filter is an energy modulation component used in proton therapy. TOPAS offers a generic way to model an arbitrary shape of a ridge and place the replica. Shape of a ridge is defined in x-z plane and then it become a volume by extending in y plane.
+A ridge filter is an energy modulation component used in proton therapy. TOPAS offers a generic way to model an arbitrary shape of a ridge and place the replica. The shape of a ridge is defined in the x-z plane and then it becomes a volume by extending in the y direction.
 
 .. image:: RidgeFilter_1.png
 
-(left) A ridge shape in X-Y plane, represented by points-connection. Because the connection starts at the origin and ends at the last point, (width, 0), so users need to define the width of a ridge first. Depending on the topology of points, the arbitrary shape can be constructed. (right) A complete ridge by extending the shape along with y axis.
+(left) A ridge shape in X-Z plane, represented by points-connection. Because the connection starts at the origin and ends at the last point, (width, 0), so users need to define the width of a ridge first. Depending on the topology of points, the arbitrary shape can be constructed. (right) A complete ridge by extending the shape along with y axis.
 
-Here is a complete set of the parameters for the above ridge filter (examples/SpecialComponents/ RidgeFilter.txt)::
+Here is a complete set of the parameters for the above ridge filter (see :ref:`example_special_ridgefilter` example)::
 
     # Common parameters: type of geometry, position, and rotation
     s:Ge/RidgeFilterA/Type = "TsRidgeFilter"
@@ -281,8 +283,8 @@ will generate console output as:
       P 7th     : (0.4, 0.24) cm
       P final   : (0.4, 0) cm
 
-You can make replicas of the ridge and their positions in x axis.
-A total of 3 replicas of the ridge and placed at -5.0, 0.0, 5.0.Each points represents x positions of the center of ridge width::
+You can make replicas of the ridge and their positions along the x-axis.
+A total of 3 replicas of the ridge and placed at -5.0, 0.0, 5.0. Each point represents the x-coordinate of the center of ridge width::
 
     dv:Ge/RidgeFilterA/Displacement = 3 -5.0 0.0 5.0 mm
 
@@ -297,15 +299,15 @@ An example of replica set.
 Multi Wire Chamber
 ~~~~~~~~~~~~~~~~~~
 
-A multi wire chamber may be built from many of geometry primitives such as Box and Cylinder. However, It is quite cumbersome to place many wires individually and adjust their dimension on any request. So TOPAS multi wire chamber (TsMultiWireChamber) allows to instantiate many wires and to place them efficiently. TsMultiWireChamber is a box consisting of multiple sets of wires. Each set can have its own configuration such dimension and material of the wires, spaces between wires, alignment axis, Z-positions, and drawing-style.
+A multi wire chamber may be built from many of geometry primitives such as TsBox and TsCylinder. However, It is quite cumbersome to place many wires individually and adjust their dimension on any request. So TOPAS multi wire chamber (TsMultiWireChamber) allows to instantiate many wires and to place them efficiently. TsMultiWireChamber is a box consisting of multiple sets of wires. Each set can have its own configuration, such as the dimension and material of the wires, spaces between wires, alignment axis, Z-positions, and drawing-style.
 
 Here is an example of TsMultiWireChamber (see :ref:`example_special_mwc` example).
 
 .. image:: MWC_1.png
 
-TOPAS Multi wire chamber consists of two wire sets aligned along X and Y axis. Three red wires are aligned to X axis while four gray wires are aligned to Y axis. These two sets of wires are placed at their mother box (gas filed).
+TOPAS multi wire chamber consists of two wire sets aligned along the X and Y axes. Three red wires are aligned to X axis while four gray wires are aligned to Y axis. These two sets of wires are placed within their mother box (gas filed).
 
-The following parameters is full set for modeling the above multi wire chamber::
+The following parameters show how to model the above multi wire chamber::
 
     s:Ge/WireChamberA/Parent = "World"
     s:Ge/WireChamberA/Type = "TsMultiWireChamber" #Type of geometry
@@ -369,7 +371,7 @@ Due to the design variations of Multi Leaf Collimator (MLC) from manufacturers, 
 
 .. image:: MLC_1.png
 
-Illustrations for TOPAS MLC dimensions. User can define arbitrary number of leaves with different width of each leaf. TOPAS detects the leaves collision when it is built and leaf is repositioned by Time Features operations.
+Illustrations for TOPAS MLC dimensions. The user can define an arbitrary number of leaves with different width of each leaf. TOPAS detects leaf collision when it is built and leaves are repositioned by :ref:`time_feature` operations.
 
 Here is a complete set of the parameters for the above TOPAS MLC (see :ref:`example_special_mlc` example)::
 
@@ -399,7 +401,7 @@ Here is a complete set of the parameters for the above TOPAS MLC (see :ref:`exam
     dv:Ge/MultiLeafCollimatorA/XMinusLeavesOpen = 5 0.0 -0.3 -0.2 -0.5 0.0 cm
     dv:Ge/MultiLeafCollimatorA/XPlusLeavesOpen = 5 0.0 0.3 0.2 0.5 0.0 cm
 
-TOPAS MLC is a specialized geometry and so allows only the reposition of each leaf as a function of time. The detail explanation for cooperating with Time Feature is followed later.  (see :ref:`example_special_mlc_sequence` example).
+TOPAS MLC is a specialized geometry and so allows only the reposition of each leaf as a function of time, using :ref:`time_feature` (see :ref:`example_special_mlc_sequence` example).
 
 
 
@@ -412,14 +414,14 @@ The TsCAD component allows you to turn any geometry that has been designed in a 
 
 .. image:: CAD_1.png
 
-Supported CAD formats supported are:
+The supported CAD formats are:
 
 * STL - Stereolithography binary format
 * PLY - Polygon ASCII format
 
-STL and PLY files describe a geometry as a tessellation, providing a set of vertices and faces of triangular or quadrangular surfaces to approximate the volume. While some STL and PLY files also contain additional information such as material and color, TOPAS does not currently accept such files. The STL and PLY files you provide to TOPAS must contain only the tessellation information. Internally, TOPAS represents this component as a G4TessellatedSolid.
+STL and PLY files describe a geometry as a tessellation, providing a set of vertices and faces of triangular or quadrangular surfaces to approximate the volume. While some STL and PLY files also contain additional information such as material and color, TOPAS does not currently accept such information. The STL and PLY files you provide to TOPAS must contain only the tessellation information. Internally, TOPAS represents this component as a ``G4TessellatedSolid``.
 
-Most CAD systems allows direct export of parts to the above formats. If your CAD system does not support one of those formats, you may be able to convert from some other CAD format by using a free conversion tool such as MeshLab (meshlab.sourceforge.net).
+Most CAD systems allows direct export of parts to the above formats. If your CAD system does not support one of those formats, you may be able to convert from some other CAD format by using a free conversion tool such as `MeshLab <meshlab.sourceforge.net>`_.
 
 ::
 
@@ -440,7 +442,7 @@ Most CAD systems allows direct export of parts to the above formats. If your CAD
     s:Ge/MyPartFromCAD/FileFormat = "ply" # file extension
     d:Ge/MyPartFromCAD/Units = 1.0 cm # how to interpret dimension numbers in the file. Changing this value will re-scale the component
 
-TOPAS does not automatically know where the center of your CAD component will be. This is affected by how your CAD system manages coordinates. For example, some CAD software exports the STL by relocating the volume to the first positive octant of its coordinate system. You may have to adjust the TransX,Y,Z of your component to center it as desired.
+TOPAS does not automatically know where the center of your CAD component will be. This is affected by how your CAD system manages coordinates. For example, some CAD software exports the STL by relocating the volume to the first positive octant of its coordinate system. You may have to adjust the ``TransX/Y/Z`` parameters of your component to center it as desired.
 
 .. image:: CAD_2.png
 
@@ -453,7 +455,7 @@ Above, A plastic scintillator with customized groove. Left: CAD, Right: TOPAS
 Aperture
 ~~~~~~~~
 
-An aperture is a component used to shape the lateral penumbra of a (generally) double-scattered proton beam. It is basically a block of brass with a hole cut out in the middle in the shape of the treatment volume. The purpose is to block the beam outside the desired irradiation path.
+An aperture is a component used to shape the lateral penumbra of a (generally) double-scattered proton beam. It is basically a block of brass with a hole cut out from the middle, in the shape of the treatment volume. The purpose is to block the beam outside the desired irradiation path.
 TOPAS models the aperture by connecting the aperture file points to create a polygon and then extruding this polygon in Z to cut out the aperture hole.
 
 .. image:: Aperture_1.png
@@ -476,9 +478,9 @@ A typical implementation of an apertures in TOPAS is given below followed by a m
     s:Ge/Aperture/FileFormat = "XYCoordinates" # XYCoordinates or MGH
     b:Ge/Aperture/PrintPoints = "True" # Print points to console
 
-FileFormat has two options:
+``FileFormat`` has two options:
 
-* "XYCoordinates" takes is a simple list of points. The first line defines how many points there are in the file, each following line in the file is a comma separated x,y pair, such as:
+* ``"XYCoordinates"`` takes is a simple list of points. The first line defines how many points there are in the file, each following line in the file is a comma separated x,y pair, such as:
 
     * numberOfPoints
     * x1,y1
@@ -487,7 +489,7 @@ FileFormat has two options:
     * xN,yN
 
   N = numberOfPoints is the number of data points (xi, yi). This is a required condition. The units of the coordinates are millimeter.
-* "MGH" takes the milling data produced by the MGH machine shop. It consists of the same information as the XYCoordinates option, but with more overhead, such as:
+* ``"MGH"`` takes the milling data produced by the MGH machine shop. It consists of the same information as the ``"XYCoordinates"`` option, but with more overhead, such as:
 
     * patientName
     * Warning message about not fabricating this file
@@ -507,7 +509,7 @@ FileFormat has two options:
 Compensator
 ~~~~~~~~~~~
 
-A compensator is a component that is used to shape the distal edge of a proton beam by placing a varying amount of material in the beam path, usually behind the aperture. An example compensator is shown on the right in top and side views. The compensator consists of a material that is to be placed in the beam to attenuate the beam (usually lexan) and a number of drill holes that were drilled into the compensator.
+A compensator is a component that is used to shape the distal edge of a proton beam by placing a varying amount of material in the beam path, usually behind the aperture. An example compensator is shown below in top and side views. The compensator consists of a material that is to be placed in the beam to attenuate the beam (usually lexan) and a number of drill holes that were drilled into the compensator.
 
 .. image:: Compensator_1.png
 
@@ -530,11 +532,11 @@ A typical compensator has the following parameters (see :ref:`example_nozzle_sca
     s:Ge/Compensator/Method = "ExtrudedSolid" # Polyhedra, ExtrudedSolid, SubtractionCylinders or UnionCylinders
     b:Ge/Compensator/PrintPoints = "True"
 
-Thickness has the special parameter type, "dc", where the "c" means this dimensioned double is changeable, that is, it can change on the fly based on what exact compensator is read in. Other parameters can then take this thickness into account when the perform placements.
+``Thickness`` has the special parameter type, ``dc``, where the ``c`` means this dimensioned double is :ref:`changeable <changeable_parameters>`, that is, it can change on the fly based on what exact compensator is read in. Other parameters can then take this thickness into account when the perform placements.
 
-FileFormat has two options:
+``FileFormat`` has two options:
 
-* "RowsAndDepths": all sizes are in millimeters:
+* ``"RowsAndDepths"``: all sizes are in millimeters:
 
     * numberOfRows
     * MainCylinderThickness
@@ -546,11 +548,9 @@ FileFormat has two options:
     * ...
     * nN deltaXn Xn Yn
     * D1 D2 ... DnN
-    * NumberOfRows = N defines how many rows of drill holes there are (in Y), the MainCylinderThickness
-    * The DrillHoleDiameter is the diameter of the drill hole, we approximate this by a hexagon.
-    * The values ni are the number of drill holes in X for each row of drill holes in Y, deltaXi defines the step size (and direction) and Xi and Yi are the starting position of the drilling for this row.
+  NumberOfRows = N defines how many rows of drill holes there are (in Y), the MainCylinderThickness. The DrillHoleDiameter is the diameter of the drill hole, we approximate this by a hexagon. The values ni are the number of drill holes in X for each row of drill holes in Y, deltaXi defines the step size (and direction) and Xi and Yi are the starting position of the drilling for this row.
 
-* "MGH": all sizes are in inches:
+* ``"MGH"``: all sizes are in inches:
 
     * Some line
     * numberOfRows
@@ -566,13 +566,13 @@ FileFormat has two options:
     * nN deltaXn Xn Yn
     * D1 D2 ... DnN
 
-Method has four options:
+``Method`` has four options:
 
-* "ExtrudedSolid" builds the compensator from a set of extruded solids. This is the most reliable and efficient technique.
-* "Polyhedra" carves hexagon shapes out of the compensator. This method has an extra check to adjust the position of each starting drill hole of each row to compensate for rounding inaccuracies produced by the drilling machine::
+* ``"ExtrudedSolid"`` builds the compensator from a set of extruded solids. This is the most reliable and efficient technique.
+* ``"Polyhedra"`` carves hexagon shapes out of the compensator. This method has an extra check to adjust the position of each starting drill hole of each row to compensate for rounding inaccuracies produced by the drilling machine::
 
     d:Ge/Compensator/XTolerance = 1. mm
     d:Ge/Compensator/YTolerance = 1. mm
 
-* "SubtractionCylinders" builds the compensator by subtracting drill hole cylinders from the overall compensator cylinder. This technique gives the most perfect representation of the drilling process, however the added precision is insignificant, while particle navigation time is increased. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.
-* "UnionCylinders" builds the compensator by first creating a union solid of all the holes, and then subtracting this union solid from the overall compensator cylinder. This technique is similar to SubtractionCylinders but slightly more efficient. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.
+* ``"SubtractionCylinders"`` builds the compensator by subtracting drill hole cylinders from the overall compensator cylinder. This technique gives the most perfect representation of the drilling process, however the added precision is insignificant, while particle navigation time is increased. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.
+* ``"UnionCylinders"`` builds the compensator by first creating a union solid of all the holes, and then subtracting this union solid from the overall compensator cylinder. This technique is similar to ``"SubtractionCylinders"`` but slightly more efficient. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.

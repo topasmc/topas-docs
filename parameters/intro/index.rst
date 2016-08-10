@@ -6,6 +6,7 @@ Introduction to Parameter System
 .. toctree::
     :maxdepth: 2
 
+    design
     syntax
     relative
     hierarchy

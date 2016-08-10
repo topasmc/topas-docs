@@ -10,10 +10,10 @@ To have TOPAS pause and wait for interactive Geant4 commands::
     b:Ts/PauseBeforeSequence = "True"
     b:Ts/PauseBeforeQuit = "True"
 
-After each pause, type the Geant4 command "exit" to return to TOPAS control.
+After each pause, type the Geant4 command ``exit`` to return control to TOPAS.
 
-* Most users will only use PauseBeforeQuit, typically to make a graphics window stay open at the end of the session (graphics windows close when Geant4 quits).
-* The other two options, PauseBeforeInit and PauseBeforeSequence, provide the ability to enter Geant4 commands by hand, which may be useful in certain tests, but invalidates the basic TOPAS concept that the behavior of your simulation should be perfectly defined by TOPAS parameters.
+* Most users will only use ``PauseBeforeQuit``, typically to make a graphics window stay open at the end of the session (graphics windows close when Geant4 quits).
+* The other two options, ``PauseBeforeInit`` and ``PauseBeforeSequence``, provide the ability to enter Geant4 commands by hand, which may be useful in certain tests, but invalidates the basic TOPAS concept that the behavior of your simulation should be perfectly defined by TOPAS parameters.
 
 
 
@@ -56,15 +56,19 @@ Quick Ways to Deactivate Parts of the Parameters Files
 
 For most parameter categories, there is one key kind of parameter that triggers creation:
 
-* TOPAS creates an Element when it sees a line like: El/.../Symbol =
-* TOPAS creates a Material when it sees a line like: Ma/.../Components =
-* TOPAS creates a Component when it sees a line like: Ge/.../Parent =
-* TOPAS creates a Particle Source when it sees a line like: So/.../Type =
-* TOPAS creates a Physics setup when it sees a line like: Ph/.../Type =
-* TOPAS creates a Scorer when it sees a line like: Sc/.../Quantity =
-* TOPAS creates a Graphic when it sees a line like: Gr/.../Type =
-* TOPAS creates a Variance Reduction setup when it sees a line like: Vr/.../Type =
-* TOPAS creates a Time Feature when it sees a line like: Tf/.../Function =
+========================    =========================
+Parameter object type       Triggering pattern
+========================    =========================
+Element                     ``El/.../Symbol =``
+Material                    ``Ma/.../Components =``
+Component                   ``Ge/.../Parent =``
+Particle Source             ``So/.../Type =``
+Physics setup               ``Ph/.../Type =``
+Scorer                      ``Sc/.../Quantity =``
+Graphic View                ``Gr/.../Type =``
+Variance Reduction setup    ``Vr/.../Type =``
+Time Feature                ``Tf/.../Function =``
+========================    =========================
 
 Thus you could effectively comment out the entire Component, Element, Material, Particle Source, etc. by just commenting out that line. But this way of turning something off can get you into trouble since you may then inherit behavior from a parent parameter file.
 

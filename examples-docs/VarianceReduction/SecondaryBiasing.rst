@@ -1,3 +1,5 @@
+.. _example_vr_secondarybiasing:
+
 SecondaryBiasing.txt
 --------------------
 

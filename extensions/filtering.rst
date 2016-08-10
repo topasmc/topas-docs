@@ -1,3 +1,5 @@
+.. _extension_filter:
+
 Custom Filters
 ==============
 

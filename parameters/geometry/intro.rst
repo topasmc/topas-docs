@@ -14,25 +14,25 @@ All Geometry Components must have at least the following parameters::
     d:Ge/MyComponent/RotY=0.0 deg # defaults to 0
     d:Ge/MyComponent/RotZ=0.0 deg # defaults to 0
 
-The Parent, Trans and Rot parameters place a component within its "mother" as described in :ref:`geometry_placement`.
+The ``Parent``, ``Trans`` and ``Rot`` parameters place a component within its "mother" as described in :ref:`geometry_placement`.
 
-Each Type has its own set of additional required parameters, discussed later when we show the specific component types.
+Each ``Type`` has its own set of additional required parameters, discussed elsewhere for each specific component type.
 
 The component name can include the forward slash character ``/``, and this is used in many examples to give some hints about component hierarchy , such as::
 
     s:Ge/VBox2/Dipole/Parent = "Nozzle"
 
-This bit of hierarchy in the component name, such as ``VBox2/Dipole``, does NOT actually control how the components are assembled. The actual control is from the Parent parameter (discussed below). The forward slash is just another character here. You could just as well use ``VBox2_Dipole`` or ``VBox2Dipole``, as long as you use the same exact string whenever you refer to this component.
+This bit of hierarchy in the component name, such as ``VBox2/Dipole``, does NOT actually control how the components are assembled. The actual control is from the ``Parent`` parameter (discussed :ref:`here <geometry_placement>`). The forward slash is just another character here. You could just as well use ``VBox2_Dipole`` or ``VBox2Dipole``, as long as you use the same exact string whenever you refer to this component.
 
 Components that are in the real world (as opposed to :ref:`geometry_parallel`) must also have a material::
 
     s:Ge/MyComponent/Material = "Air"
 
-To deactivate a Component (and all its children), you can either comment out the parameter that sets its Parent, or set its Include parameter to false, as in::
+To deactivate a Component (and all its children), you can either comment out the parameter that sets its ``Parent``, or set its ``Include`` parameter to false, as in::
 
     b:Ge/MyComponent/Include = "False" # defaults to "True"
 
-While it is not forbidden to have unused components (components that are never assigned a parent), this can often be a sign that you have not correctly assigned the parents in your geometry. Accordingly, we check for unused components on startup and given a warning message if any are found. You can disable this warning message by setting::
+While it is not forbidden to have unused components (components that are never assigned a ``Parent``), this can often be a sign that you have not correctly assigned the parents in your geometry. Accordingly, we check for unused components on startup and given a warning message if any are found. You can disable this warning message by setting::
 
     Ge/CheckForUnusedComponents = "False"
 

@@ -3,20 +3,20 @@
 Placement of Components
 -----------------------
 
-A component's "Parent" parameter tells which other component the current one is a child of. In this way, one can build a hierarchy of components::
+A component's ``Parent`` parameter tells which other component the current one is a child of. In this way, one can build a hierarchy of components::
 
-    s:/Ge/MyComponent/Parent = SomeOtherComponent
+    s:Ge/MyComponent/Parent = SomeOtherComponent
 
-The one component that is always provided automatically for you, into which you plug the rest of your hierarchy, is called "World".
+The one component that is always provided automatically for you, into which you plug the rest of your hierarchy, is called ``World``.
 
-Each component has three translation and rotation parameters.
-These give the position of the component in the coordinate system its parent component.
+Each component has three translation and three rotation parameters.
+These give the position of the component in the coordinate system of its parent component.
 
 The following defines a box of air with half width of 5 m on each side placed at the center of the world::
 
     s:Ge/MyBox/Type="TsBox"
     s:Ge/MyBox/Parent = "World"
-    s:Ge/MyBox/Material=Air
+    s:Ge/MyBox/Material="Air"
     d:Ge/MyBox/HLX=5. m # Half Length
     d:Ge/MyBox/HLY=5. m
     d:Ge/MyBox/HLZ=5. m
@@ -30,7 +30,7 @@ The following defines a box of air with half width of 5 m on each side placed at
 If you set more than one rotation, note that rotation happens first around X, then the Y rotation is applied around the now-rotated axes, and then the Z rotation is applied around those rotated axes. In general, a way to keep rotations more clear is to use intermediate Group components as follows:
 
 * Place your component inside a Group component.
-* Rotation your component around one axis.
+* Rotate your component around one axis.
 * Rotate the group component around the other axis.
 
 While the direction of rotation can be confusing, the correctness of rotations in TOPAS has been double, triple and quadruple checked and found consistent with the definitions in Geant4.
@@ -38,13 +38,13 @@ The :ref:`example_timefeature_rotation` example shows an object being rotated fi
 
 For Geant4 experts, be advised that the rotation angles you provide to TOPAS are passed into ``G4RotationMatrix()->rotateX/Y/Z``. Further discussion of Geant4 rotations can be found `here <http://hypernews.slac.stanford.edu/HyperNews/geant4/get/geometry/1408>`_.
 
-The following overrides the size definition of the World box that was inherited from the built-in default parameters and then inserts a box into this world and another box into the first box::
+The following overrides the size definition of the ``World`` box that was inherited from the :ref:`built-in default parameters <parameters_default_world>` and then inserts a box into this world and another box into the first box::
 
     # Overrides the world size that was set in built-in defaults:
     Ge/World/HLX=10. m
     Ge/World/HLY=10. m
     Ge/World/HLZ=10. m
-    #
+
     # Box inserted into the World
     s:Ge/TestBox/Material="Air"
     s:Ge/TestBox/Parent="World"
@@ -58,7 +58,7 @@ The following overrides the size definition of the World box that was inherited 
     d:Ge/TestBox/RotX=0. deg
     d:Ge/TestBox/RotY=0. deg
     d:Ge/TestBox/RotZ=0. deg
-    #
+
     # Another box inserted into the first box
     s:Ge/TestBox2/Material="Carbon"
     s:Ge/TestBox2/Parent="TestBox"
@@ -82,12 +82,14 @@ Because accidental overlaps of geometry volumes are a serious issue for all Mont
 
     Ge/CheckForOverlaps = "False"
 
+.. todo:: Provide parameter to adjust number of points used in overlap checking
+
 
 
 Pre-Defining Values
 ~~~~~~~~~~~~~~~~~~~
 
-It may be useful to pre-define a range of named-values, such that you can easily access the values later. For example, we predefine the angles at which certain scatterers are stored on a scatterer selection wheel::
+It may be useful to pre-define a range of named-values, such that you can easily access the values later. For example, we pre-define the angles at which certain scatterers are stored on a scatterer selection wheel::
 
     d:Ge/Gantry1/Scatterer2/RotZForSS0 = 0. deg
     d:Ge/Gantry1/Scatterer2/RotZForSS8 = 270. deg

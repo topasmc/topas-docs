@@ -1,3 +1,5 @@
+.. _example_special_ridgefilter:
+
 RidgeFilter.txt
 ---------------
 

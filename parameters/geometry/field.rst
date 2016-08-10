@@ -1,29 +1,29 @@
 Electromagnetic Fields
 ----------------------
 
-You can assign an electric, magnetic or combined electromagnetic field to any geometry component (with exception of Group components). The field will extend into any child components unless they themselves have their own field.
+You can assign an electric, magnetic or combined electromagnetic field to any geometry component (with exception of Group components, which have no intrinsic extent). The field will extend into any child components unless they themselves have their own field.
 
-To assign a field, add the parameter "Field", as in::
+To assign a field, add the parameter ``Field``, as in::
 
     s:Ge/MyComponent/Field = "DipoleMagnet" # "DipoleMagnet", "QuadrupoleMagnet", "MappedMagnet", "UniformElectroMagnetic" or your own definition
 
-For "DipoleMagnet", specify dipole field and strength, as in (see :ref:`example_special_dipole`)::
+For ``"DipoleMagnet"``, specify dipole field and strength, as in (see :ref:`example_special_dipole`)::
 
     u:Ge/MyComponent/MagneticFieldDirectionX = 0.0
     u:Ge/MyComponent/MagneticFieldDirectionY = 1.0
     u:Ge/MyComponent/MagneticFieldDirectionZ = 0.0
     d:Ge/MyComponent/MagneticFieldStrength = 3.0 tesla
 
-For "QuadrupoleMagnet", specify the two components of the gradient, as in (see :ref:`example_special_quadrupole`)::
+For ``"QuadrupoleMagnet"``, specify the two components of the gradient, as in (see :ref:`example_special_quadrupole`)::
 
     d:Ge/MyComponent/MagneticFieldGradientX = 1.0 tesla
     d:Ge/MyComponent/MagneticFieldGradientY = 1.0 tesla
 
-For "MappedMagnet", specify a field map in the Opera 3D format, as in (see :ref:`example_special_purgingmagnet`)::
+For ``"MappedMagnet"``, specify a field map in the Opera 3D format, as in (see :ref:`example_special_purgingmagnet`)::
 
     s:Ge/MyComponent/MagneticField3DTable = "PurgMag3D.TABLE"
 
-For "UniformElectroMagnetic", specify electric field and dipole magnetic field, as in (see :ref:`example_special_electromagnet`)::
+For ``"UniformElectroMagnetic"``, specify electric field and dipole magnetic field, as in (see :ref:`example_special_electromagnet`)::
 
     u:Ge/MyComponent/ElectricFieldDirectionX = 1.0
     u:Ge/MyComponent/ElectricFieldDirectionY = 1.0
@@ -34,11 +34,11 @@ For "UniformElectroMagnetic", specify electric field and dipole magnetic field, 
     u:Ge/MyComponent/MagneticFieldDirectionZ = 0.0
     d:Ge/MyComponent/MagneticFieldStrength   = 5.0 tesla
 
-If you have any other value in Field, TOPAS will look in your extensions to find your own class that defines this field. See the Extensions section at the end of this User Guide for more details.
+If you have any other value in ``Field``, TOPAS will look in your extensions to find your own class that defines this field. See :ref:`extension_fields` for details on writing extension fields.
 
 Field orientation is set by rotating the component.
 
-As with almost any TOPAS parameter, the Electric Field Strength, Dipole Magnet Strength, Quadrupole Magnet Gradient or Mapped Magnetic Field file can be set to change over time by using Time Features such as (see :ref:`example_special_quadanddipole`)::
+As with almost any TOPAS parameter, the Electric Field Strength, Dipole Magnet Strength, Quadrupole Magnet Gradient or Mapped Magnetic Field file can be set to change over time by using :ref:`time_feature` such as (see :ref:`example_special_quadanddipole`)::
 
     d:Ge/MyComponent/MagneticFieldStrength = Tf/BField1st/Value tesla
 
@@ -50,6 +50,23 @@ Fine control of the stepping algorithm can be done by changing the following par
 
 See the `Geant4 Application Developers Guide <https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04s03.html>`_ for detailed discussion of these options.
 
-Stepper choices for purely magnetic fields are: "ExplicitEuler", "ImplicitEuler", "SimpleRunge", "SimpleHeum", "HelixExplicitEuler", "HelixImplicitEuler", "HelixSimpleRunge", "CashKarpRKF45", "RKG3" and "ClassicalRK4".
+Stepper choices for purely magnetic fields are:
 
-Stepper choices for electroMagnetic fields are: "ExplicitEuler", "ImplicitEuler", "SimpleRunge", "SimpleHeum" and "ClassicalRK4".
+* "ExplicitEuler"
+* "ImplicitEuler"
+* "SimpleRunge"
+* "SimpleHeum"
+* "HelixExplicitEuler"
+* "HelixImplicitEuler"
+* "HelixSimpleRunge"
+* "CashKarpRKF45"
+* "RKG3"
+* "ClassicalRK4"
+
+Stepper choices for electromagnetic fields are:
+
+* "ExplicitEuler"
+* "ImplicitEuler"
+* "SimpleRunge"
+* "SimpleHeum"
+* "ClassicalRK4"

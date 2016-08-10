@@ -1,3 +1,5 @@
+.. _extension_physics:
+
 Custom Physics Lists
 ====================
 

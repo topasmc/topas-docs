@@ -117,11 +117,5 @@ This upgrade required extensive recoding within TOPAS, but was done in a way tha
     We do not recommend setting this to be a significant fraction of the total number of simulated histories.
 
 *Added:* new examples
-    Random versus Sequential Time Feature modes are demonstrated in two new examples:
-
-    * examples/TimeFeature/RunRandom_Mode.txt
-    * examples/TimeFeature/RunSequential_Mode.txt
-
-    Bremsstrahlung splitting is demonstrated in a new example:
-
-    * examples/VarianceReduction/SecondaryBiasing.txt
+    Random versus Sequential Time Feature modes are demonstrated in two new examples (:ref:`example_timefeature_random` and :ref:`example_timefeature_sequential`).
+    Bremsstrahlung splitting is demonstrated in a new example (:ref:`example_vr_secondarybiasing`).

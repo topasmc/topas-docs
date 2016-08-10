@@ -235,7 +235,7 @@ We took the opportunity of a major release to revise some parameter names with t
 *Improved:* removed the G4RadioactiveDecay module from our Default Physics List
     We have found that the G4RadioactiveDecay process sometimes causes errors such as:
 
-    .. code-block:: none
+    .. code-block:: plain
 
         G4Exception : de0001 issued by : G4AtomicTransitionManager::Shell()
         No de-excitation for Z= 3  shellIndex= 2>=  numberOfShells= 2 AtomicShell not found

@@ -3,7 +3,7 @@
 Syntax
 ------
 
-The TOPAS Parameter System is a control structure for applications in which a large number of complex inter-related parameters must be controllable by designers and end-users in a manner that is absolutely flexible but simultaneously easy to use. The system is designed with safety and repeatability as top priorities. A key error-checking strategy is strict type checking, in which every parameter must have a specific declared type (string, boolean, integer, etc.) and the provided values are checked to make sure they are appropriate to the given type.
+The TOPAS Parameter System is a control structure for applications in which a large number of complex inter-related parameters are controllable by designers and end-users, in a manner that is absolutely flexible but simultaneously easy to use. The system is designed with safety and repeatability as top priorities. A key error-checking strategy is strict type checking, in which every parameter must have a specific declared type (string, boolean, integer, etc.) and the provided values are checked to ensure they are appropriate to the given type.
 
 The system takes a set of "Parameters Files," simple text files made up of lines of key/value pairs::
 
@@ -24,7 +24,9 @@ Ten example parameter settings are given below::
     bv:Tf/ScoringOnOff/Values       = 4 "true" "false" "true" "false"  # Boolean Vector
     sv:Ma/MyPlastic/Components      = 3 "Hydrogen" "Carbon" "Oxygen"   # String Vector
 
-The order of lines within a parameter file does not matter.
+.. note::
+
+    The order of lines within a parameter file does not matter.
 
 A Parameter_Name can be almost any string, but we have prefix conventions to keep things clear:
 
@@ -48,42 +50,48 @@ The Parameter_Type tells TOPAS what type of data will be in this parameter:
 * ``b`` for Boolean
 * ``s`` for String
 * ``dv`` for Dimensioned Double Vector
-* etc. for ``uv``, ``iv``, ``bv`` and ``sv``
+* similarly for ``uv``, ``iv``, ``bv`` and ``sv``
 
-The only forbidden characters in a parameter name are: ``= + - * " ‘ ` TAB NEWLINE`` and ``RETURN``
-The only forbidden characters in a parameter value are: = ``‘ ```
+.. warning::
+
+    The only forbidden characters in a parameter name are: ``= + - * " ‘ ` TAB NEWLINE`` and ``RETURN``
+    The only forbidden characters in a parameter value are: = ``‘ ```
 
 TOPAS uses this Parameter_Type to perform "strict type checking," checking that the Parameter_Value is appropriate and complete for the given Parameter_Type.
 
-A String parameter must be in quotes and may take any value.
+A **String** parameter must be in quotes and may take any value.
 
-A Boolean parameter must be in quotes and may be either:
+A **Boolean** parameter must be in quotes and may be either:
 
 * ``"True"``, ``"t"`` or ``"1"`` (in any case) to mean true
 * ``"False"``, ``"f"`` or ``"0"`` (in any case) to mean false
 
-An Integer parameter must be something that can be interpreted as an integer.
+An **Integer** parameter must be something that can be interpreted as an integer.
 
 * The value may not contain any decimal part, as this can lead to ambiguity as to the employed rounding strategy.
 * These are 32 bit integers, thus the values can range from 0 to 2147483647.
 
-A Dimensioned Double parameter requires both a value and a unit.
+A **Dimensioned Double** parameter requires both a value and a unit.
 
 * We require the unit to avoid misunderstandings.
 * The value must be something that can be interpreted as a floating point number.
 
-A Vector of Dimensioned Doubles parameter requires an integer (larger than zero) to indicate how many values are expected, then the values themselves, then a unit.
+A **Vector of Dimensioned Doubles** parameter requires an integer (larger than zero) to indicate how many values are expected, then the values themselves, then a unit.
 
 * Vector of Dimensioned Doubles is useful when the definition of a single shape, motion, etc. requires multiple dimensioned double values.
 * Our usage of the term "vector" may be unfamiliar to some readers but is the standard term for such structures in modern programming languages.
 
-Vectors of Unitless, Integer, Boolean and String again require an integer to indicate how many values are expected, then the values themselves. The individual strings in a Vector of Strings can not contain spaces (this requirement will be relaxed in a subsequent TOPAS release).
+**Vectors of Unitless, Integer, Boolean and String** again require an integer to indicate how many values are expected, then the values themselves. The individual strings in a Vector of Strings can not contain spaces (this requirement will be relaxed in a subsequent TOPAS release).
+
+.. todo:: Allow strings in a vector of strings to contain spaces
 
 The comment character is ``#``.
 Anything to the right of the comment character is taken as a comment.
 Comments can span as many lines as desired, until a new line is found that contains the equals sign.
 
-A given parameter name may not be defined more than once in a single file.
+.. warning::
+
+    A given parameter name may not be defined more than once in a single file.
 
 Blank lines are ignored.
 
@@ -92,11 +100,14 @@ That is, ``"myParameter"`` is considered the same as ``"myparameter"`` or ``"myP
 
 
 
+.. _parameters_syntax_all:
 
 Complete Set of Allowed Syntax for any one Parameter Line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note that in all of the expressions below, there must be a space before and after any ``+``, ``-`` or ``*``.
+.. warning::
+
+    Note that in all of the expressions below, there must be a space before and after any ``+``, ``-`` or ``*``.
 
 Dimensioned Double parameters::
 
@@ -203,4 +214,4 @@ String Vector parameters::
     sv:parameterName = name_of_string_vector_parameter
     # value1, value2, etc. can be a numeric value or the name of a string parameter
 
-Other operations are intentionally not supported since their behavior might be unclear. Such things can be done in user C++ code, generating new parameters on the fly (see later discussion of "Transient Parameters"). ``d * d`` is forbidden because can create new units that we don't recognize. Division is forbidden because of divide by zero issues. etc.
+Other operations are intentionally not supported since their behavior might be unclear. Such things can be done in user C++ code, generating new parameters on the fly (see :ref:`transient_parameters`). ``d * d`` is forbidden because can create new units that we don't recognize. Division is forbidden because of divide by zero issues, etc.

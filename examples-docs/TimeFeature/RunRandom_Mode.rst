@@ -1,3 +1,5 @@
+.. _example_timefeature_random:
+
 RunRandom_Mode.txt
 ------------------
 

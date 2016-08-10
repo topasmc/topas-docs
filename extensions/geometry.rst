@@ -1,3 +1,5 @@
+.. _extension_geometry:
+
 Custom Geometry Components
 ==========================
 

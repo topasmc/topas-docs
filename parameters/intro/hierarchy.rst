@@ -25,7 +25,14 @@ Type and kind of units has to match type and kind of units for the same paramete
 
 Type can be omitted if the same parameter name has already been defined with a type in an ``includeFile``.
 
-When a parameter file includes another parameter file, and this in turn includes another parameter file, we refer to this as a "parameter file chain."
+
+
+.. _parameters_file_chain:
+
+Parameter File Chains
+~~~~~~~~~~~~~~~~~~~~~
+
+When a parameter file includes another parameter file, and this in turn includes another parameter file, we refer to this as a "parameter file chain".
 
 Parameter file chains fit nicely into research workflow. You can define most of your standard settings in one file, while a file higher on the chain overrides just those values that you want to change today.
 
@@ -35,7 +42,9 @@ To define a parameter in terms of the value of the same parameter in an ``includ
     # or
     Ge/IonChamber/Layer2/Foil/HLZ = inheritedValue mm * 1.2
 
-Note that there must be a space before and after the multiplication sign.
+.. warning::
+
+    Note that there must be a space before and after the multiplication sign.
 
 A basic set of TOPAS default parameters are built into the system
 (see :ref:`Default Parameters <parameters_default>`).
@@ -52,7 +61,7 @@ TOPAS is designed to facilitate multiple independent workgroups focused on separ
 
 .. image:: file_graphs.png
 
-To implement such designs, a parameter file allows any number of includeFile statements, the statements may be located anywhere in the file, and you may specify one or more include files in a single includeFile statement, as in::
+To implement such designs, a parameter file allows any number of ``includeFile`` statements, the statements may be located anywhere in the file, and you may specify one or more include files in a single ``includeFile`` statement, as in::
 
     includeFile = someFile someOtherFile someOtherOtherFile
     includeFile = stillAnotherFile
@@ -65,7 +74,7 @@ will behave the same as::
 
     includeFile = fileC fileB fileA
 
-or even the same as if this was broken up into multiple includeFile statements::
+or even the same as if this was broken up into multiple ``includeFile`` statements::
 
     includeFile = fileB
     includeFile = fileC fileA
@@ -76,8 +85,8 @@ All parameters on a given Scorer need to be handled in the same chain.
 
 TOPAS also checks to make sure that no two parameter file chains modify the same parameter in a way that is ambiguous. If, for example, the material MySpecialTungstenAlloy has been defined in the imaging chain, it cannot also be defined differently in the treatment head chain (unless the top level file, the user file, itself defines this parameter in an absolute way, that is, not relative to any other parameter).
 
-The basic paradigm controlling use of multiple parameter chains is that nothing you do in one chain should magically change the behavior of anything in another chain. Think of the simulation word as an actual physical room. We don't want the behavior of one thing in the room to magically change just because something else entered the room. So when you have multiple chains, TOPAS will check that neither chain modifies anything from the other chain.
+The basic paradigm controlling use of multiple parameter chains is that nothing you do in one chain should magically change the behavior of anything in another chain. Think of the simulation world as an actual physical room. We don't want the behavior of one thing in the room to magically change just because something else entered the room. So when you have multiple chains, TOPAS will check that neither chain modifies anything from the other chain.
 
 This also means that no chain can redefine any of the :ref:`Default Parameters <parameters_default>`, since all of the Default Parameters effectively belong at the base of every chain. The only place you can redefine the Default Parameters is in the top parameter file. This can feel like a heavy requirement, but it is essential. We want TOPAS to be a great tool for use in collaborative research environments where several people or teams may be contributing their own parts of the simulation setup.
 
-It can take some experience to design complex parameter file chains. If you get stuck, feel free to ask for help on the TOPAS User Forum.
+It can take some experience to design complex parameter file chains. If you get stuck, feel free to ask for help on the `TOPAS User Forum <http://topasmc.org>`_.

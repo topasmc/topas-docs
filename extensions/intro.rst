@@ -104,6 +104,8 @@ Any of your extension classes are welcome to themselves instantiate other classe
 
 
 
+.. _changeable_parameters:
+
 Changeable Parameters
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -129,6 +131,7 @@ The ``c`` syntax is not required when you are simply setting a parameter's value
 It is true that this ...PropellerRot/Value is changeable, but that is handled internally by TOPAS.
 
 
+.. _transient_parameters:
 
 Transient Parameters
 ~~~~~~~~~~~~~~~~~~~~

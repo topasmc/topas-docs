@@ -17,6 +17,6 @@ User Contributions
 
     * Click "Edit on GitHub" in the top-right corner of the page you wish to edit
     * This takes you to the page source at GitHub.com
-    * Click the pencil icon to `fork the repository <https://help.github.com/articles/fork-a-repo>`_ to your account and edit the page source
-    * The source is `reStructuredText <http://www.sphinx-doc.org/en/stable/rest.html>`_
+    * Click the pencil icon to `fork the repository <https://help.github.com/articles/fork-a-repo>`_ and edit the page source
+    * The source format is `reStructuredText <http://www.sphinx-doc.org/en/stable/rest.html>`_
     * After making your changes, open a `pull request <https://help.github.com/articles/using-pull-requests>`_

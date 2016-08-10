@@ -2,6 +2,8 @@ Miscellaneous
 -------------
 
 
+.. _scoring_binning:
+
 Binning in the Dividable Components, TsBox, TsCylinder and TsSphere
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
