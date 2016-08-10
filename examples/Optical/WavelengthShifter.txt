@@ -68,7 +68,7 @@ s:Ge/World/Material = "Air"
 
 # Plastic
 s:Ge/WaterBox/Parent   = "World"
-s:Ge/WaterBox/Type     = "G4Box"
+s:Ge/WaterBox/Type     = "TsBox"
 s:Ge/WaterBox/Material = "G4_WATER"
 d:Ge/WaterBox/HLX      = 2.5 cm
 d:Ge/WaterBox/HLY      = 2.5 cm
@@ -82,7 +82,7 @@ d:Ge/WaterBox/RotZ     = 0 deg
 
 # Plastic
 s:Ge/Plastic/Parent   = "World"
-s:Ge/Plastic/Type     = "G4Box"
+s:Ge/Plastic/Type     = "TsBox"
 s:Ge/Plastic/Material = "BUAPFCFM"
 d:Ge/Plastic/HLX      = 0.5 cm
 d:Ge/Plastic/HLY      = 0.5 cm
@@ -97,7 +97,7 @@ d:Ge/Plastic/RotZ     = 0 deg
 # WLS
 d:Ge/WLS/Diameter = 1.03 mm
 s:Ge/WLS/Parent   = "World"
-s:Ge/WLS/Type     = "G4Tubs"
+s:Ge/WLS/Type     = "TsCylinder"
 s:Ge/WLS/Material = "PMMA"
 d:Ge/WLS/HL       = 10 cm
 d:Ge/WLS/RMin     = 0.50 mm
@@ -112,7 +112,7 @@ d:Ge/WLS/RotY     = 0 deg
 d:Ge/WLS/RotZ     = 0 deg
 
 s:Ge/WLS/Core/Parent   = "World"
-s:Ge/WLS/Core/Type     = "G4Tubs"
+s:Ge/WLS/Core/Type     = "TsCylinder"
 s:Ge/WLS/Core/Material = "Polystyrene"
 d:Ge/WLS/Core/HL       = Ge/WLS/HL cm
 d:Ge/WLS/Core/RMin     = 0.0 mm

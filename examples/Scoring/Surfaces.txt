@@ -5,7 +5,7 @@ d:Ge/World/HLY       = 2.0 m
 d:Ge/World/HLZ       = 2.0 m
 b:Ge/World/Invisible = "TRUE"
 
-s:Ge/TestBox/Type     = "G4Box"
+s:Ge/TestBox/Type     = "TsBox"
 s:Ge/TestBox/Parent   = "World"
 s:Ge/TestBox/Material = "G4_WATER"
 d:Ge/TestBox/HLX      = 20.0 cm
@@ -13,7 +13,7 @@ d:Ge/TestBox/HLY      = 15.0 cm
 d:Ge/TestBox/HLZ      = 10.0 cm
 s:Ge/TestBox/Color    = "blue"
 
-s:Ge/TestSphere/Type     = "G4Sphere"
+s:Ge/TestSphere/Type     = "TsSphere"
 s:Ge/TestSphere/Parent   = "World"
 s:Ge/TestSphere/Material = "G4_WATER"
 d:Ge/TestSphere/RMin     = 5.0 cm
@@ -25,7 +25,7 @@ d:Ge/TestSphere/DTheta   = 180. deg
 d:Ge/TestSphere/TransZ   = -20. cm
 s:Ge/TestSphere/Color    = "blue"
 
-s:Ge/TestCylinder/Type     = "G4Tubs"
+s:Ge/TestCylinder/Type     = "TsCylinder"
 s:Ge/TestCylinder/Parent   = "World"
 s:Ge/TestCylinder/Material = "G4_WATER"
 d:Ge/TestCylinder/RMin     = 0.0 cm

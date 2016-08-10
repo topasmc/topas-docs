@@ -65,7 +65,7 @@ d:Ge/Splitter/RotY   = 0 deg
 d:Ge/Splitter/RotZ   = 0 deg
 
 s:Ge/Split/Parent   = "Splitter"
-s:Ge/Split/Type     = "G4Box"
+s:Ge/Split/Type     = "TsBox"
 s:Ge/Split/Material = "Borosilicate"
 d:Ge/Split/HLX      = 2 cm
 d:Ge/Split/HLY      = 2 cm
@@ -79,7 +79,7 @@ d:Ge/Split/RotZ     = 0 deg
 s:Ge/Split/OpticalBehaviorTo/SilverSurface   = "SurfaceSplitter"
 
 s:Ge/SilverSurface/Parent   = "Splitter"
-s:Ge/SilverSurface/Type     = "G4Box"
+s:Ge/SilverSurface/Type     = "TsBox"
 s:Ge/SilverSurface/Material = "Borosilicate"
 d:Ge/SilverSurface/HLX      = 1.9 cm
 d:Ge/SilverSurface/HLY      = 1.9 cm
@@ -94,7 +94,7 @@ s:Ge/SilverSurface/OpticalBehaviorTo/Split  = "SurfaceSplitter"
 
 # Mirrors
 s:Ge/Mirror/Parent          = "World"
-s:Ge/Mirror/Type            = "G4Box"
+s:Ge/Mirror/Type            = "TsBox"
 s:Ge/Mirror/Material        = "Borosilicate"
 d:Ge/Mirror/HLX             = 2 cm
 d:Ge/Mirror/HLY             = 2 cm
@@ -108,7 +108,7 @@ d:Ge/Mirror/RotZ            = 0 deg
 s:Ge/Mirror/OpticalBehavior = "surfaceMirror"
 
 s:Ge/screen/Parent   = "World"
-s:Ge/screen/Type     = "G4Box"
+s:Ge/screen/Type     = "TsBox"
 s:Ge/screen/Material = "Air"
 d:Ge/screen/HLX      = 2 cm
 d:Ge/screen/HLY      = 1 mm

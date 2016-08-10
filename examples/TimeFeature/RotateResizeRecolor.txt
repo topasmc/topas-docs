@@ -6,7 +6,7 @@ d:Ge/World/HLY = 10. m
 d:Ge/World/HLZ = 10. m
 
 s:Ge/Box/Parent   = "World"
-s:Ge/Box/Type     = "G4Box"
+s:Ge/Box/Type     = "TsBox"
 s:Ge/Box/Material = "Air"
 d:Ge/Box/HLX      = Tf/Size/Value m
 d:Ge/Box/HLY      = Tf/Size/Value m

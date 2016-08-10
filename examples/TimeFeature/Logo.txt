@@ -14,7 +14,7 @@ d:Ge/Letter_T/RotY    = 0. deg
 d:Ge/Letter_T/RotZ    = 0. deg
 #b:Ge/Letter_T/Include = "False"
 
-s:Ge/T_1st/Type     = "G4Box"
+s:Ge/T_1st/Type     = "TsBox"
 s:Ge/T_1st/Material = "Vacuum"
 s:Ge/T_1st/Parent   = "Letter_T"
 d:Ge/T_1st/HLX      = 50.0 cm
@@ -27,7 +27,7 @@ d:Ge/T_1st/RotX     = 0. deg
 d:Ge/T_1st/RotY     = 0. deg
 d:Ge/T_1st/RotZ     = 0. deg
 
-s:Ge/T_2nd/Type     = "G4Tubs"
+s:Ge/T_2nd/Type     = "TsCylinder"
 #G4_Water doesn't work, CASE sensitive
 s:Ge/T_2nd/Material = "G4_WATER"
 s:Ge/T_2nd/Parent   = "Letter_T"
@@ -74,7 +74,7 @@ d:Ge/O_Left/RotX     = 0. deg
 d:Ge/O_Left/RotY     = 0. deg
 d:Ge/O_Left/RotZ     = 0. deg
 
-s:Ge/O_Right/Type     = "G4Sphere"
+s:Ge/O_Right/Type     = "TsSphere"
 s:Ge/O_Right/Material = "Carbon"
 s:Ge/O_Right/Parent   = "Letter_O"
 #RM[in,max]1 : -Z surface

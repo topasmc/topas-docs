@@ -11,7 +11,7 @@ d:Ge/BeamPosition/TransX = 3.9 m
 d:Ge/BeamPosition/TransY = 3.9 m
 
 s:Ge/OuterBox/Parent   = "World"
-s:Ge/OuterBox/Type     = "G4Box"
+s:Ge/OuterBox/Type     = "TsBox"
 s:Ge/OuterBox/Material = "Air"
 d:Ge/OuterBox/HLX      = 4. m
 d:Ge/OuterBox/HLY      = 4. m
@@ -24,7 +24,7 @@ d:Ge/OuterBox/RotY     = 0. deg
 d:Ge/OuterBox/RotZ     = Tf/OuterBoxStep/Value deg
 
 s:Ge/InnerBox/Parent       = "OuterBox"
-s:Ge/InnerBox/Type         = "G4Box"
+s:Ge/InnerBox/Type         = "TsBox"
 s:Ge/InnerBox/Material     = "Lead"
 d:Ge/InnerBox/HLX          = 1. m
 d:Ge/InnerBox/HLY          = 1. m

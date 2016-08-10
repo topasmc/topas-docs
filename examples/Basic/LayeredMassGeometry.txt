@@ -61,7 +61,7 @@ s:So/Example/BeamPositionDistribution = "Flat"
 s:So/Example/BeamPositionCutoffShape  = "Ellipse"
 d:So/Example/BeamPositionCutoffX      = 5 cm
 d:So/Example/BeamPositionCutoffY      = 20 cm
-s:So/Example/BeamAngularDistribution  = "Point"
+s:So/Example/BeamAngularDistribution  = "None"
 i:So/Example/NumberOfHistoriesInRun   = 10
 
 sv:Ph/Default/Modules = 1 "g4em-standard_opt0"

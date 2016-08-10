@@ -53,7 +53,7 @@ s:Ge/World/Material = "Air"
 
 # Plastic
 s:Ge/Plastic/Parent   = "World"
-s:Ge/Plastic/Type     = "G4Tubs"
+s:Ge/Plastic/Type     = "TsCylinder"
 s:Ge/Plastic/Material = "Buapfcfm"
 d:Ge/Plastic/HL       = 0.5 cm
 d:Ge/Plastic/RMin     = 0.0 cm

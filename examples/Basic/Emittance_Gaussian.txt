@@ -47,7 +47,7 @@ d:Ge/MyBeamSizeInX = 20.0 cm
 d:Ge/MyBeamSizeInY = 20.0 cm
 
 #--- Beam Box
-s:Ge/PlaneAtBeamPosition/Type      = "G4Box"
+s:Ge/PlaneAtBeamPosition/Type      = "TsBox"
 s:Ge/PlaneAtBeamPosition/Material  = "Vacuum"
 s:Ge/PlaneAtBeamPosition/Parent    = "World"
 d:Ge/PlaneAtBeamPosition/HLX       = 0.5 cm + Ge/MyBeamSizeInX

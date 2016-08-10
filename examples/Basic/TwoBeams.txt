@@ -22,7 +22,7 @@ s:So/Imaging/BeamPositionCutoffShape  = "Ellipse"
 s:So/Imaging/BeamPositionDistribution = "Flat"
 d:So/Imaging/BeamPositionCutoffX      = 7. cm
 d:So/Imaging/BeamPositionCutoffY      = 21. cm
-s:So/Imaging/BeamAngularDistribution  = "Point"
+s:So/Imaging/BeamAngularDistribution  = "None"
 i:So/Imaging/NumberOfHistoriesInRun   = 5
 
 s:So/Therapy/Type                     = "Beam"

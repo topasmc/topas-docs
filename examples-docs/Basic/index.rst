@@ -8,6 +8,7 @@ Basic
 	DividedComponents
 	Emittance_Gaussian
 	Emittance_Twiss
+	FlatteningFilter
 	Isotope
 	LayeredMassGeometry
 	OneBox

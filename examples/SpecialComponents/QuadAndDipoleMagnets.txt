@@ -21,7 +21,7 @@ d:Ge/Nozzle/RotZ   = 0. deg
 ##########################################
 # Quadrupole pair for focusing beam spot
 ##########################################
-s:Ge/QBox1/Quad/Type          = "G4Box"
+s:Ge/QBox1/Quad/Type          = "TsBox"
 s:Ge/QBox1/Quad/Parent        = "Nozzle"
 s:Ge/QBox1/Quad/Material      = "G4_AIR"
 d:Ge/QBox1/Quad/HLX           = 15 cm
@@ -33,11 +33,11 @@ d:Ge/QBox1/Quad/TransZ        = 160  cm + Ge/QBox1/Quad/HLZ
 d:Ge/QBox1/Quad/RotX          = 0.0 deg
 d:Ge/QBox1/Quad/RotY          = 0.0 deg
 d:Ge/QBox1/Quad/RotZ          = 0.0 deg
-s:Ge/QBox1/Quad/MagneticField = "Quadrupole"
-d:Ge/QBox1/Quad/GradientX     = .1 tesla/cm
-d:Ge/QBox1/Quad/GradientY     = .1 tesla/cm
+s:Ge/QBox1/Quad/Field = "QuadrupoleMagnet"
+d:Ge/QBox1/Quad/MagneticFieldGradientX     = .1 tesla/cm
+d:Ge/QBox1/Quad/MagneticFieldGradientY     = .1 tesla/cm
 
-s:Ge/QBox2/Quad/Type          = "G4Box"
+s:Ge/QBox2/Quad/Type          = "TsBox"
 s:Ge/QBox2/Quad/Parent        = "Nozzle"
 s:Ge/QBox2/Quad/Material      = "G4_AIR"
 d:Ge/QBox2/Quad/HLX           = 15 cm
@@ -49,14 +49,14 @@ d:Ge/QBox2/Quad/TransZ        = 140  cm + Ge/QBox2/Quad/HLZ
 d:Ge/QBox2/Quad/RotX          = 0.0 deg
 d:Ge/QBox2/Quad/RotY          = 0.0 deg
 d:Ge/QBox2/Quad/RotZ          = 0.0 deg
-s:Ge/QBox2/Quad/MagneticField = "Quadrupole"
-d:Ge/QBox2/Quad/GradientX     = .1 tesla/cm
-d:Ge/QBox2/Quad/GradientY     = .1 tesla/cm
+s:Ge/QBox2/Quad/Field = "QuadrupoleMagnet"
+d:Ge/QBox2/Quad/MagneticFieldGradientX     = .1 tesla/cm
+d:Ge/QBox2/Quad/MagneticFieldGradientY     = .1 tesla/cm
 
 ##########################################
 # Dipole for stiring beam direction!
 ##########################################
-s:Ge/VBox1/Dipole/Type          = "G4Box"
+s:Ge/VBox1/Dipole/Type          = "TsBox"
 s:Ge/VBox1/Dipole/Parent        = "Nozzle"
 s:Ge/VBox1/Dipole/Material      = "G4_AIR"
 d:Ge/VBox1/Dipole/HLX           = 10 cm
@@ -68,13 +68,13 @@ d:Ge/VBox1/Dipole/TransZ        = 50.0 cm + Ge/VBox1/Dipole/HLZ
 d:Ge/VBox1/Dipole/RotX          = 0.0 deg
 d:Ge/VBox1/Dipole/RotY          = 0.0 deg
 d:Ge/VBox1/Dipole/RotZ          = 0.0 deg
-s:Ge/VBox1/Dipole/MagneticField = "Dipole"
-u:Ge/VBox1/Dipole/DirectionX    = 0.0
-u:Ge/VBox1/Dipole/DirectionY    = 1.0
-u:Ge/VBox1/Dipole/DirectionZ    = 0.0
-d:Ge/VBox1/Dipole/Strength      = 0.0 tesla
+s:Ge/VBox1/Dipole/Field = "DipoleMagnet"
+u:Ge/VBox1/Dipole/MagneticFieldDirectionX    = 0.0
+u:Ge/VBox1/Dipole/MagneticFieldDirectionY    = 1.0
+u:Ge/VBox1/Dipole/MagneticFieldDirectionZ    = 0.0
+d:Ge/VBox1/Dipole/MagneticFieldStrength      = 0.0 tesla
 
-s:Ge/VBox2/Dipole/Type          = "G4Box"
+s:Ge/VBox2/Dipole/Type          = "TsBox"
 s:Ge/VBox2/Dipole/Parent        = "Nozzle"
 s:Ge/VBox2/Dipole/Material      = "G4_AIR"
 d:Ge/VBox2/Dipole/HLX           = 10 cm
@@ -86,17 +86,17 @@ d:Ge/VBox2/Dipole/TransZ        = 90.0 cm + Ge/VBox2/Dipole/HLZ
 d:Ge/VBox2/Dipole/RotX          = 0.0 deg
 d:Ge/VBox2/Dipole/RotY          = 0.0 deg
 d:Ge/VBox2/Dipole/RotZ          = 0.0 deg
-s:Ge/VBox2/Dipole/MagneticField = "Dipole"
-u:Ge/VBox2/Dipole/DirectionX    = 1.0
-u:Ge/VBox2/Dipole/DirectionY    = 0.0
-u:Ge/VBox2/Dipole/DirectionZ    = 0.0
-d:Ge/VBox2/Dipole/Strength      = Tf/BField1st/Value tesla
+s:Ge/VBox2/Dipole/Field = "DipoleMagnet"
+u:Ge/VBox2/Dipole/MagneticFieldDirectionX    = 1.0
+u:Ge/VBox2/Dipole/MagneticFieldDirectionY    = 0.0
+u:Ge/VBox2/Dipole/MagneticFieldDirectionZ    = 0.0
+d:Ge/VBox2/Dipole/MagneticFieldStrength      = Tf/BField1st/Value tesla
 
 ##########################################
 # Target window
 ##########################################
 # Vacuum Window: Target !
-s:Ge/VacFilm/Type         = "G4Box"
+s:Ge/VacFilm/Type         = "TsBox"
 s:Ge/VacFilm/Parent       = "World"
 s:Ge/VacFilm/Material     = "Lead"
 d:Ge/VacFilm/HLX          = 50.0 cm
@@ -128,7 +128,7 @@ d:So/Example/BeamPositionCutoffX      = 5.0 cm
 d:So/Example/BeamPositionCutoffY      = 5.0 cm
 d:So/Example/BeamPositionSpreadX      = 0.65 cm
 d:So/Example/BeamPositionSpreadY      = 0.65 cm
-s:So/Example/BeamAngularDistribution  = "Point"
+s:So/Example/BeamAngularDistribution  = "None"
 
 s:Tf/BField1st/Function = "Step"
 dv:Tf/BField1st/Times   = 2 10.0 20.0 ms

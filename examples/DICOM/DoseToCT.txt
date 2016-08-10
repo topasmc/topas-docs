@@ -69,8 +69,8 @@ s:So/Example/BeamPositionDistribution = "Flat"
 s:So/Example/BeamPositionCutoffShape  = "Ellipse"
 d:So/Example/BeamPositionCutoffX      = 5. cm
 d:So/Example/BeamPositionCutoffY      = 20. cm
-s:So/Example/BeamAngularDistribution  = "Point"
-i:So/Example/NumberOfHistoriesInRun   = 10000
+s:So/Example/BeamAngularDistribution  = "None"
+i:So/Example/NumberOfHistoriesInRun   = 500
 
 # Uncomment to activate graphics
 s:Gr/ViewA/Type           = "OpenGL"
@@ -83,6 +83,6 @@ d:Gr/ViewA/Phi            = 10 deg
 # Extra graphics options to handle complex voxel geometries
 i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 210000000
 
-i:Ts/ShowHistoryCountAtInterval = 5000
+i:Ts/ShowHistoryCountAtInterval = 100
 
 b:Ts/PauseBeforeQuit = "True"

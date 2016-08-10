@@ -5,7 +5,7 @@ includeFile = ConstantsForNozzles.txt
 
 # Water Tank / Phantom
 s:Ge/WaterPhantom/Parent 		= "Gantry"
-s:Ge/WaterPhantom/Type   		= "G4Box"
+s:Ge/WaterPhantom/Type   		= "TsBox"
 s:Ge/WaterPhantom/Material		= "G4_WATER"
 d:Ge/WaterPhantom/HLX 			= 10.0 cm
 d:Ge/WaterPhantom/HLY 			= 10.0 cm

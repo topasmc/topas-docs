@@ -42,7 +42,7 @@ s:Ge/subComponent8/Material  = "G4_CONCRETE"
 s:Ge/subComponent9/Material  = "G4_CONCRETE"
 s:Ge/subComponent10/Material = "G4_CONCRETE"
 
-s:Ge/subComponent1/Type      = "G4Box"
+s:Ge/subComponent1/Type      = "TsBox"
 s:Ge/subComponent1/Parent    = "World"
 d:Ge/subComponent1/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent1/HLY       = Ge/Scorer/HLY m
@@ -54,7 +54,7 @@ d:Ge/subComponent1/RotX      = 0 deg
 d:Ge/subComponent1/RotY      = 0 deg
 d:Ge/subComponent1/RotZ      = 0 deg
 
-s:Ge/subComponent2/Type      = "G4Box"
+s:Ge/subComponent2/Type      = "TsBox"
 s:Ge/subComponent2/Parent    = "World"
 d:Ge/subComponent2/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent2/HLY       = Ge/Scorer/HLY m
@@ -67,7 +67,7 @@ d:Ge/subComponent2/RotX      = 0 deg
 d:Ge/subComponent2/RotY      = 0 deg
 d:Ge/subComponent2/RotZ      = 0 deg
 
-s:Ge/subComponent3/Type      = "G4Box"
+s:Ge/subComponent3/Type      = "TsBox"
 s:Ge/subComponent3/Parent    = "World"
 d:Ge/subComponent3/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent3/HLY       = Ge/Scorer/HLY m
@@ -80,7 +80,7 @@ d:Ge/subComponent3/RotX      = 0 deg
 d:Ge/subComponent3/RotY      = 0 deg
 d:Ge/subComponent3/RotZ      = 0 deg
 
-s:Ge/subComponent4/Type      = "G4Box"
+s:Ge/subComponent4/Type      = "TsBox"
 s:Ge/subComponent4/Parent    = "World"
 d:Ge/subComponent4/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent4/HLY       = Ge/Scorer/HLY m
@@ -93,7 +93,7 @@ d:Ge/subComponent4/RotX      = 0 deg
 d:Ge/subComponent4/RotY      = 0 deg
 d:Ge/subComponent4/RotZ      = 0 deg
 
-s:Ge/subComponent5/Type      = "G4Box"
+s:Ge/subComponent5/Type      = "TsBox"
 s:Ge/subComponent5/Parent    = "World"
 d:Ge/subComponent5/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent5/HLY       = Ge/Scorer/HLY m
@@ -106,7 +106,7 @@ d:Ge/subComponent5/RotX      = 0 deg
 d:Ge/subComponent5/RotY      = 0 deg
 d:Ge/subComponent5/RotZ      = 0 deg
 
-s:Ge/subComponent6/Type      = "G4Box"
+s:Ge/subComponent6/Type      = "TsBox"
 s:Ge/subComponent6/Parent    = "World"
 d:Ge/subComponent6/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent6/HLY       = Ge/Scorer/HLY m
@@ -119,7 +119,7 @@ d:Ge/subComponent6/RotX      = 0 deg
 d:Ge/subComponent6/RotY      = 0 deg
 d:Ge/subComponent6/RotZ      = 0 deg
 
-s:Ge/subComponent7/Type      = "G4Box"
+s:Ge/subComponent7/Type      = "TsBox"
 s:Ge/subComponent7/Parent    = "World"
 d:Ge/subComponent7/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent7/HLY       = Ge/Scorer/HLY m
@@ -132,7 +132,7 @@ d:Ge/subComponent7/RotX      = 0 deg
 d:Ge/subComponent7/RotY      = 0 deg
 d:Ge/subComponent7/RotZ      = 0 deg
 
-s:Ge/subComponent8/Type       = "G4Box"
+s:Ge/subComponent8/Type       = "TsBox"
 s:Ge/subComponent8/Parent     = "World"
 d:Ge/subComponent8/HLX        = Ge/Scorer/HLX m
 d:Ge/subComponent8/HLY        = Ge/Scorer/HLY m
@@ -145,7 +145,7 @@ d:Ge/subComponent8/RotX       = 0 deg
 d:Ge/subComponent8/RotY       = 0 deg
 d:Ge/subComponent8/RotZ       = 0 deg
 
-s:Ge/subComponent9/Type       = "G4Box"
+s:Ge/subComponent9/Type       = "TsBox"
 s:Ge/subComponent9/Parent     = "World"
 d:Ge/subComponent9/HLX        = Ge/Scorer/HLX m
 d:Ge/subComponent9/HLY        = Ge/Scorer/HLY m
@@ -158,7 +158,7 @@ d:Ge/subComponent9/RotX       = 0 deg
 d:Ge/subComponent9/RotY       = 0 deg
 d:Ge/subComponent9/RotZ       = 0 deg
 
-s:Ge/subComponent10/Type      = "G4Box"
+s:Ge/subComponent10/Type      = "TsBox"
 s:Ge/subComponent10/Parent    = "World"
 d:Ge/subComponent10/HLX       = Ge/Scorer/HLX m
 d:Ge/subComponent10/HLY       = Ge/Scorer/HLY m

@@ -8,17 +8,17 @@ b:Ge/World/Invisible = "True"
 s:Ge/Nozzle/Type   = "Group"
 s:Ge/Nozzle/Parent = "World"
 
-s:Ge/Dipole/Type          = "G4Box"
+s:Ge/Dipole/Type          = "TsBox"
 s:Ge/Dipole/Parent        = "Nozzle"
 s:Ge/Dipole/Material      = "G4_AIR"
 d:Ge/Dipole/HLX           = 10 cm
 d:Ge/Dipole/HLY           = 10 cm
 d:Ge/Dipole/HLZ           = 20 cm
-s:Ge/Dipole/MagneticField = "Dipole"
-u:Ge/Dipole/DirectionX    = 0.0
-u:Ge/Dipole/DirectionY    = 1.0
-u:Ge/Dipole/DirectionZ    = 0.0
-d:Ge/Dipole/Strength      = 3.0 tesla
+s:Ge/Dipole/Field = "DipoleMagnet"
+u:Ge/Dipole/MagneticFieldDirectionX    = 0.0
+u:Ge/Dipole/MagneticFieldDirectionY    = 1.0
+u:Ge/Dipole/MagneticFieldDirectionZ    = 0.0
+d:Ge/Dipole/MagneticFieldStrength      = 3.0 tesla
 
 s:Ge/InnerBox/Type     = "TsBox"
 s:Ge/InnerBox/Parent   = "Dipole"
@@ -41,7 +41,7 @@ d:So/Example/BeamPositionCutoffX      = 5.0 cm
 d:So/Example/BeamPositionCutoffY      = 5.0 cm
 d:So/Example/BeamPositionSpreadX      = 0.65 cm
 d:So/Example/BeamPositionSpreadY      = 0.65 cm
-s:So/Example/BeamAngularDistribution  = "Point"
+s:So/Example/BeamAngularDistribution  = "None"
 i:So/Example/NumberOfHistoriesInRun   = 1
 
 s:Gr/ViewA/Type              = "OpenGL"

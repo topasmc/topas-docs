@@ -25,5 +25,5 @@ s:Tf/BField1st/Function = "Step"
 dv:Tf/BField1st/Times   = 4  0.25 0.5 0.75 1.0 s
 dv:Tf/BField1st/Values  = 4 -0.105 -0.035 0.035  0.105 tesla
 
-d:Ge/Dipole1/Strength = Tf/BField1st/Value tesla
-d:Ge/Dipole2/Strength = Tf/BField2nd/Value tesla
+d:Ge/Dipole1/MagneticFieldStrength = Tf/BField1st/Value tesla
+d:Ge/Dipole2/MagneticFieldStrength = Tf/BField2nd/Value tesla

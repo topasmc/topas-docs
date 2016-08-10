@@ -26,7 +26,7 @@ d:Tf/MagnetRotation/RepetitionInterval = 80.0 ms
 # Dipole for stiring beam direction!
 ##########################################
 
-s:Ge/VBox2/Dipole/Type          = "G4Box"
+s:Ge/VBox2/Dipole/Type          = "TsBox"
 s:Ge/VBox2/Dipole/Parent        = "Nozzle"
 s:Ge/VBox2/Dipole/Material      = "G4_AIR"
 d:Ge/VBox2/Dipole/HLX           = 10 cm
@@ -38,17 +38,17 @@ d:Ge/VBox2/Dipole/TransZ        = 90.0 cm + Ge/VBox2/Dipole/HLZ
 d:Ge/VBox2/Dipole/RotX          = 0.0 deg
 d:Ge/VBox2/Dipole/RotY          = 0.0 deg
 d:Ge/VBox2/Dipole/RotZ          = 0.0 deg
-s:Ge/VBox2/Dipole/MagneticField = "Dipole"
-u:Ge/VBox2/Dipole/DirectionX    = 1.0
-u:Ge/VBox2/Dipole/DirectionY    = 0.0
-u:Ge/VBox2/Dipole/DirectionZ    = 0.0
-d:Ge/VBox2/Dipole/Strength      = Tf/BField1st/Value tesla
+s:Ge/VBox2/Dipole/Field = "DipoleMagnet"
+u:Ge/VBox2/Dipole/MagneticFieldDirectionX    = 1.0
+u:Ge/VBox2/Dipole/MagneticFieldDirectionY    = 0.0
+u:Ge/VBox2/Dipole/MagneticFieldDirectionZ    = 0.0
+d:Ge/VBox2/Dipole/MagneticFieldStrength      = Tf/BField1st/Value tesla
 
 ##########################################
 # Vacuum window for phase space!
 ##########################################
 # Vacuum Window: Target !
-s:Ge/VacFilm/Type     = "G4Tubs"
+s:Ge/VacFilm/Type     = "TsCylinder"
 s:Ge/VacFilm/Parent   = "World"
 s:Ge/VacFilm/Material = "G4_WATER"
 d:Ge/VacFilm/RMin     = 0.0 cm

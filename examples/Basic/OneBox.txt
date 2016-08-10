@@ -1,7 +1,7 @@
 # Simplest TOPAS example.
 # A box in a beam with EM physics.
 
-s:Ge/MyBox/Type     = "G4Box"
+s:Ge/MyBox/Type     = "TsBox"
 s:Ge/MyBox/Material = "Air"
 s:Ge/MyBox/Parent   = "World"
 d:Ge/MyBox/HLX      = 2.5 m

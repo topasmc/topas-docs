@@ -26,4 +26,4 @@ i:Tf/NumberOfSequentialTimes = 100
 d:Tf/TimelineEnd = 1 s
 
 d:Ge/PlaneAtR80/TransX = Tf/HorizontalMove/Value cm
-d:Ge/Dipole2/Strength  = Tf/BField2ndTrackingField/Value tesla
+d:Ge/Dipole2/MagneticFieldStrength  = Tf/BField2ndTrackingField/Value tesla

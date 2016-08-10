@@ -9,7 +9,7 @@ includeFile = ConstantsForNozzles.txt
 #100 um thickness Mylar window
 ########################################
 s:Ge/ExitWindow/Parent       = "Gantry"
-s:Ge/ExitWindow/Type         = "G4Tubs"
+s:Ge/ExitWindow/Type         = "TsCylinder"
 s:Ge/ExitWindow/Material     = "Mylar"
 d:Ge/ExitWindow/RMin         = 0.0  mm
 d:Ge/ExitWindow/RMax         = 50.0 mm
@@ -37,7 +37,7 @@ d:Ge/ZPlusOf_Mon1 = Ge/ExitWindow/TransZ + Ge/DistanceOf_CenterExitWindow_To_Top
 #           -1.0       Gold
 ########################################
 s:Ge/MonitorChamber1/Parent   = "Gantry"
-s:Ge/MonitorChamber1/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Material = "NiGas"
 d:Ge/MonitorChamber1/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/RMax     = 100.0 mm
@@ -54,7 +54,7 @@ d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 + Ge/MonitorChamber1/MinusHL mm
 b:Ge/MonitorChamber1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer1/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer1/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer1/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer1/Material = "Gold"
 d:Ge/MonitorChamber1/Layer1/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer1/RMax     = 90.0 mm
@@ -70,7 +70,7 @@ d:Ge/MonitorChamber1/Layer1/TransZ   = 10.0  mm
 b:Ge/MonitorChamber1/Layer1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer2/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer2/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer2/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer2/Material = "Aluminum"
 d:Ge/MonitorChamber1/Layer2/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer2/RMax     = 90.0 mm
@@ -86,7 +86,7 @@ d:Ge/MonitorChamber1/Layer2/TransZ   = 0.0  mm
 b:Ge/MonitorChamber1/Layer2/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer3/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer3/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer3/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer3/Material = "Gold"
 d:Ge/MonitorChamber1/Layer3/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer3/RMax     = 90.0 mm
@@ -177,7 +177,7 @@ d:Ge/BeamPipeInQuadsDipoles/RotY   = 0. deg
 d:Ge/BeamPipeInQuadsDipoles/RotZ   = 0. deg
 
 s:Ge/PipeInQuads/Parent   = "BeamPipeInQuadsDipoles"
-s:Ge/PipeInQuads/Type     = "G4Box"
+s:Ge/PipeInQuads/Type     = "TsBox"
 s:Ge/PipeInQuads/Material = Ge/MaterialOf_PipeWall
 d:Ge/PipeInQuads/HLX      = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
 d:Ge/PipeInQuads/HLY      = Ge/HLxyOf_Quads + Ge/ThicknessOf_Pipe mm
@@ -190,7 +190,7 @@ d:Ge/PipeInQuads/RotY     = 0.0 deg
 d:Ge/PipeInQuads/RotZ     = 0.0 deg
 
 s:Ge/PipeInQuads/Gas/Parent   = "PipeInQuads"
-s:Ge/PipeInQuads/Gas/Type     = "G4Box"
+s:Ge/PipeInQuads/Gas/Type     = "TsBox"
 s:Ge/PipeInQuads/Gas/Material = Ge/MaterialOf_PipeGas
 d:Ge/PipeInQuads/Gas/HLX      = Ge/HLxyOf_Quads   mm
 d:Ge/PipeInQuads/Gas/HLY      = Ge/HLxyOf_Quads  mm
@@ -205,7 +205,7 @@ d:Ge/PipeInQuads/Gas/RotZ     = 0.0 deg
 ########################################
 #3. Quadrupole 1 and Quadrupole 2 in pipe
 ########################################
-s:Ge/Quad1/Type          = "G4Box"
+s:Ge/Quad1/Type          = "TsBox"
 s:Ge/Quad1/Parent        = "PipeInQuads/Gas"
 s:Ge/Quad1/Material      = "parent"
 d:Ge/Quad1/HLX           = Ge/PipeInQuads/Gas/HLX cm
@@ -219,14 +219,14 @@ d:Ge/Quad1/Downstream    = Ge/Quad1/TransZ - Ge/Quad1/HLZ cm
 d:Ge/Quad1/RotX          = 0.0 deg
 d:Ge/Quad1/RotY          = 0.0 deg
 d:Ge/Quad1/RotZ          = 0.0 deg
-s:Ge/Quad1/MagneticField = "Quadrupole"
-u:Ge/Quad1/DirectionX    = -1
-u:Ge/Quad1/DirectionY    = 2.0
-u:Ge/Quad1/DirectionZ    = 3.0
-d:Ge/Quad1/GradientX     = 0.0 tesla/cm
-d:Ge/Quad1/GradientY     = 0.0 tesla/cm
+s:Ge/Quad1/Field = "QuadrupoleMagnet"
+u:Ge/Quad1/MagneticFieldDirectionX    = -1
+u:Ge/Quad1/MagneticFieldDirectionY    = 2.0
+u:Ge/Quad1/MagneticFieldDirectionZ    = 3.0
+d:Ge/Quad1/MagneticFieldGradientX     = 0.0 tesla/cm
+d:Ge/Quad1/MagneticFieldGradientY     = 0.0 tesla/cm
 
-s:Ge/Quad2/Type          = "G4Box"
+s:Ge/Quad2/Type          = "TsBox"
 s:Ge/Quad2/Parent        = "PipeInQuads/Gas"
 s:Ge/Quad2/Material      = "parent"
 d:Ge/Quad2/HLX           = Ge/PipeInQuads/Gas/HLX cm
@@ -239,12 +239,12 @@ d:Ge/Quad2/TransZ        = Ge/Quad2/Upstream - Ge/Quad2/HLZ cm
 d:Ge/Quad2/RotX          = 0.0 deg
 d:Ge/Quad2/RotY          = 0.0 deg
 d:Ge/Quad2/RotZ          = 0.0 deg
-s:Ge/Quad2/MagneticField = "Quadrupole"
-u:Ge/Quad2/DirectionX    = -1
-u:Ge/Quad2/DirectionY    = 2.0
-u:Ge/Quad2/DirectionZ    = 3.0
-d:Ge/Quad2/GradientX     = 0.0 tesla/cm
-d:Ge/Quad2/GradientY     = 0.0 tesla/cm
+s:Ge/Quad2/Field = "QuadrupoleMagnet"
+u:Ge/Quad2/MagneticFieldDirectionX    = -1
+u:Ge/Quad2/MagneticFieldDirectionY    = 2.0
+u:Ge/Quad2/MagneticFieldDirectionZ    = 3.0
+d:Ge/Quad2/MagneticFieldGradientX     = 0.0 tesla/cm
+d:Ge/Quad2/MagneticFieldGradientY     = 0.0 tesla/cm
 
 d:Ge/ZPlusPipeConnector = Ge/PipeInQuads/TransZ - Ge/HLOf_PipeInQuads cm
 
@@ -283,7 +283,7 @@ b:Ge/PipeConnector/Gas/Include  = "TRUE"
 d:Ge/ZPlusPipeInDipoles = Ge/PipeConnector/TransZ + Ge/MinusHLOf_PipeConnector cm
 
 s:Ge/PipeInDipoles/Parent   = "BeamPipeInQuadsDipoles"
-s:Ge/PipeInDipoles/Type     = "G4Box"
+s:Ge/PipeInDipoles/Type     = "TsBox"
 s:Ge/PipeInDipoles/Material = Ge/MaterialOf_PipeWall
 d:Ge/PipeInDipoles/HLX      = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
 d:Ge/PipeInDipoles/HLY      = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
@@ -297,7 +297,7 @@ d:Ge/PipeInDipoles/RotZ     = 0.0 deg
 b:Ge/PipeInDipoles/Include  = "TRUE"
 
 s:Ge/PipeInDipoles/Gas/Parent   = "PipeInDipoles"
-s:Ge/PipeInDipoles/Gas/Type     = "G4Box"
+s:Ge/PipeInDipoles/Gas/Type     = "TsBox"
 s:Ge/PipeInDipoles/Gas/Material = Ge/MaterialOf_PipeGas
 d:Ge/PipeInDipoles/Gas/HLX      = Ge/HLxyOf_Dipoles  mm
 d:Ge/PipeInDipoles/Gas/HLY      = Ge/HLxyOf_Dipoles  mm
@@ -313,7 +313,7 @@ b:Ge/PipeInDipoles/Gas/Include  = "TRUE"
 ########################################
 #5. Dipole 1 and 2. in Pipe
 ########################################
-s:Ge/Dipole1/Type          = "G4Box"
+s:Ge/Dipole1/Type          = "TsBox"
 s:Ge/Dipole1/Parent        = "PipeInDipoles/Gas"
 s:Ge/Dipole1/Material      = "parent"
 d:Ge/Dipole1/HLX           = Ge/PipeInDipoles/Gas/HLX mm
@@ -325,16 +325,16 @@ d:Ge/Dipole1/TransZ        = Ge/HLOf_PipeInDipoles + Ge/MinusHLOf_DipoleCoil1  m
 d:Ge/Dipole1/RotX          = 0.0 deg
 d:Ge/Dipole1/RotY          = 0.0 deg
 d:Ge/Dipole1/RotZ          = 0.0 deg
-s:Ge/Dipole1/MagneticField = "Dipole"
-u:Ge/Dipole1/DirectionX    = 1.0
-u:Ge/Dipole1/DirectionY    = 0.0
-u:Ge/Dipole1/DirectionZ    = 0.0
-d:Ge/Dipole1/Strength      = 0.0 tesla
+s:Ge/Dipole1/Field = "DipoleMagnet"
+u:Ge/Dipole1/MagneticFieldDirectionX    = 1.0
+u:Ge/Dipole1/MagneticFieldDirectionY    = 0.0
+u:Ge/Dipole1/MagneticFieldDirectionZ    = 0.0
+d:Ge/Dipole1/MagneticFieldStrength      = 0.0 tesla
 
 d:Ge/ZMinusOf_Dipole1 = Ge/Dipole1/TransZ + Ge/MinusHLOf_DipoleCoil1 mm
 d:Ge/ZPlusOf_Dipole2  = Ge/ZMinusOf_Dipole1 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
 
-s:Ge/Dipole2/Type          = "G4Box"
+s:Ge/Dipole2/Type          = "TsBox"
 s:Ge/Dipole2/Parent        = "PipeInDipoles/Gas"
 s:Ge/Dipole2/Material      = "parent"
 d:Ge/Dipole2/HLX           = Ge/PipeInDipoles/Gas/HLX mm
@@ -346,11 +346,11 @@ d:Ge/Dipole2/TransZ        = Ge/ZPlusOf_Dipole2 + Ge/MinusHLOf_DipoleCoil2  mm
 d:Ge/Dipole2/RotX          = 0.0 deg
 d:Ge/Dipole2/RotY          = 0.0 deg
 d:Ge/Dipole2/RotZ          = 0.0 deg
-s:Ge/Dipole2/MagneticField = "Dipole"
-u:Ge/Dipole2/DirectionX    = 0.0
-u:Ge/Dipole2/DirectionY    = 1.0
-u:Ge/Dipole2/DirectionZ    = 0.0
-d:Ge/Dipole2/Strength      = 0.0 tesla
+s:Ge/Dipole2/Field = "DipoleMagnet"
+u:Ge/Dipole2/MagneticFieldDirectionX    = 0.0
+u:Ge/Dipole2/MagneticFieldDirectionY    = 1.0
+u:Ge/Dipole2/MagneticFieldDirectionZ    = 0.0
+d:Ge/Dipole2/MagneticFieldStrength      = 0.0 tesla
 
 d:Ge/ZMinusOf_Pipe = Ge/BeamPipeInQuadsDipoles/TransZ - Ge/HLOf_Pipe mm
 d:Ge/ZPlusOf_BPM1  = Ge/ZMinusOf_Pipe + Ge/DistanceOf_BottomPipe_To_TopBPM1  mm
@@ -362,7 +362,7 @@ d:Ge/ZPlusOf_BPM1  = Ge/ZMinusOf_Pipe + Ge/DistanceOf_BottomPipe_To_TopBPM1  mm
 # 2 sets of Multi-wire chamber
 ########################################
 s:Ge/BeamProfileMonitor1/Parent   = "Gantry"
-s:Ge/BeamProfileMonitor1/Type     = "G4Box"
+s:Ge/BeamProfileMonitor1/Type     = "TsBox"
 s:Ge/BeamProfileMonitor1/Material = "NiGas"
 d:Ge/BeamProfileMonitor1/HLX      = 92.0 mm
 d:Ge/BeamProfileMonitor1/HLY      = 92.0 mm
@@ -377,7 +377,7 @@ d:Ge/BeamProfileMonitor1/RotZ     = 0.0 deg
 b:Ge/BeamProfileMonitor1/Include  = "TRUE"
 
 s:Ge/BeamProfileMonitor1/Window1/Parent   = "BeamProfileMonitor1"
-s:Ge/BeamProfileMonitor1/Window1/Type     = "G4Box"
+s:Ge/BeamProfileMonitor1/Window1/Type     = "TsBox"
 s:Ge/BeamProfileMonitor1/Window1/Material = "Mylar"
 d:Ge/BeamProfileMonitor1/Window1/HLX      = 90.0  mm
 d:Ge/BeamProfileMonitor1/Window1/HLY      = 90.0  mm
@@ -390,7 +390,7 @@ d:Ge/BeamProfileMonitor1/Window1/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor1/Window1/RotZ     = 0.0 deg
 
 s:Ge/BeamProfileMonitor1/Window2/Parent   = "BeamProfileMonitor1"
-s:Ge/BeamProfileMonitor1/Window2/Type     = "G4Box"
+s:Ge/BeamProfileMonitor1/Window2/Type     = "TsBox"
 s:Ge/BeamProfileMonitor1/Window2/Material = "Mylar"
 d:Ge/BeamProfileMonitor1/Window2/HLX      = 90.0  mm
 d:Ge/BeamProfileMonitor1/Window2/HLY      = 90.0  mm
@@ -507,7 +507,7 @@ d:Ge/ZPlusOf_BPM2 = Ge/ZMinusOf_PipeExtension  + Ge/DistanceOf_BottomPipeExtensi
 # 2 sets of Multi-wire chamber
 ########################################
 s:Ge/BeamProfileMonitor2/Parent   = "Gantry"
-s:Ge/BeamProfileMonitor2/Type     = "G4Box"
+s:Ge/BeamProfileMonitor2/Type     = "TsBox"
 s:Ge/BeamProfileMonitor2/Material = "NiGas"
 d:Ge/BeamProfileMonitor2/HLX      = 152.0 mm
 d:Ge/BeamProfileMonitor2/HLY      = 152.0 mm
@@ -522,7 +522,7 @@ d:Ge/BeamProfileMonitor2/RotZ     = 0.0 deg
 b:Ge/BeamProfileMonitor2/Include  = "TRUE"
 
 s:Ge/BeamProfileMonitor2/Window1/Parent   = "BeamProfileMonitor2"
-s:Ge/BeamProfileMonitor2/Window1/Type     = "G4Box"
+s:Ge/BeamProfileMonitor2/Window1/Type     = "TsBox"
 s:Ge/BeamProfileMonitor2/Window1/Material = "Mylar"
 d:Ge/BeamProfileMonitor2/Window1/HLX      = 150.0  mm
 d:Ge/BeamProfileMonitor2/Window1/HLY      = 150.0  mm
@@ -535,7 +535,7 @@ d:Ge/BeamProfileMonitor2/Window1/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor2/Window1/RotZ     = 0.0 deg
 
 s:Ge/BeamProfileMonitor2/Window2/Parent   = "BeamProfileMonitor2"
-s:Ge/BeamProfileMonitor2/Window2/Type     = "G4Box"
+s:Ge/BeamProfileMonitor2/Window2/Type     = "TsBox"
 s:Ge/BeamProfileMonitor2/Window2/Material = "Mylar"
 d:Ge/BeamProfileMonitor2/Window2/HLX      = 150.0  mm
 d:Ge/BeamProfileMonitor2/Window2/HLY      = 150.0  mm

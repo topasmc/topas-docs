@@ -30,7 +30,7 @@ d:Ge/R80 = Tf/VerticalMoveR80/Value cm
 #Fixed target for visual guidance
 d:Ge/R80Fix                 = -140.50 mm
 s:Ge/PlaneAtR80Fix/Parent   = "WaterPhantom"
-s:Ge/PlaneAtR80Fix/Type     = "G4Box"
+s:Ge/PlaneAtR80Fix/Type     = "TsBox"
 s:Ge/PlaneAtR80Fix/Material = "G4_WATER"
 d:Ge/PlaneAtR80Fix/HLX      = 5.0 cm
 d:Ge/PlaneAtR80Fix/HLY      = 5.0 cm

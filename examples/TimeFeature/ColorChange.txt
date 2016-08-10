@@ -6,7 +6,7 @@ d:Ge/World/HLZ       = 10. m
 b:Ge/World/Invisible = "TRUE"
 
 s:Ge/BigBox/Parent   = "World"
-s:Ge/BigBox/Type     = "G4Box"
+s:Ge/BigBox/Type     = "TsBox"
 s:Ge/BigBox/Material = "Air"
 d:Ge/BigBox/HLX      = 2. m
 d:Ge/BigBox/HLY      = 3. m

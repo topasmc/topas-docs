@@ -35,9 +35,6 @@ d:Ge/Phantom/TransZ    = 0 cm
 d:Ge/Phantom/RotX      = 0 deg
 d:Ge/Phantom/RotY      = 0 deg
 d:Ge/Phantom/RotZ      = 0 deg
-i:Ge/Phantom/RBins     = 10
-i:Ge/Phantom/PhiBins   = 10
-i:Ge/Phantom/ThetaBins = 10
 
 #########################
 # Nozzle
@@ -55,7 +52,7 @@ s:Ge/Nozzle/Color  = "blue"
 #########################
 # Scatterers
 #########################
-s:Ge/Scatterer1/Type      = "G4Box"
+s:Ge/Scatterer1/Type      = "TsBox"
 s:Ge/Scatterer1/Parent    = "Nozzle"
 s:Ge/Scatterer1/Material  = "Lead"
 d:Ge/Scatterer1/HLX       = 2.0 cm
@@ -69,7 +66,7 @@ d:Ge/Scatterer1/RotY      = 0 deg
 d:Ge/Scatterer1/RotZ      = 0 deg
 s:Ge/Scatterer1/Color     = "red"
 
-s:Ge/Scatterer2/Type      = "G4Box"
+s:Ge/Scatterer2/Type      = "TsBox"
 s:Ge/Scatterer2/Parent    = "Nozzle"
 s:Ge/Scatterer2/Material  = "Lead"
 d:Ge/Scatterer2/HLX       = 4.0 cm
@@ -87,7 +84,7 @@ s:Ge/Scatterer2/Color     = "red"
 #########################
 # Gemetry for vrt
 #########################
-s:Ge/VrtParallelWorld/Type       = "G4Box"
+s:Ge/VrtParallelWorld/Type       = "TsBox"
 s:Ge/VrtParallelWorld/Parent     = "Nozzle"
 d:Ge/VrtParallelWorld/HLX        = 15 cm
 d:Ge/VrtParallelWorld/HLY        = 15 cm
@@ -100,7 +97,7 @@ d:Ge/VrtParallelWorld/RotY       = 0 deg
 d:Ge/VrtParallelWorld/RotZ       = 0 deg
 b:Ge/VrtParallelWorld/IsParallel = "true"
 
-s:Ge/subComponent1/Type       = "G4Box"
+s:Ge/subComponent1/Type       = "TsBox"
 s:Ge/subComponent1/Parent     = "VrtParallelWorld"
 d:Ge/subComponent1/HLX        = 0.9 * Ge/VrtParallelWorld/HLX cm
 d:Ge/subComponent1/HLY        = 0.9 * Ge/VrtParallelWorld/HLY cm
@@ -113,7 +110,7 @@ d:Ge/subComponent1/RotY       = 0 deg
 d:Ge/subComponent1/RotZ       = 0 deg
 b:Ge/subComponent1/IsParallel = "true"
 
-s:Ge/subComponent2/Type       = "G4Box"
+s:Ge/subComponent2/Type       = "TsBox"
 s:Ge/subComponent2/Parent     = "VrtParallelWorld"
 d:Ge/subComponent2/HLX        = 0.9 * Ge/VrtParallelWorld/HLX cm
 d:Ge/subComponent2/HLY        = 0.9 * Ge/VrtParallelWorld/HLX cm

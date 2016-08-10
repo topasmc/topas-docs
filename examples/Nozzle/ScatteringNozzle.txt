@@ -7,7 +7,7 @@ includeFile = ConstantsForNozzles.txt
 #100 um thickness Mylar window
 ########################################
 s:Ge/ExitWindow/Parent       = "Gantry"
-s:Ge/ExitWindow/Type         = "G4Tubs"
+s:Ge/ExitWindow/Type         = "TsCylinder"
 s:Ge/ExitWindow/Material     = "Mylar"
 d:Ge/ExitWindow/RMin         = 0.0  mm
 d:Ge/ExitWindow/RMax         = 50.0 mm
@@ -35,7 +35,7 @@ d:Ge/ZPlusOf_Mon1 = Ge/ExitWindow/TransZ + Ge/DistanceOf_CenterExitWindow_To_Top
 #           -1.0       Gold
 ########################################
 s:Ge/MonitorChamber1/Parent   = "Gantry"
-s:Ge/MonitorChamber1/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Material = "NiGas"
 d:Ge/MonitorChamber1/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/RMax     = 100.0 mm
@@ -52,7 +52,7 @@ d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 + Ge/MonitorChamber1/MinusHL mm
 b:Ge/MonitorChamber1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer1/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer1/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer1/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer1/Material = "Gold"
 d:Ge/MonitorChamber1/Layer1/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer1/RMax     = 90.0 mm
@@ -68,7 +68,7 @@ d:Ge/MonitorChamber1/Layer1/TransZ   = 10.0  mm
 b:Ge/MonitorChamber1/Layer1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer2/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer2/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer2/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer2/Material = "Aluminum"
 d:Ge/MonitorChamber1/Layer2/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer2/RMax     = 90.0 mm
@@ -84,7 +84,7 @@ d:Ge/MonitorChamber1/Layer2/TransZ   = 0.0  mm
 b:Ge/MonitorChamber1/Layer2/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer3/Parent   = "MonitorChamber1"
-s:Ge/MonitorChamber1/Layer3/Type     = "G4Tubs"
+s:Ge/MonitorChamber1/Layer3/Type     = "TsCylinder"
 s:Ge/MonitorChamber1/Layer3/Material = "Gold"
 d:Ge/MonitorChamber1/Layer3/RMin     = 0.0   mm
 d:Ge/MonitorChamber1/Layer3/RMax     = 90.0 mm
@@ -134,7 +134,7 @@ d:Ge/Scatterer1/L1/RotZ   = Ge/Scatterer1/Lollipop1 deg
 
 # L1 Lead Foil:
 s:Ge/Scatterer1/L1/LeadFoil/Parent   = "Scatterer1/L1"
-s:Ge/Scatterer1/L1/LeadFoil/Type     = "G4Box"
+s:Ge/Scatterer1/L1/LeadFoil/Type     = "TsBox"
 s:Ge/Scatterer1/L1/LeadFoil/Material = "Lead"
 d:Ge/Scatterer1/L1/LeadFoil/HLX      = 2.15 cm
 d:Ge/Scatterer1/L1/LeadFoil/HLY      = 2.15 cm
@@ -159,7 +159,7 @@ d:Ge/Scatterer1/L2/RotZ   = Ge/Scatterer1/Lollipop2 deg
 
 # L2 Lead Foil:
 s:Ge/Scatterer1/L2/LexanFoil/Parent   = "Scatterer1/L2"
-s:Ge/Scatterer1/L2/LexanFoil/Type     = "G4Box"
+s:Ge/Scatterer1/L2/LexanFoil/Type     = "TsBox"
 s:Ge/Scatterer1/L2/LexanFoil/Material = "Lexan"
 d:Ge/Scatterer1/L2/LexanFoil/HLX      = 2.5 cm
 d:Ge/Scatterer1/L2/LexanFoil/HLY      = 2.5 cm
@@ -184,7 +184,7 @@ d:Ge/Scatterer1/L3/RotZ   = Ge/Scatterer1/Lollipop2 deg
 
 # L2 Lead Foil:
 s:Ge/Scatterer1/L3/LeadFoil/Parent   = "Scatterer1/L3"
-s:Ge/Scatterer1/L3/LeadFoil/Type     = "G4Box"
+s:Ge/Scatterer1/L3/LeadFoil/Type     = "TsBox"
 s:Ge/Scatterer1/L3/LeadFoil/Material = "Lead"
 d:Ge/Scatterer1/L3/LeadFoil/HLX      = 2.5 cm
 d:Ge/Scatterer1/L3/LeadFoil/HLY      = 2.5 cm
@@ -296,7 +296,7 @@ s:Ge/Scatterer2/Message 	= "Constructing IBA TsScatterer2"
 
 # Scatterer 2 Brass Box (Mother Volume)
 s:Ge/Scatterer2/BrassBox/Parent		= "Scatterer2"
-s:Ge/Scatterer2/BrassBox/Type  		= "G4Box"
+s:Ge/Scatterer2/BrassBox/Type  		= "TsBox"
 s:Ge/Scatterer2/BrassBox/Material	= "Brass"
 d:Ge/Scatterer2/BrassBox/HLX 		= 30.0 cm
 d:Ge/Scatterer2/BrassBox/HLY 		= 30.0 cm
@@ -345,7 +345,7 @@ d:Ge/Scatterer2/Hole2/RotZ   = 0. deg
 # Scatterer 1 (no scattering)
 # Air Tube:  (no scattering, for pencil beam etc)
 s:Ge/Scatterer2/S1/Parent 		= "Scatterer2/Hole1"
-s:Ge/Scatterer2/S1/Type 		= "G4Tubs"
+s:Ge/Scatterer2/S1/Type 		= "TsCylinder"
 s:Ge/Scatterer2/S1/Material     = "World"
 d:Ge/Scatterer2/S1/RMin 		=  0.0 cm
 d:Ge/Scatterer2/S1/RMax 		=  5.0 cm
@@ -362,7 +362,7 @@ d:Ge/Scatterer2/S1/DPhi 		=  360.0 deg
 # Scatterer 2 (example second scatterer)
 # Air Hole for Scatterer 2:
 s:Ge/Scatterer2/S2/Parent 		= "Scatterer2/Hole2"
-s:Ge/Scatterer2/S2/Type 		= "G4Tubs"
+s:Ge/Scatterer2/S2/Type 		= "TsCylinder"
 s:Ge/Scatterer2/S2/Material 	= "World"
 d:Ge/Scatterer2/S2/RMin 		=  0.0 cm
 d:Ge/Scatterer2/S2/RMax 		=  5.0 cm
@@ -423,7 +423,7 @@ s:Ge/Snout/Message 	= "Constructing Snout"
 
 # Snout:
 s:Ge/Snout/Block/Parent 	= "Snout"
-s:Ge/Snout/Block/Type   	= "G4Box"
+s:Ge/Snout/Block/Type   	= "TsBox"
 s:Ge/Snout/Block/Material 	= "Brass"
 d:Ge/Snout/Block/HLX 		= 20.0 cm
 d:Ge/Snout/Block/HLY 		= 20.0 cm
@@ -437,7 +437,7 @@ d:Ge/Snout/Block/RotZ		= 0. deg
 
 # Snout: Hole in Brass Block
 s:Ge/Snout/Hole/Parent 		= "Snout/Block"
-s:Ge/Snout/Hole/Type   		= "G4Tubs"
+s:Ge/Snout/Hole/Type   		= "TsCylinder"
 s:Ge/Snout/Hole/Material	= "Brass"
 d:Ge/Snout/Hole/RMin 		=  0.0 cm
 d:Ge/Snout/Hole/RMax 		=  4.5 cm
@@ -516,7 +516,7 @@ s:Ge/Compensator/Message     = "Constructing Compensator"
 #########################
 # Phase space volume
 #########################
-s:Ge/ZPhaseSpaceVol/Type		= "G4Box"
+s:Ge/ZPhaseSpaceVol/Type		= "TsBox"
 s:Ge/ZPhaseSpaceVol/Parent  	= "Snout"
 s:Ge/ZPhaseSpaceVol/Material	= "Parent"
 d:Ge/ZPhaseSpaceVol/HLX 		= 20. cm

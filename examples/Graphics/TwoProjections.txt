@@ -19,7 +19,7 @@ d:Gr/MyOGLb/PerspectiveAngle = 10. deg
 d:Gr/MyOGLb/Theta            = 45. deg
 d:Gr/MyOGLb/Phi              = 45. deg
 
-s:Ge/Box/Type     = "G4Box"
+s:Ge/Box/Type     = "TsBox"
 s:Ge/Box/Parent   = "World"
 s:Ge/Box/Material = "G4_WATER"
 d:Ge/Box/HLX      = 1. m

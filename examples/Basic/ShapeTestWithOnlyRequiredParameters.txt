@@ -6,23 +6,23 @@
 # http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html#sect.Geom.Solids
 
 # Box
-s:Ge/DemoG4Box/Type                  = "G4Box"
-s:Ge/DemoG4Box/Parent                = "World"
-s:Ge/DemoG4Box/Material              = "Air"
-d:Ge/DemoG4Box/HLX                   = 30. mm
-d:Ge/DemoG4Box/HLY                   = 40. mm
-d:Ge/DemoG4Box/HLZ                   = 60. mm
-s:Ge/DemoG4Box/Color                 = "white"
+s:Ge/DemoBox/Type                    = "TsBox"
+s:Ge/DemoBox/Parent                  = "World"
+s:Ge/DemoBox/Material                = "Air"
+d:Ge/DemoBox/HLX                     = 30. mm
+d:Ge/DemoBox/HLY                     = 40. mm
+d:Ge/DemoBox/HLZ                     = 60. mm
+s:Ge/DemoBox/Color                   = "white"
 
 # Tubs
-s:Ge/DemoTubs/Type                   = "G4Tubs"
-s:Ge/DemoTubs/Parent                 = "World"
-s:Ge/DemoTubs/Material               = "Air"
-d:Ge/DemoTubs/TransZ                 = 12 cm
-d:Ge/DemoTubs/RMax                   = 15 mm
-d:Ge/DemoTubs/HL                     = 20 mm
-s:Ge/DemoTubs/Color                  = "lightblue"
-s:Ge/DemoTubs/DrawingStyle           = "FullWireFrame"
+s:Ge/DemoCylinder/Type               = "TsCylinder"
+s:Ge/DemoCylinder/Parent             = "World"
+s:Ge/DemoCylinder/Material           = "Air"
+d:Ge/DemoCylinder/TransZ             = 12 cm
+d:Ge/DemoCylinder/RMax               = 15 mm
+d:Ge/DemoCylinder/HL                 = 20 mm
+s:Ge/DemoCylinder/Color              = "lightblue"
+s:Ge/DemoCylinder/DrawingStyle       = "FullWireFrame"
 
 # CutTubs
 s:Ge/DemoCutTubs/Type                = "G4CutTubs"
@@ -122,7 +122,7 @@ d:Ge/DemoGTrap/Alp2                  = 10 deg
 s:Ge/DemoGTrap/Color                 = "indigo"
 
 # Sphere
-s:Ge/DemoSphere/Type                 = "G4Sphere"
+s:Ge/DemoSphere/Type                 = "TsSphere"
 s:Ge/DemoSphere/Parent               = "World"
 s:Ge/DemoSphere/Material             = "Air"
 d:Ge/DemoSphere/TransZ               = 124 cm
@@ -171,8 +171,8 @@ s:Ge/DemoSPolycone/Type              = "G4SPolycone"
 s:Ge/DemoSPolycone/Parent            = "World"
 s:Ge/DemoSPolycone/Material          = "Air"
 d:Ge/DemoSPolycone/TransZ            = 186 cm
-dv:Ge/DemoSPolycone/R                = 9 0 10 10 5 5 10 10 2 2 mm
-dv:Ge/DemoSPolycone/Z                = 9 5 7 9 11 25 27 29 31 35 mm
+dv:Ge/DemoSPolycone/R                = 10 0 10 10 5 5 10 10 2 2 0 mm
+dv:Ge/DemoSPolycone/Z                = 10 5 7 9 11 25 27 29 31 35 35 mm
 s:Ge/DemoSPolycone/Color             = "grey"
 s:Ge/DemoSPolycone/DrawingStyle      = "FullWireFrame"
 

@@ -1,6 +1,6 @@
 # Demonstrates a variety of Graphics options
 
-s:Ge/Box/Type         = "G4Box"
+s:Ge/Box/Type         = "TsBox"
 s:Ge/Box/Parent       = "World"
 s:Ge/Box/Material     = "G4_WATER"
 d:Ge/Box/HLX          = 1. m

@@ -70,15 +70,14 @@ s:Ma/CompensatorLucite/DefaultColor         = "grey"
 
 ########################################
 # Dummy beam
-# Point type beam
 ########################################
 s:So/Example/Type                     = "Beam"
 s:So/Example/Component                = "BeamPosition"
 s:So/Example/BeamParticle             = "proton"
 d:So/Example/BeamEnergy               = 160.0 MeV
 u:So/Example/BeamEnergySpread         = 0.0
-s:So/Example/BeamPositionDistribution = "Point"
-s:So/Example/BeamAngularDistribution  = "Point"
+s:So/Example/BeamPositionDistribution = "None"
+s:So/Example/BeamAngularDistribution  = "None"
 i:So/Example/NumberOfHistoriesInRun   = 10
 
 

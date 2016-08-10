@@ -5,7 +5,7 @@ i:Ts/NumberOfThreads = 2
 # of this component
 s:Ge/target/Parent   = "World"
 s:Ge/target/Material = "Lead"
-s:Ge/target/Type     = "G4Box"
+s:Ge/target/Type     = "TsBox"
 d:Ge/target/HLX      = 1.5 cm
 d:Ge/target/HLY      = 1.5 cm
 d:Ge/target/HLZ      = 0.5 cm
@@ -48,7 +48,7 @@ s:So/Example/Component                = "BeamPosition"
 s:So/Example/BeamParticle             = "e-"
 d:So/Example/BeamEnergy               = 6 MeV
 u:So/Example/BeamEnergySpread         = 0.1
-s:So/Example/BeamPositionDistribution = "Point"
+s:So/Example/BeamPositionDistribution = "None"
 s:So/Example/BeamAngularDistribution  = "Gaussian"
 d:So/Example/BeamAngularCutoffX       = 90. deg
 d:So/Example/BeamAngularCutoffY       = 90. deg
