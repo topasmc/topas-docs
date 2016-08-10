@@ -1,7 +1,9 @@
 Welcome to TOPAS's documentation!
 =================================
 
-.. warning:: This site is under construction.
+.. note::
+
+    A PDF version of the documentation is found by clicking the "Read the Docs" panel in the bottom-left corner of the website.
 
 
 .. toctree::
