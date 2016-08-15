@@ -109,7 +109,7 @@ Any of your extension classes are welcome to themselves instantiate other classe
 Changeable Parameters
 ~~~~~~~~~~~~~~~~~~~~~
 
-In general, parameters cannot change once the TOPAS session has begun. Changes due to Time Features are fine (since the time feature's behavior itself is well defined), but any other change violates basic principles of repeatability.
+In general, parameters cannot change once the TOPAS session has begun. Changes due to :ref:`time_feature` are fine (since the time feature's behavior itself is well defined), but any other change violates basic principles of repeatability.
 
 C++ code that changes a parameter during the session, aside from time features, is allowed only for a special case in which a specialized geometry component needs to set a parameter value on the fly. An example is when TsCompensator reads in the compensator definition from a special file format. The resulting compensator thickness updates a parameter that affects positioning of other components.
 
@@ -126,9 +126,9 @@ By Changeable we mean a value that changes during the TOPAS session.
 
 The ``c`` syntax is not required when you are simply setting a parameter's value to a time feature. We allow::
 
-    d:Ge/Propeller/RotZ = Sq/TimeFeature/PropellerRot/Value
+    d:Ge/Propeller/RotZ = Tf/PropellerRot/Value
 
-It is true that this ...PropellerRot/Value is changeable, but that is handled internally by TOPAS.
+It is true that this ``Tf/PropellerRot/Value`` is changeable, but that is handled internally by TOPAS.
 
 
 .. _transient_parameters:
