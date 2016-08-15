@@ -113,11 +113,11 @@ In general, parameters cannot change once the TOPAS session has begun. Changes d
 
 C++ code that changes a parameter during the session, aside from time features, is allowed only for a special case in which a specialized geometry component needs to set a parameter value on the fly. An example is when TsCompensator reads in the compensator definition from a special file format. The resulting compensator thickness updates a parameter that affects positioning of other components.
 
-Such a special case is allowed if the relevant parameter is defined from the start to be "Changeable". This is done by adding a ``c`` in front of the parameter type, for example::
+Such a special case is allowed if the relevant parameter is defined from the start to be "Changeable". This is done by adding a ``c`` at the end of the parameter type, for example::
 
-    cd:Ge/Compensator/TransZ = 2. cm # the initial cd indicates that this is a changeable double
+    dc:Ge/Compensator/TransZ = 2. cm # the initial dc indicates that this is a double that is changeable
 
-In a complex parameter file chain, if any level of the chain redefines this as just a ``d`` rather than a ``cd``, other parameter files will see this as a non-changeable parameter. Thus one parameter file may lock out others from making such changes.
+In a complex parameter file chain, if any level of the chain redefines this as just a ``d`` rather than a ``dc``, other parameter files will see this as a non-changeable parameter. Thus one parameter file may lock out others from making such changes.
 
 TOPAS makes note of which parts of the system uses this changeable parameter (either directly or through a chain of parameters depending on other parameters) and takes care to explicitly update those parts of the system if this parameter ever changes.
 
