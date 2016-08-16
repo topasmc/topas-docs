@@ -300,8 +300,8 @@ You can review the materials definitions that TOPAS created based on your patien
 
     Ts/DumpNonDefaultParameters = "True"
 
-For each HU number that was used in the patient file, you will see a set of parameters starting with ``Ma/PatientTissueFromHU-`` followed by an HU number.
-For example, for HU number 295, you may see::
+For each HU number that was used in the patient file, you will see a set of parameters starting with ``Ma/PatientTissueFromHU`` followed by an HU number.
+For example, for HU number -295, you may see::
 
     Ma/PatientTissueFromHU-295/Component = 9 Hydrogen Carbon Nitrogen Oxygen Phosphorus Sulfur Chlorine Sodium Potassium
     Ma/PatientTissueFromHU-295/Fractions = 9 0.103 0.105 0.031 0.749 0.002 0.003 0.003 0.002 0.002
