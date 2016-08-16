@@ -117,6 +117,10 @@ Such a special case is allowed if the relevant parameter is defined from the sta
 
     dc:Ge/Compensator/TransZ = 2. cm # the initial dc indicates that this is a double that is changeable
 
+For vector parameters, the ``c`` still comes just before the colon, for example::
+
+    svc:...
+
 In a complex parameter file chain, if any level of the chain redefines this as just a ``d`` rather than a ``dc``, other parameter files will see this as a non-changeable parameter. Thus one parameter file may lock out others from making such changes.
 
 TOPAS makes note of which parts of the system uses this changeable parameter (either directly or through a chain of parameters depending on other parameters) and takes care to explicitly update those parts of the system if this parameter ever changes.
