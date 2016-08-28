@@ -1,5 +1,5 @@
-Welcome to TOPAS's documentation!
-=================================
+Welcome to the TOPAS documentation!
+===================================
 
 .. note::
 
