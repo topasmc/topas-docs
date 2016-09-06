@@ -15,7 +15,7 @@ We also updated the underlying Geant4 version to Geant4.10.2.p01.
 We took the opportunity of a major release to revise some parameter names with the benefit or hindsight and looking towards future releases. Consequently, we provided a ``topas2to3`` script to help in upgrading parameter files.
 
 
-3.0.1 (2015-06-02)
+3.0.1 (2016-06-02)
 ~~~~~~~~~~~~~~~~~~
 
 *Fixed:* drawing to multiple OpenGL graphics views not working correctly
