@@ -65,12 +65,12 @@ So when you set out on your own work, define a new source name, such as::
 
 You can provide an energy spectrum instead of a fixed energy by setting the following to ``"Discrete"`` or ``"Continuous"``::
 
-    s:So/MySource/BeamSpectrum = "Continuous" # Either "None", "Discrete" or "Continuous"
+    s:So/MySource/BeamEnergySpectrumType = "Continuous" # Either "None", "Discrete" or "Continuous"
 
 and providing energies and weights as::
 
-    dv:So/MySource/BeamSpectrumEnergies = 3 50. 100. 150. MeV
-    uv:So/MySource/BeamSpectrumWeights = 3 .20 .60 .20
+    dv:So/MySource/BeamEnergySpectrumValues = 3 50. 100. 150. MeV
+    uv:So/MySource/BeamEnergySpectrumWeights = 3 .20 .60 .20
 
 An example is in :ref:`example_basic_spectrum`.
 
