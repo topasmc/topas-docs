@@ -108,4 +108,4 @@ The maximum number of histories possible per run is limited by the size of some 
 * Set ``Tf/NumberOfSequentialTimes`` to some value greater than 1
 * No need to actually set ``TimelineStart`` or ``TimelineEnd`` (they both default to 0)
 
-Your total number of histories will then be ``NumberOfSequentialTimes * NumberOfHistoriesPerRun``.
+Your total number of histories will then be ``NumberOfSequentialTimes * NumberOfHistoriesInRun``.
