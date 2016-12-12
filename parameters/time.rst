@@ -104,32 +104,32 @@ Combining Time Features for Complex Behaviors
 
 You can add or multiply time feature ``Value`` parameters just as you can add or multiply any other kind of parameter. For example, here is how the number of histories in a run can be controlled by both a beam current and a beam weight::
 
-    s:Tf/BeamCurrent/Function="Step"
+    s:Tf/BeamCurrent/Function = "Step"
     dv:Tf/BeamCurrent/Times = 1 10 ms
     iv:Tf/BeamCurrent/Values = 1 10
 
-    s:Tf/BeamWeight/Function="Step"
-    dv:Tf/BeamWeight/Times =10 1 2 3 4 5 6 7 8 9 10 ms
-    iv:Tf/BeamWeight/Values =10 1 1 1 2 2 2 2 4 4 4
+    s:Tf/BeamWeight/Function = "Step"
+    dv:Tf/BeamWeight/Times = 10 1 2 3 4 5 6 7 8 9 10 ms
+    iv:Tf/BeamWeight/Values = 10 1 1 1 2 2 2 2 4 4 4
 
     i:Tf/BCM/Value = Tf/BeamWeight/Value * Tf/BeamCurrent/Value
-    i:So/MySource/NumberOfHistoriesInRun = Tf/BCMValue
+    i:So/MySource/NumberOfHistoriesInRun = Tf/BCM/Value
 
 By combining Step time features with other time features, you can control complex sequences.
 The following from :ref:`example_special_purgingmagnet` moves a box first in one direction and then in the other::
 
     s:Tf/BackForward/Function = "Step"
     dv:Tf/BackForward/Times = 2 100.0 200.0 ms
-    dv:Tf/BackForward/Values =2 Tf/BackStep/Value Tf/ForwardStep/Value mm
+    dv:Tf/BackForward/Values = 2 Tf/BackStep/Value Tf/ForwardStep/Value mm
 
     s:Tf/BackStep/Function = "Linear mm"
     d:Tf/BackStep/Rate = 3 mm/ms
-    d:Tf/BackStep/StartValue= 0.0 mm
+    d:Tf/BackStep/StartValue = 0.0 mm
     d:Tf/BackStep/RepetitionInterval = 100.0 ms
 
     s:Tf/ForwardStep/Function = "Linear mm"
     d:Tf/ForwardStep/Rate = -3 mm/ms
-    d:Tf/ForwardStep/StartValue= 300.0 mm
+    d:Tf/ForwardStep/StartValue = 300.0 mm
     d:Tf/ForwardStep/RepetitionInterval = 100.0 ms
 
 Some complex examples of time features are in examples/Nozzle.
