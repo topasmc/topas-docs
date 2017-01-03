@@ -5,6 +5,7 @@ If you use TOPAS, please be sure to cite the following paper (`PubMed <https://w
 
 Perl J, Shin J, Schumann J, Faddegon B, Paganetti H. TOPAS: an innovative proton Monte Carlo platform for research and clinical applications. Med Phys. 2012; 39(11):6818-37.
 
+To discover the Geant4 version used by a specific version of TOPAS, please consult the :ref:`history`.
 
 Here is a BibTeX entry to aid use within LaTeX:
 

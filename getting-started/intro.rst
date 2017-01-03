@@ -5,6 +5,8 @@ TOPAS_ wraps and extends the `Geant4 Simulation Toolkit`_ to provide an easier-t
 
 Advanced users remain free to implement their own simulation objects in C++ code, and add them to TOPAS via an :ref:`extension mechanism <extensions>`. While user-written objects benefit from underlying functionality of TOPAS base classes and the TOPAS parameter system, they can exploit the full flexibility of Geant4.
 
+To discover the Geant4 version used by a specific version of TOPAS, please consult the :ref:`history`.
+
 .. note:: Users should carefully read the :ref:`parameters_intro`, as well as the introductory parts of the sections :ref:`geometry`, :ref:`source`, :ref:`physics` and :ref:`scoring`. The rest of the documentation provides a detailed reference that you may just want to skim initially.
 
 
