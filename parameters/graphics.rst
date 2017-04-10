@@ -94,14 +94,14 @@ Extra options used by OpenGL::
     b:Gr/MyGraphic1/HiddenLineRemovalForGeometry = "False" # Remove hidden lines from wireframe geometries, like Geant4’s /vis/viewer/set/hiddenEdge
     b:Gr/MyGraphic1/HiddenLineRemovalForTrajectories = "False" # Remove hidden trajectories lines from within geometries, like Geant4’s /vis/viewer/set/hiddenMarker
 
-You can set Topas so that each time the OpenGL updates, the view is copied to a file::
+You can set Topas so that for OpenGL views, the view is copied to a file at the end of each run::
 
     b:Gr/MyGraphic1/CopyOpenGLToPDF = "True" # save to PDF
     b:Gr/MyGraphic1/CopyOpenGLToSVG = "True" # save to Scalable Vector Graphics
     b:Gr/MyGraphic1/CopyOpenGLToEPS = "True" # save to Encapsulated PostScript
     b:Gr/MyGraphic1/CopyOpenGLToPS  = "True" # save to PostScript
 
-Some views may result in one of the following warning messages from Geant4 Visualization.  These messages are just informational and can be safely ignored.
+Some views may result in one of the following warning messages from Geant4 Visualization.  These messages are just informational and can be safely ignored. Note that even if you have set ``Gr/RefreshEvery = "History"``, the view will only be copied to a file at the end of the run (not per history).
 
 .. code-block:: plain
 
