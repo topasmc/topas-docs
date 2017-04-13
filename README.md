@@ -7,6 +7,7 @@ If working on a Mac, I recommend installing Python with [Homebrew](http://brew.s
 To build and view the docs locally (recommended for substantial editing), you will need to
 
     pip install sphinx sphinx-autobuild sphinx_rtd_theme
+    pip install -e git://github.com/davidchall/topas-pygments.git#egg=topas_pygments
 
 then, after your edits
 
