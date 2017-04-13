@@ -55,12 +55,12 @@ Welcome to the TOPAS documentation!
     :maxdepth: 1
     :caption: Extension Documentation
 
-    extensions/intro
-    extensions/geometry
-    extensions/source
-    extensions/physics
-    extensions/scoring
-    extensions/filtering
-    extensions/field
-    extensions/imaging
-    extensions/user_hook
+    extension-docs/intro
+    extension-docs/geometry
+    extension-docs/source
+    extension-docs/physics
+    extension-docs/scoring
+    extension-docs/filtering
+    extension-docs/field
+    extension-docs/imaging
+    extension-docs/user_hook
