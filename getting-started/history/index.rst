@@ -8,6 +8,7 @@ TOPAS_ wraps and extends the `Geant4 Simulation Toolkit`_. The following table l
 =============== ========================
 TOPAS version   Geant4 version
 =============== ========================
+3.1.0           10.3.p01
 3.0.0           10.2.p01
 2.0.0           10.1.p02
 1.0.0           9.6.4
