@@ -30,6 +30,7 @@ Overall program control
     i:Ts/EventVerbosity = 0 # Set to larger integer to see details of event. Maximum is 5
     i:Ts/TrackingVerbosity = 0 # Set to larger integer to see details of tracking
     i:Ts/SequenceVerbosity = 0 # Set to larger integer to see details of TOPAS run sequence
+    b:Ts/RestoreResultsFromFile = "False"
 
 
 
@@ -52,7 +53,11 @@ Optional checks on correctness of geometry
 ::
 
     b:Ge/CheckForOverlaps = "True"
+    b:Ge/CheckInsideEnvelopesForOverlaps = "False"
+    i:Ge/CheckForOverlapsResolution = 1000
+    d:Ge/CheckForOverlapsTolerance = 0. mm
     b:Ge/QuitIfOverlapDetected = "True"
+    i:Ge/NumberOfPointsPerOverlapCheck = 100
     b:Ge/CheckForUnusedComponents = "True"
 
 
@@ -132,8 +137,6 @@ Physics
     sv:Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
     d:Ph/Default/EMRangeMin = 100. eV
     d:Ph/Default/EMRangeMax = 500. MeV
-    i:Ph/Default/dEdXBins = 220
-    i:Ph/Default/LambdaBins = 220
 
 
 
@@ -156,7 +159,7 @@ Graphics
     i:Gr/Verbosity = 0 # Set to higher integer to increase verbosity of Geant4 visualization system
     s:Gr/RefreshEvery = "Run" # "History", "Run" or "Session"
     i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000 # Above this limit, only show outer box
-    i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 3000000 # Above this limit, switch OpenGL Graphics to Immediate mode
+    i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 70000000 # Above this limit, switch OpenGL Graphics to Immediate mode
 
 
 
@@ -379,23 +382,34 @@ Colors
 
 ::
 
-    iv:Gr/Color/lightblue = 3 175 255 255
-    iv:Gr/Color/skyblue =   3 175 124 255
-    iv:Gr/Color/red =       3 255   0  12
-    iv:Gr/Color/magenta =   3 255   0 255
-    iv:Gr/Color/violet =    3 224   0 255
-    iv:Gr/Color/pink =      3 255   0 222
-    iv:Gr/Color/indigo =    3   0   0 190
-    iv:Gr/Color/grass =     3   0 239   0
-    iv:Gr/Color/orange =    3 241 224   0
-    iv:Gr/Color/purple =    3 187  28   0
-    iv:Gr/Color/brown =     3 225 126  66
-    iv:Gr/Color/grey =      3 210 213 210
-    iv:Gr/Color/blue =      3   0   0 255
-    iv:Gr/Color/green =     3   0 126 126
-    iv:Gr/Color/yellow =    3 225 255   0
-    iv:Gr/Color/white =     3 255 255 255
-    iv:Gr/Color/black =     3   0   0   0
+    iv:Gr/Color/White =     3 255 255 255
+    iv:Gr/Color/Silver =    3 191 191 191
+    iv:Gr/Color/Gray =	    3 127 127 127
+    iv:Gr/Color/Grey =	    3 127 127 127
+    iv:Gr/Color/Black =     3   0   0   0
+    iv:Gr/Color/Red =       3 255   0   0
+    iv:Gr/Color/Maroon =    3 127   0   0
+    iv:Gr/Color/Yellow =    3 255 255   0
+    iv:Gr/Color/Olive =     3 127 127   0
+    iv:Gr/Color/Lime =      3   0 255   0
+    iv:Gr/Color/Green =     3   0 127   0
+    iv:Gr/Color/Aqua =      3   0 255 255
+    iv:Gr/Color/Teal =      3   0 127 127
+    iv:Gr/Color/Blue =	    3   0   0 255
+    iv:Gr/Color/Navy =	    3   0   0 127
+    iv:Gr/Color/Fuchsia =   3 255   0 255
+    iv:Gr/Color/Purple =    3 127   0 127
+
+    iv:Gr/Color/Lightblue = 3 175 255 255
+    iv:Gr/Color/Skybluee =  3 175 124 255
+    iv:Gr/Color/Magentae =  3 255   0 255
+    iv:Gr/Color/Violete =   3 224   0 255
+    iv:Gr/Color/Pinke =     3 255   0 222
+    iv:Gr/Color/Indigoe =   3   0   0 190
+    iv:Gr/Color/Grase =     3   0 239   0
+    iv:Gr/Color/Orangee =   3 241 224   0
+    iv:Gr/Color/Browne =    3 225 126  66
+    
     iv:Gr/Color/grey020 =   3  20  20  20
     iv:Gr/Color/grey040 =   3  40  40  40
     iv:Gr/Color/grey060 =   3  60  60  60
