@@ -1,4 +1,4 @@
-TOPAS Version 3.0.1
+TOPAS Version 3.1.0
 
 All use of TOPAS is governed by the TOPAS License Agreement provided in this directory as LICENSE.txt.
 
@@ -18,10 +18,8 @@ This product includes software developed by Members of the Geant4 Collaboration 
 
 0) Pre-Requisites:
 
-Mac OSX 10.9 or newer: Install XQuartz
-To run TOPAS on OSX 10.9 or newer, you must also install the X11 application from: 
+Mac Users: Install XQuartz from: 
 http://xquartz.macosforge.org
-Users of previous OSX versions do not need to perform this step.
 
 Debian Users: Install the following:
 apt-get install libexpat1-dev
@@ -35,111 +33,111 @@ apt-get install build-essential
 1) Install TOPAS:
 
 Unpack the tar.gz file:
-tar -zxvf topas_3_0_*.tar.gz
+tar -zxvf topas_3_1_*.tar.gz
 Mac: Move the result so that you have /Applications/topas
 Linux: Move the result so that you have ~/topas
 
 
 2) Install Data Files:
 The only part of Geant4 that you need to install are the data files.
-You do not need to download or build any other part of Geant4 since the necessary Geant4 libraries and header files are already include and pre-built in TOPAS.
+You do not need to download or build any other part of Geant4 since the necessary Geant4 libraries and header files are already included in TOPAS.
 If you are simply upgrading from a previous TOPAS version that uses the same Geant4 version,
 you will already have these data files and can skip this step.
 
 Mac: Download Geant4 Data files from the command line using curl:
-curl -O http://geant4.cern.ch/support/source/G4EMLOW.6.48.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4EMLOW.6.50.tar.gz
 curl -O http://geant4.cern.ch/support/source/G4NDL.4.5.tar.gz
-curl -O http://geant4.cern.ch/support/source/G4PhotonEvaporation.3.2.tar.gz
-curl -O http://geant4.cern.ch/support/source/G4RadioactiveDecay.4.4.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4PhotonEvaporation.4.3.2.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4RadioactiveDecay.5.1.1.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4SAIDDATA.1.1.tar.gz
 curl -O http://geant4.cern.ch/support/source/G4NEUTRONXS.1.4.tar.gz
 curl -O http://geant4.cern.ch/support/source/G4PII.1.3.tar.gz
 curl -O http://geant4.cern.ch/support/source/RealSurface.1.0.tar.gz
-curl -O http://geant4.cern.ch/support/source/G4SAIDDATA.1.1.tar.gz
 curl -O http://geant4.cern.ch/support/source/G4ABLA.3.0.tar.gz
-curl -O http://geant4.cern.ch/support/source/G4ENSDFSTATE.1.2.2.tar.gz
-curl -O http://geant4.cern.ch/support/source/G4TENDL.1.0.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4ENSDFSTATE.2.1.tar.gz
+curl -O http://geant4.cern.ch/support/source/G4TENDL.1.3.tar.gz
 
 Linux: Download Geant4 Data files from the command line using wget:
-wget http://geant4.cern.ch/support/source/G4EMLOW.6.48.tar.gz
+wget http://geant4.cern.ch/support/source/G4EMLOW.6.50.tar.gz
 wget http://geant4.cern.ch/support/source/G4NDL.4.5.tar.gz
-wget http://geant4.cern.ch/support/source/G4PhotonEvaporation.3.2.tar.gz
-wget http://geant4.cern.ch/support/source/G4RadioactiveDecay.4.4.tar.gz
+wget http://geant4.cern.ch/support/source/G4PhotonEvaporation.4.3.2.tar.gz
+wget http://geant4.cern.ch/support/source/G4RadioactiveDecay.5.1.1.tar.gz
+wget http://geant4.cern.ch/support/source/G4SAIDDATA.1.1.tar.gz
 wget http://geant4.cern.ch/support/source/G4NEUTRONXS.1.4.tar.gz
 wget http://geant4.cern.ch/support/source/G4PII.1.3.tar.gz
 wget http://geant4.cern.ch/support/source/RealSurface.1.0.tar.gz
-wget http://geant4.cern.ch/support/source/G4SAIDDATA.1.1.tar.gz
 wget http://geant4.cern.ch/support/source/G4ABLA.3.0.tar.gz
-wget http://geant4.cern.ch/support/source/G4ENSDFSTATE.1.2.2.tar.gz
-wget http://geant4.cern.ch/support/source/G4TENDL.1.0.tar.gz
+wget http://geant4.cern.ch/support/source/G4ENSDFSTATE.2.1.tar.gz
+wget http://geant4.cern.ch/support/source/G4TENDL.1.3.tar.gz
 
 Mac: Unpack and move to:
-/Applications/G4Data/G4EMLOW6.48
+/Applications/G4Data/G4EMLOW6.50
 /Applications/G4Data/G4NDL4.5
-/Applications/G4Data/PhotonEvaporation3.2
-/Applications/G4Data/RadioactiveDecay4.4
+/Applications/G4Data/PhotonEvaporation4.3.2
+/Applications/G4Data/RadioactiveDecay5.1.1
 /Applications/G4Data/G4SAIDDATA1.1
 /Applications/G4Data/G4NEUTRONXS1.4
 /Applications/G4Data/G4PII1.3
 /Applications/G4Data/RealSurface1.0
 /Applications/G4Data/G4ABLA3.0
-/Applications/G4Data/G4ENSDFSTATE1.2.1
-/Applications/G4Data/G4TENDL1.0
+/Applications/G4Data/G4ENSDFSTATE2.1
+/Applications/G4Data/G4TENDL1.3
 
 Linux: Unpack and move to:
-~/G4Data/G4EMLOW6.48
+~/G4Data/G4EMLOW6.50
 ~/G4Data/G4NDL4.5
-~/G4Data/PhotonEvaporation3.2
-~/G4Data/RadioactiveDecay4.4
+~/G4Data/PhotonEvaporation4.3.2
+~/G4Data/RadioactiveDecay5.1.1
 ~/G4Data/G4SAIDDATA1.1
 ~/G4Data/G4NEUTRONXS1.4
 ~/G4Data/G4PII1.3
 ~/G4Data/RealSurface1.0
 ~/G4Data/G4ABLA3.0
-~/G4Data/G4ENSDFSTATE1.2.1
-~/G4Data/G4TENDL1.0
+~/G4Data/G4ENSDFSTATE2.1
+~/G4Data/G4TENDL1.3
 
 
 3) Set up the environment:
 Mac:
-export G4LEDATA=/Applications/G4Data/G4EMLOW6.48
+export G4LEDATA=/Applications/G4Data/G4EMLOW6.50
 export G4NEUTRONHPDATA=/Applications/G4Data/G4NDL4.5
-export G4LEVELGAMMADATA=/Applications/G4Data/PhotonEvaporation3.2
-export G4RADIOACTIVEDATA=/Applications/G4Data/RadioactiveDecay4.4
+export G4LEVELGAMMADATA=/Applications/G4Data/PhotonEvaporation4.3.2
+export G4RADIOACTIVEDATA=/Applications/G4Data/RadioactiveDecay5.1.1
 export G4SAIDXSDATA=/Applications/G4Data/G4SAIDDATA1.1
 export G4NEUTRONXSDATA=/Applications/G4Data/G4NEUTRONXS1.4
 export G4PIIDATA=/Applications/G4Data/G4PII1.3
 export G4REALSURFACEDATA=/Applications/G4Data/RealSurface1.0
 export G4ABLADATA=/Applications/G4Data/G4ABLA3.0
-export G4ENSDFSTATEDATA=/Applications/G4Data/G4ENSDFSTATE1.2.1
-export G4TENDLDATA=/Applications/G4Data/G4TENDL1.0
+export G4ENSDFSTATEDATA=/Applications/G4Data/G4ENSDFSTATE2.1
+export G4TENDLDATA=/Applications/G4Data/G4TENDL1.3
 export DYLD_LIBRARY_PATH=/Applications/topas/libexternal:$DYLD_LIBRARY_PATH
 
 Linux Bourne shell:
-export G4LEDATA=~/G4Data/G4EMLOW6.48
+export G4LEDATA=~/G4Data/G4EMLOW6.50
 export G4NEUTRONHPDATA=~/G4Data/G4NDL4.5
-export G4LEVELGAMMADATA=~/G4Data/PhotonEvaporation3.2
-export G4RADIOACTIVEDATA=~/G4Data/RadioactiveDecay4.4
+export G4LEVELGAMMADATA=~/G4Data/PhotonEvaporation4.3.2
+export G4RADIOACTIVEDATA=~/G4Data/RadioactiveDecay5.1.1
 export G4SAIDXSDATA=~/G4Data/G4SAIDDATA1.1
 export G4NEUTRONXSDATA=~/G4Data/G4NEUTRONXS1.4
 export G4PIIDATA=~/G4Data/G4PII1.3
 export G4REALSURFACEDATA=~/G4Data/RealSurface1.0
 export G4ABLADATA=~/G4Data/G4ABLA3.0
-export G4ENSDFSTATEDATA=~/G4Data/G4ENSDFSTATE1.2.1
-export G4TENDLDATA=~/G4Data/G4TENDL1.0
+export G4ENSDFSTATEDATA=~/G4Data/G4ENSDFSTATE2.1
+export G4TENDLDATA=~/G4Data/G4TENDL1.3
 export LD_LIBRARY_PATH=~/topas/libexternal/:$LD_LIBRARY_PATH
 
 Linux C shell:
-setenv G4LEDATA ~/G4Data/G4EMLOW6.48
+setenv G4LEDATA ~/G4Data/G4EMLOW6.50
 setenv G4NEUTRONHPDATA ~/G4Data/G4NDL4.5
-setenv G4LEVELGAMMADATA ~/G4Data/PhotonEvaporation3.2
-setenv G4RADIOACTIVEDATA ~/G4Data/RadioactiveDecay4.4
+setenv G4LEVELGAMMADATA ~/G4Data/PhotonEvaporation4.3.2
+setenv G4RADIOACTIVEDATA ~/G4Data/RadioactiveDecay5.1.1
 setenv G4SAIDXSDATA ~/G4Data/G4SAIDDATA1.1
 setenv G4NEUTRONXSDATA ~/G4Data/G4NEUTRONXS1.4
 setenv G4PIIDATA ~/G4Data/G4PII1.3
 setenv G4REALSURFACEDATA ~/G4Data/RealSurface1.0
 setenv G4ABLADATA ~/G4Data/G4ABLA3.0
-setenv G4ENSDFSTATEDATA ~/G4Data/G4ENSDFSTATE1.2.1
-setenv G4TENDLDATA ~/G4Data/G4TENDL1.0
+setenv G4ENSDFSTATEDATA ~/G4Data/G4ENSDFSTATE2.1
+setenv G4TENDLDATA ~/G4Data/G4TENDL1.3
 setenv LD_LIBRARY_PATH ~/topas/libexternal/:$LD_LIBRARY_PATH
 
 
@@ -156,21 +154,9 @@ cd examples/SpecialComponents
 ../../topas MultiLeafCollimator_sequence.txt
 
 To test TOPAS with DICOM:
-Unzip the example DICOM directories in examples/DICOM
-cd examples/DICOM
+Unzip the example DICOM directories in examples/Patient
+cd examples/Patient
 ../../topas ViewAbdomen.txt
-
-Remember that some parameters have changed since Topas 2.0.
-We provide a script that you can run to convert your parameter files from Topas2 style to Topas3 style.
-Download the script:
-Mac: curl -O www.slac.stanford.edu/~perl/topas2to3
-Linux: wget www.slac.stanford.edu/~perl/topas2to3
-
-Then for any OS:
-chmod +x topas2to3
-/path/to/topas2to3 your_parameter_file.txt
-
-This will replace your_parameter_file.txt with a new copy, and will save the previous version with a .bak file extension.
 
 
 5) To add User Extensions:
@@ -183,8 +169,14 @@ http://www.cmake.org/cmake/resources/software.html
 Run the cmake.app
 and follow the instructions in CMake's menu item: "Tools"... "How to Install for Command Line Use"
 
-Because our underlying Geant4 version requries a compiler that supports C++11,
-you will need gcc >=4.8.3
+Mac Users: Install the Xcode compiler from:
+https://developer.apple.com/xcode/downloads/
+If you are on OSX 10.12, use Xcode 8.3.2
+If you are on OSX 10.11, use Xcode 7.3.1
+Users of earlier OSX versions can run the pre-built TOPAs, but can not add extensions.
+
+Linux Users: Check that you have an appropriate version of the C++ compiler
+You will need gcc >=4.8.3
 To check your gcc version, gcc --version
 If your gcc version is not sufficient, ask your sysadmin if there is already a newer version in some non-default installation on your system. They may be able to tell you how to switch to that version.
 Otherwise, you will need to install a newer version or ask your sysadmin to do so.
@@ -208,7 +200,7 @@ cmake -DTOPAS_EXTENSIONS_DIR=/Applications/topas_extensions
 make -j8
 
 In the make statement, the value after -j, such as -j8 indicates how many threads make should use at once.
-This depends on your computer's capabilties. A typical quad-core machine with hyperthreading run efficiently with 8 threads.
+This depends on your computer's capabilties. A typical quad-core machine with hyperthreading can run efficiently with 8 threads.
 
 Don't worry about any "Warning" messages. Only worry about messages that say "Error".
 
