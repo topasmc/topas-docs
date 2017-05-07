@@ -33,6 +33,7 @@ Welcome to the TOPAS documentation!
     parameters/graphics
     parameters/time
     parameters/variance/index
+    parameters/outcome
 
 
 .. toctree::
