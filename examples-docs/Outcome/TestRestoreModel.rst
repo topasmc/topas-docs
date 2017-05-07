@@ -1,3 +1,5 @@
+.. _example_outcome_testrestoremodel:
+
 TestRestoreModel.txt
 -----------------------
 
