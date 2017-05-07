@@ -1,4 +1,4 @@
 XCAT.txt
 -----------------------
 
-.. literalinclude:: /examples/Optical/XCAT.txt
+.. literalinclude:: /examples/Patient/XCAT.txt
