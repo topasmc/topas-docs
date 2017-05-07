@@ -13,6 +13,14 @@ Starting from an existing scorer, if a differential or cumulative histogram will
 
     s:Sc/ScorerName/Report= "differentialvolumehistogram" # or "cumulativevolumehistogram"
 
+An example that runs several different outcome models on a patient dose can be seen at :ref:`example_outcome_testoutcomemodel`
+
+We also allow you to read back in a previously created DVH to have TOPAS apply new outcome models without having to re-do the Monte Carlo simulation phase of the job. Just set the parameter that tells TOPAS to restore results from a previously created file::
+
+    Ts/RestoreResultsFromFile = "True"
+
+See the example :ref:`example_outcome_testrestoremodel`
+
 If no volume histogram is required, as input of the biological models, TOPAS will takes the final full dose distribution in the organ, and by assuming that all voxels have the same dimension, the volume input will be a vector of ones. This assumption relies in the fact that volume bins are internally converted to fractional volume.
 
 To activate the biological models calculation::
