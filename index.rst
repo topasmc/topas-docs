@@ -50,7 +50,7 @@ Welcome to the TOPAS documentation!
     examples-docs/VarianceReduction/index
     examples-docs/Optical/index
     examples-docs/Outcome/index
-
+    
 
 .. toctree::
     :maxdepth: 1
