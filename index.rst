@@ -20,7 +20,7 @@ Welcome to the TOPAS documentation!
 
 .. toctree::
     :maxdepth: 1
-    :caption: Parameter File Documentation
+    :caption: Details
 
     parameters/intro/index
     parameters/defaults
@@ -54,7 +54,7 @@ Welcome to the TOPAS documentation!
 
 .. toctree::
     :maxdepth: 1
-    :caption: Extension Documentation
+    :caption: How to Extend TOPAS
 
     extension-docs/intro
     extension-docs/geometry
