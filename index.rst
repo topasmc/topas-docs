@@ -44,11 +44,12 @@ Welcome to the TOPAS documentation!
     examples-docs/Scoring/index
     examples-docs/PhaseSpace/index
     examples-docs/TimeFeature/index
-    examples-docs/DICOM/index
+    examples-docs/Patient/index
     examples-docs/Nozzle/index
     examples-docs/SpecialComponents/index
     examples-docs/VarianceReduction/index
     examples-docs/Optical/index
+    examples-docs/Outcome/index
 
 
 .. toctree::
