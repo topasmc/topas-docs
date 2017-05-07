@@ -20,7 +20,7 @@ Welcome to the TOPAS documentation!
 
 .. toctree::
     :maxdepth: 1
-    :caption: Details
+    :caption: Control Everything from Parameter Files
 
     parameters/intro/index
     parameters/defaults
