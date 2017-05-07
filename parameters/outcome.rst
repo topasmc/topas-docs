@@ -53,6 +53,7 @@ If the organ name is not found, the full list of available names is displayed an
 The output (NTCP or TCP in percent) will be displayed on the screen for every model for every scorer. If CSV or Binary DVHs output is chosen, the output will be at the header too.
 
 The follow references contains tables with parameters for several organs for several models::
+
     C. Burman, G. J. Kutcher, B. Emami and M. Goitein, “Fitting of normal tissue tolerance data to an analytic function”, Int. J. Radiation Oncology Biol. Phys. 21, 123-135. (1991)
     B. Emami, J. Lyman, A. Brown, L. Coia, M. Goitein, J. E. Munzenrider, B. Shank. L. J. Solin and M Wesson “Tolerance of normal tissue to therapeutic irradiation”, Int. J. Radiation Oncology Biol. Phys. 21, 109-122. (1991)
     P. Okunieff, D. Morgan, A. Niemerko and D. Suit “Radiation dose-response of human tumors”, Int. J. Radiation Oncology Biol. Phys. 32(4), 1227-1237. (1995)
