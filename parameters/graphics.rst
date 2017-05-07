@@ -42,6 +42,10 @@ Colors are defined by specifying their red, green, blue components, each on a sc
 
     iv:Gr/Color/lightblue = 3 175 255 255
 
+You can optionally provide a fourth value to make colors transparent. This value is called Alpha, with 0 being completely transparent (no color at all) and 255 being fully opaque (the default). So for example, to be 50% transparent:
+
+    iv:Gr/Color/transparentred = 3 255 255 255 126
+
 By default, trajectories will be drawn as what Geant4 calls "Smooth Trajectories", which means they include additional points to make them curve smoothly in a magnetic field. Geant4 does not actually use these "auxiliary points" in its simulation results, they are just present to make visualization in a field look better. In some cases, Geant4 has trouble handling these auxiliary points, and reports:
 
 .. code-block:: plain
