@@ -8,3 +8,4 @@ Optical
 	Rotating_Surfaces
 	Surfaces
 	WavelengthShifter
+	OpticalPhotonCount
