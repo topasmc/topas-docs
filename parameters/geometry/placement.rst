@@ -78,11 +78,26 @@ The following overrides the size definition of the ``World`` box that was inheri
 Overlap Checking
 ~~~~~~~~~~~~~~~~
 
-Because accidental overlaps of geometry volumes are a serious issue for all Monte Carlo simulations, Geant4 provides tools to automatically check for such overlaps. Overlap checking is not perfect, it works by testing a random set of points on each boundary, to see if they are inside any other boundary. Thus it will not necessarily find all overlaps. By default Geant4 checks 100 points on each volume (we will eventually provide a command to adjust this number of points). Overlap checking has a speed cost at initialization time, so once you are confident that your geometry has no overlaps, you may want to turn this feature off::
+Because accidental overlaps of geometry volumes are a serious issue for all Monte Carlo simulations, Geant4 provides tools to automatically check for such overlaps. Overlap checking is not perfect, it works by testing a random set of points on each boundary, to see if they are inside any other boundary. Thus it will not necessarily find all overlaps. By default TOPAS checks 100 points on each volume. Overlap checking has a speed cost at initialization time, so once you are confident that your geometry has no overlaps, you may choose to turn this feature off (though most users never find this necessary)::
 
     Ge/CheckForOverlaps = "False"
 
-.. todo:: Provide parameter to adjust number of points used in overlap checking
+TOPAS will save time by avoiding overlap checking for individual parts within a divided component (such as the voxels within a patient) since these subdivisions are generated automatically by our own code. But if you ever want to turn these back on::
+
+    b:Ge/CheckInsideEnvelopesForOverlaps = "True"
+
+You can control the number of points used in the overlap check::
+
+    i:Ge/CheckForOverlapsResolution = 1000
+
+And you can check the tolerance for overlap::
+
+    d:Ge/CheckForOverlapsTolerance = 0. mm
+
+You can also set these in a more granular fashion, per Component (overrides the above parameters for this particular component)::
+
+    i:Ge/MyComponent/CheckForOverlapsResolution = 1000
+    d:Ge/MyComponent/CheckForOverlapsTolerance = 0. mm
 
 
 
