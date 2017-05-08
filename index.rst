@@ -62,6 +62,7 @@ Welcome to the TOPAS documentation!
     extension-docs/source
     extension-docs/physics
     extension-docs/scoring
+    extension-docs/outcome
     extension-docs/filtering
     extension-docs/field
     extension-docs/imaging
