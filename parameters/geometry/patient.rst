@@ -190,7 +190,7 @@ Patient in ImageCube Format (handles XCAT, XiO and more)
 We refer to a patient input file as an "Image Cube" if it is a simple binary file that contains one value for each voxel.
 These values may be Housefield units or any other sort of imaging information that you have. Elsewhere you will tell TOPAS how to convert a given value from this file into a specfic material for that voxel.
 
-- For the case of an XCAT phantom, the binary file will contains, for each voxel, an activation or attenuation values as a float
+- For the case of an XCAT phantom, the binary file will contains, for each voxel, an activation or attenuation value as a float
 - For the case of an XiO patient, the binary file will contain, for each voxel, a Hounsfield value as a short
 - For other cases, you can provide a binary file that contains, for each voxel, any float, int or short
 
