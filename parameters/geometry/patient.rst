@@ -164,7 +164,7 @@ Other metadata tags (SOP Instance UID, Series Instance UID, Series Description, 
 
 It is also possible to set a custom Series Description using the SeriesDescription parameter::
 
-    s:/Sc/MyScorer/SeriesDescription =
+    s:Sc/MyScorer/SeriesDescription =
 
 TOPAS can automatically create a Scoring Grid that exactly matches a provided RTDOSE file in your DICOM dataset.
 This makes it easier to compare TOPAS results to Treatment Planning System results.
