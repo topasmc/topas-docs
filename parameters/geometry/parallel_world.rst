@@ -17,7 +17,7 @@ A new parallel world will be created each time you specify ``IsParallel``, with 
 
     s:Ge/MyComponent/ParallelWorldName = "SomeParallelWorldName"
 
-This is useful if you will have many components in parallel worlds, as Geant4 only allows up to 8 total worlds.
+There is no limit on the total number of parallel worlds, but each additional world can cause some performance penalty.
 
 .. warning::
 
