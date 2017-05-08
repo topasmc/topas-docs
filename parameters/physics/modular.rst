@@ -28,8 +28,8 @@ The remaining options for the ``"Geant4_Modular"`` physics type are::
     d:Ph/Default/CutForTriton = 0.05 mm # overrides CutForAllParticles for Triton
     d:Ph/Default/EMRangeMin = 100. eV # minimum for EM tables
     d:Ph/Default/EMRangeMax = 300. MeV # maximum for EM tables
-    i:Ph/Default/dEdXBins = 220 # number of bins for dEdX tables
-    i:Ph/Default/LambdaBins = 220 # number of Lambda bins
+    i:Ph/Default/EMBins = 77 # number of bins for EM tables
+    i:Ph/Default/EMBinsPerDecade = 7 # number of bins per decade for EM tables
     b:Ph/Default/Fluorescence = "False" # Set to true to turn on Fluorescence
     b:Ph/Default/Auger = "False" # Set to true to turn on Auger
     b:Ph/Default/PIXE = "False" # Set to true to turn on PIXE
