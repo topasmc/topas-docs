@@ -81,3 +81,16 @@ Some helper functions you may want to use from the TsVScorer::
 For divided components, the combined index one finds in scorers is formed from three bin indices (x,y,z or r, phi, z or r, phi, theta for TsBox, TsCylinder and TsSphere respectively). A helper function is now provided to return the individual bin indices given the combined index::
 
     GetBin(index, iBin) // where iBin is 0, 1 or 2
+
+A scorer can itself instantiate additional scorers. We refer to these as "SubScorers".
+The main scorer can then perform calculations using results of one or more  subscorers to obtain a final value.
+A good example of this is in ExtensionExamplesMore/MyScoreProtonLET.
+At the end of the constructor, it contains the following::
+
+	InstantiateSubScorer("ProtonLET_Denominator", outFileName, "Denominator");
+
+And later there is a method that combines the scorer and the subscorer on a bin-by-bin basis to obtain a final quantity per bin::
+
+    G4int MyScoreProtonLET::CombineSubScorers()
+    ...
+	fFirstMomentMap[index] = fFirstMomentMap[index] / denomScorer->fFirstMomentMap[index];
