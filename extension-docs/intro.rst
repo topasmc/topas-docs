@@ -9,14 +9,13 @@ These new classes can be:
 
 * Geometry Components
 * Scorers
+* Outcome Models
 * Filters
-* Physics Lists
-* Physics Modules
+* Physics Lists and Physics Modules
 * Particle Sources
 * Magnetic Field Descriptions
 * ElectroMagnetic Field Descriptions
 * Imaging To Material Converters
-* Outcome Models
 
 And you can also provide classes that will be called to do whatever you want at:
 
