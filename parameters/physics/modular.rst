@@ -15,6 +15,7 @@ If you want to run with no physics, but only the transportation process (useful 
     sv:Ph/Default/Modules = 1 "Transportation_Only"
 
 Below is a :ref:`physics_available_modules` with the corresponding Geant4 class names.
+Users who are advanced experts in Geant4 physics can also write their own Geant4 physics modules.
 
 The remaining options for the ``"Geant4_Modular"`` physics type are::
 
@@ -73,6 +74,9 @@ Cuts do not affect all processes, but only those listed below:
 
 List of Available Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Users who are advanced experts in Geant4 physics can also write their own Geant4 physics modules
+and plug these into TOPAS through the Extensions Interface.
 
 ==========================  ===========================
 TOPAS Module Name           Geant4 Class Name
