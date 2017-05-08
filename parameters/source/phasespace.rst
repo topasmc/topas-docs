@@ -21,6 +21,10 @@ We support three formats for Phase Space (and TOPAS automatically figures out th
 * Binary provides the same information as ASCII, but in a much more compact format, with data encoded in a stream of bytes. The header file tells the contents and byte order per particle. Use Binary in cases where the ASCII format produces excessively large files.
 * Limited is an alternate binary format compatible with some legacy codes. It has fewer options for what data can be expressed, but is compatible with codes such as that used by Varian for their TrueBeam phase space files. Use Limited format only when you need to exchange phase space with legacy codes.
 
+Some users have found legacy phase space files that were unreadable in the Limited format because, though they were supposed to contain information about which particles represent a new history, there was in fact no new history information. In such cases, it seems that all photons were to be considered new histories. To read such files, use the Limited format with the additional TOPAS parameter::
+
+   b:So/MyPhaseSpaceSource/LimitedAssumePhotonIsNewHistory = "true"
+
 Note that while our Phase Space Scorer lets you also write phase space to `ROOT files <https://root.cern.ch>`_, we do not provide the capability read phase space back in from this format.
 For more details, see :ref:`phasespace_format`.
 
@@ -72,11 +76,17 @@ For Limited format, the check is still helpful but less thorough as the header f
 
 If the phase space you are replaying came from a TOPAS job, the particle starting positions in that file will have been defined relative to the ``World`` Component. Set the ``Component`` parameter above to ``"World"``. If you want to offset these particles to some other center or orientation, choose a Component that has the new desired center and orientation (reuse some existing Component, or define a new Group Component just for this purpose). If the phase space you are replaying did not come from TOPAS, there is no automatic way to know what coordinate system was used. It will be up to you to choose a Component that has this appropriate coordinate system.
 
-You can optionally tell the phase space source to ignore parts of its position information::
+You can optionally tell the phase space source to scale its position information::
 
-    b:So/MySource/PhaseSpaceIgnoreXPos = "True" # start all particles at Component’s X axis
-    b:So/MySource/PhaseSpaceIgnoreYPos = "True" # start all particles at Component’s Y axis
-    b:So/MySource/PhaseSpaceIgnoreZPos = "True" # start all particles at Component’s Z axis
+    u:So/MySource/PhaseSpaceScaleXPosBy = 0.1 # adjust starting point on X axis by factor of 0.1
+    u:So/MySource/PhaseSpaceScaleYPosBy = 0.1 # adjust starting point on Y axis by factor of 0.1
+    u:So/MySource/PhaseSpaceScaleZPosBy = 0.1 # adjust starting point on Z axis by factor of 0.1
+ 
+You can tell the phase space source to ignore parts of its position information by scaling by zero::
+
+    u:So/MySource/PhaseSpaceScaleXPosBy = 0.
+    u:So/MySource/PhaseSpaceScaleYPosBy = 0.
+    u:So/MySource/PhaseSpaceScaleZPosBy = 0.
 
 That coordinate of the particle position then just exactly matches the Component center.
 
