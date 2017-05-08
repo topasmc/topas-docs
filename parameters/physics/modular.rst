@@ -80,6 +80,16 @@ TOPAS Module Name           Geant4 Class Name
 g4h-chargeexchange          G4ChargeExchangePhysics
 g4decay                     G4DecayPhysics
 g4em-dna                    G4EmDNAPhysics
+g4em-dna_opt1               G4EmDNAPhysics_option1
+g4em-dna_opt2               G4EmDNAPhysics_option2
+g4em-dna_opt3               G4EmDNAPhysics_option3
+g4em-dna_opt4               G4EmDNAPhysics_option4
+g4em-dna_opt5               G4EmDNAPhysics_option5
+g4em-dna-chemistry          G4EmDNAChemistry
+g4em-standard_GS            G4EmStandardPhysicsGS;
+g4em-standard_SS            G4EmStandardPhysicsSS
+g4em-standard_WVI			G4EmStandardPhysicsWVI
+g4h-phy_QGSP_BIC_AllHP      G4HadronPhysicsQGSP_BIC_AllHP
 g4em-extra                  G4EmExtraPhysics
 g4em-livermore              G4EmLivermorePhysics
 g4em-polarized              G4EmLivermorePolarizedPhysics
@@ -90,7 +100,6 @@ g4em-standard_opt1          G4EMStandardPhysics_option1
 g4em-standard_opt2          G4EMStandardPhysics_option2
 g4em-standard_opt3          G4EMStandardPhysics_option3
 g4em-standard_opt4          G4EMStandardPhysics_option4
-g4em-standard_WVI           G4EmStandardPhysicsWVI
 g4h-elastic_D               G4HadronDElasticPhysics
 g4h-elastic                 G4HadronElasticPhysics
 g4h-elastic_HP              G4HadronElasticPhysicsHP
