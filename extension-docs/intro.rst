@@ -11,10 +11,12 @@ These new classes can be:
 * Scorers
 * Filters
 * Physics Lists
+* Physics Modules
 * Particle Sources
 * Magnetic Field Descriptions
 * ElectroMagnetic Field Descriptions
 * Imaging To Material Converters
+* Outcome Models
 
 And you can also provide classes that will be called to do whatever you want at:
 
