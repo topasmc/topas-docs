@@ -9,4 +9,3 @@ Optical
 	Surfaces
 	WavelengthShifter
 	OpticalPhotonCount
-	
