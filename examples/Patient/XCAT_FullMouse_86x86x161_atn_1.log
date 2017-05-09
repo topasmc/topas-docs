@@ -1,0 +1,333 @@
+
+*** DYNAMIC MOUSE PHANTOM, version 1.2 in C***
+--------------------------------------------
+-----------------------------------------------
+ PARAMETERS: (dynamic mouse version 1.0 in C)
+-----------------------------------------------
+act_phan_each = 1  (activity phantom each frame saved)
+act_phan_ave = 0 (time-average activity phantom NOT saved)
+atten_phan_each = 1  (atten. coeff. phantom each frame saved)
+atten_phan_ave = 0 (time-average atten. coeff. phantom NOT saved)
+Respiration motion included only
+Total Output Period =       0.3700 secs
+Total Output Frames = 1
+ ==>Time Per Frame =       0.3700 secs
+
+beating heart period =       0.1710 secs
+Heart Start Phase Index =  0.4000
+Respiratory period =       0.3700 secs
+Resp. Start Phase Index =  0.4000
+maximum diaphragm motion =       1.0000
+heart scale =       1.0000
+hrt_lv_length =       0.0000
+hrt_lv_radius =       0.0000
+ intv (cm) =  0.0000
+ pixel width =  0.0500 (cm/pixel)
+ slice width =  0.0500 (cm/pixel)
+ voxel volume (pixel_width^2*slice_width) =  0.000125 ml
+ array_size = 86
+ subvoxel_index = 1 => 1 subvoxels per voxel
+ starting slice number    = 50
+ ending slice number      = 210
+ 
+Main orientation of heart:
+    zy_rotation (beta)=    0.00 (deg)
+    xz_rotation ( phi)=    0.00 (deg)
+    yx_rotation ( psi)=    0.00 (deg)
+ 
+Translation of heart:
+    X translation     =    0.00  (cm)
+    Y translation     =    0.00  (cm)
+    Z translation     =    0.00  (cm)
+ 
+activity_unit = 0 (no scaling of activity values)
+ 
+radionuclide energy (keV)=       1.0000
+ 
+-----------------------------------------------
+done checking,  general parameters O.K.
+-----------------------------------------------
+Calculating bones with a water fraction of 0.500000
+Linear Attenuation Coefficients (1/cm):
+   Air		   =    0.
+   Body (water)   =    4076.5862
+   Muscle         =    3905.0308
+   Adipose (fat)  =    2299.6509
+   Lung           =    1150.6932
+   Spine Bone     =    4514.3169
+   Rib Bone       =    5667.2656
+   Blood          =    4034.0911
+   Heart          =    3913.0913
+   Kidney         =    3930.7639
+   Liver          =    3949.4199
+   Lymph          =    4081.1792
+   Pancreas       =    3800.0771
+   Spleen         =    4013.8821
+   Intestine      =    3903.2239
+   Skull          =    4951.7319
+   Cartilage      =    4161.2588
+   Brain          =    3844.4966
+
+Linear Attenuation Coefficients (1/pixel):
+   Air		   =     0.
+   Body (water)   =     203.8293
+   Muscle         =     195.2515
+   Adipose (fat)  =     114.9825
+   Lung           =      57.5347
+   Spine Bone     =     225.7159
+   Rib Bone       =     283.3633
+   Blood          =     201.7046
+   Heart          =     195.6546
+   Kidney         =     196.5382
+   Liver          =     197.4710
+   Lymph          =     204.0590
+   Pancreas       =     190.0039
+   Spleen         =     200.6941
+   Intestine      =     195.1612
+   Skull          =     247.5866
+   Cartilage      =     208.0629
+   Brain          =     192.2248
+
+---------------------------------------------------
+
+Activity Ratios
+-----------------------------------------------------------------
+myoLV_act = 75.000000
+myoRV_act = 75.000000
+myoLA_act = 75.000000
+myoRA_act = 75.000000
+bldplLV_act = 2.000000
+bldplRV_act = 2.000000
+bldplLA_act = 2.000000
+bldplRA_act = 2.000000
+Body             = 2.000000
+Liver            = 75.000000
+Lung             = 4.000000
+Trachea          = 2.000000
+Stomach Wall     = 2.000000
+Stomach Contents = 2.000000
+Kidney           = 75.000000
+Pancreas         = 2.000000
+Spleen           = 75.000000
+Small Intestine  = 2.000000
+Small Int. (air) = 2.000000
+Large Intestine  = 2.000000
+Large Int. (air) = 2.000000
+Bladder          = 2.000000
+Vas deferens     = 2.000000
+Testes           = 2.000000
+Wet Spine Bone   = 6.000000
+Wet Rib Bone     = 5.000000
+Skull            = 2.000000
+
+brain_activity (backgrnd)     = 2.000000
+cerebral_cortex_activity      = 2.000000
+cerebellum_activity           = 2.000000
+corpus_callosum_activity      = 2.000000
+brainstem_activity            = 2.000000
+striatum_activity             = 2.000000
+thal_activity                 = 2.000000
+hippo_activity                = 2.000000
+hypothalamus_activity         = 2.000000
+amygdala_activity             = 2.000000
+lateral_septal_nuclei_activity   = 2.000000
+anterior_commissure_activity     = 2.000000
+anterior_pretectal_nucleus_activity  = 2.000000
+periaqueductal_gray_activity         = 2.000000
+aqueduct_activity             = 2.000000
+cerebral_peduncle_activity    = 2.000000
+cochlear_nuclei_activity      = 2.000000
+deep_mesencephalic_nuclei_activity   = 2.000000
+fimbria_activity              = 2.000000
+fornix_activity               = 2.000000
+globus_pallidus_activity      = 2.000000
+inferior_colliculus_activity  = 2.000000
+internal_capsule_activity     = 2.000000
+interpeduncular_nucleus_activity     = 2.000000
+lateral_dorsal_nucleus_of_thalamus_activity  = 2.000000
+lateral_geniculate_activity   = 2.000000
+lateral_lemniscus_activity    = 2.000000
+medial_geniculate_activity    = 2.000000
+nucleus_accumbens_activity    = 2.000000
+olfactory_areas_activity      = 2.000000
+optic_tract_activity          = 2.000000
+pontine_gray_activity         = 2.000000
+spinal_trigeminal_tract_activity     = 2.000000
+substantia_nigra_activity     = 2.000000
+superior_colliculus_activity  = 2.000000
+pineal_gland_activity         = 2.000000
+ventral_thalamic_nuclei_activity     = 2.000000
+ventricular_system_activity   = 2.000000
+thyroid              = 2.000000
+-----------------------------------------------------------------
+
+-----------------Phantom Dimensions------------------
+Total Body
+  Height              107.2054 mm
+Head
+  Short axis (AP)      14.9154 mm
+  Long axis (LAT)      16.2936 mm
+  Circumference        48.8249 mm
+Chest
+  Short axis (AP)      24.6672 mm
+  Long axis (LAT)      24.3990 mm
+Abdomen
+  Short axis (AP)      23.4671 mm
+  Long axis (LAT)      26.9806 mm
+-----------------------------------------------------
+Upper Arms
+  Short axis (AP)      10.7335 mm
+  Long axis (LAT)       6.1191 mm
+  Circumference        27.6623 mm
+-----------------------------------------------------
+Upper Legs
+  Short axis (AP)       8.0016 mm
+  Long axis (LAT)       7.8413 mm
+  Circumference        25.1480 mm
+-----------------------------------------------------
+----------------Heart Orientation Angles-------------
+  YX_rotation -16.967896
+  XZ_rotation -35.963470
+  ZY_rotation -131.541687
+-----------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+CREATING FRAME #1 ...
+
+Time =   0.000 seconds
+Current heart phase index =   0.400 (lv fully contracted, i.e. end_systole)
+Current resp phase index  =   0.400 (inhaling:  88% inhaled)
+RESPIRATION PARAMETERS ------------------------
+diaphragm motion    =   -0.96 mm
+delta AP diameter =    0.67
+
+
+ORGAN VOLUMES: 
+Total (everything)         =     32.784668 ml
+Total skeleton      =      1.225377 ml
+  Rib Bone (all bones except skull, backbone, sacrum) =       0.588500 ml
+  Spine (backbone and sacrum) =       0.359125 ml
+  Skull =       0.277753 ml
+lung tree     =      0.193500 ml
+marrow         =      1.130375 ml
+intestinal air =      1.653246 ml
+small intestine =      1.118248 ml
+large intestine =      0.324498 ml
+liver =      2.358586 ml
+skin =      0.000000 ml
+rlung         =      0.390245 ml
+llung         =      0.267378 ml
+gall_bladder         =      0.022250 ml
+lkidney         =      0.196377 ml
+rkidney         =      0.229629 ml
+pancreas         =      0.446990 ml
+stomach         =      0.085374 ml
+stomach_contents         =      0.571481 ml
+spleen         =      0.147625 ml
+r_thyroid         =      0.007875 ml
+l_thyroid         =      0.009750 ml
+whole_brain         =      0.007125 ml
+cerebral_cortex         =      0.076874 ml
+cerebral_cortex         =      0.118999 ml
+cerebellum         =      0.067625 ml
+corpus_callosum         =      0.013625 ml
+brainstem         =      0.075749 ml
+thalamus         =      0.007000 ml
+striatum         =      0.014625 ml
+striatum         =      0.014500 ml
+hypothalamus         =      0.010375 ml
+hippocampus         =      0.035875 ml
+amygdala         =      0.011625 ml
+amygdala         =      0.010375 ml
+lateral_septal_nuclei         =      0.003875 ml
+anterior_commissure         =      0.000250 ml
+anterior_commissure         =      0.000125 ml
+anterior_commissure         =      0.001750 ml
+anterior_pretectal_nucleus         =      0.000750 ml
+anterior_pretectal_nucleus         =      0.001250 ml
+periaqueductal_gray         =      0.003250 ml
+aqueduct         =      0.000875 ml
+cerebral_peduncle         =      0.001000 ml
+cerebral_peduncle         =      0.000875 ml
+cochlear_nuclei         =      0.001750 ml
+cochlear_nuclei         =      0.001375 ml
+deep_mesencephalic_nuclei         =      0.003000 ml
+deep_mesencephalic_nuclei         =      0.002875 ml
+fimbria         =      0.001625 ml
+fornix         =      0.000875 ml
+fornix         =      0.000500 ml
+fornix         =      0.002750 ml
+globus_pallidus         =      0.002500 ml
+globus_pallidus         =      0.001500 ml
+inferior_colliculus         =      0.009250 ml
+internal_capsule         =      0.003625 ml
+internal_capsule         =      0.003500 ml
+interpeduncular_nucleus         =      0.001125 ml
+lateral_dorsal_nucleus_of_thalamus         =      0.001000 ml
+lateral_dorsal_nucleus_of_thalamus         =      0.001000 ml
+lateral_geniculate         =      0.001125 ml
+lateral_geniculate         =      0.001125 ml
+lateral_lemniscus         =      0.001875 ml
+lateral_lemniscus         =      0.001625 ml
+medial_geniculate         =      0.001625 ml
+medial_geniculate         =      0.001375 ml
+nucleus_accumbens         =      0.005375 ml
+nucleus_accumbens         =      0.005625 ml
+olfactory_areas         =      0.016750 ml
+olfactory_areas         =      0.031250 ml
+optic_tract         =      0.002000 ml
+optic_tract         =      0.002750 ml
+pontine_gray         =      0.004125 ml
+spinal_trigeminal_tract         =      0.002625 ml
+spinal_trigeminal_tract         =      0.003000 ml
+substantia_nigra         =      0.003250 ml
+substantia_nigra         =      0.003000 ml
+superior_colliculus         =      0.019000 ml
+pineal_gland         =      0.000750 ml
+ventral_thalamic_nuclei         =      0.005250 ml
+ventral_thalamic_nuclei         =      0.005000 ml
+ventricular_system         =      0.005625 ml
+ventricular_system         =      0.001750 ml
+ventricular_system         =      0.000750 ml
+ventricular_system         =      0.000375 ml
+ventricular_system         =      0.004875 ml
+ventricular_system         =      0.000625 ml
+ventricular_system         =      0.000250 ml
+ventricular_system         =      0.000250 ml
+ventricular_system         =      0.001000 ml
+ventricular_system         =      0.005125 ml
+bladder         =      0.085999 ml
+r_testicle         =      0.096499 ml
+l_testicle         =      0.079874 ml
+r_vass_def         =      0.015875 ml
+l_vass_def         =      0.019125 ml
+r_vessicular_gland1         =      0.077499 ml
+r_vessicular_gland2         =      0.024250 ml
+l_vessicular_gland1         =      0.052500 ml
+l_vessicular_gland2         =      0.047250 ml
+Brain      =      0.655747 ml
+Water      =     20.794371 ml
+Blood (aorta, pul veins, pul arts, sup./inf. vena cava, heart chambers)    =      0.315249 ml
+---------------------------------------- 
+---------------------------------------- 
+
+Volume of LV myocardium =     0.077374 ml
+Volume of RV myocardium =     0.012250 ml
+Volume of LA myocardium =     0.000500 ml
+Volume of RA myocardium =     0.002500 ml
+Volume of LV chamber    =     0.027000 ml
+Volume of RV chamber    =     0.070125 ml
+Volume of LA chamber    =     0.020625 ml
+Volume of RA chamber    =     0.031250 ml
+----------------------------------------
+Volume of TOTAL HEART (including pericardium)   =     0.250606 ml
+
+Maximum activity per voxel =      75.000000
+Total activity = 2266299.000000
+
+---------------------------------------- 
+---------------------------------------- 
+
+Saving activity phantom in file : FullMouse_86x86x161_act_1
+Saving attenuation coefficient phantom in file : FullMouse_86x86x161_atn_1
+-------------------------------------------------

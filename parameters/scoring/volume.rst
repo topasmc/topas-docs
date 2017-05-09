@@ -15,6 +15,7 @@ EnergyDeposit       sum of step lengths divided by volume
 Fluence             sum of step lengths times energy divided by volume
 EnergyFluence       counting method described below
 Charge              counting method described below
+OpticalPhotonCount  counting optical photons
 EffectiveCharge
 StepCount
 ProtonLET           various methods described below

@@ -7,7 +7,7 @@ TOPAS currently supports the following Patient Component types:
 Geometry Component              Type
 ==============================  ========================
 :ref:`geometry_patient_dicom`   TsDicomPatient
-:ref:`geometry_patient_xio`     TsXioPatient
+:ref:`geometry_patient_imagecube`     TsImageCube (handles XCAT, XiO and more)
 ==============================  ========================
 
 It is also necessary to define how to convert the imaging data to material data, following a :ref:`imaging_material_conversion` scheme.
@@ -19,7 +19,7 @@ It is also necessary to define how to convert the imaging data to material data,
 Common Parameters
 ~~~~~~~~~~~~~~~~~
 
-Many of the parameters for Patient Components are common to both TsDicomPatient and TsXioPatient. These are described here.
+Many of the parameters for Patient Components are common to both TsDicomPatient and TsImageCube. These are described here.
 
 To perform Monte Carlo simulation, TOPAS needs to map each voxel of the patient image to a material, density and, for useful graphics, a color.
 You specify how to do this by telling TOPAS which :ref:`imaging_material_conversion` to use.
@@ -31,12 +31,6 @@ To dump your file's raw imaging values to the console::
 Set any parent you like, but it is often convenient to place patient into a group component which can then be rotated to represent couch setup::
 
     s:Ge/Patient/Parent = "PatientGroup"
-
-.. todo:: Remove need for ``Ge/Patient/Material`` parameter
-
-.. warning::
-
-    We will eventually get rid of the ``Ge/Patient/Material`` parameter, but for now, you need to provide one, though it doesn’t really matter what value it has. The actual voxel materials will come from the :ref:`imaging_material_conversion`.
 
 Even though a large number of materials are defined in your HU conversion file, TOPAS will only create those materials that are actually used in your CT image.
 In the 4DCT case, if any image introduces new materials that were not in the first image, Geant4 will be unable to proceed (it cannot load new materials after physics has initialized). TOPAS will exit with a warning message advising you to set the parameter::
@@ -73,12 +67,7 @@ The following will result in a display that shows 27 pixels comprising the bound
 
 Another option allows you to specify the maximum number of voxels to show. If the total number of voxels is greater than this limit, TOPAS will just draw the overall DICOM outline::
 
-    i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 10000
-
-By default, OpenGL graphics switches its fast "Stored" mode to its more memory efficient "Immediate" mode when the graphics scene gets very complicated. When this switch occurs, the current version of Geant4 has a bug such that part of the image is lost. To prevent this from impacting DICOM images, you can set a threshold at which Geant4 will use Immediate mode from the start::
-
-    i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 10000 # Above this limit, switch OpenGL Graphics to Immediate mode
-
+    i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000
 
 
 .. _geometry_patient_dicom:
@@ -130,16 +119,85 @@ To make TOPAS color the voxels by structure::
 
     b:Ge/Patient/FakeStructures = "True"
 
+TOPAS can automatically set DicomOrigin parameters to help with patient positioning.
+
+If you define a set of DicomOrigin parameters for your patient::
+
+    dc:Ge/Patient/DicomOriginX = 0.0 mm
+    dc:Ge/Patient/DicomOriginY = 0.0 mm
+    dc:Ge/Patient/DicomOriginZ = 0.0 mm
+    
+then when you read in a TsDicomPatient, TOPAS will update these parameters on the fly to provide the origin of the DICOM coordinate system specified in the TOPAS coordinate system.
+
+You can combine this information with other information you may have about your isocenter to get your patient properly positioned.
+For example, if you just wanted to center your patient in its parent component, such as PatientGroup, you would do::
+
+    s:Ge/Patient/Type     = "TsDicomPatient"
+    s:Ge/Patient/Parent   = "PatientGroup"
+    d:Ge/Patient/TransX   = 0.0 mm
+    d:Ge/Patient/TransY   = 0.0 mm
+    d:Ge/Patient/TransZ   = 0.0 mm
+
+If you also had isocenter information from at RT-Ion plan in DICOM coordinates::
+
+    d:Rt/plan/IsoCenterX = 0.0      mm
+    d:Rt/plan/IsoCenterY = -99.9904 mm
+    d:Rt/plan/IsoCenterZ = -14.0    mm
+
+you could adjust the patient to isocenter by doing::
+
+    d:Ge/Patient/TransX = Ge/Patient/DicomOriginX - Rt/plan/IsoCenterX mm
+    d:Ge/Patient/TransY = Ge/Patient/DicomOriginY - Rt/plan/IsoCenterY mm
+    d:Ge/Patient/TransZ = Ge/Patient/DicomOriginZ - Rt/plan/IsoCenterZ mm
+
+See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features. 
+
+TOPAS Scoring can use information from your DICOM dataset so that scored results can be more easily compared to those from treatment planning systems.
+
+Some metadata tags (Study Instance UID, Frame of Reference UID) are copied from input DICOM (TsDicomPatient) to output DICOM (the scorer), which is important for data provenance:
+
+-	The metadata source can be specified by the new parameter: ReferencedDicomComponent.  This is helpful when scoring on a TsBox.
+-	Otherwise, the metadata is copied from the scorer’s Component (if it is a TsDicomPatient)
+-	Otherwise, the metadata is generated by TOPAS
+
+Other metadata tags (SOP Instance UID, Series Instance UID, Series Description, Manufacturer, Manufacturer’s Model Name, Dates and Times) are now set appropriately.
+
+It is also possible to set a custom Series Description using the SeriesDescription parameter::
+
+    s:Sc/MyScorer/SeriesDescription =
+
+TOPAS can automatically create a Scoring Grid that exactly matches a provided RTDOSE file in your DICOM dataset.
+This makes it easier to compare TOPAS results to Treatment Planning System results.
+
+Tell TOPAS which RTDOSE file to use by providing a "CloneRTDoseGridFrom" parameter, such as::
+
+    s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/RTDOSE.dcm"
+
+TOPAS will then automatically create a scoring volume in a parallel world to overlay your grid,
+and will name this component with the same name as your patient, plus "/RTDoseGrid".
+You can then score on this component just like on any other component::
+
+    s:Sc/Dose/Component = "Patient/RTDoseGrid"
+
+See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features. 
 
 
-.. _geometry_patient_xio:
+.. _geometry_patient_imagecube:
 
-Patient in XiO Format
-~~~~~~~~~~~~~~~~~~~~~
+Patient in ImageCube Format (handles XCAT, XiO and more)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The XiO patient is a specific implementation of a patient geometry. It requires a binary file containing a list of Hounsfield units for each voxel of a patient in "short little endian" format.
+We refer to a patient input file as an "Image Cube" if it is a simple binary file that contains one value for each voxel.
+These values may be Housefield units or any other sort of imaging information that you have. Elsewhere you will tell TOPAS how to convert a given value from this file into a specfic material for that voxel.
 
-See the :ref:`example_dicom` example of how to use TsXiOPatient.
+- For the case of an XCAT phantom, the binary file will contains, for each voxel, an activation or attenuation value as a float
+- For the case of an XiO patient, the binary file will contain, for each voxel, a Hounsfield value as a short
+- For other cases, you can provide a binary file that contains, for each voxel, any float, int or short
+
+ (and there may be an additional file, an XCAT log, that provides metadata)
+
+See the :ref:`example_xcat` example of how to read an XCAT file.
+See the :ref:`example_dicom` example of how to read an XiO file.
 
 Specify file directory and file name::
 
@@ -157,27 +215,38 @@ You must position as you would for any TOPAS component::
     d:Ge/Patient/TransY = 3.3 mm
     d:Ge/Patient/TransZ = 4.2 mm
 
-XiO Format does not contain voxel number and size information. You must specify it as follows.
+TOPAS then needs some metadata: specifically it needs to know:
 
-Number and size of voxels in X and Y::
+- how many voxels there are in each dimension
+- how large the voxels are in each dimension
+- what data type is involved (float, int or short)
+- how to convert the given value to a material
 
-    i:Ge/Patient/NumberOfVoxelsX = 25
-    i:Ge/Patient/NumberOfVoxelsY = 25
-    d:Ge/Patient/VoxelSizeX = 2.0 mm
-    d:Ge/Patient/VoxelSizeY = 2.0 mm
+For XCAT phantoms, all of this metadata can come from an XCAT log file::
 
-Number and size of Voxels in Z are vectors rather than single values since XiO file may have multiple slice thickness sections.
+    s:Ge/Patient/MetaDataFile = "XCAT_FullMouse_86x86x161_atn_1.log"
 
-If there is only one slice thickness in your image, just specify one element::
+If you had some other form of Image Cube (not XCAT), or you don't want to read this information from an XCAT log file,
+you can provide this meta data as TOPAS parameters::
 
-    iv:Ge/Patient/NumberOfVoxelsZ = 1 10
-    dv:Ge/Patient/VoxelSizeZ = 1 2.5 mm
+    s:Ge/Patient/DataType  = “FLOAT” # “SHORT”, “INT” or “FLOAT"
+    i:Ge/Patient/NumberOfVoxelsX  = 86
+    i:Ge/Patient/NumberOfVoxelsY  = 86
+    i:Ge/Patient/NumberOfVoxelsZ = 161
+    d:Ge/Patient/VoxelSizeX       = .5 mm
+    d:Ge/Patient/VoxelSizeY       = .5 mm
+    d:Ge/Patient/VoxelSizeZ       = .5 mm
 
-If there are multiple slice thicknesses in your image, specify number and thickness of voxels in each section. For example, a 30 slice image that has 10 slices of 2.5 mm and then 20 slices of 1.25 mm::
+If there are multiple slice thicknesses in your image, use vectors to specify number and thickness of voxels in each section. For example, a 30 slice image that has 10 slices of 2.5 mm and then 20 slices of 1.25 mm::
 
     iv:Ge/Patient/NumberOfVoxelsZ = 2 10 20
     dv:Ge/Patient/VoxelSizeZ = 2 2.5 1.25 mm
 
+If you are using XCAT without providing metadata from an XCAT log file, you should also provide parameters to tell TOPAS what material to use for a given value found in the XCAT binary file, such as::
+
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Air    =   0.
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Muscle = 195.2515
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Lung   =  57.5347
 
 
 .. _imaging_material_conversion:
@@ -187,7 +256,31 @@ Imaging to Material Conversion
 
 You are free to write your own converter, including approaches that use alternative imaging modalities (e.g. MRI, pCT, ultrasound), or that use more than one image (e.g. Dual Energy CT, Multi-Energy CT). To write your own converter, see :ref:`extension_imaging_material_conversion`.
 
-TOPAS provides one built-in converter, that follows the most common method used in proton therapy (`PubMed <http://www.ncbi.nlm.nih.gov/pubmed/10701515>`_):
+XCAT
+~~~~
+
+TOPAS provides two built-in converters for XCAT and other Image Cube data::
+
+    s:Ge/Patient/ImagingToMaterialConverter = "XCAT_Attenuation" # "XCAT_Activity"
+
+These converters assume the value found in the binary file for a given voxel is either an Attenuation or an Activity.
+They then convert the given value to a material name from either the metadata file (the XCAT log file) or from explicit parameters you have specified such as::
+
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Air    =   0.
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Muscle = 195.2515
+    u:Ge/Patient/AttenuationForMaterial_XCAT_Lung   =  57.5347
+
+The actual material name that TOPAS will expect you to define somewhere is the part after "AttenuationForMaterial_", such as XCAT_Air and XCAT_Muscle. You need to make sure that these material names have been defined somewhere in your TOPAS parameters. In our XCAT example we defined these in the file XCAT_Materials.txt. Two notes on this example XCAT_Materials file:
+
+- We faked the definitions, defining all the materials as different colors of what is really just water. You could edit this file to provide the real elemental compositions of the various materials.
+- We only defined the materials used in the attenuation part of the XCAT log file. If you instead want to use the materials used in the activity part of the XCAT log file, you’ll need to define some additional materials (the activity part of that XCAT log file had more materials than the attenuation part).
+
+
+
+Schneider
+~~~~~~~~~
+
+TOPAS provides a built-in converter that follows the most common method used in proton therapy for DICOM or XiO patient data (`PubMed <http://www.ncbi.nlm.nih.gov/pubmed/10701515>`_):
 
 * Schneider W, Bortfeld T and Schlegel W. Correlation between CT numbers and tissue parameters needed for Monte Carlo simulations of clinical dose distributions. Phys. Med. Biol. 2000; 45(2):459-78.
 

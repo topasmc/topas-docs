@@ -215,4 +215,8 @@ With this set, simulation will not be run, but instead the scored values will be
 
 The file to read back in must contain the appropriate scored quantity, the appropriate binning, and sufficient information to provide the new ``Report`` options. So, for example, if you previously scored ``"Sum"`` and ``"Histories"``, you could now report ``"Sum"``, ``"Mean"``, ``"Histories"``, and a DVH.
 
+This option is particularly handy if you have been using Outcome Modeling.
+You can run additional Outcome Model calculations, or repeat previous calculations with different model parameters,
+without having to repeat the full simulation.
+
 This option can also be used to read in binary output and write out csv, or vice versa.

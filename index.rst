@@ -20,7 +20,7 @@ Welcome to the TOPAS documentation!
 
 .. toctree::
     :maxdepth: 1
-    :caption: Parameter File Documentation
+    :caption: Control Everything from Parameter Files
 
     parameters/intro/index
     parameters/defaults
@@ -33,6 +33,7 @@ Welcome to the TOPAS documentation!
     parameters/graphics
     parameters/time
     parameters/variance/index
+    parameters/outcome
 
 
 .. toctree::
@@ -50,17 +51,18 @@ Welcome to the TOPAS documentation!
     examples-docs/VarianceReduction/index
     examples-docs/Optical/index
     examples-docs/Outcome/index
-
+    
 
 .. toctree::
     :maxdepth: 1
-    :caption: Extension Documentation
+    :caption: How to Extend TOPAS
 
     extension-docs/intro
     extension-docs/geometry
     extension-docs/source
     extension-docs/physics
     extension-docs/scoring
+    extension-docs/outcome
     extension-docs/filtering
     extension-docs/field
     extension-docs/imaging

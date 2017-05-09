@@ -18,6 +18,8 @@ The ``Parent``, ``Trans`` and ``Rot`` parameters place a component within its "m
 
 Each ``Type`` has its own set of additional required parameters, discussed elsewhere for each specific component type.
 
+The World can be either a TsBox, TsSphere or TsCylinder.
+
 The component name can include the forward slash character ``/``, and this is used in many examples to give some hints about component hierarchy , such as::
 
     s:Ge/VBox2/Dipole/Parent = "Nozzle"

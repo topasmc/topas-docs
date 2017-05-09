@@ -8,3 +8,4 @@ Graphics
 	SolidSphere
 	TestGraphics
 	TwoProjections
+	ColorTest

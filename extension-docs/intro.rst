@@ -9,8 +9,9 @@ These new classes can be:
 
 * Geometry Components
 * Scorers
+* Outcome Models
 * Filters
-* Physics Lists
+* Physics Lists and Physics Modules
 * Particle Sources
 * Magnetic Field Descriptions
 * ElectroMagnetic Field Descriptions

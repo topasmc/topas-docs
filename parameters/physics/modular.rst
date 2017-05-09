@@ -15,6 +15,7 @@ If you want to run with no physics, but only the transportation process (useful 
     sv:Ph/Default/Modules = 1 "Transportation_Only"
 
 Below is a :ref:`physics_available_modules` with the corresponding Geant4 class names.
+Users who are advanced experts in Geant4 physics can also write their own Geant4 physics modules.
 
 The remaining options for the ``"Geant4_Modular"`` physics type are::
 
@@ -28,8 +29,8 @@ The remaining options for the ``"Geant4_Modular"`` physics type are::
     d:Ph/Default/CutForTriton = 0.05 mm # overrides CutForAllParticles for Triton
     d:Ph/Default/EMRangeMin = 100. eV # minimum for EM tables
     d:Ph/Default/EMRangeMax = 300. MeV # maximum for EM tables
-    i:Ph/Default/dEdXBins = 220 # number of bins for dEdX tables
-    i:Ph/Default/LambdaBins = 220 # number of Lambda bins
+    i:Ph/Default/EMBins = 77 # number of bins for EM tables
+    i:Ph/Default/EMBinsPerDecade = 7 # number of bins per decade for EM tables
     b:Ph/Default/Fluorescence = "False" # Set to true to turn on Fluorescence
     b:Ph/Default/Auger = "False" # Set to true to turn on Auger
     b:Ph/Default/PIXE = "False" # Set to true to turn on PIXE
@@ -74,12 +75,25 @@ Cuts do not affect all processes, but only those listed below:
 List of Available Modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Users who are advanced experts in Geant4 physics can also write their own Geant4 physics modules
+and plug these into TOPAS through the Extensions Interface.
+
 ==========================  ===========================
 TOPAS Module Name           Geant4 Class Name
 ==========================  ===========================
 g4h-chargeexchange          G4ChargeExchangePhysics
 g4decay                     G4DecayPhysics
 g4em-dna                    G4EmDNAPhysics
+g4em-dna_opt1               G4EmDNAPhysics_option1
+g4em-dna_opt2               G4EmDNAPhysics_option2
+g4em-dna_opt3               G4EmDNAPhysics_option3
+g4em-dna_opt4               G4EmDNAPhysics_option4
+g4em-dna_opt5               G4EmDNAPhysics_option5
+g4em-dna-chemistry          G4EmDNAChemistry
+g4em-standard_GS            G4EmStandardPhysicsGS;
+g4em-standard_SS            G4EmStandardPhysicsSS
+g4em-standard_WVI			G4EmStandardPhysicsWVI
+g4h-phy_QGSP_BIC_AllHP      G4HadronPhysicsQGSP_BIC_AllHP
 g4em-extra                  G4EmExtraPhysics
 g4em-livermore              G4EmLivermorePhysics
 g4em-polarized              G4EmLivermorePolarizedPhysics
@@ -90,7 +104,6 @@ g4em-standard_opt1          G4EMStandardPhysics_option1
 g4em-standard_opt2          G4EMStandardPhysics_option2
 g4em-standard_opt3          G4EMStandardPhysics_option3
 g4em-standard_opt4          G4EMStandardPhysics_option4
-g4em-standard_WVI           G4EmStandardPhysicsWVI
 g4h-elastic_D               G4HadronDElasticPhysics
 g4h-elastic                 G4HadronElasticPhysics
 g4h-elastic_HP              G4HadronElasticPhysicsHP
