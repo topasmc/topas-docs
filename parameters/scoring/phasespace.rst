@@ -51,7 +51,7 @@ For the ASCII and Binary formats, you can turn on additional columns of phase sp
     b:Sc/MyScorer/IncludeTrackID = "True"
     b:Sc/MyScorer/IncludeParentID = "True" # Track ID of parent particle
     b:Sc/MyScorer/IncludeCharge = "True"
-    b:So/MyPhaseSpaceSource/IncludeCreatorProcessName = "True"
+    b:Sc/MyScorer/IncludeCreatorProcess = "True"
     b:Sc/MyScorer/IncludeVertexInfo = "True" # Initial KE, Position and Momentum
     b:Sc/MyScorer/IncludeSeed = "True"
 
