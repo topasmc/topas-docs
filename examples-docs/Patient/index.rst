@@ -1,5 +1,5 @@
 Patient
-=====
+=======
 
 .. toctree::
 	:maxdepth: 1

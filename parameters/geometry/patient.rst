@@ -3,12 +3,12 @@ Patient Components
 
 TOPAS currently supports the following Patient Component types:
 
-==============================  ========================
-Geometry Component              Type
-==============================  ========================
-:ref:`geometry_patient_dicom`   TsDicomPatient
-:ref:`geometry_patient_imagecube`     TsImageCube (handles XCAT, XiO and more)
-==============================  ========================
+=================================  ========================
+Geometry Component                 Type
+=================================  ========================
+:ref:`geometry_patient_dicom`      TsDicomPatient
+:ref:`geometry_patient_imagecube`  TsImageCube (handles XCAT, XiO and more)
+=================================  ========================
 
 It is also necessary to define how to convert the imaging data to material data, following a :ref:`imaging_material_conversion` scheme.
 
@@ -126,7 +126,7 @@ If you define a set of DicomOrigin parameters for your patient::
     dc:Ge/Patient/DicomOriginX = 0.0 mm
     dc:Ge/Patient/DicomOriginY = 0.0 mm
     dc:Ge/Patient/DicomOriginZ = 0.0 mm
-    
+
 then when you read in a TsDicomPatient, TOPAS will update these parameters on the fly to provide the origin of the DICOM coordinate system specified in the TOPAS coordinate system.
 
 You can combine this information with other information you may have about your isocenter to get your patient properly positioned.
@@ -150,7 +150,7 @@ you could adjust the patient to isocenter by doing::
     d:Ge/Patient/TransY = Ge/Patient/DicomOriginY - Rt/plan/IsoCenterY mm
     d:Ge/Patient/TransZ = Ge/Patient/DicomOriginZ - Rt/plan/IsoCenterZ mm
 
-See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features. 
+See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features.
 
 TOPAS Scoring can use information from your DICOM dataset so that scored results can be more easily compared to those from treatment planning systems.
 
@@ -179,7 +179,7 @@ You can then score on this component just like on any other component::
 
     s:Sc/Dose/Component = "Patient/RTDoseGrid"
 
-See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features. 
+See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these patient-positioning features.
 
 
 .. _geometry_patient_imagecube:

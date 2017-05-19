@@ -1,5 +1,5 @@
 Outcome
-=====
+=======
 
 .. toctree::
 	:maxdepth: 1
