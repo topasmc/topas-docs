@@ -1,2 +1,0 @@
-Hounsfield Unit Conversion Helper
-=================================

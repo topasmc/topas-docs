@@ -65,6 +65,8 @@ For Charge and EffectiveCharge:
 
 
 
+.. _scoring_let:
+
 ProtonLET Scorer
 ~~~~~~~~~~~~~~~~
 

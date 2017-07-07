@@ -51,7 +51,7 @@ Welcome to the TOPAS documentation!
     examples-docs/VarianceReduction/index
     examples-docs/Optical/index
     examples-docs/Outcome/index
-    
+
 
 .. toctree::
     :maxdepth: 1
@@ -67,3 +67,10 @@ Welcome to the TOPAS documentation!
     extension-docs/field
     extension-docs/imaging
     extension-docs/user_hook
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Provided Extensions
+
+    extensions/rbe
