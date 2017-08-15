@@ -401,14 +401,14 @@ Colors
     iv:Gr/Color/Purple =    3 127   0 127
 
     iv:Gr/Color/Lightblue = 3 175 255 255
-    iv:Gr/Color/Skybluee =  3 175 124 255
-    iv:Gr/Color/Magentae =  3 255   0 255
-    iv:Gr/Color/Violete =   3 224   0 255
-    iv:Gr/Color/Pinke =     3 255   0 222
-    iv:Gr/Color/Indigoe =   3   0   0 190
-    iv:Gr/Color/Grase =     3   0 239   0
-    iv:Gr/Color/Orangee =   3 241 224   0
-    iv:Gr/Color/Browne =    3 225 126  66
+    iv:Gr/Color/Skyblue =   3 175 124 255
+    iv:Gr/Color/Magenta =   3 255   0 255
+    iv:Gr/Color/Violet =    3 224   0 255
+    iv:Gr/Color/Pink =      3 255   0 222
+    iv:Gr/Color/Indigo =    3   0   0 190
+    iv:Gr/Color/Grass =     3   0 239   0
+    iv:Gr/Color/Orange =    3 241 224   0
+    iv:Gr/Color/Brown =     3 225 126  66
     
     iv:Gr/Color/grey020 =   3  20  20  20
     iv:Gr/Color/grey040 =   3  40  40  40
