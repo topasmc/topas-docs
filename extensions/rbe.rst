@@ -21,7 +21,7 @@ Non-LET based scorers
 9.	Repair Misrepair Fixation (RMF) [Carlson2008]_; [Frese2012]_
 10.	Tabulated RBE tables (e.g. using the PIDE data base) [Friedrich2012]_
 
-The basic concept behind the RBE scorers is, to calculate RBE in a routine called after the particle tracking is done from the dose/LET or other quantities scored during the simulation. The function ``CombineSubScorers`` calculates one of the following quantities:
+The basic concept behind the RBE scorers is to first calculate separately the dose and LET or other relevant quantities, and then, after the simulation is complete, to call the function ``CombineSubScorers`` to combine these separate quantities on a voxel by voxel bases to calculate one of the following quantities:
 
 - RBE  (“rbe”)
 - Alpha  (“alpha”)
