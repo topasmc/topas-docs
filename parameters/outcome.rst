@@ -1,3 +1,5 @@
+.. _parameters_outcome:
+
 Outcome Modeling
 ================
 

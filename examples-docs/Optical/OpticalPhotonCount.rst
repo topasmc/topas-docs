@@ -1,3 +1,5 @@
+.. _example_optical_photoncount:
+
 OpticalPhotonCount.txt
 ----------------------
 

@@ -1,0 +1,259 @@
+3.1 Series
+----------
+
+The main features introduced by the 3.1 series were:
+
+* improved support for DICOM input and output
+* added XCAT phantom geometry component
+* outcome modeling (e.g. TCP and NTCP)
+
+We also updated the underlying Geant4 version to Geant4.10.3.p01.
+
+
+
+3.1.2 (2017-10-07)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* time varying magnetic or electric field when using more than one thread
+    If you ran with more than one thread, that is ``Ts/NumberOfThreads`` not set to its default value of 1, only the first thread was correctly updating fields over time. In other threads, the field never changed from its initial setting. This bug did not affect any other time features, only magnetic and electric fields.
+
+*Fixed:* DICOM RT structure sets
+    Structure contours were incorrectly read from at least some structure set files. This affected both scoring (filtering by structure) and graphics (coloring by structure). Also, graphics was erratic if any structures that were being filtered on were not also being colored by.
+
+*Added:* Protection against inconsistent DICOM FrameOfReferenceUID
+    In a properly constructed DICOM data set, all files from a given study (slices, structures and dose files) will have a consistent FrameOfReferenceUID. We now test on these UIDs and give an informative error message if they do not match. You can override this test if you need to by specifying::
+
+        b:Ge/Patient/IgnoreInconsistentFrameOfReferenceUID = "True"
+
+*Improved:* ReferencedDicomPatient now infered from component ancestry
+    If a scorer does not have the ``ReferencedDicomPatient`` parameter set, it will automatically be infered from the ancestry of the scorer's Component.
+
+*Added:* Protection against attempts to run with more than one thread in random time mode
+    Attempting to make a simulation with ``Tf/RandomizeTimeDistribution = "True"`` faster by using multiple threads actually makes the simulation slower. Geant4 multithreading only saves time if a run has many histories to share among the threads. Our random mode has only one history per run, randomizing the time for the next run. With only one history per run, the overhead from extra, never used threads just slows things down. We now give an informative error message if you try to run in this inefficient way.
+
+*Added:* Protection against accidentally using Sc/*/Type when you should use Sc/*/Quantity
+    We have seen cases where users thought the parameter to select a scorer was ``Sc/*/Type`` (it is actually ``Sc/*/Quantity``). We should have made it ``Sc/*/Type`` since that would be consistent with other parameter names such as ``Ge/*/Type`` and ``Gr/*/Type``, but we can't change it now without breaking existing parameter files (something we only allow ourselves to do for a Major release). We now give an informative error message if we see any cases of ``Ge/*/Type``.
+
+*Improved:* Protection against two chains of parameter files affecting the same component, scorer, etc
+    TOPAS includes tests to make sure that no two parameter chains try to affect the same component, scorer, etc. This is to insure that you can safely take parameter chains from some other work group and incorporate them into your own simulation without unexpected effects. This protects against, for example, two groups each defining different components that happen to have the same name. The test was overly tight, making the following situation needlessly forbidden
+    One chain has: ``Ge/MainCylider/...``
+    Other chain has: ``Ge/MainCylider/ThingInsideIt/...``
+    The code considered these both to be the same component, ``"MainCylinder"``.
+    But really they are two different components, ``"MainCylinder"`` and ``"MainCylinder/ThingInsideIt"``.
+
+
+
+3.1.1 (2017-06-02)
+~~~~~~~~~~~~~~~~~~
+
+*Improved:* Reduce sensitivity of test for stuck tracks
+    In Topas 3.1, we introduced a test to catch a rare problem in which Geant4 stops propagating any tracks but still runs to completion, resulting in misleading results. The test looks for cases where a history has only a single track, and that track has only two steps and that track does not exit the world. In the case where Geant4 got stuck, we saw that once the job was in trouble all histories had this signature. A user has since shown us a case where this test was triggered when the simulation was not actually stuck (thanks Eelco Lens for sharing your example with us - it involved a particle with nearly zero energy emitted by a phase space source).
+
+    With this patch, we make the test less sensitive and make it controllable by two new parameters. Only quits now if 10 such histories are found in a row. The number of such histories allowed in a row can be adjusted by::
+
+        i:Ts/NumberOfAnomalousHistoriesToAllowInARow = 10
+
+    And the test can be disabled completely by setting::
+
+        b:Ts/QuitIfManyHistoriesSeemAnomalous = "False"
+
+
+
+3.1.0 (2017-05-09)
+~~~~~~~~~~~~~~~~~~
+
+*Improved:* Updated Geant4 to latest version 10.03.p01
+    Includes new physics modules such as g4em-standard_SS and new EM options: EMBins and EMBinsPerDecade.
+
+*Improved:* Extensions Interface
+    You can now add your own physics modules for use in modular physics lists. You can have more than one extension directory: semicolon-separated paths in cmake argument ``TOPAS_EXTENSIONS_DIR``. TOPAS now knows to ignore any hidden directories within your extensions directories (for example .DS_Store directories). Added support for gcc compiler versions later than 5.0.
+
+*Improved:* DICOM tags of output files set appropriately
+    Some metadata tags (Study Instance UID, Frame of Reference UID) are copied from input DICOM (TsDicomPatient) to output DICOM (the scorer), which is important for data provenance:
+
+        * The metadata source can be specified by the new parameter: ``ReferencedDicomPatient``.  This is helpful when scoring on a TsBox.
+        * Otherwise, the metadata is copied from the scorer’s Component (if it is a TsDicomPatient)
+        * Otherwise, the metadata is generated by TOPAS
+
+    Other metadata tags (SOP Instance UID, Series Instance UID, Series Description, Manufacturer, Manufacturer’s Model Name, Dates and Times) are now set appropriately. It is also possible to set a custom Series Description using the new ``SeriesDescription`` parameter.
+
+*Added:* Automatically create a Scoring Grid that exactly matches a provided RTDOSE file in your DICOM dataset
+    This makes it easier to compare TOPAS results to Treatment Planning System results. Tell TOPAS which RTDOSE file to use by providing a ``"CloneRTDoseGridFrom"`` parameter, such as::
+
+        s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/RTDOSE.dcm"
+
+    TOPAS will then automatically create a scoring volume in a parallel world to overlay your grid, and will name this component with the same name as your patient, plus ``"/RTDoseGrid"``. You can then score on this component just like on any other component::
+
+        s:Sc/Dose/Component = "Patient/RTDoseGrid"
+
+*Added:* Automatically set DicomOrigin parameters to help with patient positioning
+    If you define a set of DicomOrigin parameters for your patient::
+
+        dc:Ge/Patient/DicomOriginX = 0.0 mm
+        dc:Ge/Patient/DicomOriginY = 0.0 mm
+        dc:Ge/Patient/DicomOriginZ = 0.0 mm
+
+    then when you read in a TsDicomPatient, TOPAS will update these parameters on the fly to provide the origin of the DICOM coordinate system specified in the TOPAS coordinate system. You can combine this information with other information you may have about your isocenter to get your patient properly positioned.
+
+    For example, if you just wanted to center your patient in its parent component, such as PatientGroup, you would do::
+
+        s:Ge/Patient/Type     = "TsDicomPatient"
+        s:Ge/Patient/Parent   = "PatientGroup"
+        d:Ge/Patient/TransX   = 0.0 mm
+        d:Ge/Patient/TransY   = 0.0 mm
+        d:Ge/Patient/TransZ   = 0.0 mm
+
+    If you also had isocenter information from at RT-Ion plan in DICOM coordinates::
+
+        d:Rt/plan/IsoCenterX = 0.0      mm
+        d:Rt/plan/IsoCenterY = -99.9904 mm
+        d:Rt/plan/IsoCenterZ = -14.0    mm
+
+    you could adjust the patient to isocenter by doing::
+
+        d:Ge/Patient/TransX = Ge/Patient/DicomOriginX - Rt/plan/IsoCenterX mm
+        d:Ge/Patient/TransY = Ge/Patient/DicomOriginY - Rt/plan/IsoCenterY mm
+        d:Ge/Patient/TransZ = Ge/Patient/DicomOriginZ - Rt/plan/IsoCenterZ mm
+
+    A new example shows how to use the new features: :ref:`example_dicom_viewabdomen_rtdose`.
+
+*Added:* Read XCAT Phantoms and any other user-defined simple cube of imaging values
+    This new component type, TsImageCube, replaces and extends our previous TsXiOPatient. Data can be either short, int or float values. Conversion of imaging values to materials can use XCAT_Attenuation or XCAT_Activity values from an XCAT log file, or some other conversion class you provide yourself through our extensions mechanism, or can take values that you set directly in TOPAS Parameters. See :ref:`documentation <geometry_patient_imagecube>` and example in :ref:`example_xcat`.
+
+*Fixed:* Adjusted the names of some of the materials automatically created during HU conversion
+    Where the HU number was negative, automatically generated material names were such as::
+
+        Ma/PatientTissueFromHU-295
+
+    But we've said that the minus sign is a reserved character, not allowed in parameter names. So we now create material names such as::
+
+        Ma/PatientTissueFromHUNegative295
+
+    Should have no impact on users as these material names are both created and used automatically.
+
+*Improved:* Other DICOM improvements
+    * Updated DICOM toolkit gdcm to latest version 2.6.8
+    * DICOM scoring output is now stored in RTDOSE files (previously stored in CT files)
+    * Corrected the voxel size in DICOM output
+    * Automated scaling so that ``DICOMOutputScaleFactor`` parameter is no longer needed
+    * Added support for negative values in DICOM output (e.g. charge scoring)
+    * Gave DICOM output a TOPAS-specific root UID: 1.2.826.0.1.3680043.9.5871.
+    * Fixed coordinate systems of DICOM input and output, which also affected RTStruct filtering
+    * Added check that where DICOM output is specified, the scoring component is appropriate (e.g. TsBox or TsPatient)
+    * Renamed examples/DICOM to examples/Patient. The change was made since we support not just DICOM but also XiO, XCAT and arbitrary image cubes.
+    * TsDicomPatient no longer requires overall material parameter
+
+*Added:* Outcome modeling
+    TOPAS can now directly perform Outcome Modeling such as calculating Tumor Control Probabilities and Normal Tissue Complication Probabilities. Expanding on TOPAS previous capability to directly produce a Dose Volume Histogram, TOPAS can now directly apply outcome models to the DVH. We provide a variety of standard outcome models from the literature, for each of which you can adjust various parameters. See :ref:`documentation <parameters_outcome>` and :ref:`examples <example_outcome>`.
+
+    We also allow you to read back in a previously created DVH to have TOPAS apply new outcome models without having to re-do the Monte Carlo simulation phase of the job.
+
+    You can also supply your own outcome model via the TOPAS extensions interface.
+
+*Added:* New options when reading phasespace files
+    Phase space source can now scale the particle start positions::
+
+        u:So/MyPhaseSpaceSource/PhaseSpaceScaleXPosBy = 0.1
+        u:So/MyPhaseSpaceSource/PhaseSpaceScaleYPosBy = 0.1
+        u:So/MyPhaseSpaceSource/PhaseSpaceScaleZPosBy = 0.1
+
+    To ignore a position, scale to zero, as in::
+
+        u:So/MyPhaseSpaceSource/PhaseSpaceScaleXPosBy = 0.
+
+    The previous way to ignore a position was::
+
+        b:So/MyPhaseSpaceSource/PhaseSpaceIgnoreXPos = "True"
+
+    is still supported, but is deprecated and will be removed at the next major release.
+
+*Added:* Reading Limited Phase Space can now handle files that lack NewHistory flags
+    We found that some files from other vendors that are supposed to have NewHistory flags do not have them, so that TOPAS could not tell which particles were new histories. These files seemed to have the assumption that all photons are new histories. To support this, we added a parameter::
+
+        b:So/MyPhaseSpaceSource/LimitedAssumePhotonIsNewHistory = "True"
+
+*Added:* Phasespace scorer can output creator process
+    Phase space output can now include Creator Process Name::
+
+        b:So/MyPhaseSpaceSource/IncludeCreatorProcessName = "True"
+
+*Improved:* Made PhaseSpace source accept time-varying NumberOfHistoriesInRun
+    This option is only allowed if you have ``MultipleUse = 0``, meaning you intend to explicitly say how many histories to use, rather than running through the entire phase space file 1 or more times.
+
+*Added:* Protection against unreasonable setups of phase space input
+    Do not allow PhaseSpaceMultipleUse is negative.
+
+    Do not allow PhaseSpaceMultipleUse to be controlled by a time feature.
+
+    Do not allow phase space source with empty histories when there are time features since we can't tell where in the time sequence these empty histories are supposed to occur (we will address this with an addition to the TOPAS phase space formats in the next release).
+
+*Improved:* Extension scorers C++ interface
+    When developing extension scorers, the C++ class interface has changed when using sub-scorers. This does not affect the parameter interface. Sub-scorers are now assigned names, which are used for identification in the ``CombineSubScorers()`` method. This also allows sub-scorers to be shared between scorers, which reduces the memory used by a simulation (e.g. multiple RBE scorers can reuse Dose and LET scorers). The new C++ interface is demonstrated in ExtensionExamplesMore/MyScoreProtonLET. See the :ref:`extension_scoring` for details.
+
+*Improved:* Improved handling of empty runs in scoring
+    When scoring has ``OutputAfterRun``, but a particular run has zero histories (as may happen during beam current modulation), TOPAS was not producing any output file for the run. This was occurring because Geant4 itself does not actually increment its RunID for such empty runs. However this is not what users want when they have ``OutputAfterRun``. TOPAS now maintains its own RunID that includes empty runs. Empty runs will now have output files just as non-empty runs will.
+
+*Improved:* Other scoring improvements
+    * Added example of OpticalPhotonCount scorer: :ref:`example_optical_photoncount`
+    * Added a more complex example of a user-written Ntuple Scorer
+    * Fixed bug in ``SplitByTimeFeature`` with step function of a double parameter. Reported by Weiguang Yao in user forum.
+    * Added Number of Entries to Ntuple headers
+    * Protected against attempts to score on a Group Component
+    * Added track vertex 4-momentum to information in TsTrackInfo. Users can access this information when writing custom scorers or filters.
+
+*Improved:* Default color definitions to match HTML 4.01 standard
+    Some of the color values we had were strange leftovers from some very very old code. We now use the standard values from the HTML 4.01 standard as described `here <https://en.wikipedia.org/wiki/Web_colors>`_. As with any parameters, you are free to redefine these in your own parameter files.
+
+*Added:* Support for transparency
+    Where color parameters used to take just three integer values (0 to 255) for the three color components, they now allow an optional fourth integer value (0 to 255) for the alpha value. So, for example::
+
+        iv:Gr/Color/TransparentYellow = 4 255 255 0 50
+
+    If the alpha value is omitted, the color is fully opaque.
+
+*Improved:* Increased default value of Gr/SwitchOGLtoOGLIifVoxelCountExceeds
+    This parameter controls when TOPAS switches from using the "Stored" mode of OpenGL to using the "Immediate" mode. Stored allows for faster re-rendering when the view changes. Immediate mode does not re-render as quickly, but uses less RAM. Value was increased from 3 million to 70 million voxels.
+
+*Improved:* Other graphics improvements
+    * Made division lines in divided components match color of the overall component. These were previously showing as white no matter what color the component was.
+    * Fixed various issues with having multiple graphics views at same time.
+
+*Improved:* Faster overlap checking
+    Overlap checking previously spent some unnecessary time checking whether the divisions within a divided component (such as the voxels in a TsBox) overlapped each other. Since these voxels are generated automatically by TOPAS, you can trust that they do not overlap. If you really want to turn this overlap checking back on, set::
+
+        b:Ge/CheckInsideEnvelopesForOverlaps = "True"
+
+*Added:* More control over precision of overlap check
+    Geant4's overlap checking works by randomly placing points on the surface of a solid, and then checking whether any of these points are inside another solid that is not a mother. You can now control the number of such points::
+
+        i:Ge/CheckForOverlapsResolution = 1000
+
+    And you can check the tolerance for overlap::
+
+        d:Ge/CheckForOverlapsTolerance = 0. mm
+
+    You can also set these in a more granular fashion, per Component (overrides the above parameters for this particular component)::
+
+        i:Ge/MyComponent/CheckForOverlapsResolution = 1000
+        d:Ge/MyComponent/CheckForOverlapsTolerance = 0. mm
+
+*Improved:* Other geometry improvements
+    * Added ability for World to be a Sphere or a Cylinder. World was previously always a Box.
+    * Removed limitation on number of parallel worlds. Previously had limit of 8 parallel worlds. There is no longer any limit (but you should avoid using more than necessary as they may slow performance).
+
+*Improved:* Trap anomaly in which Geant4 appears to run through entire job, but no particles propagate
+    This is a rare anomaly. We do not yet understand what causes it, but we have seen it start happening in otherwise reasonable setups after some random large number of histories. Once the anomaly sets in, the job would appear to run successfully to completion, but no particles actually propagate, and thus nothing is scored. We have found that a signature of this condition is that the entire history has only one step and the endpoint of that step is not on the world volume. We now watch all histories for this signature, and exit the job if this this signature is detected. The workaround we have for now is to then try the same job with a different random seed.
+
+*Improved:* Other miscellaneous improvements
+    * Added checks that integer parameters are within bounds. Covers input values up to 9223372036854775807.
+    * Added protection against missing parameter type letter before first colon. Catches mistake such as::
+
+        :Ge/MyBox/Type = "TsBox"
+
+    * Improved various error messages about inappropriate parameter formatting
+    * When dumping parameters to file per run, file names now have underscore after "Run". This makes parameter dump file naming consistent with scoring file names.
+    * Fixed bug that made some particle sources give too many histories when there were multiple sources in multithreaded mode
+    * Improved error trapping for case of invalid particle name set for variance reduction
+    * Corrected units in information printout from propeller
+    * All MaxStepSize in components that have parallel scoring copies. TOPAS was previously trying to apply the MaxStepSize to the parallel copy. This is not appropriate and was causing Geant4 to fail.
+    * ``NumberOfHistoriesInRandomJob`` is now a required parameter when running in random mode. This fixes a bug where users of ``RandomizeTimeDistribution`` saw the Demo source produce histories even if it was not wanted.

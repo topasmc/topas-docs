@@ -93,4 +93,5 @@ And later there is a method that combines the scorer and the subscorer on a bin-
 
     G4int MyScoreProtonLET::CombineSubScorers()
     ...
+    TsVBinnedScorer* denomScorer = dynamic_cast<TsVBinnedScorer*>(GetSubScorer("Denominator"));
 	fFirstMomentMap[index] = fFirstMomentMap[index] / denomScorer->fFirstMomentMap[index];

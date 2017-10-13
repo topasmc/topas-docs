@@ -20,6 +20,7 @@ A detailed list of changes introduced by each TOPAS version can be found below:
 .. toctree::
     :maxdepth: 2
 
+    3_1
     3_0
     2_0
     1_0

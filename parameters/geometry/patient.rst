@@ -256,7 +256,7 @@ They then convert the given value to a material name from either the metadata fi
     u:Ge/Patient/AttenuationForMaterial_XCAT_Muscle = 195.2515
     u:Ge/Patient/AttenuationForMaterial_XCAT_Lung   =  57.5347
 
-The actual material name that TOPAS will expect you to define somewhere is the part after "AttenuationForMaterial_", such as XCAT_Air and XCAT_Muscle. You need to make sure that these material names have been defined somewhere in your TOPAS parameters. In our XCAT example we defined these in the file XCAT_Materials.txt. Two notes on this example XCAT_Materials file:
+The actual material name that TOPAS will expect you to define somewhere is the part after ``"AttenuationForMaterial_"``, such as XCAT_Air and XCAT_Muscle. You need to make sure that these material names have been defined somewhere in your TOPAS parameters. In our XCAT example we defined these in the file XCAT_Materials.txt. Two notes on this example XCAT_Materials file:
 
 - We faked the definitions, defining all the materials as different colors of what is really just water. You could edit this file to provide the real elemental compositions of the various materials.
 - We only defined the materials used in the attenuation part of the XCAT log file. If you instead want to use the materials used in the activity part of the XCAT log file, you’ll need to define some additional materials (the activity part of that XCAT log file had more materials than the attenuation part).
