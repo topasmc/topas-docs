@@ -96,7 +96,7 @@ We keep the parameters that control random mode (``NumberOfHistoriesInRandomJob`
 
 To implement **beam current modulation**, give your source a time-dependent ``ProbabilityOfUsingAGivenRandomTime``, as in::
 
-    d:So/MySource/ProbabilityOfUsingAGivenRandomTime = Tf/MyBCMTimeFeature/Value
+    u:So/MySource/ProbabilityOfUsingAGivenRandomTime = Tf/MyBCMTimeFeature/Value
 
 
 
