@@ -1,7 +1,2 @@
-Installation
-============
-
-The following README.txt is also bundled with the TOPAS software downloaded from `topasmc.org <http://topasmc.org>`_.
-
-.. highlight:: plain
-.. literalinclude:: README.txt
+Installation instructions for the latest TOPAS version are provided at the top of the Code Repository page of the TOPAS web site.
+This page is accessible only to licensed TOPAS users.
