@@ -3,14 +3,14 @@
 Generic Components
 ------------------
 
-You can create a Geometry Component for any of the standard solids defined in the geometry section of the `Geant4 Application Developers Guide <http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html#sect.Geom.Solids>`_.
+You can create a Geometry Component for any of the standard solids defined in the geometry section of the `Geant4 Application Developers Guide <http://geant4-userdoc.web.cern.ch/geant4-userdoc/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geometry.html>`_.
 
 The :ref:`example_basic_shapesall` example demonstrates how to build each of the solids.
 
 .. image:: generic.png
 
 Below we list the parameters for each Geant4 solid.
-Further details about the parameters, along with helpful diagrams, can be found in the `Geant4 Application Developers Guide <http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html#sect.Geom.Solids>`_.
+Further details about the parameters, along with helpful diagrams, can be found in the `Geant4 Application Developers Guide <http://geant4-userdoc.web.cern.ch/geant4-userdoc/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomSolids.html>`_.
 For most solids, sizes are specified in Half Lengths, denoted with an HL, such as HLX.
 For a few solids, sizes are specified in full Lengths, denoted with just L, such as LX.
 
