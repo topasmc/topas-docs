@@ -10,6 +10,7 @@ We provide four different types of particle sources, each with many options:
 * :ref:`Beam Parameterization <source_beam>`
 * :ref:`Emittance Parameterization <source_emittance>`
 * :ref:`Isotropic <source_isotropic>`
+* :ref:`Volumetric <source_volumetric>`
 * :ref:`Phase Space <source_phasespace>`
 
 And you may also write your own entirely new particle source (see :ref:`extension_source`).
