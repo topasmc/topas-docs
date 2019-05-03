@@ -368,11 +368,11 @@ Materials
     d:Ma/Kapton/Density = 1.420 g/cm3
     s:Ma/Kapton/DefaultColor = "purple"
 
-    sv:Ma/Water_75/Components = 2 "Hydrogen" "Oxygen"
-    uv:Ma/Water_75/Fractions = 2 0.111894 0.888106
-    d:Ma/Water_75/Density = 1.0 g/cm3
-    d:Ma/Water_75/MeanExcitationEnergy = 75.0 eV
-    s:Ma/Water_75/DefaultColor = "blue"
+    sv:Ma/Water_75eV/Components = 2 "Hydrogen" "Oxygen"
+    uv:Ma/Water_75eV/Fractions = 2 0.111894 0.888106
+    d:Ma/Water_75eV/Density = 1.0 g/cm3
+    d:Ma/Water_75eV/MeanExcitationEnergy = 75.0 eV
+    s:Ma/Water_75eV/DefaultColor = "blue"
 
     sv:Ma/Titanium/Components = 1 "Titanium"
     uv:Ma/Titanium/Fractions = 1 1.0
