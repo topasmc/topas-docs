@@ -8,10 +8,11 @@ TOPAS_ wraps and extends the `Geant4 Simulation Toolkit`_. The following table l
 =============== ========================
 TOPAS version   Geant4 version
 =============== ========================
-3.1.0           10.3.p01
-3.0.0           10.2.p01
-2.0.0           10.1.p02
-1.0.0           9.6.4
+3.2.0           10.05.p01
+3.1.0           10.03.p01
+3.0.0           10.02.p01
+2.0.0           10.01.p02
+1.0.0           9.06.4
 =============== ========================
 
 
@@ -20,6 +21,7 @@ A detailed list of changes introduced by each TOPAS version can be found below:
 .. toctree::
     :maxdepth: 2
 
+    3_2
     3_1
     3_0
     2_0
