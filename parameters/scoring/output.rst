@@ -20,6 +20,14 @@ Note that this can be more than just a file name - it can include a relative or 
     s:Sc/MyScorer/OutputFile = "../myOutputFileName" # one directory above current directory
     s:Sc/MyScorer/OutputFile = "~/SomeSubdirectory/myOutputFileName"
 
+ d
+If you are outputting to ROOT or XML, the above only affects the name
+of a particular histograph within your overall ROOT or XML file.
+But the name of the overall ROOT or XML file is set by a different parameter:
+
+    s:Sc/RootFileName = "topas" # name for ROOT output file    s:Sc/XmlFileName = "topas" # name for XML output file
+
+
 To specify output file type for all except the :ref:`scoring_phasespace`::
 
     s:Sc/MyScorer/OutputType = "csv" # "csv", "binary", "Root", "Xml" or "DICOM"

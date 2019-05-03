@@ -1,7 +1,7 @@
 Introduction
 ------------
 
-Please note that Variance Reduction (VR) is highly dependent on your specific geometry. Approach these features with caution and test all variance reduced setups against an equivalent setup without variance reduction.
+Variance reduction (VR) techniques in TOPAS can be combined to create a very sophisticated setup. However, please note that VR is highly dependent on your specific geometry. Approach these features with caution and test all variance reduced setups against an equivalent setup without variance reduction.
 
 You should also review the Geant4 document that describes which cases are problematic `here <https://geant4.web.cern.ch/geant4/collaboration/working_groups/geometry/biasing/BiasScoreUseCases.html>`_.
 

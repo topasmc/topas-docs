@@ -12,16 +12,17 @@ Overall program control
 
 ::
 
-    i:Ts/NumberOfThreads = 1 # Number of CPU threads that work will be distributed to
-    b:Ts/BufferThreadOutput = "False" # Causes console output to be show one thread at a time
     i:Ts/Seed = 1 # starting random seed
-    i:Ts/MaxStepNumber = 100000 # limit on number of steps before a track is killed
+    i:Ts/MaxStepNumber = 1000000 # limit on number of steps before a track is killed
     i:Ts/MaxInterruptedHistories = 10 # limit on how many histories can throw rare Geant4 errors
     b:Ts/DumpParameters = "False" # Set true to dump full set of parameters to html file TopasParameterDump_Run0.html
     b:Ts/DumpNonDefaultParameters = "False" # Like above but omits defaults
     b:Ts/ListUnusedParameters = "False" # Set true to list unused parameters on the console
     i:Ts/ShowHistoryCountAtInterval = 1 # How often to print history count to the console
+    b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgresses = "False" # Counts by 1, then by 10, then by 100, etc.
+    i:Ts/MaxShowHistoryCountInterval = "2147483647" # Stops increasing count interval after this limit
     b:Ts/ShowHistoryCountOnSingleLine = "False" # Set true to make history count reuse same line of console
+    b:Ts/IncludeTimeInHistoryCount = "False" # Adds time stamp to history count
     i:Ts/RunIDPadding = 4 # pad Run ID numbers to this many places in file names
     b:Ts/PauseBeforeInit = "False" # Pause for Geant4 commands before initialization
     b:Ts/PauseBeforeSequence = "False" # Pause for Geant4 commands before run sequence
@@ -30,7 +31,13 @@ Overall program control
     i:Ts/EventVerbosity = 0 # Set to larger integer to see details of event. Maximum is 5
     i:Ts/TrackingVerbosity = 0 # Set to larger integer to see details of tracking
     i:Ts/SequenceVerbosity = 0 # Set to larger integer to see details of TOPAS run sequence
-    b:Ts/RestoreResultsFromFile = "False"
+    b:Ts/QuitIfManyHistoriesSeemAnomalous = "True" # Quits if Geant4 warnings issued on too many histories
+    i:Ts/NumberOfAnomalousHistoriesToAllowInARow = 10000 # Limit for above
+    b:Ts/RestoreResultsFromFile = "False" # Re-reads previous results to allow new output format or outcome modeling
+    i:Ts/NumberOfThreads = 1 # Number of CPU threads to which work will be distributed
+    b:Ts/BufferThreadOutput = "False" # Causes console output to be show one thread at a time
+    b:Ts/TreatExcitedIonsAsGroundState = "False" # Allows you to read back in excited ions in a phase space file
+    s:Ts/G4DataDirectory = "" # Specify path to Geant4 Data files (instead of having to set environment variable)
 
 
 
@@ -39,7 +46,7 @@ Overall timeline control
 
 ::
 
-    b:Tf/RandomizeTimeDistribution = "False"
+    b:Tf/RandomizeTimeDistribution = "False" # Causes each history to be at a different time sampled from timeline
     d:Tf/TimelineStart = 0. s
     d:Tf/TimelineEnd = Tf/TimelineStart s
     i:Tf/NumberOfSequentialTimes = 1
@@ -53,7 +60,7 @@ Optional checks on correctness of geometry
 ::
 
     b:Ge/CheckForOverlaps = "True"
-    b:Ge/CheckInsideEnvelopesForOverlaps = "False"
+    b:Ge/CheckInsideEnvelopesForOverlaps = "False" # Speeds up checking by assuming inner parts of components are OK
     i:Ge/CheckForOverlapsResolution = 1000
     d:Ge/CheckForOverlapsTolerance = 0. mm
     b:Ge/QuitIfOverlapDetected = "True"
@@ -121,6 +128,7 @@ Demo Particle Source
     d:So/Demo/BeamAngularSpreadX = 0.0032 rad
     d:So/Demo/BeamAngularSpreadY = 0.0032 rad
     i:So/Demo/NumberOfHistoriesInRun = 0
+    i:So/Demo/NumberOfHistoriesInRandomJob = 0
 
 
 
@@ -145,6 +153,7 @@ Scoring
 
 ::
 
+    b:Sc/AddUnitEvenIfItIsOne = "False" # If unit is 1, rather than, say, Gy, default is to leave out unit in header.
     s:Sc/RootFileName = "topas" # name for root output files
     s:Sc/XmlFileName = "topas" # name for xml output files
 

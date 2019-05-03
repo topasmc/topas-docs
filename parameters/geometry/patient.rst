@@ -52,6 +52,8 @@ There is generally little value in showing all pixels of the image at once. Each
 
     iv:Gr/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
 
+Number of slices begins at number 1.
+
 Similar slicing is allowed in X and Y.
 Three special values are also allowed::
 
@@ -64,6 +66,11 @@ The following will result in a display that shows 27 pixels comprising the bound
     iv:Gr/Patient/ShowSpecificSlicesX = 1 -2 # means only show center slice
     iv:Gr/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
     iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
+
+You have the Option to Load a Truncated DICOM, XiO or ImageCube.Parameters to restrict which voxels of a patient image are loaded are:    i:Ge/*/RestrictVoxelsXMin    i:Ge/*/RestrictVoxelsYMin    i:Ge/*/RestrictVoxelsZMin    i:Ge/*/RestrictVoxelsXMax    i:Ge/*/RestrictVoxelsYMax    i:Ge/*/RestrictVoxelsZMaxThe previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
+
+The RestrictVoxels... parameters have a much more significant effect: they cause TOPAS to not even load some parts of the patient.This can save a lot of time and allow you to test things on DICOM or other image formats quickly,as you only have to load whatever part of the DICOM you actually want to use.Beware though: if you use this option, you will change your results.It is not just a graphics thing. It actually avoids creating the given voxels at all.
+Though our main motivation for this work was to get a way to do more rapid development(testing on real patients without the slowdown of loading everything), there may be a value also forour brachytherapy users. They may only need to load the part of the image that is near the brachy source.
 
 Another option allows you to specify the maximum number of voxels to show. If the total number of voxels is greater than this limit, TOPAS will just draw the overall DICOM outline::
 
@@ -191,6 +198,12 @@ Specify file directory and file name::
     s:Ge/Patient/InputFile = "ctvolume.dat" # match exact case
 
 To specify 4DCT, you can have ``InputDirectory`` or ``InputFile`` change under control of a :ref:`Time Feature <time_feature>`.
+
+For 4D CT, a parameter lets you decide whether the material maps for the
+various CT phases will be cached (saving time if they are reused again)
+or not (saving memory):
+
+    b:Ge/CacheMaterialMapForEachTimeSlice defaults to True
 
 You must position as you would for any TOPAS component::
 

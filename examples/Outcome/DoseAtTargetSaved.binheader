@@ -1,9 +1,0 @@
-# TOPAS Version: 1.2_expanded
-# Parameter File: TestOutcomeModel.txt
-# Results for scorer Target
-# Scored in component: WaterPhantom/Target
-# X in 20 bins of 0.1 cm
-# Y in 20 bins of 0.1 cm
-# Z in 44 bins of 0.1 cm
-# DoseToMedium ( Gy ) : Sum   
-# Binary file: DoseAtTarget.bin

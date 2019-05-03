@@ -9,5 +9,5 @@ Nozzle
 	ScanningStationaryTarget
 	ScanningTargetMovingHorizontal
 	ScanningTargetMovingInDepth
-	ScatteringNozzle
 	ScatteringNozzle_run
+	ScatteringNozzle

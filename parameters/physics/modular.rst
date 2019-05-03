@@ -14,6 +14,11 @@ If you want to run with no physics, but only the transportation process (useful 
 
     sv:Ph/Default/Modules = 1 "Transportation_Only"
 
+If you want to simplify physics so that only basic electromagnetic physics is done (useful for
+making basic geometry tests run faster), specify just the one module:
+
+    sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
+
 Below is a :ref:`physics_available_modules` with the corresponding Geant4 class names.
 Users who are advanced experts in Geant4 physics can also write their own Geant4 physics modules.
 
@@ -28,11 +33,13 @@ The remaining options for the ``"Geant4_Modular"`` physics type are::
     d:Ph/Default/CutForDeuteron = 0.05 mm # overrides CutForAllParticles for Deuteron
     d:Ph/Default/CutForTriton = 0.05 mm # overrides CutForAllParticles for Triton
     d:Ph/Default/EMRangeMin = 100. eV # minimum for EM tables
-    d:Ph/Default/EMRangeMax = 300. MeV # maximum for EM tables
+    d:Ph/Default/EMRangeMax = 500. MeV # maximum for EM tables
     i:Ph/Default/EMBins = 77 # number of bins for EM tables
     i:Ph/Default/EMBinsPerDecade = 7 # number of bins per decade for EM tables
     b:Ph/Default/Fluorescence = "False" # Set to true to turn on Fluorescence
     b:Ph/Default/Auger = "False" # Set to true to turn on Auger
+    b:Ph/Default/AugerCascade = "False" # Set to true to turn on AugerCascade
+    b:Ph/Default/DeexcitationIgnoreCut = "False" # Set to true to implement DeexcitationIgnoreCut
     b:Ph/Default/PIXE = "False" # Set to true to turn on PIXE
 
 
@@ -89,10 +96,17 @@ g4em-dna_opt2               G4EmDNAPhysics_option2
 g4em-dna_opt3               G4EmDNAPhysics_option3
 g4em-dna_opt4               G4EmDNAPhysics_option4
 g4em-dna_opt5               G4EmDNAPhysics_option5
+g4em-dna_opt6               G4EmDNAPhysics_option6
+g4em-dna_opt7               G4EmDNAPhysics_option7
+g4em-dna_opt8               G4EmDNAPhysics_option8
+g4em-dna-stationary         G4EmDNAPhysics_stationary
+g4em-dna-stationary_opt2    G4EmDNAPhysics_stationary_option2
+g4em-dna-stationary_opt4    G4EmDNAPhysics_stationary_option4
+g4em-dna-stationary_opt6    G4EmDNAPhysics_stationary_option6
 g4em-dna-chemistry          G4EmDNAChemistry
-g4em-standard_GS            G4EmStandardPhysicsGS;
+g4em-standard_GS            G4EmStandardPhysicsGS
 g4em-standard_SS            G4EmStandardPhysicsSS
-g4em-standard_WVI			G4EmStandardPhysicsWVI
+g4em-standard_WVI	    G4EmStandardPhysicsWVI
 g4h-phy_QGSP_BIC_AllHP      G4HadronPhysicsQGSP_BIC_AllHP
 g4em-extra                  G4EmExtraPhysics
 g4em-livermore              G4EmLivermorePhysics

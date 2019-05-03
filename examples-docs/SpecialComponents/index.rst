@@ -9,16 +9,16 @@ SpecialComponents
 	MultiLeafCollimator
 	MultiLeafCollimator_sequence
 	MultiWire_Chamber
-	Propeller
 	Propeller_ContinuousRotation
 	Propeller_StepRotation
+	Propeller
 	PurgingMagnet_move
 	QuadAndDipoleMagnets
 	QuadInMovingNozzle
 	QuadrupoleMagnet
-	RangeModulator
 	RangeModulator_ConstantBeam
 	RangeModulator_CurrentModulatedBeam
+	RangeModulator
 	RidgeFilter
 	RotatingMagnet
 	UniformElectroMagneticField

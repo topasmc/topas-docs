@@ -31,6 +31,11 @@ You are also free to specify some other binning.
 
 Behind the scenes, TOPAS uses Geant4’s parallel worlds system to support this binning flexibility. When scoring binning is different from the component's natural binning, TOPAS actually scores in a parallel world copy of the component. This is all done automatically.
 
+Because TOPAS is a fully 3D code, letting you design beams to come from any side, bin 0 may be the first bin hit by the beam, but may also be the last bin hit by the beam. So do not be surprised if beam profiles are the opposite of what you might have expected.
+If it is important to you that bin 0 be the first bin hit,
+you may need to change your beam position and direction,
+or rotate your scoring component by 180 degrees.
+
 
 
 .. _scoring_binning_energy:
@@ -38,13 +43,31 @@ Behind the scenes, TOPAS uses Geant4’s parallel worlds system to support this 
 Binning by Energy
 ~~~~~~~~~~~~~~~~~
 
-Any scorer can be binned by incident particle kinetic energy, the energy of the particle or its ancestor when it first hit the scoring component, by including the following::
+Any scorer can be binned by particle energy, by adding the following parameters:
 
     i:Sc/MyScorer/EBins = 10 # defaults to 1, that is, un-binned
     d:Sc/MyScorer/EBinMin = 0. MeV # defaults to zero
     d:Sc/MyScorer/EBinMax = 100. MeV # must be specified if EBins is greater than 1
 
 The output will include three extra bins, one for underflow (energy < ``EBinMin``), one for overflow (energy > ``EBinMax``) and one for the case where there is no incident track (the primary particle was created already inside the scoring component, so it was never incident upon the scoring component).
+
+Note that there are several options for what me mean here by "particle energy."
+
+From our proton therapy dose calculation roots, the energy binning that we do by default is based not on the energy of the final particle at hit deposition time but instead on the incident particle energy.
+This is the energy of the final scored particle, or its ancestor, when that particle or ancestor was first incident on the scoring volume.
+
+However, users who have been trying to use this feature to get a spectrum instead need the particle's energy at the current step.
+
+So we have now have a parameter to control what kind of Energy we use for this binning.
+
+    s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
+    "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
+    "PreStep" is the track's energy at the start of the current step.
+    "DepositedInStep" is the amount of energy deposited in the current step.
+
+An example shows the effect of the three different choices:
+
+    examples/Scoring/EnergyDepositBinnedByEnergy.txt
 
 
 

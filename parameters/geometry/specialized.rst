@@ -12,6 +12,7 @@ Geometry Component          Type
 :ref:`geometry_cad`         TsCAD
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
+:ref:`geometry_applicator`  TsBrachyApplicator
 =========================== ========================
 
 Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
@@ -577,3 +578,62 @@ A typical compensator has the following parameters (see :ref:`example_nozzle_sca
 
 * ``"SubtractionCylinders"`` builds the compensator by subtracting drill hole cylinders from the overall compensator cylinder. This technique gives the most perfect representation of the drilling process, however the added precision is insignificant, while particle navigation time is increased. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.
 * ``"UnionCylinders"`` builds the compensator by first creating a union solid of all the holes, and then subtracting this union solid from the overall compensator cylinder. This technique is similar to ``"SubtractionCylinders"`` but slightly more efficient. Note that if you want to visualize this form of compensator, you should use RayTracer, as this is the only Geant4 visualization drivers that can correctly render boolean operations.
+
+
+
+.. _geometry_applicator:
+
+BrachyApplicator
+~~~~~~~~~~~
+
+A BrachyApplicator is a component that is used to precisely place
+source wires for brachytherapy applications.
+It is the first of what we intend to become a large library of new
+compoents for brachytherapy applications.
+
+The overall shape of the BrachyApplicator is a cylinder with a hemispherical cap on one end.
+There is one hole in the center into which a source wire can be driven,
+plus a configurable number of other holes located radially around this center.
+The component generates additional parameters at run-time to represent
+the x and y translations of these holes relative to the applicator center line.
+These parameters can be used to easily postion the source wire into these holes.
+
+.. image:: Applicator.png
+
+The following example parameters are taken from the new example:
+examples/Patient/Applicator.txt
+This example places the applicator inside of a patient,
+and then uses time features to drive a source wire to various dwell
+positions within this applicator.
+
+The parameters you set are as follows.
+    s:Ge/Applicator/Type = "TsBrachyApplicator"
+    s:Ge/Applicator/Parent = "Patient"
+    b:Ge/Applicator/IsParallel = "True"
+    s:Ge/Applicator/Material = "G4_WATER"
+    d:Ge/Applicator/CylinderLength = 40. mm
+    d:Ge/Applicator/Radius = 12.5 mm
+    i:Ge/Applicator/NumberOfRadialHoles = 6
+    d:Ge/Applicator/HoleOffset = 6 mm # Distance of radial holes from center
+    d:Ge/Applicator/HoleRadius = 1.2 mm
+    s:Ge/Applicator/DrawingStyle = "Solid"
+    s:Ge/Applicator/Color = "transparentgrey"
+    iv:Gr/Color/transparentgrey = 4 255 255 255 90
+
+The following parameters are updated automatically by the applicator component to show true hole centers.
+They need to be defined here, but these initial values are not important.
+They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hole.
+    d:Ge/Applicator/Hole0/TransX = 0. mm
+    d:Ge/Applicator/Hole0/TransY = 0. mm
+    d:Ge/Applicator/Hole1/TransX = 0. mm
+    d:Ge/Applicator/Hole1/TransY = 0. mm
+    d:Ge/Applicator/Hole2/TransX = 0. mm
+    d:Ge/Applicator/Hole2/TransY = 0. mm
+    d:Ge/Applicator/Hole3/TransX = 0. mm
+    d:Ge/Applicator/Hole3/TransY = 0. mm
+    d:Ge/Applicator/Hole4/TransX = 0. mm
+    d:Ge/Applicator/Hole4/TransY = 0. mm
+    d:Ge/Applicator/Hole5/TransX = 0. mm
+    d:Ge/Applicator/Hole5/TransY = 0. mm
+    d:Ge/Applicator/Hole6/TransX = 0. mm
+    d:Ge/Applicator/Hole6/TransY = 0. mm

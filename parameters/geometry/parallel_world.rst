@@ -9,6 +9,10 @@ To assign a component to a parallel world, include the line::
 
     b:Ge/MyComponent/IsParallel = "True"
 
+Due to limitations in the Geant4-DNA chemistry design, parallel worlds
+may not be used if Geant4-DNA chemistry is included in your physics list.
+TOPAS will issue an error message in this situation.
+
 * Parallel world components may be children of other parallel world components.
 * Parallel world components may be children of mass world components.
 * Mass world components may not be children of parallel world components.

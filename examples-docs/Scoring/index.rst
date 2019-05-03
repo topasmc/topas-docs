@@ -11,6 +11,7 @@ Scoring
 	DoseToMediumVsWater
 	DoseVolumeHistogram
 	EnergyAndDose
+	EnergyDepositBinnedByEnergy
 	EnergyDivisions
 	EnergyInBinnedCylinder
 	Filters

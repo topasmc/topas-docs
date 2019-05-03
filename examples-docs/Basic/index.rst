@@ -6,8 +6,10 @@ Basic
 
 	AllParameterForms
 	DividedComponents
+	DNAModelByRegions
 	Emittance_Gaussian
 	Emittance_Twiss
+	EmModelByRegions
 	FlatteningFilter
 	Isotope
 	LayeredMassGeometry
@@ -18,5 +20,5 @@ Basic
 	ShapeTestWithAllParameters
 	ShapeTestWithOnlyRequiredParameters
 	Spectrum
-	TwissPrimary
 	TwoBeams
+	VolumetricSource

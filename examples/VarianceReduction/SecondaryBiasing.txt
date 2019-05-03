@@ -75,17 +75,11 @@ b:Ts/ShowCPUTime = "True"
 
 #Secondary biasing
 b:Vr/UseVarianceReduction = "True"
-b:Vr/ParticleSplit/Active = "True"
-s:Vr/ParticleSplit/Type   = "secondarybiasing"
+b:Vr/BremsstrahlungSplit/Active = "True"
+s:Vr/BremsstrahlungSplit/Type   = "secondarybiasing"
 # The secondary particles produced in this process will
 # be split  100 times if their energies are below of 6 MeV
-sv:Vr/ParTicleSplit/forregion/targetregion/processesNamed   = 1 "eBrem"
-uv:Vr/ParticleSplit/ForRegion/targetregion/SplitNumber      = 1   100.
-dv:Vr/ParticleSplit/ForRegion/targetregion/MaximumEnergies  = 1   6  MeV
-
-# Component that holds the reference frame for
-# Directional split filter
-s:Vr/ParticleSplit/ReferenceComponent = "target"
-dv:Vr/ParticleSplit/ForRegion/targetregion/DirectionalSplitLimits = 1 100 cm
-dv:Vr/ParticleSplit/ForRegion/targetregion/DirectionalSplitRadius = 1 5 cm
+sv:Vr/ParTicleSplit1/forregion/targetregion/processesNamed   = 1 "eBrem"
+uv:Vr/BremsstrahlungSplit/ForRegion/targetregion/SplitNumber      = 1   100.
+dv:Vr/BremsstrahlungSplit/ForRegion/targetregion/MaximumEnergies  = 1   6  MeV
 

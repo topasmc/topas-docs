@@ -98,6 +98,16 @@ Extra options used by OpenGL::
     b:Gr/MyGraphic1/HiddenLineRemovalForGeometry = "False" # Remove hidden lines from wireframe geometries, like Geant4’s /vis/viewer/set/hiddenEdge
     b:Gr/MyGraphic1/HiddenLineRemovalForTrajectories = "False" # Remove hidden trajectories lines from within geometries, like Geant4’s /vis/viewer/set/hiddenMarker
 
+You can tell TOPAs to center the graphics on a given component:
+
+    s:Gr/*/CenterOn = "MyComponent"Topas will then ignore any parameters of the form:    Gr/*/TransX or Gr/*/TransY.
+
+You can scale the image by different amounts in each dimension:    uv:Gr/*/Scale = 3 1. 2. 3.would scale by 1 in X, by 2 in Y and by 3 in Z.
+
+
+Zooming to the Nanometer Scale:With very large Gr/*/Zoom values, as one might use to zoom into the nano scale,floating point errors in the graphics card lead to discontinuous jumps in the image position.This makes it difficult to center or size the view as one wishes.An easy workaround has been understood.If one simply makes the world invisible, then because the initial graphics extent only includes thenanometer scale components, one doesn't need much zoom.This effect and its solution are demonstrated in the example:    examples/Graphics/NanoMeterScaleTest.txt
+
+
 You can set Topas so that for OpenGL views, the view is copied to a file at the end of each run::
 
     b:Gr/MyGraphic1/CopyOpenGLToPDF = "True" # save to PDF

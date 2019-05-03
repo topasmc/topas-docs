@@ -42,16 +42,17 @@ Welcome to the TOPAS documentation!
 
     examples-docs/Basic/index
     examples-docs/Graphics/index
-    examples-docs/Scoring/index
-    examples-docs/PhaseSpace/index
-    examples-docs/TimeFeature/index
-    examples-docs/Patient/index
     examples-docs/Nozzle/index
-    examples-docs/SpecialComponents/index
-    examples-docs/VarianceReduction/index
     examples-docs/Optical/index
     examples-docs/Outcome/index
-
+    examples-docs/Patient/index
+    examples-docs/PhaseSpace/index
+    examples-docs/Scoring/index
+    examples-docs/SpecialComponents/index
+    examples-docs/TimeFeature/index
+    examples-docs/UCSFETF/index
+    examples-docs/VarianceReduction/index
+ 
 
 .. toctree::
     :maxdepth: 1

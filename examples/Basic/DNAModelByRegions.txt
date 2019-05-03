@@ -25,9 +25,8 @@ s:Ge/World/Color    = "blue"
 
 # Start with a physics list
 sv:Ph/Default/Modules = 6 "g4em-penelope" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
-# Set the regions where g4em-penelope is switch to g4-dna (opt1)
-sv:Ph/Default/ActiveG4DNAInRegionsNamed = 1 "target"
-s:Ph/Default/DNAModelName = "opt1" # Default is "opt0"
+# Set the regions where g4em-penelope is switch to g4-dna 
+s:Ph/Default/ForRegion/target/ActiveG4EmModelNamed = "g4em-dna"
 
 # Set a source
 s:So/Example/Type                     = "Beam"

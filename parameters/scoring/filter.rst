@@ -5,6 +5,9 @@ Filtering Scorers
 
 You may add filters to limit what is scored.
 
+You may assign more than one filter to the same scorer.
+When you have more than one filter, they work as an "AND".
+
 You may write your own additional filters (see :ref:`extension_filter`).
 
 Filter by Generation. Accepts either ``"Primary"`` or ``"Secondary"``::
@@ -92,6 +95,13 @@ Filter by Particle’s Origin Volume, Component, or Component and Subcomponents:
     sv:Sc/MyScorer/OnlyIncludeParticlesFromComponentOrSubComponentsOf = 1 "Nozzle"
     sv:Sc/MyScorer/OnlyIncludeParticlesNotFromComponentOrSubComponentsOf = 1 "Nozzle"
 
+If you specify multiple Volume or Component names, this is interpreted as an "OR", not "AND".
+
+You will see that you can specify a single Volume or a Component.
+
+    sv:Sc/OnlyIncludeParticlesFromVolume/OnlyIncludeParticlesFromVolume = 2 "World" "Foil"    sv:Sc/OnlyIncludeParticlesFromComponent/OnlyIncludeParticlesFromComponent = 2 "World" "Foil"If the Component is a simple one, like a box or a sphere, then the component only has a single G4Volume, so the two are functionally identical.But if the Component is a more complicated one, like a Range Modulator Wheel, then there are multiple G4Volumes in the Component, and the latter would allow one to do things like tell just which particles interacted in the Wheel's "stop block". 
+
+
 Filter by Particle or its Ancestor’s Origin Volume, Component, or Component and Subcomponents::
 
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorFromVolume = 1 "Propeller20/Leaf"
@@ -152,6 +162,8 @@ A structure set is an extra file in the DICOM directory that provides informatio
     sv:Sc/MyScorer/OnlyIncludeIfInRTStructure = 2 "R_LUNG" "L_LUNG"
 
 If the structure name includes a space, substitute an underscore in the parameter. So, for example, if the structure name is "R LUNG", you should supply the parameter as "R_LUNG".
+
+The scored value is set to -1 if the given voxel is not in one of the named structures.
 
 For Surface Scorers, you can also filter by whether particle is going ``"In"`` or ``"Out"`` of scoring surface. Omit this filter to allow either option::
 
