@@ -1,7 +1,10 @@
 Proton RBE Scorers
 ==================
 
-TOPAS has included RBE scorers for several RBE models. The implementation follows in principle the methods described in [Polster2015]_.  The models can be separated into two categories, scorers that depend on dose, LET and alpha/beta ratios, and scorers that are not directly a function of LET. For a detailed description of each model please refer to the references provided.
+TOPAS has included RBE scorers for several RBE models.
+These extensions are available from Github at: https://github.com/topasmc/extensions
+
+The implementation follows in principle the methods described in [Polster2015]_.  The models can be separated into two categories, scorers that depend on dose, LET and alpha/beta ratios, and scorers that are not directly a function of LET. For a detailed description of each model please refer to the references provided.
 
 The following models have been implemented for proton RBE calculations:
 
