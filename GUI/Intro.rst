@@ -1,18 +1,18 @@
-The TOPAS-nBio Graphical User Interface
+The TOPAS Graphical User Interface
 =======================================
 
-TOPAS-nBio includes an optional Graphical User Interface (GUI).
+TOPAS includes an optional Graphical User Interface (GUI).
 The GUI allows the user to easily manipulate graphics
 (rotate, zoom and click on graphical elements to get more
 information about the selected geometry element or particle track)
 and inspect and adjust TOPAS parameters.
 
-The GUI is intended as a rapid prototyping extension of TOPAS-nBio.
+The GUI is intended as a rapid prototyping extension of TOPAS.
 It allows you to easily see and adjust geometry
 and review the behavior of a small set of particle histories.
 The GUI then gives you the ability to save the new parameters,
 such that these saved values can later be loaded back in to a new
-TOPAS-nBio session, with or without the GUI.
+TOPAS session, with or without the GUI.
 
 For larger, high precision runs, with larger numbers of histories,
 the user will generally run on a batch system (cluster or cloud)
