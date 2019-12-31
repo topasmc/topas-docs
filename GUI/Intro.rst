@@ -81,3 +81,9 @@ A set of buttons above the parameter control table support additional functions:
 - Run: Runs your simulation. You can issue this as many times as you wish, changing parameters and re-running to see new results.
 
 - PDF: Saved the current graphics window to a PDF file in your current directory.
+
+**Scene Tree**
+---------------
+You can switch from the Parameter Control widget to another widget called the Scene Tree.
+Scene Tree shows you the hierarchy of geometry volumes.
+You can turn on or off various volumes to better understand your geometry.
