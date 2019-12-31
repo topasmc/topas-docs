@@ -16,7 +16,6 @@ Welcome to the TOPAS documentation!
     getting-started/citation
     getting-started/users
     getting-started/history/index
-    GUI/index
 
 
 .. toctree::
@@ -35,6 +34,7 @@ Welcome to the TOPAS documentation!
     parameters/time
     parameters/variance/index
     parameters/outcome
+    parameters/GUI
 
 
 .. toctree::
