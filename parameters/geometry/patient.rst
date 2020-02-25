@@ -67,10 +67,28 @@ The following will result in a display that shows 27 pixels comprising the bound
     iv:Gr/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
     iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
 
-You have the Option to Load a Truncated DICOM, XiO or ImageCube.Parameters to restrict which voxels of a patient image are loaded are:    i:Ge/*/RestrictVoxelsXMin    i:Ge/*/RestrictVoxelsYMin    i:Ge/*/RestrictVoxelsZMin    i:Ge/*/RestrictVoxelsXMax    i:Ge/*/RestrictVoxelsYMax    i:Ge/*/RestrictVoxelsZMaxThe previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
+You have the Option to Load a Truncated DICOM, XiO or ImageCube.
+Parameters to restrict which voxels of a patient image are loaded are:
 
-The RestrictVoxels... parameters have a much more significant effect: they cause TOPAS to not even load some parts of the patient.This can save a lot of time and allow you to test things on DICOM or other image formats quickly,as you only have to load whatever part of the DICOM you actually want to use.Beware though: if you use this option, you will change your results.It is not just a graphics thing. It actually avoids creating the given voxels at all.
-Though our main motivation for this work was to get a way to do more rapid development(testing on real patients without the slowdown of loading everything), there may be a value also forour brachytherapy users. They may only need to load the part of the image that is near the brachy source.
+    i:Ge/*/RestrictVoxelsXMin
+    i:Ge/*/RestrictVoxelsYMin
+    i:Ge/*/RestrictVoxelsZMin
+    i:Ge/*/RestrictVoxelsXMax
+    i:Ge/*/RestrictVoxelsYMax
+    i:Ge/*/RestrictVoxelsZMax
+
+The previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.
+The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
+
+The RestrictVoxels... parameters have a much more significant effect: they cause TOPAS to not even load some parts of the patient.
+This can save a lot of time and allow you to test things on DICOM or other image formats quickly,
+as you only have to load whatever part of the DICOM you actually want to use.
+Beware though: if you use this option, you will change your results.
+It is not just a graphics thing. It actually avoids creating the given voxels at all.
+
+Though our main motivation for this work was to get a way to do more rapid development
+(testing on real patients without the slowdown of loading everything), there may be a value also for
+our brachytherapy users. They may only need to load the part of the image that is near the brachy source.
 
 Another option allows you to specify the maximum number of voxels to show. If the total number of voxels is greater than this limit, TOPAS will just draw the overall DICOM outline::
 
@@ -352,14 +370,14 @@ The second set of parameters in the HU file are used to calculate material name 
     * Section 1: -1000 to -949
     * Section 2: -50 to -119
     * ...
-    * Section 26: 2995 to 2996
+    * Section 25: 2995 to 2996
 
 ``sv:SchneiderElements``:
 
 * Specifies all of the elements that will be used in the patient.
 * All patient materials must be composed from combinations of this set of elements.
 
-``uv:SchneiderMaterialsWeight1`` through ``SchneiderMaterialsWeight26``:
+``uv:SchneiderMaterialsWeight1`` through ``SchneiderMaterialsWeight25``:
 
 * There should be one of these parameters for each of the material name assignment sections. The length of ``SchneiderMaterialsWeight`` must equal the length of ``SchneiderElements``.
 * Each value in ``SchneiderMaterialsWeight`` tells what proportion of the given element in ``SchneiderElements`` to use in this material.
