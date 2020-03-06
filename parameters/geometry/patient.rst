@@ -180,9 +180,26 @@ See :ref:`example_dicom_viewabdomen_rtdose` for an example of how to use these p
 TOPAS can automatically create a Scoring Grid that exactly matches a provided RTDOSE file in your DICOM dataset.
 This makes it easier to compare TOPAS results to Treatment Planning System results.
 
-Tell TOPAS which RTDOSE file to use by providing a "CloneRTDoseGridFrom" parameter, such as::
+Tell TOPAS which RTDOSE file to use by providing "CloneRTDoseGridFrom" parameter, such as::
 
     s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/RTDOSE.dcm"
+
+.. image:: rtdose_grid_option1.png
+
+You can adjust pixel sizes while keeping the position, such as::
+
+    s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/rtdose.dcm"
+    dv:Ge/Patient/CloneRTDoseGridSize = 3 5 5 8 mm
+
+.. image:: rtdose_grid_option2.png
+
+In addition, you can define a dose grid without a RTDOSE file by specifying its grid size such as::
+
+    dv:Ge/Patient/CloneRTDoseGridSize = 3 5 5 5 mm
+
+A dose grid that fits the volume of a TsDicomPatient will be created.
+
+.. image:: rtdose_grid_option3.png
 
 TOPAS will then automatically create a scoring volume in a parallel world to overlay your grid,
 and will name this component with the same name as your patient, plus "/RTDoseGrid".
