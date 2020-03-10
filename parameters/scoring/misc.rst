@@ -49,7 +49,7 @@ Any scorer can be binned by particle energy, by adding the following parameters:
     d:Sc/MyScorer/EBinMin = 0. MeV # defaults to zero
     d:Sc/MyScorer/EBinMax = 100. MeV # must be specified if EBins is greater than 1
 
-The output will include three extra bins, one for underflow (energy < ``EBinMin``), one for overflow (energy > ``EBinMax``) and one for the case where there is no incident track (the primary particle was created already inside the scoring component, so it was never incident upon the scoring component).
+The output will include two extra bins, one (first) for underflow (energy < ``EBinMin``) and one (last) for overflow (energy > ``EBinMax``).
 
 Note that there are several options for what me mean here by "particle energy."
 
