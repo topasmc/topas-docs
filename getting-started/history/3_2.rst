@@ -4,4 +4,185 @@
 3.2.0 (2019-05-02)
 ~~~~~~~~~~~~~~~~~~
 
-This release updates TOPAS to the latest Geant4 version 10.05.p01and provides a wide variety of new features.-It has been too long since our last release. This new release represents our finally getting caught up from the backlog of work that resulted from some tough funding times in the past.TOPAS is now sailing smoothly under wonderful funding from NIH ITCR.Improvements will be coming more quickly in the future.-We encourage all users to upgrade to this new TOPAS version.You will also need to update your Geant4 data files. See the README for details.-The new version can be found in the code repository as "topas_3_2…"Install it as you would any TOPAS release.We suggest you keep your older TOPAS release around for a while (perhaps by renaming it topas_old) so that you can revert to the older version if any problems show up for you using the new release.-As always, take care not to accidentally delete your own parameter files if you delete your old release (we suggest you never keep your own work inside our topas directory, so you don't accidentally delete your work when you delete our old code).-This release is available for the following operating systems:Mac OSX 10.12 and newer.Debian 8Debian 9RHEL 6CentOS 7-We have removed support for Debian 6 as we do not believe many users still have this old system.-If you do not need to rebuild with extensions, you can also continue to use older Mac versions.--Detailed Changes:-Simplified Setting of Environment Variables:-Where you previously had to set a separate environment variable for each of Geant4's many data files, you now just tell TOPAS the location of the overall G4Data directory.You can do this by either one of the following two ways:-Set a single environment variable:export TOPAS_G4_DATA_DIR = "/PathToDataDir/G4Data"orsetenv TOPAS_G4_DATA_DIR "/PathToDataDir/G4Data"-Or set a TOPAS parameter:Ts/G4DataDirectory = "/PathToDataDir/G4Data"-As always, your syntax will depend on where you actually chose to put your data files,and on whether you are using a system that expects "export" versus "setenv" to set environment variables.--Improvements to Patient Input formats:-The DICOM Slice Thickness Attribute is Now Mostly Ignored:We had previously refused to load a DICOM series if the DICOM slice thickness attribute did not match the actual separation between the individual slice positions.However we have seen that in many DICOM data sets, this attribute does not correspond to the actual spacing of the slices.We now just ignore this slice thickness attribute.The only case in which we use the slice thickness attribute is if you only load a single slice (so that there is no possibility for us to compute the actual separation between slices).-You can Control the Caching of Material Maps for 4D CT:For 4D CT, the previous TOPAS version always cached all the material maps (a separate map for each CT phase).We did this because we assumed 4D CT users would always want to return to each breathing phase multiple times.However, user Killian had a case where he had a very large number of maps and only wanted to use each map once.The caching caused him to run out of memory.A new parameter lets you decide whether such maps should be cached (as before) or not.b:Ge/CacheMaterialMapForEachTimeSlice defaults to True-ShowSpecificSlicesVoxel Numbering has been Corrected:The parameters:Ge/ShowSpecificSlicesVoxelsXGe/ShowSpecificSlicesVoxelsYGe/ShowSpecificSlicesVoxelsZlimit which patient voxels are shown in graphics views.Where slice numbering previously started from 0, it now starts from 1.-You have the Option to Load a Truncated DICOM, XiO or ImageCube:New parameters allow you to restrict which voxels of a patient image are loaded.i:Ge/*/RestrictVoxelsXMini:Ge/*/RestrictVoxelsYMini:Ge/*/RestrictVoxelsZMini:Ge/*/RestrictVoxelsXMaxi:Ge/*/RestrictVoxelsYMaxi:Ge/*/RestrictVoxelsZMaxThe previous parameters, ShowSpecificSlicesVoxels, affected only the graphical output of the voxels.The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.These new parameters, RestrictVoxels, have a much more significant effect: they cause TOPAS to not even load some parts of the patient.This can save a lot of time and allow you to test things on DICOM or other image formats quickly,as you only have to load whatever part of the DICOM you actually want to use.Beware though: if you use this option, you will change your results.It is not just a graphics thing. It actually avoids creating the given voxels at all.Though our main motivation for this work was to get a way to do more rapid development(testing on real patients without the slowdown of loading everything), there may be a value also forour brachytherapy users. They may only need to load the part of the image that is near the brachy source.-The ViewAbdoment.txt Example has been Sped Up:We have modified our simplest example of viewing a DICOM,examples/Patient/ViewAbdomen.txtby applying the new RestrictVoxels parameters described above.-XCAT Phantom Reading has been Improved:We fixed an issue with attenuation parameters not being read properly.--Improvements to Scoring -Energy Binning has been Revised:We have understood that some users want to use our energy binning (EBins) for a different thing than we designed.From our proton therapy dose calculation roots, the energy binning that we currently do is based not on the energy of the final particle at hit deposition time but instead on the incident particle energy.This is the energy of the final scored particle, or its ancestor, when that particle or ancestor was first incident on the scoring volume.However, users who have been trying to use this feature to get a spectrum instead need the particle's energy at the current step.So we have now added a parameter to control what kind of Energy we use for this binning.s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep""IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default."PreStep" is the track's energy at the start of the current step."DepositedInStep" is the amount of energy deposited in the current step.A new example shows the effect of the three different choices: examples/Scoring/EnergyDepositBinnedByEnergy.txt-New option to Score Recursively in Subcomponents:When your scoring component is the Parent of other components, you now have the option to set scoring to record particles note only in the parent component, but also in its children.Sc/MyScorer/PropagateToChildren = "True"This action is recursive to all levels of subcomponents.-Allow nTuple Scorers to Get Binning Information:A helper method, GetBin, tells scorers which bin was hit within a divided component.This method was previously only available to scorers that implement TsVBinnedScorer.At request of user Benjamin Lutz, this method has now also been made accessible to scorers that implement TsVNTupleScorer.-Corrected Binning in Variable Density Materials:User Lucas Norberto Burigo pointed out that when we generate Variable Density Materials,our binning was slightly off such that the top bin was not quite getting the maximum intended density value.This has been corrected.-Improved Scoring Sensitivity in Some Rare Cases of Complex Geometry Components:In the past, when components other than TsBox, TsCylinder and TsSphere were made up of more than one volume,scoring was only sensitive in the mother volume.Scoring is now sensitive in all volumes.This change is unlikely to affect most users.The scoring was already correct in TsBox, TsCylinder and TsSphere.-Redesigned Filtering:We modified the design of our filters to avoid an issue that was bothering the newer compiler included in Debian 9.The only impact on users is that if you have written your own extension filter,you should modify your filter's constructor to replace:TsVFiltered* filteredwith:TsVGenerator* generator, TsVScorer* scorer--Brachytherapy:-Added the Volumetric Particle Source:A new Particle Source type, Volumetric, has been designed for Brachytherapy applications (though there may be other applications as well).It randomly samples particle starting positions from within the radioactive volume of a given component.When you have a Source of Type "Volumetric",Topas will expect a second parameter,s:Sc/*/ActiveMaterialto specify which material within the given component should be considered radioactive.So, for example, if you have:s:So/Example/Type                = "Volumetric"s:So/Example/Component       = "ActiveSource"sc:So/Example/ActiveMaterial = "G4_Ir"particles will start from randomly sampled positions within the Iridium parts of the component named ActiveSource.See the new example: examples/Basic/VolumetricSource.txt-Added New Geometry Component: TsBrachyApplicator:This component represents a gynecological applicator.Parameters control overall dimensions and the number of holes into which one can guide a source wire.See examples/Patient/Applicator.txtwhich simulates a Varian VS2000 source wire moving through various dwell positions within a brachytherapy applicator (that is in turn placed within a phantom).--Improvements to Physics Settings:-EM Physics Models per Region:You can now select different Electromagnetic Physics models in different regions.s:Ph/Default/ForRegion/MyRegion2/ActiveG4EmModelFromModule = "g4em-livermore"New example for EmPhysics models per region:examples/Basic/EmModelByRegions.txt-Auger Cascade is now supported.-New Physics Constructors for G4DNA available in Geant4.10.05 have been added to our modular physics list:g4em-dna_opt6g4em-dna_opt7g4em-dna_opt8-New Physics Lists that artificially maintain constant the incident particle kinetic energy (frozen-velocity approximation), ensuring the correct calculation of stopping power:g4em-dna-stationaryg4em-dna-stationary_opt2g4em-dna-stationary_opt4g4em-dna-stationary_opt6--Improvements to Variance Reduction:-Added the capability to change VR parameters (e.g. split number) using time features.-Added the capability of have more than one VR per simulation (e.g. uniform splitting + imp sampling)-Added forced interaction VR-Added new manager for generic biasing process.A new virtual class TsVBiasingProcess facilitates the integration of new VRs.Current parameters for VR are still functional, but now they can be renamed different than Vr/ParticleSplit/XYZ-Updated examples for secondary biasing-New example for forced interaction.examples/VarianceReduction/ForcedInteraction.txt-New example showing cross-section enhancement for bremsstrahlung: examples/VarianceReduction/CrossSectionEnhancement.txtNew example showing importance sampling and bremsstrahlung splitting:examples/VarianceReduction/ImportanceSamplingSecondaryBiasing.txtAlso shows the capabilities of having more than one VR in the same simulation.--Improvements to Geometry:-Fixed Obscure Problem with Component Placement.Components were incorrectly placed when the first component in a parallel world was a Group Component.Interestingly, we never had any reports of this problem from users.It was only found during some of our own special tests.-Forbid Use of Parallel Worlds with Chemistry.Since Geant4 DNA's chemistry processes do not support parallel worlds,we have added a check to forbid use of parallel worlds if chemistry is turned on in your physics list.-Corrected Diagnostic Printout of TsPropeller Component:The TsPropeller component has a diagnostic that prints out its angle.Where this was meant to print out the full angle, it was actually printing the half-angle.This has been corrected. -Material can now be 4D:You can now change a component's material over time.You can also change the material that is specified in the DoseToMaterial scorer (though we don't know why you might want to do this).--Improvements to Graphics-Centering Graphics on a Given Component:A new graphics parameter allows you to center the view on a given component:s:Gr/*/CenterOn = "MyComponent"Topas will then ignore any parameters of the form:Gr/*/TransX or Gr/*/TransY.-Scaling Graphics by Different Amounts in X, Y an Z:New parameters allow you to scale by different amounts in each dimension:uv:Gr/*/Scale = 3 1. 2. 3.would scale by 1 in X, by 2 in Y and by 3 in Z.-Zooming to the Nanometer Scale:With very large Gr/*/Zoom values, as one might use to zoom into the nano scale,floating point errors in the graphics card lead to discontinuous jumps in the image position.This makes it difficult to center or size the view as one wishes.An easy workaround has been understood.If one simply makes the world invisible, then because the initial graphics extent only includes thenanometer scale components, one doesn't need much zoom.This effect and its solution are demonstrated in the new example:examples/Graphics/NanoMeterScaleTest.txt--Improvements to Controlling Console Output:-You can add time stamps to the history count:b:Ts/IncludeTimeInHistoryCount = "True"-You can have a "power-based" history count:b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgressesAfter first ten histories, output will change to once for every 10, then to once for every 100, etc.An additional optional parameter, i:Ts/MaxShowHistoryCountInterval, puts an upper limit on how high the ShowHistoryCountInterval can be.For example:b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgressesi:Ts/MaxShowHistoryCountInterval = 100Gives:123...9102030...100but from there always keep counting by 100 (rather than going on to counting by 1000, 10,000, etc.)--Miscellaneous Improvements-Improved Handling of Mapped Magnetic Fields:Thanks to users Eric Able, Tim Schneider and Lucas Norberto Burigo, we have identified and improved some aspects of the MappedMagnet field reader. The system now works for a wider variety of field maps and allows for 4D changes in the map.-Increased the Default Ts/MaxStepNumber:TOPAS watches the number of steps on tracks to try to detect tracks that are stuck endlessly looping.The limit is set by the parameter:Ts/MaxStepNumberWe have found cases where legitimate tracks take more than 100K steps, so we have increased the default limit from 100K to 1M.-Made Parameter File Reading be More Robust:We now catch and replace smart quotes (single and double) with simple double quotes.We now catch and replace various Unicode hyphen characters with minus sign.
+*Improved:* Simplified Setting of Environment Variables
+     Where you previously had to set a separate environment variable for each of Geant4's many data files, you now just tell TOPAS the location of the overall G4Data directory. You can do this by either one of the following two ways:
+
+     Set one of these two environment variables::
+
+        export TOPAS_G4_DATA_DIR = "/PathToDataDir/G4Data"
+        setenv TOPAS_G4_DATA_DIR "/PathToDataDir/G4Data"
+
+     Or set a TOPAS parameter::
+
+        Ts/G4DataDirectory = "/PathToDataDir/G4Data"
+
+     As always, your syntax will depend on where you actually chose to put your data files, and on whether you are using a system that expects "export" versus "setenv" to set environment variables.
+
+*Improved:* DICOM Slice Thickness Attribute is Now Mostly Ignored
+     We had previously refused to load a DICOM series if the DICOM slice thickness attribute did not match the actual separation between the individual slice positions. However, we have seen that in many DICOM data sets, this attribute does not correspond to the actual spacing of the slices. We now just ignore this slice thickness attribute, and the only case in which we use the slice thickness attribute is if you only load a single slice (so that there is no possibility for us to compute the actual separation between slices).
+
+*Improved:* Control the Caching of Material Maps for 4D CT
+     For 4D CT, the previous TOPAS version always cached all the material maps (a separate map for each CT phase). We did this because we assumed 4D CT users would always want to return to each breathing phase multiple times. However, a user had a case where he had a very large number of maps and only wanted to use each map once. The caching caused him to run out of memory, so a new parameter lets you decide whether such maps should be cached (as before) or not::
+
+        b:Ge/CacheMaterialMapForEachTimeSlice defaults to True
+
+*Fixed:* ``ShowSpecificSlicesVoxel`` Numbering
+     The following parameters limit which patient voxels are shown in graphics views. Where slice numbering previously started from 0, it now starts from 1::
+
+        Ge/ShowSpecificSlicesVoxelsX
+        Ge/ShowSpecificSlicesVoxelsY
+        Ge/ShowSpecificSlicesVoxelsZ
+
+*Improved:* Option to Load a Truncated DICOM, XiO or ImageCube
+     The previous parameters, ``ShowSpecificSlicesVoxels``, affected only the graphical output of the voxels. The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics. These new parameters, ``RestrictVoxels``, have a much more significant effect: they cause TOPAS to not even load some parts of the patient. This can save a lot of time and allow you to test things on DICOM or other image formats quickly, as you only have to load whatever part of the DICOM you actually want to use. But beware: if you use this option, you will change your results. It does not only affect graphics, it actually avoids creating the given voxels at all. Though our main motivation for this work was to get a way to do more rapid development (testing on real patients without the slowdown of loading everything), there may be a value also for our brachytherapy users. They may only need to load the part of the image that is near the brachy source. New parameters allow you to restrict which voxels of a patient image are loaded::
+
+        i:Ge/*/RestrictVoxelsXMin
+        i:Ge/*/RestrictVoxelsYMin
+        i:Ge/*/RestrictVoxelsZMin
+        i:Ge/*/RestrictVoxelsXMax
+        i:Ge/*/RestrictVoxelsYMax
+        i:Ge/*/RestrictVoxelsZMax
+
+*Improved:* ``ViewAbdoment.txt`` Example has been Sped Up
+     We have modified our simplest example of viewing a DICOM, ``examples/Patient/ViewAbdomen.txt`` by applying the new ``RestrictVoxels`` parameters described above.
+
+*Fixed:* XCAT Phantom Reading
+     We fixed an issue with attenuation parameters not being read properly.
+
+Energy Binning has been Revised:
+     We have understood that some users want to use our energy binning (EBins) for a different thing than we designed. From our proton therapy dose calculation roots, the energy binning that we currently do is based not on the energy of the final particle at hit deposition time but instead on the incident particle energy. This is the energy of the final scored particle, or its ancestor, when that particle or ancestor was first incident on the scoring volume. However, users who have been trying to use this feature to get a spectrum instead need the particle's energy at the current step. So we have now added a parameter to control what kind of energy we use for this binning::
+
+        s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
+        
+* "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
+* "PreStep" is the track's energy at the start of the current step.
+* "DepositedInStep" is the amount of energy deposited in the current step.
+* A new example shows the effect of the three different choices ``examples/Scoring/EnergyDepositBinnedByEnergy.txt``
+
+*Added:* Option to Score Recursively in Subcomponents
+     When your scoring component is the parent of other components, you now have the option to set scoring to record particles note only in the parent component, but also in its children. This action is recursive to all levels of subcomponents::
+
+        Sc/MyScorer/PropagateToChildren = "True"
+        
+*Improved:* Allow nTuple Scorers to Get Binning Information
+     A helper method, GetBin, tells scorers which bin was hit within a divided component. This method was previously only available to scorers that implement ``TsVBinnedScorer``. At request of a user, this method has now also been made accessible to scorers that implement ``TsVNTupleScorer``.
+
+*Fixed:* Binning in Variable Density Materials
+     A user pointed out that when we generate Variable Density Materials, our binning was slightly off such that the top bin was not quite getting the maximum intended density value. This has been corrected.
+
+*Improved:* Scoring Sensitivity in Some Rare Cases of Complex Geometry Components
+     In the past, when components other than TsBox, TsCylinder and TsSphere were made up of more than one volume, scoring was only sensitive in the mother volume. Scoring is now sensitive in all volumes, however this change is unlikely to affect most users. The scoring was already correct in TsBox, TsCylinder and TsSphere.
+
+*Improved:* Redesigned Filtering
+     We modified the design of our filters to avoid an issue that was bothering the newer compiler included in Debian 9. The only impact on users is that if you have written your own extension filter, you should modify your filter's constructor to replace ``TsVFiltered*`` filter with ``TsVGenerator*`` generator, ``TsVScorer*`` scorer.
+
+*Added:* Volumetric Particle Source
+     A new Particle Source type, Volumetric, has been designed for Brachytherapy applications (though there may be other applications as well). It randomly samples particle starting positions from within the radioactive volume of a given component. When you have a Source of Type "Volumetric", Topas will expect a second parameter::
+     
+        s:Sc/*/ActiveMaterial
+        
+     to specify which material within the given component should be considered radioactive. So, for example, if you have:: 
+
+        s:So/Example/Type = "Volumetric"
+        s:So/Example/Component = "ActiveSource"
+        sc:So/Example/ActiveMaterial = "G4_Ir"
+        
+     particles will start from randomly sampled positions within the Iridium parts of the component named ActiveSource. See the new example ``examples/Basic/VolumetricSource.txt``
+
+*Added:* New Geometry Component ``TsBrachyApplicator``
+     This component represents a gynecological applicator. Parameters control overall dimensions and the number of holes into which one can guide a source wire. See ``examples/Patient/Applicator.txt`` which simulates a Varian VS2000 source wire moving through various dwell positions within a brachytherapy applicator (that is in turn placed within a phantom).
+
+*Improved:* EM Physics Models per Region:
+     You can now select different Electromagnetic Physics models in different regions::
+
+        s:Ph/Default/ForRegion/MyRegion2/ActiveG4EmModelFromModule = "g4em-livermore"
+        
+     New example for EmPhysics models per region ``examples/Basic/EmModelByRegions.txt``
+
+*Added:* Auger Cascade
+     Auger Cascade is now supported.
+
+*Added:* New Physics Constructors 
+     New Physics Constructors for G4DNA available in Geant4.10.05 have been added to our modular physics list:
+
+* g4em-dna_opt6
+* g4em-dna_opt7
+* g4em-dna_opt8
+
+*Added:* New Physics Lists
+     New Physics Lists that artificially maintain constant the incident particle kinetic energy (frozen-velocity approximation), ensuring the correct calculation of stopping power:
+     
+* g4em-dna-stationary
+* g4em-dna-stationary_opt2
+* g4em-dna-stationary_opt4
+* g4em-dna-stationary_opt6
+
+*Improved:* Variance Reduction
+     We added several new features to Variance Reduction:
+     
+* The capability to change VR parameters (e.g. split number) using time features.
+* The capability of have more than one VR per simulation (e.g. uniform splitting + imp sampling)
+* Forced interaction VR
+
+*Added:* New manager for generic biasing process
+     A new virtual class TsVBiasingProcess facilitates the integration of new VRs. Current parameters for VR are still functional, but now they can be renamed different than ``Vr/ParticleSplit/XYZ``
+
+*Improved:* Examples for secondary biasing
+     We added several new examples for secondary biasing 
+
+* New example for forced interaction ``examples/VarianceReduction/ForcedInteraction.txt``
+* New example showing cross-section enhancement for bremsstrahlung ``examples/VarianceReduction/CrossSectionEnhancement.txt``
+* New example showing importance sampling and bremsstrahlung splitting ``examples/VarianceReduction/ImportanceSamplingSecondaryBiasing.txt``
+* Also shows the capabilities of having more than one VR in the same simulation.
+
+*Fixed:* Obscure Problem with Component Placement
+     Components were incorrectly placed when the first component in a parallel world was a Group Component. Interestingly, we never had any reports of this problem from users. It was only found during some of our own special tests.
+
+*Added:* Forbid Use of Parallel Worlds with Chemistry
+     Since Geant4 DNA's chemistry processes do not support parallel worlds, we have added a check to forbid use of parallel worlds if chemistry is turned on in your physics list.
+
+*Fixed:* Diagnostic Printout of TsPropeller Component
+     The TsPropeller component has a diagnostic that prints out its angle. Where this was meant to print out the full angle, it was actually printing the half-angle. This has been corrected. 
+
+*Added:* Material can now be 4D
+     You can now change a component's material over time. You can also change the material that is specified in the ``DoseToMaterial`` scorer (though we don't know why you might want to do this).
+
+*Added:* Centering Graphics on a Given Component
+     A new graphics parameter allows you to center the view on a given component::
+
+        s:Gr/*/CenterOn = "MyComponent"
+        
+     Topas will then ignore any parameters of the form: ``Gr/*/TransX`` or ``Gr/*/TransY``
+
+*Added:* Scaling Graphics by Different Amounts in X, Y an Z
+     New parameters allow you to scale by different amounts in each dimension::
+
+        uv:Gr/*/Scale = 3 1. 2. 3.
+        
+     would scale by 1 in X, by 2 in Y and by 3 in Z.
+
+*Improved:* Zooming to the Nanometer Scale
+     With very large ``Gr/*/Zoom`` values, as one might use to zoom into the nano scale, floating point errors in the graphics card lead to discontinuous jumps in the image position. This makes it difficult to center or size the view as one wishes, but an easy workaround has been understood. If one simply makes the world invisible, then because the initial graphics extent only includes the nanometer scale components, one doesn't need much zoom. This effect and its solution are demonstrated in the new example ``examples/Graphics/NanoMeterScaleTest.txt``
+
+*Improvemed:* Controlling Console Output
+     You can add time stamps to the history count::
+     
+        b:Ts/IncludeTimeInHistoryCount = "True"
+
+*Added:* You can have a "power-based" history count ``b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgresses``
+     After first ten histories, output will change to once for every 10, then to once for every 100, etc. An additional optional parameter, ``i:Ts/MaxShowHistoryCountInterval``, puts an upper limit on how high the ``ShowHistoryCountInterval`` can be. For example::
+     
+        b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgresses
+        i:Ts/MaxShowHistoryCountInterval = 100
+        
+     Gives: 1, ,2, 3...9, 10, 20, 30...100 but from there always keep counting by 100 (rather than going on to counting by 1000, 10,000, etc.)
+
+*Improved:* Handling of Mapped Magnetic Fields
+     Thanks to several users, we have identified and improved some aspects of the ``MappedMagnet`` field reader. The system now works for a wider variety of field maps and allows for 4D changes in the map.
+
+*Improved:* Increased the Default ``Ts/MaxStepNumber``
+     TOPAS watches the number of steps on tracks to try to detect tracks that are stuck endlessly looping. The limit is set by the parameter ``Ts/MaxStepNumber``. We have found cases where legitimate tracks take more than 100K steps, so we have increased the default limit from 100K to 1M.
+
+*Improved:* Made Parameter File Reading be More Robust
+     We now catch and replace smart quotes (single and double) with simple double quotes. We also now catch and replace various Unicode hyphen characters with minus sign.
+
