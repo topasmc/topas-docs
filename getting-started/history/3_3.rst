@@ -1,0 +1,99 @@
+3.3 Series 
+-----------
+
+The main features introduced in the 3.3 series were:
+
+* Graphical User Interface (GUI) 
+* option to declare neutrons stable
+* surface name ``AnySurface``
+
+
+
+3.3.1 (2020-03-31)
+~~~~~~~~~~~~~~~~~~
+
+*Fixed:* Jobs crashing 
+     Jobs were crashing if they had ALL THREE of the following characteristics in the same job:
+
+        1) Geometry changing over time in a way that was more than just changing position
+        2) Multiple threads
+        3) Scoring
+
+     This has been fixed. If your job was not crashing, this issue did not affect your job and there is no need to re-do those simulations.
+
+
+
+3.3.0 (2020-03-25)
+~~~~~~~~~~~~~~~~~~
+
+*Added:* Graphical User Interface (GUI)
+     The key features of the GUI are as follows:
+     
+- You can rotate and zoom the graphics window, and you can click on geometry and trajectories to get details about them
+- You can adjust parameters and see the effects immediately in the graphics window.
+- You can see and correct geometry issues such as overlaps for rapid prototyping (you will find that the "Run" button will not work until all overlaps are resolved).
+- You can add geometry components, scorers, particle sources, etc., from the GUI
+- Once you have a set of parameters that you like, click the "Save" button to save the changes to a new parameter file (for subsequent runs either with or without the GUI).
+- To activate the GUI, your parameter file needs: ``Ts/UseQt = "True"``
+- To make a parameter appear in the GUI's parameter control window, just add "c" (for changeable) right after the parameter type, for example, where your parameter file previously had ``d:Ge/MyBox/HLX`` change it to ``dc:Ge/MyBox/HLX``
+- A simple Qt example has been added ``topas/examples/Graphics/QtTest.txt``
+- MacOS 10.15 Catalina users will find that the GUI turns on automatically if they request OpenGL graphics even if they have not set ``Ts/UseQt``. This is because the Qt GUI is the only way that we can activate OpenGL on that operating system.
+- The GUI is supported on all platforms except for CentOS6 and RHEL 6.
+
+*Improved:* Color code trajectories
+     Options to color code trajectories have been extensively revised.
+
+*Improved:* Coloring and filtering options for particle trajectory visualization
+     In response to an error reported by a user, we carried out a complete review of all the coloring and filtering options for particle trajectory visualization. We found and fixed many issues (this part of the TOPAS code has not been reviewed in a long time). We believe that all of the ``Gr/*/ColorBy...`` parameters and ``Gr/*/OnlyInclude...`` parameters are now working correctly. This includes making sure they understand all of the defined colors (previously only worked for a subset of the Topas colors that happened to also have the same name in the underlying Geant4 color defaults), and making sure they work for GenericIon as well as other particle types. We also added many new ``ColorBy`` and ``FilterBy`` examples in ``examples/Graphics``.
+
+*Improved:* Scoring with ``OutputAfterRun``
+     When scoring with ``OutputAfterRun``, there is now a way to avoid clearing the scorers between runs. Thus each run's output will contain the new time interval's scores plus all scores accumulated during previous runs. To activate this feature, set the parameter::
+
+        b/Sc/MyScorer/OutputAfterRunShouldAccumulate = "True"
+
+*Fixed:* Scoring option ``OutputAfterRun``
+     A user found that scorers gave incorrect output if they set ``OutputAfterRun`` and the scorer had been set to report more than just the sum. Scoring option ``OutputAfterRun`` now works correctly in all cases.
+
+*Fixed:* Scoring in Geometry Components 
+     Scoring now works correctly in geometry components that are changing size under time features. A user noted that if the scoring component changed size, it would no longer receive any hits. This has now been fixed.
+
+*Fixed:* Variance Reduction
+     Variance Reduction now works correctly in components that are changing size under time features.
+
+*Fixed:* Magnetic and Electric fields
+     Magnetic and Electric fields now work correctly in components that are changing size under time features.
+
+*Improved:* ``Vr/KillOtherParticles/OnlyTrackParticlesNamed`` now supports ``GenericIons``
+     It previously only worked for other particle names.
+
+*Added:* Declare neutrons stable
+     You can now declare that neutrons should be considered stable. This can be used to work around error conditions such as "Can not determine decay channel ...". Set parameter::
+
+        b:Ph/SetNeutronToStable = "True"
+
+*Added:* New surface name ``AnySurface``
+     A new surface name ``AnySurface`` lets you make a surface scorer be sensitive on any surface. You could use this, for example, to capture phase space of particles passing through all surfaces of a cylinder (instead of the current ``ZPlusSurface``, ``OuterCurvedSurface``, etc.)
+
+*Improved:* Surface names are no longer case sensitive
+     So where we previously required exactly ``ZPlusSurface``, we now accept ``zplussurface``, etc.
+
+*Improved:* Mapped Magnetic Field handling 
+     A user provided some corrections to the mapped field handling.
+
+*Fixed:* DICOM RT Structure filter
+     The DICOM RT Structure filter now survives hits with invalid indices. A rare Geant4 bug used to cause this filter to crash. The filter now survives this condition, and the relevant hits are appropriately trapped and reported.
+
+*Improved:* Protection against use of cylinders or spheres parameterized in r, phi or theta in the presence of parallel worlds 
+     We have found that Geant4's parallel world navigation system has problems in these conditions and can cause hits to be associated with wrong bins (often piling up in bin zero). We had some protection against this previously, but have learned that more cases are affected, so we now completely forbid use of these parameterizations when there are parallel worlds anywhere in the setup. You can override this limitation if you wish by setting the following parameter, but if you do so, we suggest you check that your results seem sensible::
+
+        b:Ge/AllowDividedCylinderOrSphereWithParallelWorld = "True"
+
+*Fixed:* Scoring option ``PropagateToChildren`` 
+     This option was not working correctly in cases where other scorers were also attached to those child components.
+
+*Improved:* Forbid attaching a scorer to the World component
+     We have seen some examples where users set the World as the scoring component. This was something we had not anticipated in the TOPAS design, and it gives incorrect results in some cases (such as if you add binning options in the scorers). It is now simply forbidden.
+
+*Improved:* Uniformity check on DICOM ``DoseGridOffset``
+     The uniformity check on DICOM ``DoseGridOffset`` now allows for up to 2% difference.
+     
