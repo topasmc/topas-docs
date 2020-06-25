@@ -3,7 +3,7 @@
 History
 =======
 
-TOPAS_ wraps and extends the `Geant4 Simulation Toolkit`_. Geant4 is build directly into TOPAS (that is, the user does not need to themselves install Geant4). The following table lists which Geant4 version is built into each TOPAS.
+TOPAS_ wraps and extends the `Geant4 Simulation Toolkit`_. Geant4 is built directly into TOPAS (the user does not need to themselves install Geant4). The following table lists which Geant4 version is built into each TOPAS version.
 
 =============== ========================
 TOPAS version   Geant4 version
