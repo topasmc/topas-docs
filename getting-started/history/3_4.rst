@@ -1,0 +1,110 @@
+3.4 Series 
+----------
+
+The main features introduced by the 3.4 series were:
+
+* significant reduction of the memory footprint of TOPAS
+* redefined variable density materials 
+* graphics options 
+
+
+
+3.4.0 (2020-6-21)
+~~~~~~~~~~~~~~~~~~
+
+*Improved:* Significant reduction to the memory footprint 
+     The memory savings are substantial, in particular for the most challenging full patient simulations, when there are many different materials, many voxels and potentially many worker threads. 
+
+*Fixed:* Significant memory leak in defining patient materials
+     We identified some C++ objects involved in materials creation that did not need to be retained. For a typical patient simulation involving thousands of materials, the savings from this fix are on the order of a full GB.
+
+*Improved:* Scorers now require much less memory
+     We found that our scoring code had been allocating all the maps needed for all of the different reporting options (Sum, Mean, Minimum, Maximum, etc.) even if the user only wanted to report a single one of these quantities. The result is an up to fivefold reduction in memory use by scorers. And as these memory costs are repeated once per worker thread, they can be even more substantial if your simulation has a high ``Ts/NumberOfThreads``. Savings may be on the order of several GB.
+
+*Improved:* Memory-intensive Mott Scattering correction tables are now optional
+     We found, for our default physics settings, most of the memory devoted to physics lookup tables was to support one specific process detail, the Mott Scattering correction. This correction is on by default in our default physics settings, as those settings include the EM module ``g4em-standard_opt4``. Users may save significant memory by either changing their physics settings to use a different EM option, or by staying with Opt4 but turning off this correction factor::
+
+        b:Ph/Default/MottCorrection = "False" # Defaults to "True"
+
+*Added:* Options for Variable Density Materials 
+     We hoped to save additional memory by changing how we define materials. Our most commonly used imaging to material converter, the Schneider method, defines thousands of different materials (to correspond to the thousands of different Hounsfield numbers in the CT). Within this large set of materials, there are many cases where hundreds of materials share the same elemental composition, with only a variation of density. Up to now, we have used the original Geant4 method of material definition, defining each one of these thousands of materials as an entirely separate G4Material. However, Geant4 eventually added an option to just define a single material of a given composition, and then define many other materials as different density variants of this "Base Material". In the hopes that this new method would give us comparable physics results while using less memory (as it would have to create fewer full material tables), we added a new option::
+        
+        b:Ge/Patient/SchneiderUseVariableDensityMaterials = "True"
+        
+     While this did result in memory savings, it also gave some alarming differences in a few of our detailed patient dose tests. For some test cases, there was a good match, but for other cases we saw significant dose differences in some areas with a high density gradient (such as the interface of patient head to the surrounding air). Our hypothesis is that the variable density material technique is not fully implemented for all Geant4 physics processes. We will continue to study this issue, but didn't want to hold off on this release any longer. Users may want to try this option at their discretion, and depending on their choices of physics options, but we are leaving it off by default.
+
+*Added:* Other features for Variable Density Materials
+     You can now define a TOPAS material as a variant of some other TOPAS material::
+     
+        s:Ma/MyMaterial/BaseMaterial = "SomeOtherMaterialName"
+        d:Ma/MyMaterial/Density = 1.5 g/cm3
+    
+     And if you are a C++ expert writing your own ``ImagingToMaterial`` converter, you can create a material based on a Base Material by calling the new method::
+     
+        TsVImagingToMaterial: G4int DefineNewMaterial (G4String materialName, G4double density, G4String baseMaterialName, G4String colorName)
+
+*Improved:* ``ImagingToMaterial`` converter options now include ``ByIntegerID``
+     Some of our users have ``TsImageCube`` components where each voxel is represented not as a CT number but as an integer "tag number," a 16-bit integer (C++ short) that corresponds to a particular material name. A new ``ImagingToMaterialConverter`` will interpret these tag numbers based on a lookup table created by two additional TOPAS vector parameters, ``MaterialTagNumbers`` and ``MaterialNames``. For example::
+
+        s:Ge/Patient/Type = "TsImageCube"
+        s:Ge/Patient/ImagingToMaterialConverter = "ByIntegerID"
+        iv:Ge/Patient/MaterialTagNumbers = 6 0 3 42 43 100 110
+        sv:Ge/Patient/MaterialNames = 6 "Air" "G4_BLOOD_ICRP" "G4_BONE_CORTICAL_ICRP" "G4_BONE_COMPACT_ICRU" "G4_BRAIN_ICRP" "G4_MUSCLE_SKELETAL_ICRP"
+
+     * Where the voxel is tagged with the number 0, the converter will interpret this as "Air"
+     * Where the voxel is tagged with the number 3, the converter will interpret this as " G4_BLOOD_ICRP "
+     * Where the voxel is tagged with the number 42, the converter will interpret this as " G4_BONE_CORTICAL_ICRP " 
+     etc.
+
+*Improved:* Ancestor Track and Vertex information has been extended in ``TsTrackInformation``
+     This feature allows extension fillers and scorers to access more information about a track's history. For each of the track's ancestors, it now provides the track pointer (rather than just the track ID), the vertex momentum direction and the vertex kinetic energy (rather than just the vertex ID). Specifically, the new method signatures in ``TsTrackInformation.hh`` are:: 
+     
+        std::vector<const G4Track*> TsTrackInformation::GetParentTracks()
+        std::vector<G4ThreeVector> TsTrackInformation::GetParentTrackVertexMomentumDirections()
+        std::vector<G4double> TsTrackInformation::GetParentTrackVertexKineticEnergies()
+
+*Improved:* Ions of any charge can now work as Particle Sources
+     TOPAS previously only supported generation of fully stripped ions. All ion charges are now supported. Specify the charge by giving the appropriate Charge value in the particle name GenericIon(Z, A, Charge).
+
+*Improved:* 4D CT Materials loading logic
+     The materials definition process has always been a little complicated for 4D CT cases, since Geant4 requires that we define all materials before the first particle history is created. If 4D behavior causes a new CT image to be loaded later in the simulation, and this image contains a material that was not present in the initial CT image, this could cause TOPAS to have to quit. Our previous method of handling this was to have you add the parameter::
+     
+        b:Ge/Patient/PreLoadAllMaterials = "True"
+    
+     This worked by defining every material in your HU conversion table, whether that material is ever actually used or not. This had the unwanted side effect of wasting initialization time and memory on some materials that were never used. We suggest you no longer use the ``PreLoadAllMaterials`` feature, and instead use the feature::
+     
+        sv:Ge/Patient/PreLoadMaterialsFrom = 3 "CT_Image_1" "CT_Image_2" "CT_Image_3"
+        
+     where you specify the names of all the different CT images that will eventually be loaded. TOPAS will then define all the materials in all of these images, but not waste time and memory on materials that are not used in any of the images.
+
+*Added:* Multiple DICOM components can now be included in the same simulation
+     While this is an unusual situation, we had a user who wanted to represent two separate DICOM components in a single simulation. We found a small change we could make so that this is now supported, and we added a new example to demonstrate this capability ``examples/Patient/TwoDicoms.txt``. The new example puts both the Abdomen DICOM and the DICOM_Box into two different locations in the same simulation. Note: each DICOM component in this example needs its own separate copy of the HU conversion parameters, so you will see that the example has ``includeFile`` statements for both ``HUtoMaterialSchneider.txt`` and ``HUtoMaterialSchneider2.txt``. A more elegant solution would allow one to use the same conversion parameters in both DICOMs, but this would require syntax changes that would break previous use cases, so such a change will have to wait for a future new major release.
+
+*Improved:* Particle Killing Variance Reduction options
+     This feature did not previously accept particle names that were of the form GenericIon. It now works for all particle types. We also added an inverted version of this option. So, the available options are now::
+     
+        sv:Vr/KillOtherParticles/OnlyTrackParticlesNamed
+        sv:Vr/KillOtherParticles/OnlyTrackParticlesNotNamed
+
+*Added:* Graphics Options
+     Graphics Options have been added to control Background Color, Line Width and Step Point Size::
+     
+        s:Gr/MyOGL/BackgroundColor = "white" # Set background color
+        i:Gr/MyOGL/Linewidth = 8 # Set line width for both geometry and trajectories
+        i:Gr/MyOGL/StepPointSize = 16 # Set size of step points
+
+*Added:* New Graphics Examples
+     New examples have been added to demonstrate various settings of the trajectory ``ColorBy`` options. Look in ``examples/Graphics`` to see the many new examples.
+
+*Fixed:* Bug previously reported as "Incorrect results from dose scorer in certain unusual setups"
+     This bug affected dose scoring in a component that has a subcomponent, such as scoring on a box that has another box inside it. The issue is now fixed. Any users who have written their own extension scorers that rely on the volume of the scoring component are advised to copy our fix by replacing any calls to ``fSolid->GetCubicVolume()`` with the new method now accessible directly from the scorer's base class ``GetCubicVolume(aStep)``.
+
+*Fixed:* Bug that was preventing one of the physics parameters from working
+     This should now work correctly::
+     
+        d:Ph/Default/SetProductionCutHighEdge
+
+*Fixed:* Bug that was making Step Points drawing not work in some cases.
+     This was only working for some of the Trajectory ``ColorBy`` options. It now works for all cases::
+    
+        b:Gr/MyView/IncludeStepPoints
