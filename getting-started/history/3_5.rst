@@ -1,0 +1,18 @@
+3.5 Series 
+----------
+
+This release is almost exactly the same TOPAS code as TOPAS Version 3.4, but with a new underlying Geant4 version. TOPAS 3.5 uses Geant4.10.06.p1, whereas TOPAS 3.4 used Geant4.10.05.p2. Our tests show no major difference in patient dose calculations, however, as this is a new Geant4 version, you should be on the lookout for changes that may affect your simulations. Our intention is that by comparing your TOPAS 3.5 simulation against a TOPAS 3.4 simulation, you can see how your results are affected by the underlying Geant4 version. There is one new feature:
+
+
+
+3.5.0 (2020-06-21)
+~~~~~~~~~~~~~~~~~~~
+
+*Added:* Users of Topas 3.5 can take advantage of a new Drawing Style
+     This new drawing style represents a solid as a random cloud of points within the solid::
+
+        S:Ge/MyComponent/DrawingStyle = "Cloud" # Previous options were "WireFrame", "FullWireFrame" and "Solid"
+        
+     It can be particularly useful in visualization of Boolean solids, as such solids are not always handled correctly by the polygon-generator underlying the other drawing styles. By default, the point cloud will be made of ten thousand points. You can adjust this by setting the new optional parameter::
+     
+        i:Ge/MyComponent/NumberOfCloudPoints
