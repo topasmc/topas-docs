@@ -7,6 +7,8 @@ Graphics
 	ColorByOriginComponent
 	ColorTest
 	NanoMeterScaleTest
+	QtTest
 	SolidSphere
 	TestGraphics
 	TwoProjections
+	
