@@ -13,7 +13,8 @@ i:Ge/Patient/NumberOfVoxelsY	= 86
 i:Ge/Patient/NumberOfVoxelsZ	= 161
 d:Ge/Patient/VoxelSizeX	= .5 mm
 d:Ge/Patient/VoxelSizeY	= .5 mm
-d:Ge/Patient/VoxelSizeZ	= .5 mm
+dv:Ge/Patient/VoxelSizeZ = 1 .5 mm
+
 s:Ge/Patient/DataType = "FLOAT"
 u:Ge/Patient/AttenuationForMaterial_XCAT_Air = 0.
 u:Ge/Patient/AttenuationForMaterial_XCAT_Body_(water)   =     203.8293
@@ -48,7 +49,7 @@ d:Ge/Patient/RotZ     = 0. deg
 # Set to -2 to show first, center and last slice.
 #iv:Ge/Patient/ShowSpecificSlicesX = 1 -2
 #iv:Ge/Patient/ShowSpecificSlicesY = 1 -2
-iv:Ge/Patient/ShowSpecificSlicesZ = 9 0 20 40 60 80 100 120 140 160
+iv:Ge/Patient/ShowSpecificSlicesZ = 9 1 21 41 61 81 101 121 141 161
 
 s:Ge/World/Material    = "G4_AIR"
 d:Ge/World/HLX         = .5 m
