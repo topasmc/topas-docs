@@ -60,7 +60,7 @@ d:Tf/PanY/RepetitionInterval = 360. ms
 # Uncomment to enable scoring
 s:Sc/DoseAtPhantom/Quantity                  = "DoseToMedium"
 s:Sc/DoseAtPhantom/Component                 = "Patient"
-b:Sc/DoseAtPhantom/OutputToConsole           = "True"
+b:Sc/DoseAtPhantom/OutputToConsole           = "False"
 s:Sc/DoseAtPhantom/IfOutputFileAlreadyExists = "Overwrite"
 s:Sc/DoseAtPhantom/OutputType                = "DICOM"
 b:Sc/DoseAtPhantom/DICOMOutput32BitsPerPixel = "False"
