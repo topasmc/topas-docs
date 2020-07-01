@@ -27,3 +27,4 @@ Scoring
 	ParallelBoxRebinned
 	SplitByTimeFeature
 	Surfaces
+	VoxelMaterials
