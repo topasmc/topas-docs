@@ -15,10 +15,9 @@ s:Ge/Patient/Material = "G4_WATER"
 d:Ge/Patient/HLX = 4. cm
 d:Ge/Patient/HLY = 4. cm
 d:Ge/Patient/HLZ = 4. cm
-i:Ge/Patient/XBins = 10
-i:Ge/Patient/YBins = 10
-i:Ge/Patient/ZBins = 5
-b:Ge/Patient/Invisible = "False" # Visualization of the patient slows things down. So turn off when doing serious run.
+#i:Ge/Patient/XBins = 10
+#i:Ge/Patient/YBins = 10
+#i:Ge/Patient/ZBins = 5
 
 # If using real DICOM
 #s:Ge/Patient/Type = "TsDicomPatient"
