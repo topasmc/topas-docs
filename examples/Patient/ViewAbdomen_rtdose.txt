@@ -96,8 +96,19 @@ d:Ge/Patient/TransY   = Ge/Patient/DicomOriginY - Ge/IsoCenterY mm
 d:Ge/Patient/TransZ   = Ge/Patient/DicomOriginZ - Ge/IsoCenterZ mm
 
 s:Ge/Patient/DicomDirectory      = "Abdomen"
+
 # Create a parallel grid for scroing. "Patient/RTDoseGrid"
-s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/rtdose.dcm"
+# you have three options to create RTDoseGrid
+# option 1 : You can create  same size from DICOM-RT Dose
+# s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/rtdose.dcm"
+
+# option 2 : You can redefine size from DICOM-RT Dose but keep same position
+# s:Ge/Patient/CloneRTDoseGridFrom = Ge/Patient/DicomDirectory + "/rtdose.dcm"
+# dv:Ge/Patient/CloneRTDoseGridSize = 3 5 5 8 mm
+
+# option 3 : If you don't have RT-Dose, simply specify the pixel size.
+ dv:Ge/Patient/CloneRTDoseGridSize = 3 5 5 5 mm
+
 b:Ge/Patient/IgnoreInconsistentFrameOfReferenceUID = "True"
 
 sv:Ge/Patient/DicomModalityTags = 1 "CT"
