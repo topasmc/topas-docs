@@ -3,13 +3,13 @@
 Index To Parameters
 ==================
 
-The following parameters are built-in by default. They are actually compiled into the code rather than set from a parameter file, 
-that all users will always have the same starting set of defaults. You can override any of these parameters in your own files.
+This index is intended to list all of the parameters used by TOPAS (though we may have missed a few).
+Clicking on any of these parameters will bring you to the relevant part of the TOPAS User Guide (links not finished yet).
 
 
 
-Overall program control
-~~~~~~~~~~~~~~~~~~~~~~~
+TOPAS Overall Control
+~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -42,8 +42,8 @@ Overall program control
 
 
 
-Overall timeline control
-~~~~~~~~~~~~~~~~~~~~~~~~
+Time Features
+~~~~~~~~~~~~~
 
 ::
 
@@ -55,8 +55,8 @@ Overall timeline control
 
 
 
-Optional checks on correctness of geometry
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Geometry Overall Control
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -70,70 +70,151 @@ Optional checks on correctness of geometry
 
 
 
-.. _parameters_default_world:
-
-Top level geometry component, the World Volume
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Geometry Parameters Used by All Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    s:Ge/World/Type = "TsBox"
-    s:Ge/World/Material = "Air"
-    d:Ge/World/HLX = 5. m # Half Length
-    d:Ge/World/HLY = 5. m
-    d:Ge/World/HLZ = 5. m
-    d:Ge/World/TransX = 0. m
-    d:Ge/World/TransY = 0. m
-    d:Ge/World/TransZ = 0. m
-    d:Ge/World/RotX = 0. deg
-    d:Ge/World/RotY = 0. deg
-    d:Ge/World/RotZ = 0. deg
+    s:Ge/\<ComponentName\>/Type = "TsBox"
+    s:Ge/\<ComponentName\/Parent = "World"
+    s:Ge/\<ComponentName\>/Material = "Air"
+    d:Ge/\<ComponentName\>/TransX = 0. m
+    d:Ge/\<ComponentName\>/TransY = 0. m
+    d:Ge/\<ComponentName\>/TransZ = 0. m
+    d:Ge/\<ComponentName\>/RotX = 0. deg
+    d:Ge/\<ComponentName\>/RotY = 0. deg
+    d:Ge/\<ComponentName\>/RotZ = 0. deg
+    b:Ge/\<ComponentName\/Include = "False" # defaults to "True"
+    d:Ge/\<ComponentName\/MaxStepSize = 1. mm # sets maximum step size used in this component
+    i:Ge/\<ComponentName\>/CheckForOverlapsResolution = 1000
+    d:Ge/\<ComponentName\>/CheckForOverlapsTolerance = 0. mm
 
 
 
-Demo Beam position
-~~~~~~~~~~~~~~~~~~
-
-::
-
-    s:Ge/BeamPosition/Parent = "World"
-    s:Ge/BeamPosition/Type = "Group"
-    d:Ge/BeamPosition/TransX = 0. m
-    d:Ge/BeamPosition/TransY = 0. m
-    d:Ge/BeamPosition/TransZ =  Ge/World/HLZ m
-    d:Ge/BeamPosition/RotX = 180. deg
-    d:Ge/BeamPosition/RotY = 0. deg
-    d:Ge/BeamPosition/RotZ = 0. deg
-
-
-
-Demo Particle Source
-~~~~~~~~~~~~~~~~~~~~
+Geometry Parameters for Component Type TsBox
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    s:So/Demo/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
-    s:So/Demo/Component = "BeamPosition"
-    s:So/Demo/BeamParticle = "proton"
-    d:So/Demo/BeamEnergy = 169.23 MeV
-    u:So/Demo/BeamEnergySpread = 0.757504
-    s:So/Demo/BeamPositionDistribution = "Gaussian" # Flat or Gaussian
-    s:So/Demo/BeamPositionCutoffShape = "Ellipse" # Point, Ellipse, Rectangle or Isotropic
-    d:So/Demo/BeamPositionCutoffX = 10. cm
-    d:So/Demo/BeamPositionCutoffY = 10. cm
-    d:So/Demo/BeamPositionSpreadX = 0.65 cm
-    d:So/Demo/BeamPositionSpreadY = 0.65 cm
-    s:So/Demo/BeamAngularDistribution = "Gaussian" # Flat or Gaussian
-    d:So/Demo/BeamAngularCutoffX = 90. deg
-    d:So/Demo/BeamAngularCutoffY = 90. deg
-    d:So/Demo/BeamAngularSpreadX = 0.0032 rad
-    d:So/Demo/BeamAngularSpreadY = 0.0032 rad
-    i:So/Demo/NumberOfHistoriesInRun = 0
-    i:So/Demo/NumberOfHistoriesInRandomJob = 0
+    d:Ge/\<ComponentName\>/HLX = 5. m # Half Length
+    d:Ge/\<ComponentName\>/HLY = 5. m
+    d:Ge/\<ComponentName\>/HLZ = 5. m
 
 
 
-.. _parameters_default_physics:
+Geometry Parameters for Component Type TsSphere
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/\<ComponentName\>/RMax = 5. m
+    d:Ge/\<ComponentName\>/RMin = 0. m
+    d:Ge/\<ComponentName\>/DPhi = 0. deg
+    d:Ge/\<ComponentName\>/SPhi = 180. deg
+
+
+Particle Source Parameters Used by All Source Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    s:So/\<SourceName\>/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
+    s:So/\<SourceName\>/Component = "BeamPosition"
+    i:So/\<SourceName\>/NumberOfHistoriesInRun = 0
+    i:So/\<SourceName\>/NumberOfHistoriesInRandomJob = 0
+
+
+
+Particle Source Parameters Used by Source Type Beam
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:So/\<SourceName\>/BeamParticle = "proton"
+    d:So/\<SourceName\>/BeamEnergy = 169.23 MeV
+    u:So/\<SourceName\>/BeamEnergySpread = 0.757504
+    s:So/\<SourceName\>/BeamPositionDistribution = "Gaussian" # Flat or Gaussian
+    s:So/\<SourceName\>/BeamPositionCutoffShape = "Ellipse" # Point, Ellipse, Rectangle or Isotropic
+    d:So/\<SourceName\>/BeamPositionCutoffX = 10. cm
+    d:So/\<SourceName\>/BeamPositionCutoffY = 10. cm
+    d:So/\<SourceName\>/BeamPositionSpreadX = 0.65 cm
+    d:So/\<SourceName\>/BeamPositionSpreadY = 0.65 cm
+    s:So/\<SourceName\>/BeamAngularDistribution = "Gaussian" # Flat or Gaussian
+    d:So/\<SourceName\>/BeamAngularCutoffX = 90. deg
+    d:So/\<SourceName\>/BeamAngularCutoffY = 90. deg
+    d:So/\<SourceName\>/BeamAngularSpreadX = 0.0032 rad
+    d:So/\<SourceName\>/BeamAngularSpreadY = 0.0032 rad
+ 
+
+
+Particle Source Parameters Used by Source Type Isotropic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:So/\<SourceName\>/and so on
+
+
+
+Scoring Overall Control
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    b:Sc/AddUnitEvenIfItIsOne = "False" # If unit is 1, rather than, say, Gy, default is to leave out unit in header.
+    s:Sc/RootFileName = "topas" # name for root output files
+    s:Sc/XmlFileName = "topas" # name for xml output files
+
+
+Scoring Parameters Used by All Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/\<ScorerName\>/Quantity = "DoseToMedium"
+
+
+Scoring Parameters Used by All Volume Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/\<ScorerName\>/Component = "Phantom"
+
+
+Scoring Parameters Used by Scorer of Quantity DoseToMaterial
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/\<ScorerName\>/Material = "SomeMaterial"
+    s:Sc/\<ScorerName\>/PreCalculateStoppingPowerRatios = "True" # defaults to "False"
+    s:Sc/\<ScorerName\>/ProtonEnergyBinSize # default is 1 MeV
+    s:Sc/\<ScorerName\>/MinProtonEnergyForStoppingPowerRatio # default is 1 MeV
+    s:Sc/\<ScorerName\>/MaxProtonEnergyForStoppingPowerRatio # default is 500 MeV
+    s:Sc/\<ScorerName\>/ElectronEnergyBinSize # default is 1 keV
+    s:Sc/\<ScorerName\>/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
+    s:Sc/\<ScorerName\>/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
+
+
+Scoring Parameters Used by All Surface Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    etc
+
+
+Graphics Overall Control
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    b:Gr/Enable = "True" # Set False to avoid instantiating any part of Geant4 visualization system
+    i:Gr/Verbosity = 0 # Set to higher integer to increase verbosity of Geant4 visualization system
+    s:Gr/RefreshEvery = "Run" # "History", "Run" or "Session"
+    i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000 # Above this limit, only show outer box
+    i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 70000000 # Above this limit, switch OpenGL Graphics to Immediate mode
+
+
 
 Physics
 ~~~~~~~
@@ -146,30 +227,6 @@ Physics
     sv:Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
     d:Ph/Default/EMRangeMin = 100. eV
     d:Ph/Default/EMRangeMax = 500. MeV
-
-
-
-Scoring
-~~~~~~~
-
-::
-
-    b:Sc/AddUnitEvenIfItIsOne = "False" # If unit is 1, rather than, say, Gy, default is to leave out unit in header.
-    s:Sc/RootFileName = "topas" # name for root output files
-    s:Sc/XmlFileName = "topas" # name for xml output files
-
-
-
-Graphics
-~~~~~~~~
-
-::
-
-    b:Gr/Enable = "True" # Set False to avoid instantiating any part of Geant4 visualization system (useful for running on batch machines that lack the OpenGL graphics library)
-    i:Gr/Verbosity = 0 # Set to higher integer to increase verbosity of Geant4 visualization system
-    s:Gr/RefreshEvery = "Run" # "History", "Run" or "Session"
-    i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000 # Above this limit, only show outer box
-    i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 70000000 # Above this limit, switch OpenGL Graphics to Immediate mode
 
 
 
@@ -495,24 +552,6 @@ Particle Source
             
 
 
-Geometry Components
-~~~~~~~~~~~~~~~~~~~~
-
-::
-
-    s:Ge/MyComponent/Parent = "World"
-    s:Ge/MyComponent/Type = "TsBox"
-    d:Ge/MyComponent/TransX=0.0 cm # defaults to 0
-    d:Ge/MyComponent/TransY=0.0 cm # defaults to 0
-    d:Ge/MyComponent/TransZ=0.0 cm # defaults to 0
-    d:Ge/MyComponent/RotX=0.0 deg # defaults to 0
-    d:Ge/MyComponent/RotY=0.0 deg # defaults to 0
-    d:Ge/MyComponent/RotZ=0.0 deg # defaults to 0
-    s:Ge/VBox2/Dipole/Parent = "Nozzle"
-    s:Ge/MyComponent/Material = "Air"
-    b:Ge/MyComponent/Include = "False" # defaults to "True"
-    Ge/CheckForUnusedComponents = "False"
-    d:Ge/MyComponent/MaxStepSize = 1. mm # sets maximum step size used in this component
                 
 
 
@@ -570,8 +609,6 @@ Placement of Components
     b:Ge/CheckInsideEnvelopesForOverlaps = "True"
     i:Ge/CheckForOverlapsResolution = 1000
     d:Ge/CheckForOverlapsTolerance = 0. mm
-    i:Ge/MyComponent/CheckForOverlapsResolution = 1000
-    d:Ge/MyComponent/CheckForOverlapsTolerance = 0. mm
     d:Ge/Gantry1/Scatterer2/RotZForSS0 = 0. deg
     d:Ge/Gantry1/Scatterer2/RotZForSS8 = 270. deg
     d:Ge/Gantry1/Scatterer2/RotZForSS2 = 180. deg
