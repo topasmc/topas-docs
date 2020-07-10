@@ -75,19 +75,19 @@ Geometry Parameters Used by All Components
 
 ::
 
-    s:Ge/\<ComponentName\>/Type = "TsBox"
-    s:Ge/\<ComponentName\/Parent = "World"
-    s:Ge/\<ComponentName\>/Material = "Air"
-    d:Ge/\<ComponentName\>/TransX = 0. m
-    d:Ge/\<ComponentName\>/TransY = 0. m
-    d:Ge/\<ComponentName\>/TransZ = 0. m
-    d:Ge/\<ComponentName\>/RotX = 0. deg
-    d:Ge/\<ComponentName\>/RotY = 0. deg
-    d:Ge/\<ComponentName\>/RotZ = 0. deg
-    b:Ge/\<ComponentName\/Include = "False" # defaults to "True"
-    d:Ge/\<ComponentName\/MaxStepSize = 1. mm # sets maximum step size used in this component
-    i:Ge/\<ComponentName\>/CheckForOverlapsResolution = 1000
-    d:Ge/\<ComponentName\>/CheckForOverlapsTolerance = 0. mm
+    s:Ge/<ComponentName>/Type = "TsBox"
+    s:Ge/<ComponentName/Parent = "World"
+    s:Ge/<ComponentName>/Material = "Air"
+    d:Ge/<ComponentName>/TransX = 0. m
+    d:Ge/<ComponentName>/TransY = 0. m
+    d:Ge/<ComponentName>/TransZ = 0. m
+    d:Ge/<ComponentName>/RotX = 0. deg
+    d:Ge/<ComponentName>/RotY = 0. deg
+    d:Ge/<ComponentName>/RotZ = 0. deg
+    b:Ge/<ComponentName/Include = "False" # defaults to "True"
+    d:Ge/<ComponentName/MaxStepSize = 1. mm # sets maximum step size used in this component
+    i:Ge/<ComponentName>/CheckForOverlapsResolution = 1000
+    d:Ge/<ComponentName>/CheckForOverlapsTolerance = 0. mm
 
 
 
@@ -96,9 +96,9 @@ Geometry Parameters for Component Type TsBox
 
 ::
 
-    d:Ge/\<ComponentName\>/HLX = 5. m # Half Length
-    d:Ge/\<ComponentName\>/HLY = 5. m
-    d:Ge/\<ComponentName\>/HLZ = 5. m
+    d:Ge/<ComponentName>/HLX = 5. m # Half Length
+    d:Ge/<ComponentName>/HLY = 5. m
+    d:Ge/<ComponentName>/HLZ = 5. m
 
 
 
@@ -107,19 +107,19 @@ Geometry Parameters for Component Type TsSphere
 
 ::
 
-    d:Ge/\<ComponentName\>/RMax = 5. m
-    d:Ge/\<ComponentName\>/RMin = 0. m
-    d:Ge/\<ComponentName\>/DPhi = 0. deg
-    d:Ge/\<ComponentName\>/SPhi = 180. deg
+    d:Ge/<ComponentName>/RMax = 5. m
+    d:Ge/<ComponentName>/RMin = 0. m
+    d:Ge/<ComponentName>/DPhi = 0. deg
+    d:Ge/<ComponentName>/SPhi = 180. deg
 
 
 Particle Source Parameters Used by All Source Types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    s:So/\<SourceName\>/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
-    s:So/\<SourceName\>/Component = "BeamPosition"
-    i:So/\<SourceName\>/NumberOfHistoriesInRun = 0
-    i:So/\<SourceName\>/NumberOfHistoriesInRandomJob = 0
+    s:So/<SourceName>/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
+    s:So/<SourceName>/Component = "BeamPosition"
+    i:So/<SourceName>/NumberOfHistoriesInRun = 0
+    i:So/<SourceName>/NumberOfHistoriesInRandomJob = 0
 
 
 
@@ -128,20 +128,20 @@ Particle Source Parameters Used by Source Type Beam
 
 ::
 
-    s:So/\<SourceName\>/BeamParticle = "proton"
-    d:So/\<SourceName\>/BeamEnergy = 169.23 MeV
-    u:So/\<SourceName\>/BeamEnergySpread = 0.757504
-    s:So/\<SourceName\>/BeamPositionDistribution = "Gaussian" # Flat or Gaussian
-    s:So/\<SourceName\>/BeamPositionCutoffShape = "Ellipse" # Point, Ellipse, Rectangle or Isotropic
-    d:So/\<SourceName\>/BeamPositionCutoffX = 10. cm
-    d:So/\<SourceName\>/BeamPositionCutoffY = 10. cm
-    d:So/\<SourceName\>/BeamPositionSpreadX = 0.65 cm
-    d:So/\<SourceName\>/BeamPositionSpreadY = 0.65 cm
-    s:So/\<SourceName\>/BeamAngularDistribution = "Gaussian" # Flat or Gaussian
-    d:So/\<SourceName\>/BeamAngularCutoffX = 90. deg
-    d:So/\<SourceName\>/BeamAngularCutoffY = 90. deg
-    d:So/\<SourceName\>/BeamAngularSpreadX = 0.0032 rad
-    d:So/\<SourceName\>/BeamAngularSpreadY = 0.0032 rad
+    s:So/<SourceName>/BeamParticle = "proton"
+    d:So/<SourceName>/BeamEnergy = 169.23 MeV
+    u:So/<SourceName>/BeamEnergySpread = 0.757504
+    s:So/<SourceName>/BeamPositionDistribution = "Gaussian" # Flat or Gaussian
+    s:So/<SourceName>/BeamPositionCutoffShape = "Ellipse" # Point, Ellipse, Rectangle or Isotropic
+    d:So/<SourceName>/BeamPositionCutoffX = 10. cm
+    d:So/<SourceName>/BeamPositionCutoffY = 10. cm
+    d:So/<SourceName>/BeamPositionSpreadX = 0.65 cm
+    d:So/<SourceName>/BeamPositionSpreadY = 0.65 cm
+    s:So/<SourceName>/BeamAngularDistribution = "Gaussian" # Flat or Gaussian
+    d:So/<SourceName>/BeamAngularCutoffX = 90. deg
+    d:So/<SourceName>/BeamAngularCutoffY = 90. deg
+    d:So/<SourceName>/BeamAngularSpreadX = 0.0032 rad
+    d:So/<SourceName>/BeamAngularSpreadY = 0.0032 rad
  
 
 
@@ -150,7 +150,7 @@ Particle Source Parameters Used by Source Type Isotropic
 
 ::
 
-    s:So/\<SourceName\>/and so on
+    s:So/<SourceName>/and so on
 
 
 
@@ -169,7 +169,7 @@ Scoring Parameters Used by All Scorers
 
 ::
 
-    s:Sc/\<ScorerName\>/Quantity = "DoseToMedium"
+    s:Sc/<ScorerName>/Quantity = "DoseToMedium"
 
 
 Scoring Parameters Used by All Volume Scorers
@@ -177,7 +177,7 @@ Scoring Parameters Used by All Volume Scorers
 
 ::
 
-    s:Sc/\<ScorerName\>/Component = "Phantom"
+    s:Sc/<ScorerName>/Component = "Phantom"
 
 
 Scoring Parameters Used by Scorer of Quantity DoseToMaterial
@@ -185,14 +185,14 @@ Scoring Parameters Used by Scorer of Quantity DoseToMaterial
 
 ::
 
-    s:Sc/\<ScorerName\>/Material = "SomeMaterial"
-    s:Sc/\<ScorerName\>/PreCalculateStoppingPowerRatios = "True" # defaults to "False"
-    s:Sc/\<ScorerName\>/ProtonEnergyBinSize # default is 1 MeV
-    s:Sc/\<ScorerName\>/MinProtonEnergyForStoppingPowerRatio # default is 1 MeV
-    s:Sc/\<ScorerName\>/MaxProtonEnergyForStoppingPowerRatio # default is 500 MeV
-    s:Sc/\<ScorerName\>/ElectronEnergyBinSize # default is 1 keV
-    s:Sc/\<ScorerName\>/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
-    s:Sc/\<ScorerName\>/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
+    s:Sc/<ScorerName>/Material = "SomeMaterial"
+    s:Sc/<ScorerName>/PreCalculateStoppingPowerRatios = "True" # defaults to "False"
+    s:Sc/<ScorerName>/ProtonEnergyBinSize # default is 1 MeV
+    s:Sc/<ScorerName>/MinProtonEnergyForStoppingPowerRatio # default is 1 MeV
+    s:Sc/<ScorerName>/MaxProtonEnergyForStoppingPowerRatio # default is 500 MeV
+    s:Sc/<ScorerName>/ElectronEnergyBinSize # default is 1 keV
+    s:Sc/<ScorerName>/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
+    s:Sc/<ScorerName>/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
 
 
 Scoring Parameters Used by All Surface Scorers
