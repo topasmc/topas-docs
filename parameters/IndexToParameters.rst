@@ -88,6 +88,39 @@ Geometry Parameters Used by All Components
     d:Ge/<ComponentName/MaxStepSize = 1. mm # sets maximum step size used in this component
     i:Ge/<ComponentName>/CheckForOverlapsResolution = 1000
     d:Ge/<ComponentName>/CheckForOverlapsTolerance = 0. mm
+    b:Ge/<ComponentName>/IsParallel = "True"
+    s:Ge/<ComponentName>/ParallelWorldName = "SomeParallelWorldName"
+    s:Ge/<ComponentName>/Field = "DipoleMagnet" # "DipoleMagnet", "QuadrupoleMagnet", "MappedMagnet", "UniformElectroMagnetic" or your own definition
+    u:Ge/<ComponentName>/MagneticFieldDirectionX = 0.0
+    u:Ge/<ComponentName>/MagneticFieldDirectionY = 1.0
+    u:Ge/<ComponentName>/MagneticFieldDirectionZ = 0.0
+    d:Ge/<ComponentName>/MagneticFieldStrength = 3.0 tesla
+    d:Ge/<ComponentName>/MagneticFieldGradientX = 1.0 tesla
+    d:Ge/<ComponentName>/MagneticFieldGradientY = 1.0 tesla
+    s:Ge/<ComponentName>/MagneticField3DTable = "PurgMag3D.TABLE"
+    u:Ge/<ComponentName>/ElectricFieldDirectionX = 1.0
+    u:Ge/<ComponentName>/ElectricFieldDirectionY = 1.0
+    u:Ge/<ComponentName>/ElectricFieldDirectionZ = 0.0
+    d:Ge/<ComponentName>/ElectricFieldStrength   = 5000 kV/cm
+    u:Ge/<ComponentName>/MagneticFieldDirectionX = 0.0
+    u:Ge/<ComponentName>/MagneticFieldDirectionY = 1.0
+    u:Ge/<ComponentName>/MagneticFieldDirectionZ = 0.0
+    d:Ge/<ComponentName>/MagneticFieldStrength   = 5.0 tesla
+    d:Ge/<ComponentName>/MagneticFieldStrength = Tf/BField1st/Value tesla
+    s:Ge/<ComponentName>/FieldStepper = "ClassicalRK4"
+    d:Ge/<ComponentName>/FieldStepMinimum = 1.0 mm
+    d:Ge/<ComponentName>/FieldDeltaChord = 1.0e-1 mm
+    d:Ge/<ComponentName>/Scatterer2/RotZForSS0 = 0. deg
+    d:Ge/<ComponentName>/Scatterer2/RotZForSS8 = 270. deg
+    d:Ge/<ComponentName>/Scatterer2/RotZForSS2 = 180. deg
+    d:Ge/<ComponentName>/Scatterer2/RotZForSS3 = 90. deg
+    Ge/<ComponentName>/Holder/RotZ = Ge/Gantry1/Scatterer2/RotZForSS3 deg
+    s:Ge/<ComponentName>/Color = "red"
+    s:Ge/<ComponentName>/DrawingStyle = "Solid" # "Solid", "Wireframe" or "FullWireFrame"
+    i:Ge/<ComponentName>/VisSegsPerCircle = 100 # Number of line segments to use to approximate a circle, defaults to 24
+    b:Ge/<ComponentName>/Invisible = "True" # defaults to False meaning visible
+    sv:Ge/<ComponentName>/VoxelMaterials = 100 "G4_WATER" "G4_WATER" "Air" "Air" "G4_WATER" ...
+
 
 
 
@@ -99,6 +132,7 @@ Geometry Parameters for Component Type TsBox
     d:Ge/<ComponentName>/HLX = 5. m # Half Length
     d:Ge/<ComponentName>/HLY = 5. m
     d:Ge/<ComponentName>/HLZ = 5. m
+    b:Ge/<ComponentName>/Invisible = "TRUE"
 
 
 
@@ -111,6 +145,58 @@ Geometry Parameters for Component Type TsSphere
     d:Ge/<ComponentName>/RMin = 0. m
     d:Ge/<ComponentName>/DPhi = 0. deg
     d:Ge/<ComponentName>/SPhi = 180. deg
+
+
+
+Geometry Parameters for Component Type Range Modulator Wheel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/<ComponentName>/HeightOfUpper = 150 mm
+    d:Ge/<ComponentsName>/HeightOfMiddle = 1.0 mm
+    d:Ge/<ComponentName>/HeightOfLower = 9.0 mm
+    d:Ge/<ComponentName>/Shell/Rin = 15.0 cm
+    d:Ge/<ComponentName>/Shell/Rout = 15.5 cm
+    s:Ge/<ComponentName>/Shell/Material = "Aluminum"
+    s:Ge/<ComponentName>/Shell/Color = "grey"
+    s:Ge/<ComponentName>/Shell/DrawingStyle = "Solid"
+    i:Ge/<ComponentName>/Shell/VisSegsPerCircle = 360
+    d:Ge/<ComponentName>/Hub/Rin = 6.0 cm
+    d:Ge/<ComponentName>/Hub/Rout = 7.0 cm
+    s:Ge/<ComponentName>/Hub/Material = "Aluminum"
+    s:Ge/<ComponentName>/Hub/Color = "grey"
+    s:Ge/<ComponentName>/Hub/DrawingStyle = "Solid"
+    i:Ge/<ComponentName>/Hub/VisSegsPerCircle = 360
+    dv:Ge/<ComponentName>/Upper/RadialDivisions=1 11.0 cm
+    s:Ge/<ComponentName>/Upper/Track1/Pattern = "LexanBlockT1"
+    s:Ge/<ComponentName>/Upper/Track2/Pattern = "NULL" #NULL means empty track.
+
+    # Track1 pattern: 14 blocks of Lexan.
+    # Numbers of Angles, Heights, and Materials should be same.
+    d:Ge/LexanBlockT1/Offset=0.0 deg #means shift of zero-angle
+    # Angle divisions. The first block’s spans from 5.0 deg to 115.0 deg.
+    # The last block starting at 324.0 deg spans to the first block’s boundary.
+    # This case last block spans from 324.0 deg to 360.0 + 5.0 deg
+    dv:Ge/LexanBlockT1/Angles=14
+    5.00 115.00 146.50 173.2 195.07
+    216.15 230.14 243.00 255.5 270.60
+    282.20 294.60 306.20 324.00 deg
+    # Height of each block.
+    # Note that zero height means that no block in that angle range.
+    dv:Ge/LexanBlockT1/Heights=14
+    77.0 82.0 87.0 92.15 95.0
+    100.4 106.0 110.2 115.3 119.5
+    124.0 128.8 132.00 60.0 mm
+
+    # Material of each block.
+    sv:Ge/LexanBlockT1/Materials=14
+    "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
+    "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
+    "Lexan" "Lexan" "Lexan" "Brass"
+    
+    b:Ge/RangeModulatorA/PrintInformation = "True" #Print out specification, see below
+
 
 
 Particle Source Parameters Used by All Source Types
@@ -227,6 +313,7 @@ Physics
     sv:Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
     d:Ph/Default/EMRangeMin = 100. eV
     d:Ph/Default/EMRangeMax = 500. MeV
+    sv:Ph/<PhysicsList>/LayeredMassGeometryWorlds = 2 "Tumor" "Seed"
 
 
 
@@ -555,138 +642,22 @@ Particle Source
                 
 
 
-Placement of Components
+
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    s:Ge/MyBox/Type="TsBox"
-    s:Ge/MyBox/Parent = "World"
-    s:Ge/MyBox/Material="Air"
-    d:Ge/MyBox/HLX=5. m # Half Length
-    d:Ge/MyBox/HLY=5. m
-    d:Ge/MyBox/HLZ=5. m
-    d:Ge/MyBox/TransX=0. m
-    d:Ge/MyBox/TransY=0. m
-    d:Ge/MyBox/TransZ=0. m
-    d:Ge/MyBox/RotX=0. deg
-    d:Ge/MyBox/RotY=0. deg
-    d:Ge/MyBox/RotZ=0. deg
+   
+
     
-    # Overrides the world size that was set in built-in defaults:
-    Ge/World/HLX=10. m
-    Ge/World/HLY=10. m
-    Ge/World/HLZ=10. m
-
-    # Box inserted into the World
-    s:Ge/TestBox/Material="Air"
-    s:Ge/TestBox/Parent="World"
-    s:Ge/TestBox/Type="TsBox"
-    d:Ge/TestBox/HLX=400. cm
-    d:Ge/TestBox/HLY=300. cm
-    d:Ge/TestBox/HLZ=200. cm
-    d:Ge/TestBox/TransX=0. m
-    d:Ge/TestBox/TransY=0. cm
-    d:Ge/TestBox/TransZ=0. m
-    d:Ge/TestBox/RotX=0. deg
-    d:Ge/TestBox/RotY=0. deg
-    d:Ge/TestBox/RotZ=0. deg
-
-    # Another box inserted into the first box
-    s:Ge/TestBox2/Material="Carbon"
-    s:Ge/TestBox2/Parent="TestBox"
-    s:Ge/TestBox2/Type="TsBox"
-    d:Ge/TestBox2/HLX=180. cm
-    d:Ge/TestBox2/HLY=120. cm
-    d:Ge/TestBox2/HLZ=80. cm
-    d:Ge/TestBox2/TransX=0. m
-    d:Ge/TestBox2/TransY=0. cm
-    d:Ge/TestBox2/TransZ=150. cm
-    d:Ge/TestBox2/RotX=0. deg
-    d:Ge/TestBox2/RotY=30. deg
-    d:Ge/TestBox2/RotZ=0. deg
-    Ge/CheckForOverlaps = "False"
-    b:Ge/CheckInsideEnvelopesForOverlaps = "True"
-    i:Ge/CheckForOverlapsResolution = 1000
-    d:Ge/CheckForOverlapsTolerance = 0. mm
-    d:Ge/Gantry1/Scatterer2/RotZForSS0 = 0. deg
-    d:Ge/Gantry1/Scatterer2/RotZForSS8 = 270. deg
-    d:Ge/Gantry1/Scatterer2/RotZForSS2 = 180. deg
-    d:Ge/Gantry1/Scatterer2/RotZForSS3 = 90. deg
-    Ge/Scatterer2/Holder/RotZ = Ge/Gantry1/Scatterer2/RotZForSS3 deg
                 
 
 
-Range Modulator Wheel
-~~~~~~~~~~~~~~~~~~~~~~
 
-::
-
-    # Common parameters: type of geometry, position, and rotation
-    s:Ge/RangeModulatorA/Type = "TsRangeModulator"
-    s:Ge/RangeModulatorA/Material = "Parent"
-    s:Ge/RangeModulatorA/Parent = "World"
-    d:Ge/RangeModulatorA/TransX = 10.0 cm
-    d:Ge/RangeModulatorA/TransY = 0.0 cm
-    d:Ge/RangeModulatorA/TransZ = 0.0 cm
-    d:Ge/RangeModulatorA/RotX = 0.0 deg
-    d:Ge/RangeModulatorA/RotY = 0.0 deg
-    d:Ge/RangeModulatorA/RotZ = 0.0 deg
-    b:Ge/RangeModulatorA/Invisible = "TRUE"
-
-    # Set height of each sections and total height = 160.0 mm
-    d:Ge/RangeModulatorA/HeightOfUpper = 150 mm
-    d:Ge/RangeModulatorA/HeightOfMiddle = 1.0 mm
-    d:Ge/RangeModulatorA/HeightOfLower = 9.0 mm
-
-    # Shell dimensions, material, color, etc.
-    d:Ge/RangeModulatorA/Shell/Rin = 15.0 cm
-    d:Ge/RangeModulatorA/Shell/Rout = 15.5 cm
-    s:Ge/RangeModulatorA/Shell/Material = "Aluminum"
-    s:Ge/RangeModulatorA/Shell/Color = "grey"
-    s:Ge/RangeModulatorA/Shell/DrawingStyle = "Solid"
-    i:Ge/RangeModulatorA/Shell/VisSegsPerCircle = 360
-
-    # Hub dimensions, material, color, etc.
-    d:Ge/RangeModulatorA/Hub/Rin = 6.0 cm
-    d:Ge/RangeModulatorA/Hub/Rout = 7.0 cm
-    s:Ge/RangeModulatorA/Hub/Material = "Aluminum"
-    s:Ge/RangeModulatorA/Hub/Color = "grey"
-    s:Ge/RangeModulatorA/Hub/DrawingStyle = "Solid"
-    i:Ge/RangeModulatorA/Hub/VisSegsPerCircle = 360
-
-    # Setting tracks on Upper area
-    # Two tracks Track1 (7.0 cm ~ 11.0 cm) and Track2 ( 11.0 cm ~ 15.0 cm)
-    dv:Ge/RangeModulatorA/Upper/RadialDivisions=1 11.0 cm
-
-    # Assignment of track pattern of Upper area
-    # Track1 refers the pattern named "LexanBlockT1" whose vector parameters are defined elsewhere (see below).
-    s:Ge/RangeModulatorA/Upper/Track1/Pattern = "LexanBlockT1"
-    s:Ge/RangeModulatorA/Upper/Track2/Pattern = "NULL" #NULL means empty track.
-
-    # Track1 pattern: 14 blocks of Lexan.
-    # Numbers of Angles, Heights, and Materials should be same.
-    d:Ge/LexanBlockT1/Offset=0.0 deg #means shift of zero-angle
-    # Angle divisions. The first block’s spans from 5.0 deg to 115.0 deg.
-    # The last block starting at 324.0 deg spans to the first block’s boundary.
-    # This case last block spans from 324.0 deg to 360.0 + 5.0 deg
-    dv:Ge/LexanBlockT1/Angles=14
-    5.00 115.00 146.50 173.2 195.07
-    216.15 230.14 243.00 255.5 270.60
-    282.20 294.60 306.20 324.00 deg
-    # Height of each block.
-    # Note that zero height means that no block in that angle range.
-    dv:Ge/LexanBlockT1/Heights=14
-    77.0 82.0 87.0 92.15 95.0
-    100.4 106.0 110.2 115.3 119.5
-    124.0 128.8 132.00 60.0 mm
-
-    # Material of each block.
-    sv:Ge/LexanBlockT1/Materials=14
-    "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
-    "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
-    "Lexan" "Lexan" "Lexan" "Brass"
     
-    b:Ge/RangeModulatorA/PrintInformation = "True" #Print out specification, see below
+
+   
+
+    
     
     
