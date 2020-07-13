@@ -118,9 +118,10 @@ Geometry Parameters Used by All Components
     s:Ge/<ComponentName>/Color = "red"
     s:Ge/<ComponentName>/DrawingStyle = "Solid" # "Solid", "Wireframe" or "FullWireFrame"
     i:Ge/<ComponentName>/VisSegsPerCircle = 100 # Number of line segments to use to approximate a circle, defaults to 24
-    b:Ge/<ComponentName>/Invisible = "True" # defaults to False meaning visible
     sv:Ge/<ComponentName>/VoxelMaterials = 100 "G4_WATER" "G4_WATER" "Air" "Air" "G4_WATER" ...
-
+    s:Ge/<ComponentName>/InputFile = "Foot" # file name, without extensions. Match exact case
+    s:Ge/<ComponentName>/FileFormat = "ply" # file extension
+    b:Ge/<ComponentName>/PrintPoints = "True"
 
 
 
@@ -171,6 +172,7 @@ Geometry Parameters for Component Type Range Modulator Wheel
     dv:Ge/<ComponentName>/Upper/RadialDivisions=1 11.0 cm
     s:Ge/<ComponentName>/Upper/Track1/Pattern = "LexanBlockT1"
     s:Ge/<ComponentName>/Upper/Track2/Pattern = "NULL" #NULL means empty track.
+    b:Ge/<ComponentName>/PrintInformation = "True" #Print out specification, see below
 
     # Track1 pattern: 14 blocks of Lexan.
     # Numbers of Angles, Heights, and Materials should be same.
@@ -195,12 +197,110 @@ Geometry Parameters for Component Type Range Modulator Wheel
     "Lexan" "Lexan" "Lexan" "Lexan" "Lexan"
     "Lexan" "Lexan" "Lexan" "Brass"
     
-    b:Ge/RangeModulatorA/PrintInformation = "True" #Print out specification, see below
+
+
+Geometry Parameters for Component Type Propeller
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    i:Ge/<ComponentName>/NbOfBlades = 4 #Number of blades
+    dv:Ge/<ComponentName>/Thickness =1 0.356 mm #thickness
+    
+
+
+Geometry Parameters for Component Type Ridge Filter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    dv:Ge/<ComponentName>/XPoints = 8
+    dv:Ge/<ComponentName>/ZPoints = 8
+    dv:Ge/<ComponentName>/Displacement = 3 -5.0 0.0 5.0 mm
+        
+
+
+Geometry Parameters for Component Type Multi Wire Chamber
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/<ComponentName>/Layer2/PosZ=-5.0 cm
+        
+
+
+Geometry Parameters for Component Type Multi Leaf Collimator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/<ComponentName>/MaximumLeafOpen = 5.0 cm
+    dv:Ge/<ComponentName>/XMinusLeavesOpen = 5 0.0 -0.3 -0.2 -0.5 0.0 cm
+    dv:Ge/<ComponentName>/XPlusLeavesOpen = 5 0.0 0.3 0.2 0.5 0.0 cm
+        
+
+
+Geometry Parameters for Component Type CAD (Computer Aided Design)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/<ComponentName>/Units = 1.0 cm # how to interpret dimension numbers in the file. Changing this value will re-scale the component
+        
+
+
+Geometry Parameters for Component Type Compensator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ge/<ComponentName>/InvHL = -0.5 * Ge/Compensator/Thickness cm
+    s:Ge/<ComponentName>/Method = "ExtrudedSolid" # Polyhedra, ExtrudedSolid, SubtractionCylinders or UnionCylinders
+    d:Ge/<ComponentName>/XTolerance = 1. mm
+    d:Ge/<ComponentName>/YTolerance = 1. mm
+        
+
+
+Geometry Parameters for Type Patient Components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    b:Ge/<PatientName>/DumpImagingValues = "True"
+    b:Ge/<PatientName>/PreLoadAllMaterials = "True"
+    s:Ge/<PatientName>/DicomDirectory = "DICOM_Box"
+    sv:Ge/<PatientName>/DicomModalityTags = 1 "CT" # defaults to just CT
+    sv:Ge/<PatientName>/ColorByRTStructNames = 2 "R_LUNG" "L_LUNG"
+    sv:Ge/<PatientName>/ColorByRTStructColors = 2 "yellow" "red"
+    b:Ge/<PatientName>/FakeStructures = "True"
+    dc:Ge/<PatientName>/DicomOriginX = 0.0 mm
+    dc:Ge/<PatientName>/DicomOriginY = 0.0 mm
+    dc:Ge/<PatientName>/DicomOriginZ = 0.0 mm
+    s:Ge/<PatientName>/CloneRTDoseGridFrom
+    dv:Ge/<PatientName>/CloneRTDoseGridSize
+    s:Ge/<PatientName>/InputDirectory = "./"
+    s:Ge/<PatientName>/InputFile = "ctvolume.dat" # match exact case
+    s:Ge/<PatientName>/MetaDataFile = "XCAT_FullMouse_86x86x161_atn_1.log"
+    s:Ge/<PatientName>/DataType  = “FLOAT” # “SHORT”, “INT” or “FLOAT"
+    i:Ge/<PatientName>/NumberOfVoxelsX  = 86
+    i:Ge/<PatientName>/NumberOfVoxelsY  = 86
+    i:Ge/<PatientName>/NumberOfVoxelsZ = 161
+    d:Ge/<PatientName>/VoxelSizeX       = .5 mm
+    d:Ge/<PatientName>/VoxelSizeY       = .5 mm
+    d:Ge/<PatientName>/VoxelSizeZ       = .5 mm
+    iv:Ge/<PatientName>/NumberOfVoxelsZ = 2 10 20
+    dv:Ge/<PatientName>/VoxelSizeZ = 2 2.5 1.25 mm
+    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Air    =   0.
+    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Muscle = 195.2515
+    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Lung   =  57.5347
+
 
 
 
 Particle Source Parameters Used by All Source Types
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
 
     s:So/<SourceName>/Type = "Beam" # Beam, Isotropic, Emittance or PhaseSpace
     s:So/<SourceName>/Component = "BeamPosition"
@@ -248,6 +348,9 @@ Scoring Overall Control
     b:Sc/AddUnitEvenIfItIsOne = "False" # If unit is 1, rather than, say, Gy, default is to leave out unit in header.
     s:Sc/RootFileName = "topas" # name for root output files
     s:Sc/XmlFileName = "topas" # name for xml output files
+    i:Sc/<ScorrerName>/XBins = 512
+    i:Sc/<ScorrerName>/YBins = 512
+    i:Sc/<ScorrerName>/ZBins = 256
 
 
 Scoring Parameters Used by All Scorers
@@ -299,6 +402,21 @@ Graphics Overall Control
     s:Gr/RefreshEvery = "Run" # "History", "Run" or "Session"
     i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000 # Above this limit, only show outer box
     i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 70000000 # Above this limit, switch OpenGL Graphics to Immediate mode
+
+
+Graphics for Patient
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12
+    v:Gr/<PatientName>/ShowSpecificSlicesZ = 1 0 # means show all slices
+    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -1 # means only show center slice
+    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
+    iv:Gr/<PatientName>/ShowSpecificSlicesX = 1 -2 # means only show center slice
+    iv:Gr/<PatientName>/ShowSpecificSlicesY = 1 -2 # means only show center slice
+    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -2 # means only show center slice
+    i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000
 
 
 
