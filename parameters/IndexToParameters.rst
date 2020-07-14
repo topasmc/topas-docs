@@ -266,33 +266,48 @@ Geometry Parameters for Type Patient Components
 
 ::
 
-    b:Ge/<PatientName>/DumpImagingValues = "True"
-    b:Ge/<PatientName>/PreLoadAllMaterials = "True"
-    s:Ge/<PatientName>/DicomDirectory = "DICOM_Box"
-    sv:Ge/<PatientName>/DicomModalityTags = 1 "CT" # defaults to just CT
-    sv:Ge/<PatientName>/ColorByRTStructNames = 2 "R_LUNG" "L_LUNG"
-    sv:Ge/<PatientName>/ColorByRTStructColors = 2 "yellow" "red"
-    b:Ge/<PatientName>/FakeStructures = "True"
-    dc:Ge/<PatientName>/DicomOriginX = 0.0 mm
-    dc:Ge/<PatientName>/DicomOriginY = 0.0 mm
-    dc:Ge/<PatientName>/DicomOriginZ = 0.0 mm
-    s:Ge/<PatientName>/CloneRTDoseGridFrom
-    dv:Ge/<PatientName>/CloneRTDoseGridSize
-    s:Ge/<PatientName>/InputDirectory = "./"
-    s:Ge/<PatientName>/InputFile = "ctvolume.dat" # match exact case
-    s:Ge/<PatientName>/MetaDataFile = "XCAT_FullMouse_86x86x161_atn_1.log"
-    s:Ge/<PatientName>/DataType  = “FLOAT” # “SHORT”, “INT” or “FLOAT"
-    i:Ge/<PatientName>/NumberOfVoxelsX  = 86
-    i:Ge/<PatientName>/NumberOfVoxelsY  = 86
-    i:Ge/<PatientName>/NumberOfVoxelsZ = 161
-    d:Ge/<PatientName>/VoxelSizeX       = .5 mm
-    d:Ge/<PatientName>/VoxelSizeY       = .5 mm
-    d:Ge/<PatientName>/VoxelSizeZ       = .5 mm
-    iv:Ge/<PatientName>/NumberOfVoxelsZ = 2 10 20
-    dv:Ge/<PatientName>/VoxelSizeZ = 2 2.5 1.25 mm
-    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Air    =   0.
-    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Muscle = 195.2515
-    u:Ge/<PatientName>/AttenuationForMaterial_XCAT_Lung   =  57.5347
+    b:Ge/<ComponentName>/DumpImagingValues = "True"
+    b:Ge/<ComponentName>/PreLoadAllMaterials = "True"
+    s:Ge/<ComponentName>/DicomDirectory = "DICOM_Box"
+    sv:Ge/<ComponentName>/DicomModalityTags = 1 "CT" # defaults to just CT
+    sv:Ge/<ComponentName>/ColorByRTStructNames = 2 "R_LUNG" "L_LUNG"
+    sv:Ge/<ComponentName>/ColorByRTStructColors = 2 "yellow" "red"
+    b:Ge/<ComponentName>/FakeStructures = "True"
+    dc:Ge/<ComponentName>/DicomOriginX = 0.0 mm
+    dc:Ge/<ComponentName>/DicomOriginY = 0.0 mm
+    dc:Ge/<ComponentName>/DicomOriginZ = 0.0 mm
+    s:Ge/<ComponentName>/CloneRTDoseGridFrom
+    dv:Ge/<ComponentName>/CloneRTDoseGridSize
+    s:Ge/<ComponentName>/InputDirectory = "./"
+    s:Ge/<ComponentName>/InputFile = "ctvolume.dat" # match exact case
+    s:Ge/<ComponentName>/MetaDataFile = "XCAT_FullMouse_86x86x161_atn_1.log"
+    s:Ge/<ComponentName>/DataType  = “FLOAT” # “SHORT”, “INT” or “FLOAT"
+    i:Ge/<ComponentName>/NumberOfVoxelsX  = 86
+    i:Ge/<ComponentName>/NumberOfVoxelsY  = 86
+    i:Ge/<ComponentName>/NumberOfVoxelsZ = 161
+    d:Ge/<ComponentName>/VoxelSizeX       = .5 mm
+    d:Ge/<ComponentName>/VoxelSizeY       = .5 mm
+    d:Ge/<ComponentName>/VoxelSizeZ       = .5 mm
+    iv:Ge/<ComponentName>/NumberOfVoxelsZ = 2 10 20
+    dv:Ge/<ComponentName>/VoxelSizeZ = 2 2.5 1.25 mm
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Air    =   0.
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Muscle = 195.2515
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Lung   =  57.5347
+    s:Ge/<ComponentName>/ImagingToMaterialConverter = "XCAT_Attenuation" # "XCAT_Activity"
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Air    =   0.
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Muscle = 195.2515
+    u:Ge/<ComponentName>/AttenuationForMaterial_XCAT_Lung   =  57.5347
+    dv:Ge/<ComponentName>/DensityCorrection = 3996 9.35212 5.55269 4.14652 ...1.06255 1.00275 g/cm3
+    iv:Ge/<ComponentName>/SchneiderHounsfieldUnitSections = 8 -1000 -98 15 23 101 2001 2995 2996
+    uv:Ge/<ComponentName>/SchneiderDensityOffset = 7 0.00121 1.018 1.03 1.003 1.017 2.201 4.54
+    uv:Ge/<ComponentName>/SchneiderDensityFactor = 7 0.00103 0.00089 0.0 0.00117 0.00059 0.0005 0.0
+    uv:Ge/<ComponentName>/SchneiderDensityFactorOffset = 7 1000. 0. 1000. 0. 0. -2000. 0
+    iv:Ge/<ComponentName>/SchneiderHUToMaterialSections = 26 -1000 -950 -120 -83 ... 1500 2995 2996
+    sv:Ge/<ComponentName>/SchneiderElements = 13 "Hydrogen" "Carbon" "Nitrogen" "Oxygen" 
+    uv:Ge/<ComponentName>/SchneiderMaterialsWeight1 = 13 0.0   0.0   0.755 0.232 
+    uv:Ge/<ComponentName>/SchneiderMaterialsWeight2 = 13 0.103 0.105 0.031 0.749 
+    dv:Ge/<ComponentName>/SchneiderMaterialMeanExcitationEnergy = 26 88.8 0. 77.7. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. eV
+
 
 
 
@@ -310,7 +325,7 @@ Particle Source Parameters Used by All Source Types
 
 
 Particle Source Parameters Used by Source Type Beam
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -331,12 +346,82 @@ Particle Source Parameters Used by Source Type Beam
  
 
 
-Particle Source Parameters Used by Source Type Isotropic
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Particle Source Parameters Used by Source Type Emmittance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    s:So/<SourceName>/and so on
+    s:So/<SourceName>/Distribution = "BiGaussian" # distribution name
+    d:So/<SourceName>/SigmaX = 0.2 mm # std of x positions
+    u:So/<SourceName>/SigmaXprime = 0.032 # std of x’, note that it’s unitless. 1 equals to 1.0 rad.
+    u:So/<SourceName>/CorrelationX = -0.9411 # correlation of x and x’
+    d:So/<SourceName>/SigmaY = 0.2 mm # std of y positions
+    u:So/<SourceName>/SigmaYPrime = 0.032 # std of y’
+    u:So/<SourceName>/CorrelationY = 0.9411 # correlation of y and y’
+    u:So/<SourceName>/AlphaX = 0.2
+    d:So/<SourceName>/BetaX  = 600.0 mm
+    d:So/<SourceName>/EmittanceX = 0.01 mm # we don’t multiply pi intrinsically.
+    u:So/<SourceName>/AlphaY = 2.5
+    d:So/<SourceName>/BetaY = 1400.0 mm
+    d:So/<SourceName>/EmittanceY = 0.02 mm
+    u:So/<SourceName>/ParticleFractionX = 0.90
+    u:So/<SourceName>/ParticleFractionY = 0.90
+
+
+
+Particle Source Parameters Used by Source Type Phase Space
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    b:So/<SourceName>/LimitedAssumePhotonIsNewHistory = "true"
+    s:So/<SourceName>/PhaseSpaceFileName = "ASCIIOutput" # match exact case
+    s:So/<SourceName>/PhaseSpaceIncludeEmptyHistories = "False" # defaults to false
+    s:So/<SourceName>/PhaseSpacePreCheck = "True" # defaults to true
+    u:So/<SourceName>/PhaseSpaceScaleXPosBy = 0.1 # adjust starting point on X axis by factor of 0.1
+    u:So/<SourceName>/PhaseSpaceScaleYPosBy = 0.1 # adjust starting point on Y axis by factor of 0.1
+    u:So/<SourceName>/PhaseSpaceScaleZPosBy = 0.1 # adjust starting point on Z axis by factor of 0.1
+    b:So/<SourceName>/PhaseSpaceInvertXAxis = "True"
+    b:So/<SourceName>/PhaseSpaceInvertYAxis = "True"
+    b:So/<SourceName>/PhaseSpaceInvertZAxis = "True"
+    i:So/<SourceName>/PhaseSpaceMultipleUse = 2 # reuse this phase space multiple times
+    i:So/<SourceName>/PhaseSpaceBufferSize = 1000000
+    s:So/<SourceName>/PhaseSpaceIncludeEmptyHistories = "True"
+
+
+
+Particle Source Parameters Used by Source Type Miscellaneous
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    i:So/<SourceName>/NumberOfHistoriesInRandomJob = 100
+    d:So/<SourceName>/ProbabilityOfUsingAGivenRandomTime = 1.
+    sv:So/<SourceName>/OnlyIncludeParticlesCharged = 1 "Negative"
+    sv:So/<SourceName>/OnlyIncludeParticlesNotCharged = 1 "Negative"
+    i:So/<SourceName>/OnlyIncludeParticlesOfAtomicMass = 10 # allow all ions of atomic mass 10
+    i:So/<SourceName>/OnlyIncludeParticlesNotOfAtomicMass = 10
+    i:So/<SourceName>/OnlyIncludeParticlesOfAtomicNumber = 6 # allow all ions of Carbon
+    i:So/<SourceName>/OnlyIncludeParticlesNotOfAtomicNumber = 6
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKEBelow = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKENotBelow = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKE = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKENot = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKEAbove = 10. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKENotAbove = 10. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentumBelow = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentumNotBelow = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentum = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentumNot = 1. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentumAbove = 10. MeV
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialMomentumNotAbove = 10. MeV
+    sv:So/<SourceName>/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
+    sv:So/<SourceName>/OnlyIncludeParticlesNotNamed = 2 "proton" "neutron"
+    sv:So/<SourceName>/OnlyIncludeParticlesNamed = 1 "proton"
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
+    sv:So/<SourceName>/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
+    d:So/<SourceName>/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
+    b:So/<SourceName>/InvertFilter = "True"
 
 
 
@@ -409,14 +494,16 @@ Graphics for Patient
 
 ::
 
-    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12
-    v:Gr/<PatientName>/ShowSpecificSlicesZ = 1 0 # means show all slices
-    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -1 # means only show center slice
-    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
-    iv:Gr/<PatientName>/ShowSpecificSlicesX = 1 -2 # means only show center slice
-    iv:Gr/<PatientName>/ShowSpecificSlicesY = 1 -2 # means only show center slice
-    iv:Gr/<PatientName>/ShowSpecificSlicesZ = 1 -2 # means only show center slice
+    iv:Gr/<ComponentName>/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12
+    v:Gr/<ComponentName>/ShowSpecificSlicesZ = 1 0 # means show all slices
+    iv:Gr/<ComponentName>/ShowSpecificSlicesZ = 1 -1 # means only show center slice
+    iv:Gr/<ComponentName>/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
+    iv:Gr/<ComponentName>/ShowSpecificSlicesX = 1 -2 # means only show center slice
+    iv:Gr/<ComponentName>/ShowSpecificSlicesY = 1 -2 # means only show center slice
+    iv:Gr/<ComponentName>/ShowSpecificSlicesZ = 1 -2 # means only show center slice
     i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000
+    iv:Gr/<ComponentName>/PatientTissue1 = 3  63 63 63
+    iv:Gr/<ComponentName>/PatientTissue2 = 3 100  0  0
 
 
 
