@@ -122,6 +122,11 @@ Geometry Parameters Used by All Components
     s:Ge/<ComponentName>/InputFile = "Foot" # file name, without extensions. Match exact case
     s:Ge/<ComponentName>/FileFormat = "ply" # file extension
     b:Ge/<ComponentName>/PrintPoints = "True"
+    s:Ge/<ComponenName>/AssignToRegionNamed = "MyRegion"
+    s:Ge/<ComponenName>/OpticalBehaviorTo/MyComponent2 = "MySurface1"
+    s:Ge/<ComponenName>/OpticalBehaviorTo/MyComponent1 = "MySurface2"
+    s:Ge/<ComponenName>/OpticalBehavior = "MySurface1"
+    s:Ge/<ComponentName>/Water/UpstreamSurface = Ge/WaterTank/Water/ZMinusSurface
 
 
 
@@ -452,6 +457,7 @@ Scoring Parameters Used by All Volume Scorers
 ::
 
     s:Sc/<ScorerName>/Component = "Phantom"
+    
 
 
 Scoring Parameters Used by Scorer of Quantity DoseToMaterial
@@ -467,6 +473,20 @@ Scoring Parameters Used by Scorer of Quantity DoseToMaterial
     s:Sc/<ScorerName>/ElectronEnergyBinSize # default is 1 keV
     s:Sc/<ScorerName>/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
     s:Sc/<ScorerName>/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
+    
+
+
+Scoring Parameters Used by Scorer of Quantity ProtonLET Scorer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/<ScorerName>/WeightBy = "Track" # defaults to "Dose"
+    d:Sc/<ScorerName>/MaxScoredLET = 100 MeV/mm/(g/cm3) # default 100 MeV/mm/(g/cm3)
+    b:Sc/<ScorerName>/UsePreStepLookup = "True" # defaults to “False”
+    d:Sc/<ScorerName>/NeglectSecondariesBelowDensity = 0.1 g/cm3
+    d:Sc/<ScorerName>/UseFluenceWeightedBelowDensity = 0. g/cm3
+
 
 
 Scoring Parameters Used by All Surface Scorers
@@ -474,7 +494,122 @@ Scoring Parameters Used by All Surface Scorers
 
 ::
 
-    etc
+    s:Sc/<ScorerName>/Surface = "Phantom/ZMinusSurface"
+    s:Sc/<ScorerName>/Surface = Ge/WaterTank/Water/UpstreamSurface
+    
+
+
+Scoring Parameters Used by All Phase Space Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/<ScorerName>/OutputType = "ASCII" # "Binary", "ASCII," "Limited" or "ROOT"
+    b:Sc/<ScorerName>/IncludeTOPASTime = "True" # Time used by TimeFeatures for this history
+    b:Sc/<ScorerName>/IncludeTimeOfFlight = "True" # Time of Flight of this particle from start of history to scoring plane
+    b:Sc/<ScorerName>/IncludeRunID = "True"
+    b:Sc/<ScorerName>/IncludeEventID = "True"
+    b:Sc/<ScorerName>/IncludeTrackID = "True"
+    b:Sc/<ScorerName>/IncludeParentID = "True" # Track ID of parent particle
+    b:Sc/<ScorerName>/IncludeCharge = "True"
+    b:Sc/<ScorerName>/IncludeCreatorProcess = "True"
+    b:Sc/<ScorerName>/IncludeVertexInfo = "True" # Initial KE, Position and Momentum
+    b:Sc/<ScorerName>/IncludeSeed = "True"
+    i:Sc/<ScorerName>/OutputBufferSize = 1000 # Number of particles in phase space buffer
+   
+
+
+Scoring Parameters Used by All Filtering Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/<ScorerName>/OnlyIncludeParticlesOfGeneration = "Primary"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesCharged = 1 "Negative"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotCharged = 1 "Negative"
+    i:Sc/<ScorerName>/OnlyIncludeParticlesOfAtomicMass = 10    # allow all ions of atomic mass 10
+    i:Sc/<ScorerName>/OnlyIncludeParticlesNotOfAtomicMass = 10
+    i:Sc/<ScorerName>/OnlyIncludeParticlesOfAtomicNumber = 6   # allow all ions of Carbon
+    i:Sc/<ScorerName>/OnlyIncludeParticlesNotOfAtomicNumber = 6
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKEBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKENotBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKE = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKENot = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKEAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKENotAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentumBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentumNotBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentum = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentumNot = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentumAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialMomentumNotAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKEBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKENotBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKE = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKENot = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKEAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleKENotAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentumBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentumNotBelow = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentum = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentumNot = 1. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentumAbove = 10. MeV
+    d:Sc/<ScorerName>/OnlyIncludeIfIncidentParticleMomentumNotAbove = 10. MeV
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesFromProcess = 2 "hIoni" "eBrem"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotFromProcess = 2 "hIoni" "eBrem"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorFromProcess = 2 "hIoni" "eBrem"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotFromProcess = 2 "hIoni" "eBrem"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotNamed = 2 "proton" "neutron"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNamed = 1 "neutron"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotNamed = 1 "neutron"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesFromVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotFromVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesFromComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotFromComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesFromComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNotFromComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorFromVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotFromVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorFromComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotFromComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorFromComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotFromComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleInteractedInVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotInteractedInVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleInteractedInComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotInteractedInComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorInteractedInVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotInteractedInVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorInteractedInComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotInteractedInComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleTraversedVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotTraversedVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleTraversedComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotTraversedComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleTraversedComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleNotTraversedComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorTraversedVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotTraversedVolume = 1 "Propeller20/Leaf"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorTraversedComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotTraversedComponent = 1 "Jaws"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorTraversedComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfParticleOrAncestorNotTraversedComponentOrSubComponentsOf = 1 "Nozzle"
+    sv:Sc/<ScorerName>/OnlyIncludeIfInMaterial = 2 "G4_WATER" "Air"
+    sv:Sc/<ScorerName>/OnlyIncludeIfNotInMaterial = 2 "G4_WATER" "Air"
+    sv:Sc/<ScorerName>/OnlyIncludeIfInRTStructure = 2 "R_LUNG" "L_LUNG"
+    s:Sc/<ScorerName>/OnlyIncludeParticlesGoing = "In"
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNamed = 1 "proton"
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
+    sv:Sc/<ScorerName>/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
+    d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
+    b:Sc/<ScorerName>/InvertFilter = "True"
+
+    
 
 
 Graphics Overall Control
@@ -507,18 +642,80 @@ Graphics for Patient
 
 
 
-Physics
-~~~~~~~
+Physics List Overall Control
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
     s:Ph/ListName = "Default"
     b:Ph/ListProcesses = "False" # Set true to dump list of active physics processes to console
-    s:Ph/Default/Type = "Geant4_Modular"
-    sv:Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
-    d:Ph/Default/EMRangeMin = 100. eV
-    d:Ph/Default/EMRangeMax = 500. MeV
-    sv:Ph/<PhysicsList>/LayeredMassGeometryWorlds = 2 "Tumor" "Seed"
+    s:Ph/<PhysicsListName>/Type = "Geant4_Modular"
+    sv:Ph/<PhysicsListName>/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
+    d:Ph/<PhysicsListName>/EMRangeMin = 100. eV
+    d:Ph/<PhysicsListName>/EMRangeMax = 500. MeV
+    sv:Ph/<PhysicsListName>/LayeredMassGeometryWorlds = 2 "Tumor" "Seed"
+    d:Ph/<PhysicsListName>/CutForElectron = 1 mm # defaults to 0.05 mm
+
+
+
+Physics Lists for Type Modular
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ph/<PhysicsListName>/CutForAllParticles = 0.05 mm # single range cut to use for all particles
+    d:Ph/<PhysicsListName>/CutForGamma = 0.05 mm # overrides CutForAllParticles for Gamma
+    d:Ph/<PhysicsListName>/CutForElectron = 0.05 mm # overrides CutForAllParticles for Electron
+    d:Ph/<PhysicsListName>/CutForPositron = 0.05 mm # overrides CutForAllParticles for Positron
+    d:Ph/<PhysicsListName>/CutForProton = 0.05 mm # overrides CutForAllParticles for Proton
+    d:Ph/<PhysicsListName>/CutForAlpha = 0.05 mm # overrides CutForAllParticles for Alpha
+    d:Ph/<PhysicsListName>/CutForDeuteron = 0.05 mm # overrides CutForAllParticles for Deuteron
+    d:Ph/<PhysicsListName>/CutForTriton = 0.05 mm # overrides CutForAllParticles for Triton
+    d:Ph/<PhysicsListName>/EMRangeMin = 100. eV # minimum for EM tables
+    d:Ph/<PhysicsListName>/EMRangeMax = 500. MeV # maximum for EM tables
+    i:Ph/<PhysicsListName>/EMBins = 77 # number of bins for EM tables
+    i:Ph/<PhysicsListName>/EMBinsPerDecade = 7 # number of bins per decade for EM tables
+    b:Ph/<PhysicsListName>/Fluorescence = "False" # Set to true to turn on Fluorescence
+    b:Ph/<PhysicsListName>/Auger = "False" # Set to true to turn on Auger
+    b:Ph/<PhysicsListName>/AugerCascade = "False" # Set to true to turn on AugerCascade
+    b:Ph/<PhysicsListName>/DeexcitationIgnoreCut = "False" # Set to true to implement DeexcitationIgnoreCut
+    b:Ph/<PhysicsListName>/PIXE = "False" # Set to true to turn on PIXE
+
+
+
+Physics Lists for Type Optical
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    b:Ma/<PhysicsListName>/EnableOpticalProperties = "True"
+    dv:Ma/<PhysicsListName>/RefractiveIndex/Energies = 3 2.0 2.5 3.0 eV
+    uv:Ma/<PhysicsListName>/RefractiveIndex/Values = 3 1.58 1.58 1.58
+    u:Ma/<PhysicsListName>/ScintillationYield = 1120 # in ph/MeV
+    d:Ma/<PhysicsListName>/FastTimeConstant = 2.1 ns
+
+
+
+Physics Lists for Type Miscellaneous
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    d:Ph/<PhysicsListName>/SetProductionCutLowerEdge = 200 eV
+    d:Ph/<PhysicsListName>/SetProductionCutHighEdge = 30 MeV
+
+
+
+Surfaces
+~~~~~~~~~
+
+::
+
+    s:Su/<SurfaceName>/Type = "dielectric_dielectric" # or dielectric_metal
+    s:Su/<SurfaceName>/Model = "Glisur " # Or Unified
+    s:Su/<SurfaceName>/Finish = "Polished"
+    dv:Su/<SurfaceName>/Energies = 2 1.0 4.0 eV
+    uv:Su/<SurfaceName>/Reflectivity = 2 0.8 0.8
 
 
 
@@ -807,6 +1004,7 @@ Overall Control
     Ge/MyComponent/Include = "False"
     Sc/MyScorer/Active = "False"
     Gr/MyGraphics/Active = "False"
+    Ts/PauseBeforeSequence = "True"
         
 
 
@@ -827,6 +1025,7 @@ Materials
     s:El/MyEIU/Symbol = "MyElU"
     sv:El/MyElU/IsotopeNames = 2 "U235" "U238"
     uv:El/MyElU/IsotopeAbundances = 2 90. 10
+    i:Ma/Verbosity = 1
         
 
 
