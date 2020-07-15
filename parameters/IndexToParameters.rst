@@ -52,6 +52,8 @@ Time Features
     d:Tf/TimelineEnd = Tf/TimelineStart s
     i:Tf/NumberOfSequentialTimes = 1
     i:Tf/Verbosity = 0 # set to 1 to generate time log, set to 2 to get detailed update messages
+    s:Tf/<TimeFeatureName>/Function = "Step"
+    sv:Tf/<TimeFeatureName>/Values = 3 "image1" "image2" "image3"
 
 
 
@@ -284,7 +286,6 @@ Geometry Parameters for Type Patient Components
     s:Ge/<ComponentName>/CloneRTDoseGridFrom
     dv:Ge/<ComponentName>/CloneRTDoseGridSize
     s:Ge/<ComponentName>/InputDirectory = "./"
-    s:Ge/<ComponentName>/InputFile = "ctvolume.dat" # match exact case
     s:Ge/<ComponentName>/MetaDataFile = "XCAT_FullMouse_86x86x161_atn_1.log"
     s:Ge/<ComponentName>/DataType  = “FLOAT” # “SHORT”, “INT” or “FLOAT"
     i:Ge/<ComponentName>/NumberOfVoxelsX  = 86
@@ -608,8 +609,53 @@ Scoring Parameters Used by All Filtering Scorers
     sv:Sc/<ScorerName>/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     d:Sc/<ScorerName>/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
     b:Sc/<ScorerName>/InvertFilter = "True"
+   
 
-    
+
+Scoring Parameters Used by Output Specification
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    s:Sc/<ScorerName>/OutputFile = "myOutputFileName" # if null, use scorer name, e.g. "MyScorer"
+    b:Sc/<ScorerName>/OutputAfterRun = "True" # set True to trigger output of scorer after this run
+    b:Sc/<ScorerName>/OutputToConsole = "True" # control whether output is also dumped to console
+    s:Sc/<ScorerName>/IfOutputFileAlreadyExists = "Increment" # "Exit", "Overwrite" or "Increment"
+    b:Sc/<ScorerName>/DICOMOutput32BitsPerPixel = "True"
+    s:Sc/<ScorerName>/SeriesDescription = "Custom description here"
+    i:Sc/<ScorerName>/HistogramBins = 100 # number of bins
+    d:Sc/<ScorerName>/HistogramMin = 0. MeV # with unit appropriate to scored quantity
+    d:Sc/<ScorerName>/HistogramMax = 100. MeV # with unit appropriate to scored quantity
+    s:Sc/RootFileName = "topas" # name for ROOT output file
+    s:Sc/XmlFileName = "topas" # name for XML output file
+    sv:Sc/<ScorerName>/Report = 1 "CumulativeVolumeHistogram"
+       
+
+
+Scoring Parameters Used by Miscellaneous Scorers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    i:Sc/<ScorerName>/RBins = 20
+    i:Sc/<ScorerName>/PhiBins = 20
+    i:Sc/<ScorerName>/ThetaBins = 1
+    i:Sc/<ScorerName>/TimeBins = 10 # defaults to 0, that is, un-binned
+    d:Sc/<ScorerName>/TimeBinMin = 0. ns # defaults to zero
+    d:Sc/<ScorerName>/TimeBinMax = 100. ns # must be specified if TimeBins is greater than 1
+    s:Sc/<ScorerName>/SplitByTimeFeature = some_time_feature_name
+    dv:Sc/<ScorerName>/SplitByTimeFeatureValues = 5 0. 90. 180. 270. 360. deg
+    Sc/DoseAtPhantom-image1
+    Sc/DoseAtPhantom-image2
+    Sc/DoseAtPhantom-image3
+    sv:Sc/<ScorerName>/Report = 1 "Sum" # One or more of Sum, Mean, Histories, Count_In_Bin, Second_Moment, Variance, Standard_Deviation, Min, Max
+    s:Sc/<ScorerName>/ColorBy = "Sum" # sum, mean, histories, standard_deviation, min, max
+    sv:Sc/<ScorerName>/ColorNames = 5 "white" "grey240" "grey220" "grey200" "grey180"
+    dv:Sc/<ScorerName>/ColorValues = 4 1. 1000 2000 3000 MeV
+    Sc/<ScorerName>/Active = "False"
+    s:Sc/<ScorerName>/InputFile = "MySavedFileName" # match exact case
+    s:Sc/<ScorerName>/InputType = "csv"
+
 
 
 Graphics Overall Control
@@ -622,6 +668,66 @@ Graphics Overall Control
     s:Gr/RefreshEvery = "Run" # "History", "Run" or "Session"
     i:Gr/ShowOnlyOutlineIfVoxelCountExceeds = 8000 # Above this limit, only show outer box
     i:Gr/SwitchOGLtoOGLIifVoxelCountExceeds = 70000000 # Above this limit, switch OpenGL Graphics to Immediate mode
+    s:Gr/<GraphicsName>/Type = "OpenGL" # OpenGL, HepRep, VRML, DAWN, RayTracer, RayTracerX
+    s:Gr/<GraphicsName>/FileName = "MyFileName" # Defaults to name of view (which here is MyGraphic1).
+    b:Gr/<GraphicsName>/IncludeGeometry = "True" # defaults to "True"
+    b:Gr/<GraphicsName>/IncludeTrajectories = "True" # defaults to "True"
+    b:Gr/<GraphicsName>/IncludeStepPoints = "True" # Show trajectory step points, defaults to "False"
+    b:Gr/<GraphicsName>/UseSmoothTrajectories = "False" # defaults to "True"
+    b:Gr/<GraphicsName>/IncludeAxes = "True" # defaults to "False"
+    s:Gr/<GraphicsName>/AxesComponent = "World" # Component in which to center the axes. Defaults to World.
+    d:Gr/<GraphicsName>/AxesSize = 3. m # size of axes
+    i:Gr/<GraphicsName>/MagneticFieldArrowDensity = 10
+    s:Gr/RefreshEvery = "History" # "History", "Run" or "Session"
+    sv:Gr/<GraphicsName>/VisibleWorlds = 1 "World" # "World", "All" or one or more specific world names
+    b:Gr/<GraphicsName>/Active = "False" # defaults to "True"
+    u:Gr/<GraphicsName>/Zoom = 2. # increase to zoom in, decrease to zoom out
+    d:Gr/<GraphicsName>/Theta = 45. deg # view angle as in /vis/viewer/set/viewpointThetaPhi
+    d:Gr/<GraphicsName>/Phi = 45. deg # view angle as in /vis/viewer/set/viewpointThetaPhi
+    u:Gr/<GraphicsName>/TransX = 0. # move left or right in the view window
+    d:Gr/<GraphicsName>/TransY = 0. # move up or down in the view window
+    s:Gr/<GraphicsName>/Projection = "Perspective" # Defaults to "Orthogonal"
+    d:Gr/<GraphicsName>/PerspectiveAngle = 10. deg # Increase for stronger perspective effect
+    i:Gr/<GraphicsName>/WindowSizeX = 600
+    i:Gr/<GraphicsName>/WindowSizeY = 600
+    i:Gr/<GraphicsName>/WindowPosX = 0
+    i:Gr/<GraphicsName>/WindowPosY = 0
+    b:Gr/<GraphicsName>/HiddenLineRemovalForGeometry = "False" # Remove hidden lines from wireframe geometries, like Geant4’s /vis/viewer/set/hiddenEdge
+    b:Gr/<GraphicsName>/HiddenLineRemovalForTrajectories = "False" # Remove hidden trajectories lines from within geometries, like Geant4’s /vis/viewer/set/hiddenMarker
+    b:Gr/<GraphicsName>/CopyOpenGLToPDF = "True" # save to PDF
+    b:Gr/<GraphicsName>/CopyOpenGLToSVG = "True" # save to Scalable Vector Graphics
+    b:Gr/<GraphicsName>/CopyOpenGLToEPS = "True" # save to Encapsulated PostScript
+    b:Gr/<GraphicsName>/CopyOpenGLToPS  = "True" # save to PostScript
+    s:Gr/<GraphicsName>/ColorBy = "Charge" # "Charge", "ParticleType", "OriginComponent", "Energy", "Momentum", "Generation", "CreatorProcess"
+    sv:Gr/<GraphicsName>/ColorByChargeColors = 3 "blue" "green" "red" # colors for neg, neutral, pos
+    sv:Gr/<GraphicsName>/ColorByParticleTypeNames = 4 "e-" "gamma" "proton" "neutron" # any number of particle names
+    sv:Gr/<GraphicsName>/ColorByParticleTypeColors = 4 "red" "green" "blue" "yellow" # for each particle type above. All other particles will be set to grey.
+    sv:Gr/<GraphicsName>/ColorByOriginVolumeNames = 1 "Propeller20/Leaf" # one or more volume
+    sv:Gr/<GraphicsName>/ColorByOriginVolumeColors = 1 "red" # one color for each name above
+    sv:Gr/<GraphicsName>/ColorByOriginComponentNames = 1 "jaws" # one or more component names
+    sv:Gr/<GraphicsName>/ColorByOriginComponentColors = 1 "red" # one color for each name above
+    dv:Gr/<GraphicsName>/ColorByEnergyRanges = 3 1. 4. 8. MeV # limits of energy ranges
+    sv:Gr/<GraphicsName>/ColorByEnergyColors = 4 "red green blue yellow" # one for every energy interval that is defined by those ranges
+    dv:Gr/<GraphicsName>/ColorByMomentumRanges = 3 1. 4. 8. MeV # limits of momentum ranges
+    sv:Gr/<GraphicsName>/ColorByMomentumColors = 4 "red" "green" "blue" "yellow" # one for every energy interval that is defined by those ranges
+    sv:Gr/<GraphicsName>/ColorByGenerationColors = 2 "red" "green" # colors for primary and secondaries
+    sv:Gr/<GraphicsName>/ColorByCreatorProcessNames = 5 "eBrem" "annihil" "Decay" "eIoni" "hIoni" # one or more process name
+    sv:Gr/<GraphicsName>/ColorByCreatorProcessColors = 5 "red" "green" "blue" "yellow" "magenta" # one for every process name
+    sv:Gr/OnlyIncludeParticlesNamed = 2 "proton" "neutron" # one or more particle names
+    sv:Gr/OnlyIncludeParticlesCharged = 1 "negative" # one or more "positive", "negative" or "neutral"
+    sv:Gr/OnlyIncludeParticlesFromVolume = 1 "Propeller20/Leaf" # one or more volume
+    sv:Gr/OnlyIncludeParticlesFromComponent = 1 "Jaws" # one or more component
+    sv:Gr/OnlyIncludeParticlesFromComponentOrSubComponentsOf = 1 "Nozzle" one or more
+    d:Gr/OnlyIncludeParticlesWithInitialKEBelow = 1. MeV # maximum energy
+    d:Gr/OnlyIncludeParticlesWithInitialKEAbove = 10. MeV # minimum energy
+    d:Gr/OnlyIncludeParticlesWithInitialMomentumBelow = 1. MeV # maximum momentum
+    d:Gr/OnlyIncludeParticlesWithInitialMomentumAbove = 10. MeV # minimum momentum
+    sv:Gr/OnlyIncludeParticlesFromProcess = 1 "hIoni" # one or more process name
+    sv:Gr/OnlyIncludeParticlesFromVolume
+    sv:Gr/OnlyIncludeParticlesFromComponent
+    sv:Gr/OnlyIncludeParticlesFromComponentOrSubComponentsOf
+
+    
 
 
 Graphics for Patient
@@ -986,7 +1092,6 @@ Overall Control
 
 ::
 
-    b:Sc/MyScorer/OutputAfterRun = "True" # set True to trigger output of scorer after this run
     i:Ts/NumberOfThreads = 4 # defaults to 1
     b:Ts/BufferThreadOutput = "True" # Causes console output to be show one thread at a time
     i:Ts/Seed = 1 # default is 1
@@ -1002,7 +1107,6 @@ Overall Control
     b:Ts/ShowCPUTime = "True" # Show CPU time used in various phases of the simulation
     i:Ts/RunIDPadding = 4 # Run numbers are padded in output files, such as MyScoringOutput_Run_0001.csv, so that they will sort naturally in various file viewers. This parameter sets how many places of padding are used.
     Ge/MyComponent/Include = "False"
-    Sc/MyScorer/Active = "False"
     Gr/MyGraphics/Active = "False"
     Ts/PauseBeforeSequence = "True"
         
