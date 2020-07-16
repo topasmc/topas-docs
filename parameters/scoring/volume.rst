@@ -15,7 +15,7 @@ EnergyDeposit       sum of energy deposits
 Fluence             sum of step lengths divided by volume
 EnergyFluence       sum of step lengths times energy divided by volume
 StepCount           counting number of Geant4 steps in the volume
-OpticalPhotonCount  fills an ntuple with information abotu optical photons seen in volume
+OpticalPhotonCount  fills an ntuple with information about optical photons seen in volume
 Charge              counting method described below
 EffectiveCharge     counting method described below
 ProtonLET           various methods described below
