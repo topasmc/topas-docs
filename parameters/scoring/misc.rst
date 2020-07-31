@@ -49,8 +49,6 @@ Any scorer can be binned by particle energy, by adding the following parameters:
     d:Sc/MyScorer/EBinMin = 0. MeV # defaults to zero
     d:Sc/MyScorer/EBinMax = 100. MeV # must be specified if EBins is greater than 1
 
-The output will include three extra bins, one for underflow (energy < ``EBinMin``), one for overflow (energy > ``EBinMax``) and one for the case where there is no incident track (the primary particle was created already inside the scoring component, so it was never incident upon the scoring component).
-
 Note that there are several options for what me mean here by "particle energy."
 
 From our proton therapy dose calculation roots, the energy binning that we do by default is based not on the energy of the final particle at hit deposition time but instead on the incident particle energy.
@@ -68,6 +66,8 @@ So we have now have a parameter to control what kind of Energy we use for this b
 An example shows the effect of the three different choices:
 
     examples/Scoring/EnergyDepositBinnedByEnergy.txt
+
+The output will include two extra bins, one for underflow (energy < ``EBinMin``), one for overflow (energy > ``EBinMax``). And if you have set EBinEnergy to IncidentTrack, there will be one more bin to hold those deposits for which there is no incident track (the primary particle was created already inside the scoring component, so neither it nor any ancestor of it was ever incident upon the scoring component).
 
 
 
