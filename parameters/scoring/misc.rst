@@ -43,7 +43,7 @@ or rotate your scoring component by 180 degrees.
 Binning by Energy
 ~~~~~~~~~~~~~~~~~
 
-Any scorer can be binned by particle energy, by adding the following parameters:
+Any scorer can be binned by particle energy, by adding the following parameters::
 
     i:Sc/MyScorer/EBins = 10 # defaults to 1, that is, un-binned
     d:Sc/MyScorer/EBinMin = 0. MeV # defaults to zero
@@ -56,12 +56,13 @@ This is the energy of the final scored particle, or its ancestor, when that part
 
 However, users who have been trying to use this feature to get a spectrum instead need the particle's energy at the current step.
 
-So we have now have a parameter to control what kind of Energy we use for this binning.
+So we have now have a parameter to control what kind of Energy we use for this binning.::
 
     s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
-    "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
-    "PreStep" is the track's energy at the start of the current step.
-    "DepositedInStep" is the amount of energy deposited in the current step.
+    
+* "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
+* "PreStep" is the track's energy at the start of the current step.
+* "DepositedInStep" is the amount of energy deposited in the current step.
 
 An example shows the effect of the three different choices:
 
