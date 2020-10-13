@@ -87,7 +87,7 @@ By default, the LET is computed by dividing the energy deposited by the step len
 
     d:Sc/MyScorer/MaxScoredLET = 100 MeV/mm/(g/cm3) # default 100 MeV/mm/(g/cm3)
 
-* Alternately, you can set the LET computation to look up the electronic stopping power for the pre-step proton energy::
+* Alternatively, you can set the LET computation to look up the electronic stopping power for the pre-step proton energy::
 
     b:Sc/MyScorer/UsePreStepLookup = "True" # defaults to “False”
 
