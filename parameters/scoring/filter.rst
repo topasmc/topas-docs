@@ -99,7 +99,11 @@ If you specify multiple Volume or Component names, this is interpreted as an "OR
 
 You will see that you can specify a single Volume or a Component.
 
-    sv:Sc/OnlyIncludeParticlesFromVolume/OnlyIncludeParticlesFromVolume = 2 "World" "Foil"    sv:Sc/OnlyIncludeParticlesFromComponent/OnlyIncludeParticlesFromComponent = 2 "World" "Foil"If the Component is a simple one, like a box or a sphere, then the component only has a single G4Volume, so the two are functionally identical.But if the Component is a more complicated one, like a Range Modulator Wheel, then there are multiple G4Volumes in the Component, and the latter would allow one to do things like tell just which particles interacted in the Wheel's "stop block". 
+    sv:Sc/OnlyIncludeParticlesFromVolume/OnlyIncludeParticlesFromVolume = 2 "World" "Foil"
+    sv:Sc/OnlyIncludeParticlesFromComponent/OnlyIncludeParticlesFromComponent = 2 "World" "Foil"
+
+If the Component is a simple one, like a box or a sphere, then the component only has a single G4Volume, so the two are functionally identical.
+But if the Component is a more complicated one, like a Range Modulator Wheel, then there are multiple G4Volumes in the Component, and the latter would allow one to do things like tell just which particles interacted in the Wheel's "stop block". 
 
 
 Filter by Particle or its Ancestor’s Origin Volume, Component, or Component and Subcomponents::
@@ -174,7 +178,7 @@ You may specify more than one filter. For example, to score protons with initial
     sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "proton"
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
 
-You can invert the results of all previous filters. The following would score only particles that are Not protons with initial KE over 100 MeV::
+You can invert the results of all previous filters. The following would score only particles that are 1. not protons AND 2. not neutrons AND 3. have initial KE smaller or equal to 100 MeV::
 
     sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
