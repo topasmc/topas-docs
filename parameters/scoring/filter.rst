@@ -178,10 +178,37 @@ You may specify more than one filter. For example, to score protons with initial
     sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "proton"
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
 
-You can invert the results of all previous filters. The following would score only particles that are 1. not protons AND 2. not neutrons AND 3. have initial KE smaller or equal to 100 MeV::
+You can invert the results of all previous filters by adding the InvertFilter::
+    b:Sc/MyScorer/InvertFilter = "True"
+
+The InvertFilter inverts the final result of the full set of other filters.
+Thus, the following would score only particles that are NOT ( (proton OR neutron) AND have initial KE larger than 100. MeV ).
+Note that the NOT applies to the overall result from the set of other filters::
 
     sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     d:Sc/MyScorer/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
     b:Sc/MyScorer/InvertFilter = "True"
+
+Just to be more clear here: the InvertFilter is applied After all the other filters have been evaluated.
+It inverts the Total result of the other filters (rather than inverting them one at a time).
+
+So, if you have filters::
+    A
+    B
+
+Then the result is to allow particles that pass A AND B.
+
+If you have filters::
+    A
+    B
+    Invert
+
+Then the result is to allow particles that DO NOT PASS (A AND B)
+which is logically equivalent to::
+    (NOT A) OR (NOT B)
+
+(see how the And was replaced by an Or here)
+
+And, as with any TOPAS parameter statement, it does not matter what order these lines are in the parameter file.
 
 Any filter property can be set by :ref:`time_feature` if you wish, to produce time-dependent filtering.
