@@ -84,17 +84,17 @@ For ``Type = "Beam"``, the beam shape can be further described by a set of param
     s:So/Demo/BeamPositionCutoffShape = "Ellipse" # Rectangle or Ellipse (if Flat or Gaussian)
     d:So/Demo/BeamPositionCutoffX = 10. cm # X extent of position (if Flat or Gaussian)
     d:So/Demo/BeamPositionCutoffY = 10. cm # Y extent of position (if Flat or Gaussian)
-    d:So/Demo/BeamPositionSpreadX = 0.65 cm # distribution (if Gaussian)
-    d:So/Demo/BeamPositionSpreadY = 0.65 cm # distribution (if Gaussian)
+    d:So/Demo/BeamPositionSpreadX = 0.65 cm # X standard deviation (used only if Gaussian)
+    d:So/Demo/BeamPositionSpreadY = 0.65 cm # Y standard deviation (used only if Gaussian)
 
 and a set of parameters that control how the beam spreads out from that start position::
 
     s:So/Demo/BeamAngularDistribution = "Gaussian" # None, Flat or Gaussian
     d:So/Demo/BeamAngularCutoffX = 90. deg # X cutoff of angular distrib (if Flat or Gaussian)
     d:So/Demo/BeamAngularCutoffY = 90. deg # Y cutoff of angular distrib (if Flat or Gaussian)
-    d:So/Demo/BeamAngularSpreadX = 0.0032 rad # X angular distribution (if Gaussian)
-    d:So/Demo/BeamAngularSpreadY = 0.0032 rad # Y angular distribution (if Gaussian)
+    d:So/Demo/BeamAngularSpreadX = 0.0032 rad # X standard deviation of angular distribution (used only if Gaussian)
+    d:So/Demo/BeamAngularSpreadY = 0.0032 rad # Y standard deviation of angular distribution (used only if Gaussian)
 
-The ``Cutoff`` and ``Spread`` parameters are applied symmetrically.
+The ``Cutoff`` parameter is applied symmetrically.
 
-You will note that for Gaussian beams, the position and angular distribution are controlled both by ``Spread`` and by ``Cutoff`` parameters. The ``Spread`` control the standard deviation of the Gaussian, while the ``Cutoff`` cut off the tails (which would otherwise be infinite). Inside TOPAS, when the Gaussian formula generates a starting point outside of this cutoff, that starting point is rejected and instead the random function is thrown again until a value is found that is within the specified cutoff.
+You will note that for Gaussian beams, the position and angular distribution are controlled both by ``Spread`` and by ``Cutoff`` parameters. The ``Spread`` control the standard deviation of the Gaussian with zero mean (keep in mind that the position and orientation of the source is controlled by the parameter ``So//Component``), while the ``Cutoff`` cut off the tails (which would otherwise be infinite). Inside TOPAS, when the Gaussian formula generates a starting point outside of this cutoff, that starting point is rejected and instead the random function is thrown again until a value is found that is within the specified cutoff.
