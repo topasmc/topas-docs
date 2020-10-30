@@ -405,9 +405,6 @@ The second set of parameters in the HU file are used to calculate material name 
     * 3.1 percent of the second element, Nitrogen
     * 74.9 percent of the second element, Oxygen
 
-Note: the following parameter is not currently working. It will be restored in the next release. Contact us on the user forum if you need it before then.
-``dv:SchneiderMaterialMeanExcitationEnergy``:
-
 * You may optionally provide this parameter to override the default mean excitation energies of some or all of the materials.
 * There should be one value for each material name assignment section.
 * To use the default mean excitation energy for a particular material, enter that value as 0.
