@@ -322,11 +322,12 @@ Some of our users have TsImageCube components where each voxel is represented no
     iv:Ge/Patient/MaterialTagNumbers = 6 0 3 42 43 100 110
     sv:Ge/Patient/MaterialNames = 6 "Air" "G4_BLOOD_ICRP" "G4_BONE_CORTICAL_ICRP" "G4_BONE_COMPACT_ICRU" "G4_BRAIN_ICRP" "G4_MUSCLE_SKELETAL_ICRP"
 
-Thus::
-    Where the voxel is tagged with the number 0, the converter will interpret this as "Air"
-    Where the voxel is tagged with the number 3, the converter will interpret this as " G4_BLOOD_ICRP "
-    Where the voxel is tagged with the number 42, the converter will interpret this as " G4_BONE_CORTICAL_ICRP "
-    etc.
+Thus:
+
+* Where the voxel is tagged with the number 0, the converter will interpret this as "Air"
+* Where the voxel is tagged with the number 3, the converter will interpret this as " G4_BLOOD_ICRP "
+* Where the voxel is tagged with the number 42, the converter will interpret this as " G4_BONE_CORTICAL_ICRP "
+* etc.
 
 Schneider
 ~~~~~~~~~
