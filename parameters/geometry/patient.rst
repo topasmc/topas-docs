@@ -212,17 +212,20 @@ TOPAS Scoring can use information from your DICOM dataset so that scored results
 
 .. _geometry_patient_imagecube:
 
-Patient in ImageCube Format (handles XCAT, XiO and more)
+Patient in ImageCube Format (handles XCAT, XiO, MaterialTagNumber and more)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We refer to a patient input file as an "Image Cube" if it is a simple binary file that contains one value for each voxel.
 These values may be Housefield units or any other sort of imaging information that you have. Elsewhere you will tell TOPAS how to convert a given value from this file into a specfic material for that voxel.
 
-- For the case of an XCAT phantom, the binary file will contains, for each voxel, an activation or attenuation value as a float
+- For the case of an XCAT phantom, the binary file will contain, for each voxel, an activation or attenuation value as a float
 - For the case of an XiO patient, the binary file will contain, for each voxel, a Hounsfield value as a short
+- For the case of a MaterialTagNumber file, the binary file will contain, for each voxel, a material index as a short
 - For other cases, you can provide a binary file that contains, for each voxel, any float, int or short
 
- (and there may be an additional file, an XCAT log, that provides metadata)
+ (and for XCAT phantoms, there may be an additional file, an XCAT log, that provides metadata)
+
+An ImagingToMaterialConverter, described in the next section, handles the details of how each voxel's information is converted to a material specification.
 
 See the :ref:`example_xcat` example of how to read an XCAT file.
 See the :ref:`example_dicom` example of how to read an XiO file.
@@ -309,7 +312,21 @@ The actual material name that TOPAS will expect you to define somewhere is the p
 - We faked the definitions, defining all the materials as different colors of what is really just water. You could edit this file to provide the real elemental compositions of the various materials.
 - We only defined the materials used in the attenuation part of the XCAT log file. If you instead want to use the materials used in the activity part of the XCAT log file, you’ll need to define some additional materials (the activity part of that XCAT log file had more materials than the attenuation part).
 
+MaterialTagNumber
+~~~~~~~~~~~~~~~~~
 
+Some of our users have TsImageCube components where each voxel is represented not as a CT number but as an integer "tag number," a 16-bit integer (C++ short) that corresponds to a particular material name. The ImagingToMaterialConverter called MaterialTagNumber will interpret these tag numbers based on a lookup table created by two additional TOPAS vector parameters, MaterialTagNumbers and MaterialNames. For example::
+
+    s:Ge/Patient/Type = "TsImageCube"
+    s:Ge/Patient/ImagingToMaterialConverter = "MaterialTagNumber"
+    iv:Ge/Patient/MaterialTagNumbers = 6 0 3 42 43 100 110
+    sv:Ge/Patient/MaterialNames = 6 "Air" "G4_BLOOD_ICRP" "G4_BONE_CORTICAL_ICRP" "G4_BONE_COMPACT_ICRU" "G4_BRAIN_ICRP" "G4_MUSCLE_SKELETAL_ICRP"
+
+Thus::
+    Where the voxel is tagged with the number 0, the converter will interpret this as "Air"
+    Where the voxel is tagged with the number 3, the converter will interpret this as " G4_BLOOD_ICRP "
+    Where the voxel is tagged with the number 42, the converter will interpret this as " G4_BONE_CORTICAL_ICRP "
+    etc.
 
 Schneider
 ~~~~~~~~~
