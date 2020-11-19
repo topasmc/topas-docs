@@ -20,7 +20,7 @@ All :ref:`Elements have been pre-defined <parameters_default_elements>` with nat
 
 In the :ref:`parameters_default` section, we show the complete list or pre-defined materials. This basically covers those materials that are used in our included examples.
 
-You may also use any of the Materials and Compounds that are defined by default in Geant4. The names start with the prefix, ``G4_``, such as: ``G4_Al``, ``G4_Ti``, ``G4_MUSCLE_SKELETAL_ICRP``, etc. The complete list of these materials and compounds can be found `here <http://geant4.web.cern.ch/geant4/workAreaUserDocKA/Backup/Docbook_UsersGuides_beta/ForApplicationDeveloper/html/apas08.html>`_.
+You may also use any of the Materials and Compounds that are defined by default in Geant4. The names start with the prefix, ``G4_``, such as: ``G4_Al``, ``G4_Ti``, ``G4_MUSCLE_SKELETAL_ICRP``, etc. The complete list of these materials and compounds can be found `here <http://www.sixiangguo.net/code/geant4/AppDevelop/apas06.html>`_.
 
 * NIST material names must be specified with exact case.
 * As of this writing, the mean excitation energy listed in the above reference for ``G4_WATER`` is incorrect. It lists ``G4_WATER`` mean excitation energy as 75.0 eV but it is actually set to 78.0 eV.
