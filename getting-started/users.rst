@@ -4,7 +4,7 @@ User Support and Contributions
 User Support
 ------------
 
-Help can be requested from TOPAS developers and other users at the `User Forum <http://topasmc.org>`_. Note that you must login as a registered user before you can access the forums.
+Help can be requested from TOPAS developers and other users at the `User Forum <https://groups.google.com/forum/#!forum/topas-mc-users>`_. Note that you must login as a registered user before you can access the forums.
 
 
 

@@ -12,3 +12,5 @@ Variance Reduction
     weight_window
     specific_particles
     secondary_biasing
+    forced_interaction
+    crosssection_enhancement

@@ -48,7 +48,7 @@ Fine control of the stepping algorithm can be done by changing the following par
     d:Ge/MyComponent/FieldStepMinimum = 1.0 mm
     d:Ge/MyComponent/FieldDeltaChord = 1.0e-1 mm
 
-See the `Geant4 Application Developers Guide <https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04s03.html>`_ for detailed discussion of these options.
+See the Geant4 Application Developers Guide on the `Geant4 Documention Page  <https://geant4.web.cern.ch/support/user_documentation>`_ for detailed discussion of these options.
 
 Stepper choices for purely magnetic fields are:
 

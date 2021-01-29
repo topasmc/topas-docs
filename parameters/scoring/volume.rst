@@ -11,13 +11,13 @@ Quantity            Description
 DoseToMedium        sum of energy deposits divided by mass
 DoseToWater         from energy-dependent stopping power conversion (see below)
 DoseToMaterial      from energy-dependent stopping power conversion (see below)
-EnergyDeposit       sum of step lengths divided by volume
-Fluence             sum of step lengths times energy divided by volume
-EnergyFluence       counting method described below
+EnergyDeposit       sum of energy deposits
+Fluence             sum of step lengths divided by volume
+EnergyFluence       sum of step lengths times energy divided by volume
+StepCount           counting number of Geant4 steps in the volume
+OpticalPhotonCount  fills an ntuple with information about optical photons seen in volume
 Charge              counting method described below
-OpticalPhotonCount  counting optical photons
-EffectiveCharge
-StepCount
+EffectiveCharge     counting method described below
 ProtonLET           various methods described below
 ==================  =======================================
 
@@ -62,7 +62,8 @@ For Charge and EffectiveCharge:
 
 * If a particle reaches zero kinetic energy in the scoring volume, its charge is accumulated
 * If a particle is generated in the scoring volume, its charge is subtracted
-
+* For Charge, the charge comes from the particle definition's PDGCharge
+* For EffectCharge, the charge comes from the PreStepPoint's Charge
 
 
 .. _scoring_let:
@@ -86,7 +87,7 @@ By default, the LET is computed by dividing the energy deposited by the step len
 
     d:Sc/MyScorer/MaxScoredLET = 100 MeV/mm/(g/cm3) # default 100 MeV/mm/(g/cm3)
 
-* Alternately, you can set the LET computation to look up the electronic stopping power for the pre-step proton energy::
+* Alternatively, you can set the LET computation to look up the electronic stopping power for the pre-step proton energy::
 
     b:Sc/MyScorer/UsePreStepLookup = "True" # defaults to “False”
 

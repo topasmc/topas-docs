@@ -10,5 +10,6 @@ Particle Sources
     beam
     emittance
     isotropic
+    volumetric
     phasespace
     misc

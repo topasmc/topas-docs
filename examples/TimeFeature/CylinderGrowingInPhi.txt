@@ -61,21 +61,21 @@ dv:Tf/Color/Times   = 4 1. 2. 3. 4. ms
 s:Tf/PosPhi/Function           = "Linear deg"
 d:Tf/PosPhi/Rate               = 12. deg/ms
 d:Tf/PosPhi/StartValue         = 10.0 deg
-d:Tf/PosPhi/RepetitionInterval = 30. ms
+d:Tf/PosPhi/RepetitionInterval = 29. ms
 
 s:Tf/NegPhi/Function           = "Linear deg"
 d:Tf/NegPhi/Rate               = -12. deg/ms
-d:Tf/NegPhi/StartValue         = 360.0 deg
-d:Tf/NegPhi/RepetitionInterval = 30. ms
+d:Tf/NegPhi/StartValue         = 358.0 deg
+d:Tf/NegPhi/RepetitionInterval = 29. ms
 
 s:Tf/Phi/Function           = "Step"
-dv:Tf/Phi/Times             = 2 30 45 ms
+dv:Tf/Phi/Times             = 2 29 58 ms
 dv:Tf/Phi/Values            = 2 Tf/PosPhi/Value Tf/NegPhi/value deg
-d:Tf/Phi/RepetitionInterval = 45. ms
+d:Tf/Phi/RepetitionInterval = 100. ms
 
 i:Tf/Verbosity               = 1
-d:Tf/TimelineEnd             = 38.0 ms
-i:Tf/NumberOfSequentialTimes = 114
+d:Tf/TimelineEnd             = 58.0 ms
+i:Tf/NumberOfSequentialTimes = 58
 
 s:Gr/ViewA/Type                             = "OpenGL"
 i:Gr/ViewA/WindowSizeX                      = 1024

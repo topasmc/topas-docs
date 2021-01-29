@@ -26,6 +26,15 @@ d:Ge/Patient/RotZ               = 0. deg
 s:Ge/Patient/DicomDirectory     = "Abdomen"
 sv:Ge/Patient/DicomModalityTags = 1 "CT"
 
+# Restrict which voxels are loaded.
+# This will speed things up for purposes of this demonstration,
+# but also changes simulation results, as only part of the DICOM
+# will be loaded. Take care when using this feature in your research.
+i:Ge/Patient/RestrictVoxelsXMin = 200
+i:Ge/Patient/RestrictVoxelsYMin = 200
+i:Ge/Patient/RestrictVoxelsXMax = 400
+i:Ge/Patient/RestrictVoxelsYMax = 400
+
 # Specify which slices to show.
 # Comment this out or set to zero to show all slices.
 # Set to -1 to show only center slice.
@@ -33,6 +42,9 @@ sv:Ge/Patient/DicomModalityTags = 1 "CT"
 #iv:Ge/Patient/ShowSpecificSlicesX = 1 -2
 #iv:Ge/Patient/ShowSpecificSlicesY = 1 -2
 iv:Ge/Patient/ShowSpecificSlicesZ = 1 -1
+
+# Simplify physics for faster start of this demonstration
+sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
 
 s:So/Example/Type                     = "Beam"
 s:So/Example/Component                = "BeamPosition"

@@ -11,6 +11,7 @@ Scoring
 	DoseToMediumVsWater
 	DoseVolumeHistogram
 	EnergyAndDose
+	EnergyDepositBinnedByEnergy
 	EnergyDivisions
 	EnergyInBinnedCylinder
 	Filters
@@ -26,3 +27,4 @@ Scoring
 	ParallelBoxRebinned
 	SplitByTimeFeature
 	Surfaces
+	VoxelMaterials

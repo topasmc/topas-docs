@@ -62,7 +62,7 @@ You may specify more than one filter. For example, to emit protons with initial 
     sv:So/MySource/OnlyIncludeParticlesNamed = 1 "proton"
     d:So/MySource/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy
 
-You can invert the results of all previous filters. The following would emit only particles that are Not protons with initial KE over 100 MeV::
+You can invert the results of all previous filters. The following would score only particles that are 1. not protons AND 2. not neutrons AND 3. have initial KE smaller or equal to 100 MeV::
 
     sv:So/MySource/OnlyIncludeParticlesNamed = 2 "proton" "neutron"
     d:So/MySource/OnlyIncludeParticlesWithInitialKEAbove = 100. MeV # minimum energy

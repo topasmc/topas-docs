@@ -39,6 +39,15 @@ Additional overall control parameters are::
     b:Ts/ShowHistoryCountOnSingleLine = "False" # Make count reuse a single line of console
     i:Ts/TrackingVerbosity = 0 # Set to larger integer to see details of tracking
 
+You can add time stamps to the history count:    b:Ts/IncludeTimeInHistoryCount = "True"
+
+You can have a "power-based" history count:    b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgressesAfter first ten histories, output will change to once for every 10, then to once for every 100, etc.An additional optional parameter:
+
+    i:Ts/MaxShowHistoryCountInterval
+
+puts an upper limit on how high the ShowHistoryCountInterval can be.For example:    b:Ts/ShowHistoryCountLessFrequentlyAsSimulationProgresses    i:Ts/MaxShowHistoryCountInterval = 100Gives:
+    1    2    3    ...    9    10    20    30    ...    100but from there always keep counting by 100 (rather than going on to counting by 1000, 10,000, etc.)
+
 
 
 Other
