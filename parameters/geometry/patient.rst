@@ -400,7 +400,7 @@ The second set of parameters in the HU file are used to calculate material name 
 
 * Specifies how to break up the entire set of HU units into several material name assignment sections.
 * The total range (last value minus first value) must equal the number of values in ``DensityCorrection``.
-* In the above example, the 26 values define 7 material name assignment sections:
+* In the above example, the 26 values define 25 material name assignment sections:
 
     * Section 1: -1000 to -949
     * Section 2: -50 to -119
@@ -426,10 +426,10 @@ The second set of parameters in the HU file are used to calculate material name 
 * You may optionally provide this parameter to override the default mean excitation energies of some or all of the materials.
 * There should be one value for each material name assignment section.
 * To use the default mean excitation energy for a particular material, enter that value as 0.
-* For example, the following just overrides defaults for two out of 26 assignment sections::
+* For example, the following just overrides defaults for two out of 25 assignment sections::
 
-    dv:Ge/Patient/SchneiderMaterialMeanExcitationEnergy = 26 88.8 0. 77.7. 0. 0. 0. 0. 0.
-    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. eV
+    dv:Ge/Patient/SchneiderMaterialMeanExcitationEnergy = 25 88.8 0. 77.7 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. eV
 
 ``iv:Gr/Color/PatientTissue1``:
 
