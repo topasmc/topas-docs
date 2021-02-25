@@ -25,6 +25,12 @@ Volume Scorers must indicate the relevant ``Component``::
 
     s:Sc/MyScorer/Component = "Phantom"
 
+When your scoring component is the Parent of other components, you have the option to set scoring to record particles not only in the parent component, but also in its children.
+
+    b:Sc/MyScorer/PropagateToChildren = "True"
+
+This action is recursive to all levels of subcomponents.
+
 For DoseToMaterial, you must also specify the ``Material``::
 
     s:Sc/MyScorer/Material = "SomeMaterial"
