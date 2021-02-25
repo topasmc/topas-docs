@@ -15,7 +15,7 @@ Surface Scorers must indicated the relevant ``Component`` and ``Surface`` name::
 
 where the surface name refers to the coordinate system of the ``Component``.
 
-When your scoring component is the Parent of other components, you have the option to set scoring to record particles not only in the parent component, but also in its children.
+When your scoring component is the Parent of other components, you have the option to set scoring to record particles not only in the parent component, but also in its children::
 
     b:Sc/MyScorer/PropagateToChildren = "True"
 
