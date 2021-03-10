@@ -5,21 +5,22 @@ Volume Scorers
 
 Here are the available volume scorers:
 
-==================  =======================================
-Quantity            Description
-==================  =======================================
-DoseToMedium        sum of energy deposits divided by mass
-DoseToWater         from energy-dependent stopping power conversion (see below)
-DoseToMaterial      from energy-dependent stopping power conversion (see below)
-EnergyDeposit       sum of energy deposits
-Fluence             sum of step lengths divided by volume
-EnergyFluence       sum of step lengths times energy divided by volume
-StepCount           counting number of Geant4 steps in the volume
-OpticalPhotonCount  fills an ntuple with information about optical photons seen in volume
-Charge              counting method described below
-EffectiveCharge     counting method described below
-ProtonLET           various methods described below
-==================  =======================================
+=====================  =======================================
+Quantity               Description
+=====================  =======================================
+AmbientDoseEquivalent   sum of fluence times fluence-to-effective dose conversion coefficients
+DoseToMedium            sum of energy deposits divided by mass
+DoseToWater             from energy-dependent stopping power conversion (see below)
+DoseToMaterial          from energy-dependent stopping power conversion (see below)
+EnergyDeposit           sum of energy deposits
+Fluence                 sum of step lengths divided by volume
+EnergyFluence           sum of step lengths times energy divided by volume
+StepCount               counting number of Geant4 steps in the volume
+OpticalPhotonCount      fills an ntuple with information about optical photons seen in volume
+Charge                  counting method described below
+EffectiveCharge         counting method described below
+ProtonLET               various methods described below
+=====================  =======================================
 
 Volume Scorers must indicate the relevant ``Component``::
 
@@ -38,6 +39,25 @@ For DoseToMaterial, you must also specify the ``Material``::
 Note that in this case, the material name must exactly match the case defined in Geant4.  To check what materials have been defined, add the parameter::
 
     i:Ma/Verbosity = 1
+    
+For AmbientDoseEquivalent, the scoring is performed per single particle::
+
+    s:Sc/MyScorer/Quantity = "AmbientDoseEquivalent"
+    s:Sc/MyScorer/Component = "MyDetectorComponent"
+    s:Sc/MyScorer/GetAmbientDoseEquivalentForParticleNamed = 1 “neutron”
+
+The scorer uses a track-length estimator, a variance reduction technique that consists of retrieving the absorbed dose at the scoring regions (voxels) located along the particle path until the point of interaction. That improves the computational efficiency substantially for neutral particles.  To that end, the ambient dose equivalent is obtained by folding the incident particle fluence, defined as the particle’s track-length divided by the scorer’s volume [1], with linearly-interpolated fluence-to-effective dose conversion coefficients. Then, the user needs to provide the corresponding fluence-to-effective dose conversion coefficients for a range of incident energy values using a couple of dimensioned double vectors::
+
+    dv:Sc/MyScorer/FluenceToDoseConversionEnergies = 30 ... MeV
+    dv:Sc/MyScorer/FluenceToDoseConversionValues = 30 ... Sv*mm2
+    
+The example AmbientDoseEquivalent.txt provides a complete example for neutron particles. It uses the fluence-to-effective dose conversion coefficients from reference [2], downloaded from reference [3].
+
+[1] Attix FH, Introduction to radiological physics and radiation dosimetry, 1986 Wyley-VCH, Chapter 1, Section III.D. 
+
+[2] Pelliccioni, M. Overview of Fluence-to-Effective Dose and Fluence-to-Ambient Dose Equivalent Conversion Coefficients for High Energy Radiation Calculated Using the FLUKA Code, Radiat. Prot. Dosim. 88(4), 279-297 (2000).
+
+[3] http://www.fluka.org/fluka.php?id=examples&sub=example4  Accessed on March 10, 2021.
 
 For DoseToWater and DoseToMaterial, we use energy-dependent stopping power conversion as in:
 
