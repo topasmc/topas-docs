@@ -63,6 +63,8 @@ Then assign cuts per region by including the region name in the parameter name a
     d:Ph/Default/ForRegion/MyRegion/CutForPositron = 0.05 mm
     d:Ph/Default/ForRegion/MyRegion/CutForProton = 0.05 mm
 
+Note: ``CutForAllParticles`` does not have effect on physics regions. The cuts in physics regions should be specifically assigned to each particle. On the contrary, a cut of 0.05 mm will be assigned for the particles without specified cuts in the named region.
+
 Cuts do not affect all processes, but only those listed below:
 
 * Energy thresholds for gamma are used in Bremsstrahlung
