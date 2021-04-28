@@ -54,7 +54,7 @@ Depending on your use case you may or may not want to include these Empty Histor
 
 You control this with::
 
-    s:So/MySource/PhaseSpaceIncludeEmptyHistories = "False" # defaults to false
+    b:So/MySource/PhaseSpaceIncludeEmptyHistories = "False" # defaults to false
 
 TOPAS ASCII and Binary phase space format headers show all of the relevant information:
 
@@ -69,7 +69,7 @@ Limited phase space format header does not give:
 
 TOPAS provides an option to check that the values in the header match what is in the file::
 
-    s:So/MySource/PhaseSpacePreCheck = "True" # defaults to true
+    b:So/MySource/PhaseSpacePreCheck = "True" # defaults to true
 
 For TOPAS ASCII and Binary formats, this is a thorough safety check. It will catch any cases where the files have somehow become corrupted (as could happen, for example, if you are doing a very long phase space writing job and the output disk becomes full during some part of the job).
 For Limited format, the check is still helpful but less thorough as the header file provides incomplete information. In Limited format, if you want to include Empty Histories, the check is required as it is the only way TOPAS can figure out how many Empty Histories there were.
@@ -122,7 +122,7 @@ While TOPAS can save the current TOPAS time to a phase space file, this time is 
 * Do not use :ref:`time_mode_random`. The randomly generated times during playback will not necessarily match the randomly generated times that were saved to the phase space. Only use :ref:`time_mode_fixed` or :ref:`time_mode_sequential`.
 * If your intention is to play back with exactly the same sequence as you had when you generated the phase space file, make sure to set::
 
-    s:So/MySource/PhaseSpaceIncludeEmptyHistories = "True"
+    b:So/MySource/PhaseSpaceIncludeEmptyHistories = "True"
 
   otherwise empty histories will put the playback job out of synch with the original job.
 
