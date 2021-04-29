@@ -15,6 +15,8 @@ If your :ref:`Surface Scorer <scoring_surface>` has ``Quantity = "PhaseSpace"``,
 * A .header file tells the number of histories, the number of saved particles and the order of information in the .phsp file
 * A .phsp file contains all the details of all the saved particles
 
+Note that if your scoring Component is a divided component, such as a voxelized patient, phase space will be scored on the specified surface of Every Voxel (this is the same scoring behavior you will see from any other Surface Scorer in TOPAS).
+
 We support three formats for Phase Space:
 
 * ASCII provides particle information in an easy to read simple text file, which data encoded as a series of columns of text. The header file tells the contents and column order per particle.
