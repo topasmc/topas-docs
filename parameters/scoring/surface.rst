@@ -29,6 +29,7 @@ The syntax to specify surface depends on which shape component is involved.
     * YPlusSurface
     * ZMinusSurface
     * ZPlusSurface
+    * AnySurface
 
 * For TsCylinder:
 
@@ -38,6 +39,7 @@ The syntax to specify surface depends on which shape component is involved.
     * OuterCurvedSurface
     * PhiMinusSurface (if cut or divided along Phi)
     * PhiPlusSurface (if cut or divided along Phi)
+    * AnySurface
 
 * For TsSphere:
 
@@ -47,6 +49,11 @@ The syntax to specify surface depends on which shape component is involved.
     * PhiPlusSurface (if cut or divided along Phi)
     * ThetaMinusSurface (if cut or divided along Theta)
     * ThetaMinusSurface (if cut or divided along Theta)
+    * AnySurface
+
+* For any other Component Type, TOPAS does not have a syntax to tell one surface from another, so the only allowable option is:
+
+    * AnySurface
 
 If you are scoring on a :ref:`divided component <geometry_dividable>` (TsBox, TsCylinder or TsSphere), all surfaces of the divided component then become sensitive for scoring. So, for example, ZMinusSurface will mean to accumulate hits on every ZMinusSurface of every voxel in the divided TsBox.
 
