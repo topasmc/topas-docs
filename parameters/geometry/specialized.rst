@@ -9,6 +9,7 @@ Geometry Component          Type
 :ref:`geometry_ridgefilter` TsRidgeFilter
 :ref:`geometry_mwc`         TsMultiWireChamber
 :ref:`geometry_mlc`         TsMultiLeafCollimator
+:ref:`geomtery_mlc`         TsDoublyDivergingMLC
 :ref:`geometry_cad`         TsCAD
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
