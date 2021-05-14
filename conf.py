@@ -371,5 +371,6 @@ epub_exclude_files = ['search.html']
 #epub_use_index = True
 
 def setup(app):
-    app.add_stylesheet('pygments.css')
-    app.add_stylesheet('dark_background.css')
+    #app.add_stylesheet('pygments.css')
+    #app.add_stylesheet('dark_background.css')
+    print('')
