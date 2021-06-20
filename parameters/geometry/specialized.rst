@@ -13,6 +13,7 @@ Geometry Component          Type
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
 :ref:`geometry_applicator`  TsBrachyApplicator
+:ree:`geometry_jaws`        TsJaws
 =========================== ========================
 
 Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
@@ -367,8 +368,9 @@ When TOPAS starts to build geometries, you will see the numbers are input proper
 
 Multi Leaf Collimator
 ~~~~~~~~~~~~~~~~~~~~~
+TOPAS provides a simple Multi Leaf Collimator (MLC) and a doubly diverging MLC. The simple MLC (type = TsMultiLeafCollimator) is comprised of rectangular parallelopipeds (six rectangular surfaces, at right angles with each other).
 
-Due to the design variations of Multi Leaf Collimator (MLC) from manufacturers, TOPAS provides a simplified MLC model instead of a generic design. With TOPAS MLC’s minimal set of parameters, users can define various width of each leaf and opening of each leaf.
+The simple TOPAS MLC has a minimal set of parameters to define the width and opening (travel) of each leaf.
 
 .. image:: MLC_1.png
 
@@ -404,7 +406,34 @@ Here is a complete set of the parameters for the above TOPAS MLC (see :ref:`exam
 
 TOPAS MLC is a specialized geometry and so allows only the reposition of each leaf as a function of time, using :ref:`time_feature` (see :ref:`example_special_mlc_sequence` example).
 
+The doubly diverging MLC (type = TsDivergingMLC) is comprised of trapezoids. 
 
+.. image:: MLC_2.png
+
+TsDivergingMLC component with select parameters set in the parameter control file shown in orange. 
+In this case there is an MLC bank downstream of an asymmetric pair of jaws. TransZ is at the middle 
+of the MLC (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though 
+it is not present in a parameter control file.
+
+The following parameter set fully specifies a pair of MLC banks with doubly diverging leaves, in this 
+case, a symmetric 20 cm x 10 cm field at isocenter collimated by a Siemens Oncor MLC. If the leaf i
+travel axis is X, the leaf numbering is from negative to positive along Y. If the leaf travel axis i
+is Y, the leaf numbering is from positive to negative along X.::
+
+  s:Ge/MLC/Parent           = "World" 
+  s:Ge/MLC/Type              = "TsDivergingMLC"
+  s:Ge/MLC/Material         = "G4_W"
+  d:Ge/MLC/SAD               = 100. cm 
+  d:Ge/MLC/SourceToUpstreamSurfaceDistance = 28.26  cm # Distance from source to MLC bank
+  s:Ge/MLC/LeafTravelAxis   = "X" # Leaf travel axis, "X" or "Y"
+  d:Ge/MLC/MaximumLeafOpen  = 20.0 cm # Actual limit of leaf travel
+  d:Ge/MLC/Thickness        = 7.56 cm # Actual thickness of MLC leaves along IEC Zb
+  d:Ge/MLC/Length           = 20.0 cm # Length of MLC leaves in direction of travel
+  # MLC leaf widths and positions, projected to isocenter for 10 cm x 20 cm field
+  dv:Ge/MLC/LeafWidths           = 42 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
+  dv:Ge/MLC/NegativeFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. cm
+  dv:Ge/MLC/PositiveFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. Cm
+  s:Ge/MLC/DrawingStyle = "Solid"
 
 .. _geometry_cad:
 
@@ -606,7 +635,8 @@ This example places the applicator inside of a patient,
 and then uses time features to drive a source wire to various dwell
 positions within this applicator.
 
-The parameters you set are as follows.
+The parameters you set are as follows.::
+
     s:Ge/Applicator/Type = "TsBrachyApplicator"
     s:Ge/Applicator/Parent = "Patient"
     b:Ge/Applicator/IsParallel = "True"
@@ -622,7 +652,8 @@ The parameters you set are as follows.
 
 The following parameters are updated automatically by the applicator component to show true hole centers.
 They need to be defined here, but these initial values are not important.
-They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hole.
+They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hole.::
+
     d:Ge/Applicator/Hole0/TransX = 0. mm
     d:Ge/Applicator/Hole0/TransY = 0. mm
     d:Ge/Applicator/Hole1/TransX = 0. mm
@@ -637,3 +668,47 @@ They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hol
     d:Ge/Applicator/Hole5/TransY = 0. mm
     d:Ge/Applicator/Hole6/TransX = 0. mm
     d:Ge/Applicator/Hole6/TransY = 0. mm
+
+
+.. _geometry_jaws:
+
+Jaws
+~~~~~~~~~~~
+TOPAS provides a component to specify a pair of asymmetric, diverging jaws (type = TsJaws), e.g., 
+as part of a linear accelerator treatment head. The component is built from Geant4 trapezoids.
+
+.. image:: Jaws.png
+
+  TsJaws component with select parameters set in the parameter control file shown in orange. In this 
+  case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
+  jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
+  is not present in a parameter control file.
+
+The following parameters are shown in the diagram above:
+  1. The SAD parameter is the source-axis distance; that is, the distance from the nominal source 
+     position (x-ray target) to the gantry rotation axis (the machine isocenter).
+  2. The distance from the origin of the coordinate system to the jaw is calculated from the 
+     parameters SAD and SourceToUpstreamSurfaceDistance. This is for consistency in jaw positioning 
+     with the other components in the linear accelerator simulation example. 
+  3. The NegativeFieldSetting and PositiveFieldSetting parameters specify the setting of each jaw 
+     as the distance from the coordinate system Z axis to each jaw surface, projected to the plane 
+     perpendicular to the Z at the origin of the coordinate system (isocenter). This is the field 
+     setting used in treatment planning systems and at the machine. NegativeFieldSetting is less 
+     than or equal to PositiveFieldSetting. 
+
+The following parameter set specifies a symmetric 10 cm wide field at isocenter collimated by a Siemens Oncor jaw::
+
+  s:Ge/Jaw/JawTravelAxis  = "X" # Jaw travel axis, "X" or "Y"
+  d:Ge/Jaw/PositiveFieldSetting  = 20 cm
+  d:Ge/Jaw/NegativeFieldSetting  = -20 cm
+  s:Ge/Jaw/Parent  = "World"
+  s:Ge/Jaw/Type  = "TsJaws"
+  s:Ge/Jaw/Material = "G4_W"
+  d:Ge/Jaw/LX  = 20. cm  # Actual jaw width along JawTravelAxis
+  d:Ge/Jaw/LY  = 20. cm  # Actual jaw length perpendicular to JawTravelAxis
+  d:Ge/Jaw/LZ  = 7.80 cm # Jaw thickness along Z axis
+  dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from source to jaw 
+  d:Ge/Jaw/SAD = 100. cm #Distance for source to isocenter
+  s:Ge/Jaw/DrawingStyle = "Solid"
+
+
