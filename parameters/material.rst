@@ -20,6 +20,17 @@ All :ref:`Elements have been pre-defined <parameters_default_elements>` with nat
 
 In the :ref:`parameters_default` section, we show the complete list or pre-defined materials. This basically covers those materials that are used in our included examples.
 
+You can also create a new material from a combination of other materials.
+The key is that you provide a additional parameter called ``BuildFromMaterials`` and set this to True.
+Then instead of ``Components`` being element names, it will expect material names.
+
+Here's an example of making a material that is a combination of water and air::
+
+    b:Ma/MyMixture/BuildFromMaterials = "True"
+    sv:Ma/MyMixture/Components = 2 "G4_WATER" "Air"
+    uv:Ma/MyMixture/Fractions = 2 .5 .5
+    d:Ma/MyMixture/Density = .5 g/cm3
+
 You may also use any of the Materials and Compounds that are defined by default in Geant4. The names start with the prefix, ``G4_``, such as: ``G4_Al``, ``G4_Ti``, ``G4_MUSCLE_SKELETAL_ICRP``, etc. The complete list of these materials and compounds can be found `here <http://geant4-userdoc.web.cern.ch/geant4-userdoc/UsersGuides/ForApplicationDeveloper/html/Appendix/materialNames.html#g4matrdb>`_.
 
 * NIST material names must be specified with exact case.
