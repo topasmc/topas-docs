@@ -10,7 +10,7 @@ Geometry Component          Type
 :ref:`geometry_mwc`         TsMultiWireChamber
 :ref:`geometry_jaws`        TsJaws
 :ref:`geometry_mlc`         TsMultiLeafCollimator
-:ref:`geomtery_mlc`         TsDoublyDivergingMLC
+:ref:`geomtery_mlc`         TsDivergingMLC
 :ref:`geometry_cad`         TsCAD
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
