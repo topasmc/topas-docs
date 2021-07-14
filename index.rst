@@ -43,6 +43,7 @@ Welcome to the TOPAS documentation!
 
     examples-docs/Basic/index
     examples-docs/Graphics/index
+    examples-docs/Linac/index
     examples-docs/Nozzle/index
     examples-docs/Optical/index
     examples-docs/Outcome/index

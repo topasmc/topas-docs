@@ -1,0 +1,11 @@
+# The LinacDefaults parameter control file is the final includeFile in the chain. 
+# Parameters provided in this file are intended to be overridden in the other
+# parameter control files in the chain, in particular, in Field.txt.
+#
+############################# Parameter Descriptions #################################
+# Linac geometry fixed components
+# SAD: Source axis distance (distance from x-ray target to gantry rotation axis)
+#######################################################################################
+
+d:Ge/SAD = 100. cm
+

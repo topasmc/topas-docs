@@ -1,0 +1,35 @@
+# MLC for Siemens Oncor: Uses DivergingMLC TOPAS generic MLC component
+
+############################# Parameter Descriptions #################################
+# SAD: Source to axis distance (isocenter coincides with gantry co-ordinates origin) 
+# Pos: Distance along beam axis Zg from nominal target position (SAD from isocenter)
+# HLZ: Half thickness
+# MaximumLeafOpen: Maximum distance permitted for leaf to open on either side of Zb
+# Thickness: Thickness of the MLC leaves in Zb
+# Length: Length of the MLC leaves in direction of travel
+# LeafWidths: Vector of leaf widths, same sequence of leaf widths on each MLC bank     
+# PositiveFieldSetting: Positive leaf positions projected to isocenter 
+# NegativeFieldSetting: NegativeFieldSetting <= PositiveFieldSetting for opposing leaves
+#######################################################################################
+
+includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
+
+s:Ge/MLC/Parent                   = "IEC_B" #IEC beam limiting device coordinates
+s:Ge/MLC/Type                     = "TsDivergingMLC"
+s:Ge/MLC/Material                 = "G4_W"
+d:Ge/MLC/SAD        		  = Ge/SAD cm 
+d:Ge/MLC/SourceToUpstreamSurfaceDistance                      = 28.26  cm
+s:Ge/MLC/LeafTravelAxis           = "Xb" #MLC travel is along IEC Xb
+
+d:Ge/MLC/MaximumLeafOpen          = 20.0 cm
+d:Ge/MLC/Thickness                = 7.56 cm
+d:Ge/MLC/Length                   = 20.0 cm
+dv:Ge/MLC/LeafWidths              = 40 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
+# 10 cm x 20 cm field, the field setting for each leaf is that as projected at isocenter
+dv:Ge/MLC/NegativeFieldSetting    = 40 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. cm
+dv:Ge/MLC/PositiveFieldSetting    = 40 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. cm
+
+s:Ge/MLC/DrawingStyle             = "Solid"
+b:Ge/MLC/PrintInformation         = "True"
+
+

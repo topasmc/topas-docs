@@ -1,0 +1,212 @@
+# Flattening filter and primary collimator for Siemens Oncor
+# Reference for geometry: Sawkey and Faddegon, Med Phys 36(12):5622-32, 2009
+# Stainless steel composition and density from Sawkey 2009 pub (above)
+
+############################# Parameter Descriptions #################################
+# HL: Half thickness of cone or cylinder
+# Pos: Distance along beam axis Zg from nominal target position (SAD from isocenter)
+# SAD: Source to axis distance (isocenter coincides with gantry co-ordinates origin) 
+# TransZ1: Position of lower surface of previous object along Zg
+# TransZ: Position of center of object along Zg
+# Reloc: Distance along beam axis Zg from isocenter, set by parameters SAD and Pos
+#
+# Primary collimator...
+# Rmax1: Maximum radius of cone at the top (closest to target)
+# Rmax2: Maximum raidus of cone at the bottom (closest to isocenter)
+# Rmin1: Minium radius of cone at the top
+# Rmin2: Minium raidus of cone at the bottom
+#
+# Flattening filter...
+# Flattening filter is made of two parts as follows:
+#    1. Upper poly cone, which fits into the primary collimator
+#    2. External rings downstream of the primary collimator
+# RInner: Inner radius of HPolycone for each layer (Vector)
+# ROuter: Outer radius of HPolycone for each layer (Vector)
+# Z: Thickness for each layer (Vector)
+#######################################################################################
+
+includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
+
+# Primary Collimator
+
+s:Ge/Collimator_1/Parent     = "IEC_G" #IEC gantry coordinate
+s:Ge/Collimator_1/Material   = "G4_W"
+s:Ge/Collimator_1/Type       = "G4Cons"
+d:Ge/Collimator_1/RMin1      = 1.748 cm
+d:Ge/Collimator_1/RMax1      = 4.0 cm #Portions of collimator axis within 4 cm of air
+d:Ge/Collimator_1/RMin2      = 1.748 cm
+d:Ge/Collimator_1/RMax2      = 4.0 cm
+d:Ge/Collimator_1/HL         = 0.638 cm
+d:Ge/Collimator_1/Pos        = 1.7 cm
+d:Ge/Collimator_1/Reloc      = Ge/SAD - Ge/Collimator_1/Pos cm
+d:Ge/Collimator_1/TransZ     = Ge/Collimator_1/Reloc - Ge/Collimator_1/HL cm
+s:Ge/Collimator_1/Color      = "TransparentBlue"
+
+s:Ge/Collimator_2/Parent     = "IEC_G"
+s:Ge/Collimator_2/Material   = "G4_W"
+s:Ge/Collimator_2/Type       = "G4Cons"
+d:Ge/Collimator_2/RMin1      = 1.041 cm
+d:Ge/Collimator_2/RMax1      = 4.0 cm
+d:Ge/Collimator_2/RMin2      = 1.041 cm
+d:Ge/Collimator_2/RMax2      = 4.0 cm
+d:Ge/Collimator_2/HL         = 0.607 cm
+d:Ge/Collimator_2/TransZ1    = Ge/Collimator_1/TransZ - Ge/Collimator_1/HL cm
+d:Ge/Collimator_2/TransZ     = Ge/Collimator_2/TransZ1 - Ge/Collimator_2/HL cm
+s:Ge/Collimator_2/Color      = "TransparentBlue"
+
+s:Ge/Collimator_3/Parent     = "IEC_G"
+s:Ge/Collimator_3/Material   = "G4_W"
+s:Ge/Collimator_3/Type       = "G4Cons"
+d:Ge/Collimator_3/RMin1      = 1.372 cm
+d:Ge/Collimator_3/RMax1      = 4.0 cm
+d:Ge/Collimator_3/RMin2      = 1.372 cm
+d:Ge/Collimator_3/RMax2      = 4.0 cm
+d:Ge/Collimator_3/HL         = 0.673 cm
+d:Ge/Collimator_3/TransZ1    = Ge/Collimator_2/TransZ - Ge/Collimator_2/HL cm
+d:Ge/Collimator_3/TransZ     = Ge/Collimator_3/TransZ1 - Ge/Collimator_3/HL cm
+s:Ge/Collimator_3/Color      = "TransparentBlue"
+
+s:Ge/Collimator_4/Parent     = "IEC_G"
+s:Ge/Collimator_4/Material   = "G4_W"
+s:Ge/Collimator_4/Type       = "G4Cons"
+d:Ge/Collimator_4/RMin1      = 1.702 cm
+d:Ge/Collimator_4/RMax1      = 4.0 cm
+d:Ge/Collimator_4/RMin2      = 1.702 cm
+d:Ge/Collimator_4/RMax2      = 4.0 cm
+d:Ge/Collimator_4/HL         = 0.673 cm
+d:Ge/Collimator_4/TransZ1    = Ge/Collimator_3/TransZ - Ge/Collimator_3/HL cm
+d:Ge/Collimator_4/TransZ     = Ge/Collimator_4/TransZ1 - Ge/Collimator_4/HL cm
+s:Ge/Collimator_4/Color      = "TransparentBlue"
+
+s:Ge/Collimator_5/Parent     = "IEC_G"
+s:Ge/Collimator_5/Material   = "G4_W"
+s:Ge/Collimator_5/Type       = "G4Cons"
+d:Ge/Collimator_5/RMin1      = 2.05 cm
+d:Ge/Collimator_5/RMax1      = 4.0 cm
+d:Ge/Collimator_5/RMin2      = 2.05 cm
+d:Ge/Collimator_5/RMax2      = 4.0 cm
+d:Ge/Collimator_5/HL         = 0.673 cm
+d:Ge/Collimator_5/TransZ1    = Ge/Collimator_4/TransZ - Ge/Collimator_4/HL cm
+d:Ge/Collimator_5/TransZ     = Ge/Collimator_5/TransZ1 - Ge/Collimator_5/HL cm
+s:Ge/Collimator_5/Color      = "TransparentBlue"
+
+s:Ge/Collimator_6/Parent     = "IEC_G"
+s:Ge/Collimator_6/Material   = "G4_W"
+s:Ge/Collimator_6/Type       = "G4Cons"
+d:Ge/Collimator_6/RMin1      = 2.388 cm
+d:Ge/Collimator_6/RMax1      = 4.0 cm
+d:Ge/Collimator_6/RMin2      = 2.388 cm
+d:Ge/Collimator_6/RMax2      = 4.0 cm
+d:Ge/Collimator_6/HL         = 0.673 cm
+d:Ge/Collimator_6/TransZ1    = Ge/Collimator_5/TransZ - Ge/Collimator_5/HL cm
+d:Ge/Collimator_6/TransZ     = Ge/Collimator_6/TransZ1 - Ge/Collimator_6/HL cm
+s:Ge/Collimator_6/Color      = "TransparentBlue"
+
+# Flattening filter
+
+iv:Gr/Color/TransparentOrange      = 4 241 224   0 200
+d:Ge/FlattenerPos                  = 4.856 cm
+
+sv:Ma/StainlessSteel/Components    = 6 "Carbon" "Silicon" "Chromium" "Manganese" "Iron" "Nickel"  
+uv:Ma/StainlessSteel/Fractions     = 6 .001 .007 .18 .01 .712 .09
+d:Ma/StainlessSteel/Density        = 7.8 g/cm3 
+s:Ma/StainlessSteel/DefaultColor   = "TransparentOrange"
+
+s:Ge/FlatteningFilter1/Parent       = "IEC_G"
+s:Ge/FlatteningFilter1/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter1/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter1/RInner      = 10 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 cm
+dv:Ge/FlatteningFilter1/ROuter      = 10 0.14 0.203 0.267 0.293 0.673 0.686 0.894 1.125 1.354 1.384 cm 
+dv:Ge/FlatteningFilter1/Z           = 10 0.0 -0.279 -0.533 -0.622 -1.928 -1.969 -2.64 -3.316 -3.994 -4.032 cm 
+d:Ge/FlatteningFilter1/Pos          = Ge/FlattenerPos cm
+d:Ge/FlatteningFilter1/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter1/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter1/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter2/Parent       = "IEC_G"
+s:Ge/FlatteningFilter2/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter2/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter2/RInner      = 11 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 cm
+dv:Ge/FlatteningFilter2/ROuter      = 11 0.653 0.59 0.502 0.419 0.347 0.306 0.278 0.216 0.186 0.166 0.149 cm 
+dv:Ge/FlatteningFilter2/Z           = 11 -4.032 -4.037 -4.062 -4.11 -4.181 -4.247 -4.323 -4.572 -4.661 -4.725 -4.776 cm 
+d:Ge/FlatteningFilter2/Pos          = Ge/FlattenerPos cm
+d:Ge/FlatteningFilter2/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter2/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter2/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter3/Parent       = "IEC_G"
+s:Ge/FlatteningFilter3/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter3/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter3/RInner      = 11 0.653 0.715 0.803 0.886 0.958 1.009 1.068 1.259 1.328 1.377 1.403 cm
+dv:Ge/FlatteningFilter3/ROuter      = 11 1.384 1.387 1.403 1.434 1.479 1.52 1.568 1.725 1.781 2.54 2.54 cm 
+dv:Ge/FlatteningFilter3/Z           = 11 -4.032 -4.037 -4.062 -4.11 -4.181 -4.247 -4.323 -4.572 -4.661 -4.725 -4.776 cm 
+d:Ge/FlatteningFilter3/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter3/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter3/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter3/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter4/Parent       = "IEC_G"
+s:Ge/FlatteningFilter4/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter4/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter4/RInner      = 2 0.0 0.0 cm
+dv:Ge/FlatteningFilter4/ROuter      = 2 0.149 0.107 cm 
+dv:Ge/FlatteningFilter4/Z           = 2 -4.776 -4.906 cm 
+d:Ge/FlatteningFilter4/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter4/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter4/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter4/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter5/Parent       = "IEC_G"
+s:Ge/FlatteningFilter5/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter5/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter5/RInner      = 2 1.403 1.469 cm
+dv:Ge/FlatteningFilter5/ROuter      = 2 1.885 1.818 cm 
+dv:Ge/FlatteningFilter5/Z           = 2 -4.776 -4.906 cm 
+d:Ge/FlatteningFilter5/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter5/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter5/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter5/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter6/Parent       = "IEC_G"
+s:Ge/FlatteningFilter6/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter6/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter6/RInner      = 2 2.118 2.54 cm
+dv:Ge/FlatteningFilter6/ROuter      = 2 2.169 2.54 cm 
+dv:Ge/FlatteningFilter6/Z           = 2 -4.776 -4.906 cm 
+d:Ge/FlatteningFilter6/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter6/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter6/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter6/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter7/Parent       = "IEC_G"
+s:Ge/FlatteningFilter7/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter7/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter7/RInner      = 2 1.469 1.506 cm
+dv:Ge/FlatteningFilter7/ROuter      = 2 1.818 1.781 cm 
+dv:Ge/FlatteningFilter7/Z           = 2 -4.906 -4.98 cm 
+d:Ge/FlatteningFilter7/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter7/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter7/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter7/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter8/Parent       = "IEC_G"
+s:Ge/FlatteningFilter8/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter8/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter8/RInner      = 2 2.169 2.197 cm
+dv:Ge/FlatteningFilter8/ROuter      = 2 2.54 2.54 cm 
+dv:Ge/FlatteningFilter8/Z           = 2 -4.906 -4.98 cm 
+d:Ge/FlatteningFilter8/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter8/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter8/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter8/DrawingStyle = "Solid" 
+
+s:Ge/FlatteningFilter9/Parent       = "IEC_G"
+s:Ge/FlatteningFilter9/Type	   = "G4HPolycone"
+s:Ge/FlatteningFilter9/Material     = "StainlessSteel"
+dv:Ge/FlatteningFilter9/RInner      = 2 0.0 0.0 cm
+dv:Ge/FlatteningFilter9/ROuter      = 2 2.54 2.54 cm 
+dv:Ge/FlatteningFilter9/Z           = 2 -4.98 -5.147 cm 
+d:Ge/FlatteningFilter9/Pos          = Ge/FlattenerPos  cm
+d:Ge/FlatteningFilter9/TransZ       = Ge/SAD - Ge/FlatteningFilter1/Pos cm 
+s:Ge/FlatteningFilter9/Color        = "TransparentOrange"
+s:Ge/FlatteningFilter9/DrawingStyle = "Solid" 

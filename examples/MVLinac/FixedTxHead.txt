@@ -1,0 +1,88 @@
+# Field.txt contains specific source and geometry parameters.
+# The parameters settings in this file override parameter settings in the files in the
+# includeFile statement below and in LinacDefaults.txt.
+#
+# Use this parameter control file to set field and patient specific parameters. 
+# See Main.txt for additional documentation.
+#
+# Reference for geometry: Jabbari et al, J Med Signal Sens 3(3):172-179
+# References for electron source incident on x-ray target: 
+#   Sawkey and Faddegon, Med Phys 36(3):698-707 (2009)
+#   Sawkey and Faddegon, Med Phys 36(12):5622-32 (2009)
+# The beam angular divergence from the 36(3) reference is for the manufacture specified 
+# water cooling channel thickness.
+
+########################## Key Parameters In Field.txt ###############################
+# Parameters marked with "^" are set to be changeable in the TOPAS GUI
+# Geometry parameters for one field, including...
+# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
+# ^RotYg: IEC gantry rotation angle
+# ^RotZb: IEC secondary collimator (jaw and MLC) rotation angle
+# ^RotZs: IEC Patient Couch rotation angle
+# ^Pos: Distance along beam axis Zg from nominal target position (SAD from isocenter)
+# TransZ: Position of center of object along Zg
+# JawTravelAxis: Direction of jaw travel, along IECb axis Xb or Yb
+# LeafTravelAxis: Direction of leaf travel, along IECb axis Xb or Yb
+# ^NegativeFieldSetting: Jaw or MLC leaf position on negative side, projected to isocenter
+# ^PositiveFieldSetting: Jaw or MLC leaf position on positive side, projected to isocenter
+#
+# Source parameters, including...
+# BeamEnergySpread: Standard deviation of energy spread in percent 
+# NumberOfHistoriesInRun: Total number of source particles to run for simulation
+# ShowHistoryCountAtInterval: Number of histories between report of histories run
+# Uniform bremsstrahlung splitting used for variance reduction - see user manual
+######################################################################################
+
+# Linac treatment head components
+includeFile = Target.txt Flattener.txt Monitor.txt 
+
+# Scoring includeFile: Choose one of the following for 
+# 1. Phase-space, 2. spatial distribution of energy fluence, or 3. energy spectrum
+#includeFile = ScorePhaseSpace.txt
+includeFile = ScoreEnergyFluence.txt
+#includeFile = ScoreEnergySpectrum.txt
+
+# Graphics
+# Use Gr/Enable to show geometry for a few histories, otherwise set "False" 
+b:Gr/Enable                                          = "True"
+#b:Gr/Enable                                           = "False"
+# Use Ts/UseQT to start TOPAS GUI for a few histories, otherwise set "False" 
+b:Ts/UseQT                                           = "True"
+#b:Ts/UseQT                                            = "False"
+
+# Random number seed for simulation of this field
+i:Ts/Seed                                             = 10
+
+# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
+d:Ge/SAD				              = 100. cm
+
+# Source at exit window
+# Parent is the gantry with coordinates IECg (see Main.txt)
+s:Ge/BeamPosition/Parent                              = "IECg"
+dc:Ge/BeamPosition/Pos                                = -1.0 cm #In vacuum
+d:Ge/BeamPosition/TransZ                              = Ge/SAD - Ge/BeamPosition/Pos cm
+
+s:So/ElectronSource/BeamParticle                                = "e-"
+d:So/ElectronSource/BeamEnergy                                  = 6.51 MeV
+u:So/ElectronSource/BeamEnergySpread                            = 8.5        #20% FWHM
+s:So/ElectronSource/BeamPositionDistribution                    = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape                     = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX                         = 1.2 mm     #2 standard deviations
+d:So/ElectronSource/BeamPositionCutoffY                         = 1.2 mm
+d:So/ElectronSource/BeamPositionSpread                          = 0.6 mm     #1.5 mm FWHM
+s:So/ElectronSource/BeamAngularDistribution                     = "Gaussian"
+d:So/ElectronSource/BeamAngularCutoffX                          = 90. deg
+d:So/ElectronSource/BeamAngularCutoffY                          = 90. deg
+d:So/ElectronSource/BeamAngularSpread                           = 3.3 deg
+
+# Number of histories in run
+i:So/ElectronSource/NumberOfHistoriesInRun                      = 10 * Ts/ShowHistoryCountAtInterval
+i:Ts/ShowHistoryCountAtInterval                       = 10000
+
+# Variance reduction with uniform bremsstrahlung splitting
+b:Vr/UseVarianceReduction                             = "True"
+b:Vr/ParticleSplit/Active                             = "True"
+s:Vr/ParticleSplit/Type                               = "secondarybiasing"
+sv:Vr/ParTicleSplit/ForRegion/target/processesNamed   = 1 "eBrem"
+uv:Vr/ParticleSplit/ForRegion/target/SplitNumber      = 1  100.0
+dv:Vr/ParticleSplit/ForRegion/target/MaximumEnergies  = 1  So/ElectronSource/BeamEnergy MeV 
