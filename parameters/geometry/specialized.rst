@@ -15,7 +15,6 @@ Geometry Component          Type
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
 :ref:`geometry_applicator`  TsBrachyApplicator
-:ree:`geometry_jaws`        TsJaws
 =========================== ========================
 
 Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
