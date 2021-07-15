@@ -76,8 +76,8 @@ Mills Bio. Pharm., ProstaSeed, 125SL:
 
 Nucletron SelectSeed 130.002:
 
-* Karaiskos et al , "Monte Carlo dosimetry of the selectSeed 125-I interstitial brachytherapy seed", Med. Phys., 28 , 1753—1760 (2001). https://doi.org/10.1118/1.1384460 
-* G. Anagnostopoulos et al , "Thermoluminescent dosimetry of the selectSeed 125-I interstitial brachytherapy seed", Med. Phys., 29 , 709-716, (2002). https://doi.org/10.1118/1.1469631 
+* Karaiskos et al , "Monte Carlo dosimetry of the selectSeed 125-I interstitial brachytherapy seed", Med. Phys., 28 , 1753—1760 (2001). https://doi.org/10.1118/1.1384460
+* G. Anagnostopoulos et al , "Thermoluminescent dosimetry of the selectSeed 125-I interstitial brachytherapy seed", Med. Phys., 29 , 709-716, (2002). https://doi.org/10.1118/1.1469631
 * Mark J. Rivard et al., "Supplement 2 for the 2004 update of the AAPM Task Group No. 43 Report: Joint recommendations by the AAPM and GEC-ESTRO", Medical Physics 44 (9), e297-e338. https://doi.org/10.1002/mp.12430 
 
 Theragenics Co., I-Seed I-125, AgX100:
