@@ -1,7 +1,7 @@
 .. _source_volumetric:
 
 volumetric Sources
-~~~~~~~~~~~~~~~~~
+------------------
 
 volumetric sources emit particles from randomly sampled starting positions from within the radioactive volume of a given component.
 
@@ -25,6 +25,9 @@ So, for example, if you have:
 
 particles will start from randomly sampled positions within the Iridium parts of the component named ActiveSource.
 
-See the new example: examples/Basic/VolumetricSource.txt
+Examples that use this source can be found in:
+
+* examples/Brachytherapy
+* examples/Basic/VolumetricSource.txt
 
 The energies and species of the emitted particles can be specified using the same parameters available to the :ref:`source_beam`.
