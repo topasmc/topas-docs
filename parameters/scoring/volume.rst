@@ -8,11 +8,11 @@ Here are the available volume scorers:
 =====================  =======================================
 Quantity               Description
 =====================  =======================================
-AmbientDoseEquivalent   sum of fluence times fluence-to-effective dose conversion coefficients
 DoseToMedium            sum of energy deposits divided by mass
 DoseToWater             from energy-dependent stopping power conversion (see below)
 DoseToMaterial          from energy-dependent stopping power conversion (see below)
 TrackLengthEstimator    dose calculated using the track-length etimator technique
+AmbientDoseEquivalent   sum of fluence times fluence-to-effective dose conversion coefficients
 EnergyDeposit           sum of energy deposits
 Fluence                 sum of step lengths divided by volume
 EnergyFluence           sum of step lengths times energy divided by volume
@@ -33,15 +33,34 @@ When your scoring component is the Parent of other components, you have the opti
 
 This action is recursive to all levels of subcomponents.
 
-For DoseToMaterial, you must also specify the ``Material``::
+For DoseToMaterial:
+-------------------
+
+you must also specify the ``Material``::
 
     s:Sc/MyScorer/Material = "SomeMaterial"
 
 Note that in this case, the material name must exactly match the case defined in Geant4.  To check what materials have been defined, add the parameter::
 
     i:Ma/Verbosity = 1
+
+For TrackLengthEstimator:
+-------------------------
+
+Dose is calculated using a linear Track Length Estimator (TLE).
+The TLE technique approximates the absorbed dose as electronic (collisional) kerma.
+The dose along the voxels a photon encounters in its path between successive collisions is accounted for, resulting in a drastic variance reduction.
+
+Use of this scorer is demonstrated in examples/Brachytherapy/DoseTLE.txt
+
+The TOPAS TrackLengthEstimator is further described at:
+
+* Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
     
-For AmbientDoseEquivalent, the scoring is performed per single particle::
+For AmbientDoseEquivalent:
+--------------------------
+
+Scoring is performed per single particle::
 
     s:Sc/MyScorer/Quantity = "AmbientDoseEquivalent"
     s:Sc/MyScorer/Component = "MyDetectorComponent"
@@ -60,7 +79,9 @@ The example AmbientDoseEquivalent.txt provides a complete example for neutron pa
 
 [3] http://www.fluka.org/fluka.php?id=examples&sub=example4  Accessed on March 10, 2021.
 
-For DoseToWater and DoseToMaterial, we use energy-dependent stopping power conversion as in:
+For DoseToWater and DoseToMaterial:
+-----------------------------------
+we use energy-dependent stopping power conversion as in:
 
 .. code-block:: c++
 
@@ -85,19 +106,8 @@ For ``PreCalculateStoppingPowerRatios``, the table of stopping power ratios can 
     Sc/MyScorer/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
     Sc/MyScorer/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
 
-For TrackLengthEstimator:
-
-Calculates dose using a linear Track Length Estimator (TLE).
-The TLE technique approximates the absorbed doseas electronic (collisional) kerma.
-The dose along the voxels a photon encounters in its path between successive collisions is accounted for, resulting in a drastic variance reduction.
-
-Use of this scorer is demonstrated in examples/Brachytherapy/DoseTLE.txt
-
-The TOPAS TrackLengthEstimator is further described at:
-
-* Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
-
 For Charge and EffectiveCharge:
+-------------------------------
 
 * If a particle reaches zero kinetic energy in the scoring volume, its charge is accumulated
 * If a particle is generated in the scoring volume, its charge is subtracted

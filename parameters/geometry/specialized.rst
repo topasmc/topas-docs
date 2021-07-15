@@ -463,7 +463,7 @@ it is not present in a parameter control file.
 The following parameter set fully specifies a pair of MLC banks with doubly diverging leaves, in this 
 case, a symmetric 20 cm x 10 cm field at isocenter collimated by a Siemens Oncor MLC. If the leaf
 travel axis is X, the leaf numbering is from negative to positive along Y. If the leaf travel axis
-is Y, the leaf numbering is from positive to negative along X.:
+is Y, the leaf numbering is from positive to negative along X.::
 
   s:Ge/MLC/Parent           = "World" 
   s:Ge/MLC/Type              = "TsDivergingMLC"
@@ -475,9 +475,18 @@ is Y, the leaf numbering is from positive to negative along X.:
   d:Ge/MLC/Thickness        = 7.56 cm # Actual thickness of MLC leaves along IEC Zb
   d:Ge/MLC/Length           = 20.0 cm # Length of MLC leaves in direction of travel
   # MLC leaf widths and positions, projected to isocenter for 10 cm x 20 cm field
-  dv:Ge/MLC/LeafWidths           = 42 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
-  dv:Ge/MLC/NegativeFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. cm
-  dv:Ge/MLC/PositiveFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. Cm
+  dv:Ge/MLC/LeafWidths           = 42 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+				      1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+				      1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+				      1. 1. 1. 1. 1. 5. cm
+  dv:Ge/MLC/NegativeFieldSetting = 42  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0. -5.
+				      -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5.
+				      -5. -5. -5. -5. -5. -5. -5.  0.  0.  0.  0.  0.
+				       0.  0.  0.  0.  0.  0. cm
+  dv:Ge/MLC/PositiveFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 5. 5.
+				      5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5.
+				      5. 5. 5. 5. 5. 0. 0. 0. 0. 0. 0. 0. 0.
+				      0. 0. 0. Cm
   s:Ge/MLC/DrawingStyle = "Solid"
 
 .. _geometry_cad:
