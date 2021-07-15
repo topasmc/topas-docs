@@ -392,6 +392,47 @@ Notes:
 1.	The distance from the origin of the coordinate system to the jaw is calculated from the SAD and SourceToUpstreamSurfaceDistance. This is for consistency with the linear accelerator simulation example where the position of the treatment head components is specified as the distance from the nominal source position to the upstream surface of the component. The nominal source position is a distance of the SAD from the machine isocenter. 
 2.	NegativeFieldSetting and PositiveFieldSetting specify the jaw edges (field size) as projected to the isocenter on a plane perpendicular to the beam axis Zb. NegativeFieldSetting is less than or equal to PositiveFieldSetting. 
 
+
+Second version of Jaws content that was found at end of this file:
+
+TOPAS provides a component to specify a pair of asymmetric, diverging jaws (type = TsJaws), e.g., 
+as part of a linear accelerator treatment head. The component is built from Geant4 trapezoids.
+
+.. image:: Jaws.png
+
+  TsJaws component with select parameters set in the parameter control file shown in orange. In this 
+  case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
+  jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
+  is not present in a parameter control file.
+
+The following parameters are shown in the diagram above:
+  1. The SAD parameter is the source-axis distance; that is, the distance from the nominal source 
+     position (x-ray target) to the gantry rotation axis (the machine isocenter).
+  2. The distance from the origin of the coordinate system to the jaw is calculated from the 
+     parameters SAD and SourceToUpstreamSurfaceDistance. This is for consistency in jaw positioning 
+     with the other components in the linear accelerator simulation example. 
+  3. The NegativeFieldSetting and PositiveFieldSetting parameters specify the setting of each jaw 
+     as the distance from the coordinate system Z axis to each jaw surface, projected to the plane 
+     perpendicular to the Z at the origin of the coordinate system (isocenter). This is the field 
+     setting used in treatment planning systems and at the machine. NegativeFieldSetting is less 
+     than or equal to PositiveFieldSetting. 
+
+The following parameter set specifies a symmetric 10 cm wide field at isocenter collimated by a Siemens Oncor jaw::
+
+  s:Ge/Jaw/JawTravelAxis  = "X" # Jaw travel axis, "X" or "Y"
+  d:Ge/Jaw/PositiveFieldSetting  = 20 cm
+  d:Ge/Jaw/NegativeFieldSetting  = -20 cm
+  s:Ge/Jaw/Parent  = "World"
+  s:Ge/Jaw/Type  = "TsJaws"
+  s:Ge/Jaw/Material = "G4_W"
+  d:Ge/Jaw/LX  = 20. cm  # Actual jaw width along JawTravelAxis
+  d:Ge/Jaw/LY  = 20. cm  # Actual jaw length perpendicular to JawTravelAxis
+  d:Ge/Jaw/LZ  = 7.80 cm # Jaw thickness along Z axis
+  dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from source to jaw 
+  d:Ge/Jaw/SAD = 100. cm #Distance for source to isocenter
+  s:Ge/Jaw/DrawingStyle = "Solid"
+
+
 .. _geometry_mlc:
 
 Multi Leaf Collimator
@@ -696,47 +737,3 @@ They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hol
     d:Ge/Applicator/Hole5/TransY = 0. mm
     d:Ge/Applicator/Hole6/TransX = 0. mm
     d:Ge/Applicator/Hole6/TransY = 0. mm
-
-
-.. _geometry_jaws:
-
-Jaws
-~~~~~~~~~~~
-TOPAS provides a component to specify a pair of asymmetric, diverging jaws (type = TsJaws), e.g., 
-as part of a linear accelerator treatment head. The component is built from Geant4 trapezoids.
-
-.. image:: Jaws.png
-
-  TsJaws component with select parameters set in the parameter control file shown in orange. In this 
-  case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
-  jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
-  is not present in a parameter control file.
-
-The following parameters are shown in the diagram above:
-  1. The SAD parameter is the source-axis distance; that is, the distance from the nominal source 
-     position (x-ray target) to the gantry rotation axis (the machine isocenter).
-  2. The distance from the origin of the coordinate system to the jaw is calculated from the 
-     parameters SAD and SourceToUpstreamSurfaceDistance. This is for consistency in jaw positioning 
-     with the other components in the linear accelerator simulation example. 
-  3. The NegativeFieldSetting and PositiveFieldSetting parameters specify the setting of each jaw 
-     as the distance from the coordinate system Z axis to each jaw surface, projected to the plane 
-     perpendicular to the Z at the origin of the coordinate system (isocenter). This is the field 
-     setting used in treatment planning systems and at the machine. NegativeFieldSetting is less 
-     than or equal to PositiveFieldSetting. 
-
-The following parameter set specifies a symmetric 10 cm wide field at isocenter collimated by a Siemens Oncor jaw::
-
-  s:Ge/Jaw/JawTravelAxis  = "X" # Jaw travel axis, "X" or "Y"
-  d:Ge/Jaw/PositiveFieldSetting  = 20 cm
-  d:Ge/Jaw/NegativeFieldSetting  = -20 cm
-  s:Ge/Jaw/Parent  = "World"
-  s:Ge/Jaw/Type  = "TsJaws"
-  s:Ge/Jaw/Material = "G4_W"
-  d:Ge/Jaw/LX  = 20. cm  # Actual jaw width along JawTravelAxis
-  d:Ge/Jaw/LY  = 20. cm  # Actual jaw length perpendicular to JawTravelAxis
-  d:Ge/Jaw/LZ  = 7.80 cm # Jaw thickness along Z axis
-  dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from source to jaw 
-  d:Ge/Jaw/SAD = 100. cm #Distance for source to isocenter
-  s:Ge/Jaw/DrawingStyle = "Solid"
-
-
