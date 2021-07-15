@@ -453,6 +453,9 @@ TOPAS MLC is a specialized geometry and so allows only the reposition of each le
 
 .. _geometry_divmlc:
 
+Doubly Diverging Multi Leaf Collimator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The doubly diverging MLC (type = TsDivergingMLC) is comprised of trapezoids. 
 
 .. image:: MLC_2.png
