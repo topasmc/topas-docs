@@ -31,21 +31,20 @@ s:Ge/Inner/Material = "G4_Ir"
 d:Ge/Inner/RMax     = 20.0 mm
 d:Ge/Inner/HL = 150.0 mm
 
-s:Ge/SourceCapPlusZ/Type     = "TsCylinder"
+s:Ge/SourceCapPlusZ/Type     = "TsSphere"
 s:Ge/SourceCapPlusZ/Parent   = "ActiveSource"
 sc:Ge/SourceCapPlusZ/Material = "G4_Ir"
 dc:Ge/SourceCapPlusZ/RMax     = 50.0 mm
 dc:Ge/SourceCapPlusZ/STheta   = 0 deg
-dc:Ge/SourceCapPlusZ/DTheta	= 90 deg
-dc:Ge/SourceCapPlusZ/TransZ = 1050. mm
-dc:Ge/SourceCapPlusZ/HL       = 50.0 mm
+dc:Ge/SourceCapPlusZ/DTheta   = 90 deg
+dc:Ge/SourceCapPlusZ/TransZ   = 200. mm
 
 s:Ge/SourceCapMinusZ/Type     = "TsSphere"
 s:Ge/SourceCapMinusZ/Parent   = "ActiveSource"
 sc:Ge/SourceCapMinusZ/Material = "G4_Ir"
 dc:Ge/SourceCapMinusZ/RMax     = 50.0 mm
 dc:Ge/SourceCapMinusZ/STheta   = 90 deg
-dc:Ge/SourceCapMinusZ/DTheta	= 90 deg
+dc:Ge/SourceCapMinusZ/DTheta.  = 90 deg
 dc:Ge/SourceCapMinusZ/TransZ = -200. mm
 
 s:Ge/SourceExtraBit/Type     = "TsSphere"
@@ -76,3 +75,5 @@ i:Ts/ShowHistoryCountAtInterval = 100
 
 s:Gr/ViewA/Type              = "OpenGL"
 b:Gr/ViewA/IncludeStepPoints = "True"
+b:Ts/PauseBeforeQuit = "True"
+b:Ts/UseQt = "True"

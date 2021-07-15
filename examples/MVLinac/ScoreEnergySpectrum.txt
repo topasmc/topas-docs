@@ -1,7 +1,17 @@
 # Scorer - Energy spectrum in 10 cm x 10 cm region at isocenter
+
+#################### Key Parameters In ScoreEnergySpectrum.txt ########################
+# Ebins: Number of energy bins to be scored
+# EBinMin/Max: Minimum and maximum energy to be scored
+# EBinLog: Scoring bins logarithmically spaced if true, linearily spaced if false
+# HLX/Y/Z: Half lengths of voxels used for scoring
+# X/YBins: Number of bins in IEC_G Xg and Yg
+# TransZ: Distance from isocenter to center of scoring region along IEC_G Zg
+#######################################################################################
+
 s:Sc/EnergySpectrum/Quantity = "Fluence"
 s:Sc/EnergySpectrum/Component= "Isocenter"
-s:Sc/EnergySpectrum/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/EnergySpectrum/IfOutputFileAlreadyExists = "Exit" # "Exit", "Overwrite" or "Increment"
 s:Sc/EnergySpectrum/OutputType = "CSV"
 
 sv:Sc/EnergySpectrum/OnlyIncludeParticlesNamed = 1 "gamma"

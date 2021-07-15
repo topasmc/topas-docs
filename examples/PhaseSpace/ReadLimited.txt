@@ -20,7 +20,6 @@ s:So/Example/Type                            = "PhaseSpace"
 s:So/Example/PhaseSpaceFileName              = "LimitedOutput"
 s:So/Example/Component                       = "World"
 #i:So/Example/PhaseSpaceMultipleUse          = 2
-#i:So/Example/PhaseSpaceBufferSize           = 100
 b:So/Example/PhaseSpaceIncludeEmptyHistories = "True"
 
 # Graphics

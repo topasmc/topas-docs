@@ -571,6 +571,41 @@ s:Sc/OnlyIncludeIfNotInMaterial/OutputType = "csv"
 s:Sc/OnlyIncludeIfNotInMaterial/IfOutputFileAlreadyExists = "Overwrite"
 sv:Sc/OnlyIncludeIfNotInMaterial/OnlyIncludeIfNotInMaterial = 1 "Lead"
 
+s:Sc/OnlyIncludeIfIncidentParticlesNamed/Quantity = "EnergyDeposit"
+s:Sc/OnlyIncludeIfIncidentParticlesNamed/Component = "Box"
+b:Sc/OnlyIncludeIfIncidentParticlesNamed/OutputToConsole = "TRUE"
+s:Sc/OnlyIncludeIfIncidentParticlesNamed/OutputType = "csv"
+s:Sc/OnlyIncludeIfIncidentParticlesNamed/IfOutputFileAlreadyExists = "Overwrite"
+sv:Sc/OnlyIncludeIfIncidentParticlesNamed/OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
+
+s:Sc/OnlyIncludeIfIncidentParticlesNotNamed/Quantity = "EnergyDeposit"
+s:Sc/OnlyIncludeIfIncidentParticlesNotNamed/Component = "Box"
+b:Sc/OnlyIncludeIfIncidentParticlesNotNamed/OutputToConsole = "TRUE"
+s:Sc/OnlyIncludeIfIncidentParticlesNotNamed/OutputType = "csv"
+s:Sc/OnlyIncludeIfIncidentParticlesNotNamed/IfOutputFileAlreadyExists = "Overwrite"
+sv:Sc/OnlyIncludeIfIncidentParticlesNotNamed/OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
+
+s:Sc/OnlyIncludeIfIncidentParticlesFromProcess/Quantity = "EnergyDeposit"
+s:Sc/OnlyIncludeIfIncidentParticlesFromProcess/Component = "Box"
+b:Sc/OnlyIncludeIfIncidentParticlesFromProcess/OutputToConsole = "TRUE"
+s:Sc/OnlyIncludeIfIncidentParticlesFromProcess/OutputType = "csv"
+s:Sc/OnlyIncludeIfIncidentParticlesFromProcess/IfOutputFileAlreadyExists = "Overwrite"
+sv:Sc/OnlyIncludeIfIncidentParticlesFromProcess/OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
+
+s:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/Quantity = "EnergyDeposit"
+s:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/Component = "Box"
+b:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/OutputToConsole = "TRUE"
+s:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/OutputType = "csv"
+s:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/IfOutputFileAlreadyExists = "Overwrite"
+sv:Sc/OnlyIncludeIfIncidentParticlesNotFromProcess/OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
+
+s:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/Quantity = "EnergyDeposit"
+s:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/Component = "Box"
+b:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/OutputToConsole = "TRUE"
+s:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/OutputType = "csv"
+s:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/OnlyIncludeIfIncidentParticlesOfGeneration/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
+
 s:Gr/ViewA/Type = "OpenGL"
 i:Gr/ViewA/WindowSizeX = 900
 i:Gr/ViewA/WindowSizeY = 900

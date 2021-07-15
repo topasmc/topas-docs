@@ -1,4 +1,6 @@
-# FullTxHeadField.txt contains specific source and geometry parameters.
+# FullTxHeadField.txt contains parameter values for a specific source and geometry
+# in this example, a 6 MV Siemens Oncor x-ray beam.
+#
 # The parameters settings in this file override parameter settings in the files in the
 # includeFile statement below and in LinacDefaults.txt.
 #
@@ -12,76 +14,69 @@
 # The beam angular divergence from the 36(3) reference is for the manufacture specified 
 # water cooling channel thickness.
 
-###################### Key Parameters In FullTxHeadField.txt ###########################
+###################### Key Parameters In FullTxHeadField.txt ##########################
 # Parameters marked with "^" are set to be changeable in the TOPAS GUI
+# Source parameters, including...
+# BeamEnergySpread: Standard deviation of energy spread in percent 
+# NumberOfHistoriesInRun: Total number of source particles to run for simulation
+# ShowHistoryCountAtInterval: Number of histories between report of histories run
+#
 # Geometry parameters for one field, including...
-# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
-# ^IEC_G/RotY: IEC gantry rotation angle
-# ^IEC_B/RotZ: IEC secondary collimator (jaw and MLC) rotation angle
-# ^IEC_S/RotZ: IEC Patient Couch rotation angle
+# SAD: Source axis distance (distance from nominal source position to isocenter)
+# ^IEC_G/RotY_G: IEC gantry rotation angle
+# ^IEC_B/RotZ_B: IEC secondary collimator (jaw and MLC) rotation angle
+# ^IEC_S/RotZ_S: IEC Patient Couch rotation angle
 # ^Pos: Distance along beam axis Zg from nominal target position (SAD from isocenter)
 # TransZ: Position of center of object along Zg
 # JawTravelAxis: Direction of jaw travel, along IEC_B axis Xb or Yb
 # LeafTravelAxis: Direction of leaf travel, along IEC_B axis Xb or Yb
 # ^NegativeFieldSetting: Jaw or MLC leaf position on negative side, projected to isocenter
 # ^PositiveFieldSetting: Jaw or MLC leaf position on positive side, projected to isocenter
-#
-# Source parameters, including...
-# BeamEnergySpread: Standard deviation of energy spread in percent 
-# NumberOfHistoriesInRun: Total number of source particles to run for simulation
-# ShowHistoryCountAtInterval: Number of histories between report of histories run
+# LeafWidths: Width of each leaf as projected to isocenter, same width on opposing bank
 ######################################################################################
 
 ######################################################################################
 # Source at exit window and fixed treatment head components follow...
 
-includeFile = Target.txt Flattener.txt Monitor.txt 
+includeFile = Target.txt PrimaryCollimator.txt Flattener6MV.txt Monitor.txt 
 
 # Graphics
 # Use Gr/Enable to show geometry for a few histories, otherwise set "False" 
-b:Gr/Enable                                            = "True"
-#b:Gr/Enable                                           = "False"
+b:Gr/Enable                                  = "True"
+#b:Gr/Enable                                 = "False"
 # Use Ts/UseQT to start TOPAS GUI for a few histories, otherwise set "False" 
-b:Ts/UseQT                                             = "True"
-#b:Ts/UseQT                                            = "False"
+b:Ts/UseQT                                   = "True"
+#b:Ts/UseQT                                  = "False"
 
 # Random number seed for simulation of this field
-i:Ts/Seed                                             = 10
+i:Ts/Seed                                    = 10
 
 # Linac geometry fixed components
 # SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
-d:Ge/SAD				               = 100. cm
+d:Ge/SAD				     = 100. cm
 
 # Source at exit window
 # Parent is the gantry with coordinates IEC_G (see Main.txt)
-s:Ge/BeamPosition/Parent                              = "IEC_G"
-dc:Ge/BeamPosition/Pos                                = -1.0 cm #In vacuum
-d:Ge/BeamPosition/TransZ                              = Ge/SAD - Ge/BeamPosition/Pos cm
+s:Ge/BeamPosition/Parent                     = "IEC_G"
+dc:Ge/BeamPosition/Pos                       = -1.0 cm #In vacuum
+d:Ge/BeamPosition/TransZ                     = Ge/SAD - Ge/BeamPosition/Pos cm
 
-s:So/ElectronSource/BeamParticle                                = "e-"
-d:So/ElectronSource/BeamEnergy                                  = 6.51 MeV
-u:So/ElectronSource/BeamEnergySpread                            = 8.5        #20% FWHM
-s:So/ElectronSource/BeamPositionDistribution                    = "Gaussian"
-s:So/ElectronSource/BeamPositionCutoffShape                     = "Ellipse"
-d:So/ElectronSource/BeamPositionCutoffX                         = 1.2 mm     #2 standard deviations
-d:So/ElectronSource/BeamPositionCutoffY                         = 1.2 mm
-d:So/ElectronSource/BeamPositionSpread                          = 0.6 mm     #1.5 mm FWHM
-s:So/ElectronSource/BeamAngularDistribution                     = "Gaussian"
-d:So/ElectronSource/BeamAngularCutoffX                          = 90. deg
-d:So/ElectronSource/BeamAngularCutoffY                          = 90. deg
-d:So/ElectronSource/BeamAngularSpread                           = 3.3 deg
+s:So/ElectronSource/Type                     = "Beam"
+s:So/ElectronSource/Component                = "BeamPosition"
+s:So/ElectronSource/BeamParticle             = "e-"
+d:So/ElectronSource/BeamEnergy               = 6.51 MeV
+u:So/ElectronSource/BeamEnergySpread         = 4.2        #10% FWHM
+s:So/ElectronSource/BeamPositionDistribution = "Gaussian"
+s:So/ElectronSource/BeamPositionCutoffShape  = "Ellipse"
+d:So/ElectronSource/BeamPositionCutoffX      = 1.2 mm     #2 standard deviations
+d:So/ElectronSource/BeamPositionCutoffY      = 1.2 mm
+d:So/ElectronSource/BeamPositionSpreadX      = 0.6 mm     #1.5 mm FWHM
+d:So/ElectronSource/BeamPositionSpreadY      = 0.6 mm     #1.5 mm FWHM
+s:So/ElectronSource/BeamAngularDistribution  = "None"
 
 # Number of histories in run
-i:So/ElectronSource/NumberOfHistoriesInRun                      = 1 * Ts/ShowHistoryCountAtInterval
-i:Ts/ShowHistoryCountAtInterval                       = 1
-
-# Variance reduction with uniform bremsstrahlung splitting
-b:Vr/UseVarianceReduction                             = "True"
-b:Vr/ParticleSplit/Active                             = "True"
-s:Vr/ParticleSplit/Type                               = "secondarybiasing"
-sv:Vr/ParTicleSplit/ForRegion/target/processesNamed   = 1 "eBrem"
-uv:Vr/ParticleSplit/ForRegion/target/SplitNumber      = 1  1.0
-dv:Vr/ParticleSplit/ForRegion/target/MaximumEnergies  = 1  So/ElectronSource/BeamEnergy MeV 
+ic:So/ElectronSource/NumberOfHistoriesInRun  = 1 * Ts/ShowHistoryCountAtInterval
+i:Ts/ShowHistoryCountAtInterval              = 1
 
 ######################################################################################
 # Field-dependent angles (gantry, collimator) and components follow...
@@ -89,25 +84,28 @@ dv:Vr/ParticleSplit/ForRegion/target/MaximumEnergies  = 1  So/ElectronSource/Bea
 includeFile = Jaws.txt MLC.txt WaterBox.txt
 
 # Linac geometry field-dependent components
-# IEC_G/RotY: IEC gantry rotation angle
-dc:Ge/IEC_G/RotY                                        = 0. deg
+# IEC gantry rotation angle (in the opposite sense of RotY)
+dc:Ge/IEC_G/RotY_G                           = 0. deg
+d:Ge/IEC_G/RotY                              = -1 * Ge/IEC_G/RotY_G deg
 
-# IEC_G/RotZ: IEC collimator rotation angle
-dc:Ge/IEC_B/RotZ                                                        = 0. deg
+# IEC collimator rotation angle (in the same sense of RotZ)
+dc:Ge/IEC_B/RotZ_B                           = 0. deg
+d:Ge/IEC_B/RotZ                              = 1 * Ge/IEC_B/RotZ_B deg 
 
-# Asymmetric jaw field settings along IEC coordinates Xb or Yb, projected to isocenter
-s:Ge/Jaw/JawTravelAxis                       	                     = "Yb"
-dc:Ge/Jaw/NegativeFieldSetting                                      = -5. cm
-dc:Ge/Jaw/PositiveFieldSetting                                      = 5. cm
+# Asymmetric jaw field settings along IEC coordinates X or Y, projected to isocenter
+s:Ge/Jaw/JawTravelAxis                       = "Y" # Jaw travel axis, "X" or "Y"
+dc:Ge/Jaw/NegativeFieldSetting               = -5. cm
+dc:Ge/Jaw/PositiveFieldSetting               = 5. cm
 
-# MLC leaf positions, projected to isocenter
-s:Ge/MLC/LeafTravelAxis                                             = "Xb"
-dv:Ge/MLC/LeafWidths              = 40 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
+# MLC leaf widths and positions, projected to isocenter
+s:Ge/MLC/LeafTravelAxis                      = "X" # Leaf travel axis, "X" or "Y"
+dv:Ge/MLC/LeafWidths           = 42 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
 # 10 cm x 20 cm field, the field setting for each leaf is that as projected at isocenter
-dv:Ge/MLC/NegativeFieldSetting    = 40 -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. cm
-dv:Ge/MLC/PositiveFieldSetting    = 40 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5.  cm
+dv:Ge/MLC/NegativeFieldSetting = 42 0. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. -5. 0. cm
+dv:Ge/MLC/PositiveFieldSetting = 42 0. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 0. cm
 
 # Patient and couch field-dependent components
-# IEC_S/RotZ: IEC couch rotation angle
-dc:Ge/IEC_S/RotZ                                                         = 0.0 deg
+# IEC couch rotation angle (in the opposite sense of RotZ)
+dc:Ge/IEC_S/RotZ_S                           = 0.0 deg
+d:Ge/IEC_S/RotZ                              = -1 * Ge/IEC_S/RotZ_S deg
 

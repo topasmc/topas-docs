@@ -1,35 +1,29 @@
 # Jaws for Siemens Oncor: Uses TOPAS component Jaws
+# Reference for geometry: Jabbari et al, J Med Signal Sens 3(3):172-179
 
 ############################# Parameter Descriptions #################################
-# IEC_B/RotZ: Collimator rotation
-# HLX/Y/Z: Half thicknesses
-# SAD: Source axis distance (distance from point of jaw rotation to gantry rotation axis)
-# Pos: Distance along beam axis Zg from nominal target position (SAD from isocenter)
+# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
+# SourceToUpstreamSurfaceDistance: Distance from x-ray target to jaw
 # PositiveFieldSetting: Positive jaw position projected to isocenter 
 # NegativeFieldSetting: NegativeFieldSetting <= PositiveFieldSetting
 #######################################################################################
 
 includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
-# Values of collimator angle and field size.
-# May be overriden in an includeFile that includes this file
-dc:Ge/IEC_B/RotZ                  = 0. deg
+
+#######################################################################################
+s:Ge/Jaw/JawTravelAxis  = "Y" # Jaw travel axis, "X" or "Y"
 dc:Ge/Jaw/PositiveFieldSetting  = 20 cm
 dc:Ge/Jaw/NegativeFieldSetting  = -20 cm
 
-#######################################################################################
-s:Ge/Jaw/Parent                 = "IEC_B"
-s:Ge/Jaw/Type                   = "TsJaws"
-s:Ge/Jaw/Material               = "G4_W"
-# HLX, HLY and HLZ are the half-thicknesses of each jaw
-d:Ge/Jaw/LX                    = 20. cm  # JawTravelAxis (Xb or Yb)
-d:Ge/Jaw/LY                    = 20. cm  # Perpendicular to JawTravelAxis
-d:Ge/Jaw/LZ                    = 7.80 cm # Jaw thickness, IEC Zb axis
-d:Ge/Jaw/SourceToUpstreamSurfaceDistance                    = 19.73 cm
-d:Ge/Jaw/SAD        		= Ge/SAD cm
+s:Ge/Jaw/Parent         = "IEC_B"
+s:Ge/Jaw/Type           = "TsJaws"
+s:Ge/Jaw/Material       = "G4_W"
 
+d:Ge/Jaw/LX             = 20. cm  # Actual jaw width along JawTravelAxis
+d:Ge/Jaw/LY             = 20. cm  # Actual jaw length perpendicular to JawTravelAxis
+d:Ge/Jaw/LZ             = 7.80 cm # Jaw thickness along IEC Zb axis
+dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from x-ray target to jaw 
+d:Ge/Jaw/SAD        	= Ge/SAD cm
 
-s:Ge/Jaw/DrawingStyle           = "Solid"
-s:Ge/Jaw/JawTravelAxis          = "Yb" #Jaw travel is along IEC Yb
-
-
+s:Ge/Jaw/DrawingStyle   = "Solid"
 #######################################################################################

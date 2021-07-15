@@ -1,4 +1,5 @@
-# Rectangular parallelopiped filled with water, aligned with IEC fixed Z axis Zf
+# Rectangular parallelopiped filled with water, aligned with IEC fixed Z axis Zf.
+# WaterPhantom has voxels for scoring.
 #######################################################################################
 
 includeFile = LinacDefaults.txt #Values in LinacDafaults.txt overriden in Field.txt
@@ -6,7 +7,7 @@ includeFile = LinacDefaults.txt #Values in LinacDafaults.txt overriden in Field.
 # Scorer - Dose distribution in 40 cm x 40 cm x 40 cm water box at 100 cm SSD
 s:Sc/Dose/Quantity                  = "DoseToWater"
 s:Sc/Dose/Component                 = "WaterPhantom"
-s:Sc/Dose/IfOutputFileAlreadyExists = "Overwrite"
+s:Sc/Dose/IfOutputFileAlreadyExists = "Exit" # "Exit", "Overwrite" or "Increment"
 s:Sc/Dose/OutputType                = "CSV"
 
 
