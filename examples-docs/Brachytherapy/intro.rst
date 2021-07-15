@@ -67,7 +67,10 @@ IsoAid, LLC, Advantage I-125, IAI-125A:
 
 * Mark J. Rivard et al., "Supplement to the 2004 Update of the AAPM Task Group No. 43 Report", Medical Physics 34, no 6Part1 (2007): 2187‑2205, https://doi.org/10.1118/1.2736790
 * Timothy D. Solberg et al., "Dosimetric parameters of three new solid core I‐125 brachytherapy sources", Journal of Applied Clinical Medical Physics 3, no 2 (2002): 119‑34, https://doi.org/10.1120/jacmp.v3i2.2576
-* "IsoAid, LLC, Advantage I-125, IAI-125A | Department of Physics", consulted July 8th 2020, https://physics.carleton.ca/clrp/egs_brachy/seed_database/I125/Advantage_IAI-125A Mills Bio. Pharm., ProstaSeed, 125SL::
+* "IsoAid, LLC, Advantage I-125, IAI-125A | Department of Physics", consulted July 8th 2020, https://physics.carleton.ca/clrp/egs_brachy/seed_database/I125/Advantage_IAI-125A
+
+Mills Bio. Pharm., ProstaSeed, 125SL:
+
 * “Mills Bio. Pharm., ProstaSeed, 125SL | Department of Physics”, consulted June 26th 2020, https://physics.carleton.ca/clrp/egs_brachy/seed_database/I125/ProstaSeed_125SL
 * Zuofeng Li, "Monte Carlo Calculations of Dosimetry Parameters of the Urocor Prostaseed Source", Medical Physics 29, no 6 (2002): 1029‑34, https://doi.org/10.1118/1.1478559
 
