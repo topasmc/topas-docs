@@ -12,6 +12,7 @@ AmbientDoseEquivalent   sum of fluence times fluence-to-effective dose conversio
 DoseToMedium            sum of energy deposits divided by mass
 DoseToWater             from energy-dependent stopping power conversion (see below)
 DoseToMaterial          from energy-dependent stopping power conversion (see below)
+TrackLengthEstimator    dose calculated using the track-length etimator technique
 EnergyDeposit           sum of energy deposits
 Fluence                 sum of step lengths divided by volume
 EnergyFluence           sum of step lengths times energy divided by volume
@@ -83,6 +84,18 @@ For ``PreCalculateStoppingPowerRatios``, the table of stopping power ratios can 
     Sc/MyScorer/ElectronEnergyBinSize # default is 1 keV
     Sc/MyScorer/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
     Sc/MyScorer/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
+
+For TrackLengthEstimator:
+
+Calculates dose using a linear Track Length Estimator (TLE).
+The TLE technique approximates the absorbed doseas electronic (collisional) kerma.
+The dose along the voxels a photon encounters in its path between successive collisions is accounted for, resulting in a drastic variance reduction.
+
+Use of this scorer is demonstrated in examples/Brachytherapy/DoseTLE.txt
+
+The TOPAS TrackLengthEstimator is further described at:
+
+* Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
 
 For Charge and EffectiveCharge:
 
