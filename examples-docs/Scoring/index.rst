@@ -24,6 +24,7 @@ Scoring
 	Inactive
 	Ion
 	Origin
+	OriginCount
 	ParallelBoxRebinned
 	SplitByTimeFeature
 	Surfaces

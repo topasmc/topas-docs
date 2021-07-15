@@ -11,7 +11,9 @@ TimeFeature
 	CylinderGrowingInPhi
 	Darkening
 	Logo
+	RasterScanOnMovingTarget
 	RotateResizeRecolor
+	RotatingCylinderWithPhiCut
 	Rotation
 	RunRandom_Mode
 	RunSequential_Mode
