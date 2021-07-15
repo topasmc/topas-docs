@@ -17,12 +17,17 @@ For any presentation or publication using the track-length estimator or brachyth
 * Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
 * Audran Poher, Francisco Berumen, Yunzhi Ma, Joseph Perl, and Luc Beaulieu. "Characterization of LDR brachytherapy sources using the TOPAS Monte Carlo toolkit", COMP annual meeting 2021.
 
-The Brachytherapy TOPAS package includes:
+The Brachytherapy TOPAS package includes 4 examples:
+
+* DoseTLE.txt
+* HDRSource.txt
+* HDRSourceInApplicator.txt
+* LDRSource.txt
+
+These examples in turn use sources and seeds found in topas/examples/LDR and topas/examples/HDR:
 
 * 3 HDR sources (Flexisource, TG186, MicroSelectronV2)
 * 12 LDR sources (IsoRay CS-1 Rev2, Bard STM1251, Best 2301, IsoAid IAI-125A, OncoSeed 6711, selectSeed 130.002, SL-125, Theragenics AgX100, Best 2335, IsoAid IAPd-103A, TheraSeed 200 Heavy, TheraSeed 200 Light)
-* A track-length estimator (TLE) for dose scoring
-* 4 examples
 
 Note that for each source a self-contained parameter file is provided. In such a way, the desired source can be imported with the includeFile method. For some sources, the layered mass geometry method was used, and the corresponding physics parameter is also given at the end.
 
@@ -32,7 +37,7 @@ For both Theraseed200 models, the user can define the materials of left and righ
 
 The HDRSourceInApplicator.txt file presents the TG186 source inside the TG186 applicator. 
 
-The DoseTLE.txt file score the dose of the previous setup using the TLE. Note that the TLE extension must be compiled before using it. The TLE requires the mass absorption coefficients which are given to TOPAS in the InputFile parameter "Muen.dat". 
+The DoseTLE.txt file scores the dose of the previous setup using the TLE. The TLE requires the mass absorption coefficients which are given to TOPAS in the InputFile parameter "Muen.dat". 
 
 References
 ==========
