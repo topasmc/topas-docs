@@ -10,7 +10,7 @@ Geometry Component          Type
 :ref:`geometry_mwc`         TsMultiWireChamber
 :ref:`geometry_jaws`        TsJaws
 :ref:`geometry_mlc`         TsMultiLeafCollimator
-:ref:`geomtery_mlc`         TsDivergingMLC
+:ref:`geomtery_divmlc`      TsDivergingMLC
 :ref:`geometry_cad`         TsCAD
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
@@ -450,6 +450,8 @@ Here is a complete set of the parameters for the above TOPAS MLC (see :ref:`exam
     dv:Ge/MultiLeafCollimatorA/XPlusLeavesOpen = 5 0.0 0.3 0.2 0.5 0.0 cm
 
 TOPAS MLC is a specialized geometry and so allows only the reposition of each leaf as a function of time, using :ref:`time_feature` (see :ref:`example_special_mlc_sequence` example).
+
+.. _geometry_divmlc:
 
 The doubly diverging MLC (type = TsDivergingMLC) is comprised of trapezoids. 
 
