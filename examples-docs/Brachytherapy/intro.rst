@@ -1,4 +1,4 @@
-README.pdf
----------------------
+Introduction
+------------
 
-.. literalinclude:: /examples/Brachytherapy/README.pdf
+.. literalinclude:: /examples/Brachytherapy/README.md
