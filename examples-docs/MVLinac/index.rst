@@ -20,8 +20,7 @@ MVLinac
 	ScorePhaseSpace
 	Target
 	TestComponent
-	VRT_1a
-	VRT_1b
+	VRT_1
 	VRT_2
 	VRT_3
 	VRT_HD

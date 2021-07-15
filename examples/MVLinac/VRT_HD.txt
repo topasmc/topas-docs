@@ -26,11 +26,6 @@ Vr/ParticleSplit/TransY = 0 cm
 Vr/ParticleSplit/TransZ = 0.0 cm
 Vr/ParticleSplit/RMax   = 10.0 cm
 
-# Cross-section enhancement 
-#s:Vr/CrossectionEnhancement/Type   = "CrosssectionEnhancement"
-#sv:Vr/CrossectionEnhancement/processesNamed    = 1 "eBrem"
-#uv:Vr/CrossectionEnhancement/EnhancementFactor = 1 10
-
 # Trimming
 Vr/ImportanceSampling/ImportanceValues = 2 1000 1
 
