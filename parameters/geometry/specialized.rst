@@ -401,12 +401,13 @@ as part of a linear accelerator treatment head. The component is built from Gean
 
 .. image:: Jaws.png
 
-  TsJaws component with select parameters set in the parameter control file shown in orange. In this 
-  case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
-  jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
-  is not present in a parameter control file.
+TsJaws component with select parameters set in the parameter control file shown in orange. In this 
+case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
+jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
+is not present in a parameter control file.
 
-The following parameters are shown in the diagram above:
+The following parameters are shown in the diagram above::
+
   1. The SAD parameter is the source-axis distance; that is, the distance from the nominal source 
      position (x-ray target) to the gantry rotation axis (the machine isocenter).
   2. The distance from the origin of the coordinate system to the jaw is calculated from the 
