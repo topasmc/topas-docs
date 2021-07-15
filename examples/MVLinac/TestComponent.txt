@@ -1,0 +1,23 @@
+# Parameter control file for testing individual components
+# Components are displayed in the GUI
+b:Gr/Enable                                  = "True"
+b:Ts/UseQT                                   = "True"
+
+# Components are situated relative to the SAD
+# For viewing components in the GUI, set SAD small, i.e., to 0 cm
+# Note: SAD needs to be set properly for jaw and MLC leaf positions, i.e., to 100 cm
+d:Ge/SAD = 0. cm 
+#d:Ge/SAD = 100. cm 
+
+# Comment out includeFile files that you want to be left out of the GUI
+includeFile = Target.txt  
+includeFile = PrimaryCollimator.txt
+#includeFile = Flattener6MV.txt #Comment out at least one of the flatteners
+includeFile = Flattener18MV.txt #Comment out at least one of the flatteners
+#includeFile = Monitor.txt 
+#includeFile = Jaws.txt #Comment out at least one of the secondary collimators
+#includeFile = MLC.txt #Comment out at least one of the secondary collimators
+#includeFile = WaterBox.txt #Comment out at least one of the dose scoring regions
+#includeFile = WaterPhantom.txt #Comment out at least one of the dose scoring regions
+
+

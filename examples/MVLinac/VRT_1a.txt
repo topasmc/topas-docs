@@ -1,0 +1,14 @@
+includeFile = MainTxHead.txt 
+
+s:Sc/PhaseSpace/OutputFile = "crossSectionEnhancement"
+
+# Activate VRT
+b:Vr/UseVarianceReduction = "F"
+s:Vr/CrossectionEnhancement/Type   = "CrosssectionEnhancement"
+sv:Vr/CrossectionEnhancement/processesNamed    = 1 "eBrem"
+uv:Vr/CrossectionEnhancement/EnhancementFactor = 1 1000
+
+ic:So/electronBeam/NumberOfHistoriesInRun = 1000
+i:Ts/ShowHistoryCountAtInterval  = 100
+b:Ts/ShowCPUTime = "True"
+
