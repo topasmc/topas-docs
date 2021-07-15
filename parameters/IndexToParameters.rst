@@ -4,7 +4,7 @@ Index To Parameters
 ==================
 
 This index is intended to list all of the parameters used by TOPAS (though we may have missed a few).
-Clicking on any of these parameters will bring you to the relevant part of the TOPAS User Guide (links not finished yet).
+When we get some more time to work on this, we will make each parameter be a link to relevant part of the TOPAS User Guide, but that part of the work is not done yet.
 
 
 
