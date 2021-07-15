@@ -1,4 +1,4 @@
-Linac
+MVLinac
 =================
 
 .. toctree::
