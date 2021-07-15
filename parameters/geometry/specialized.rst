@@ -374,18 +374,19 @@ TOPAS provides a Jaws component (type = TsJaws), e.g., part of a linear accelera
 FIGURE GOES HERE
 Jaws component with parameters set in the parameter control file shown in orange. The TransZ parameter is an additional changeable parameter in the TOPAS GUI. 
 
-The following parameter set fully specifies a pair of asymmetric, diverging jaws, in this case, a symmetric 10 cm wide field at isocenter collimated by a Siemens Oncor jaw with IEC co-ordinates, as in the linac example: 
-• s:Ge/Jaw/Parent = "IEC_B" #IEC beam limiting device coordinate system
-• s:Ge/Jaw/Type = "TsJaws" #TOPAS component for asymmetric, diverging jaws
-• s:Ge/Jaw/Material = "G4_W" #Jaw material 
-• d:Ge/Jaw/SAD = 100 cm #Distance from nominal source position to isocenter along Zb
-• s:Ge/Jaw/JawTravelAxis = "Xb" #Jaw travel is along either IEC Xb or Yb axis.
-• d:Ge/Jaw/LX = 20. cm #Limit of jaw size in direction of travel
-• d:Ge/Jaw/LY = 20. cm # Limit of jaw size orthogonal to direction of travel
-• d:Ge/Jaw/LZ = 7.80 cm  #Jaw thickness in Zb direction (along beam axis)
-• d:Ge/Jaw/SourceToUpstreamSurfaceDistance = 28.26  cm
-• dc:Ge/Jaw/NegativeFieldSetting  = -5. cm #Opening of jaw on negative side (Xb or Yb), projected to isocenter plane; i.e., jaw position setting for negative jaw
-• dc:Ge/Jaw/PositiveFieldSetting  = 5. cm #Opening of jaw on positive side (Xb or Yb), projected to isocenter plane; i.e., jaw position setting for positive jaw
+The following parameter set fully specifies a pair of asymmetric, diverging jaws, in this case, a symmetric 10 cm wide field at isocenter collimated by a Siemens Oncor jaw with IEC co-ordinates, as in the linac example::
+
+  s:Ge/Jaw/Parent = "IEC_B" #IEC beam limiting device coordinate system
+  s:Ge/Jaw/Type = "TsJaws" #TOPAS component for asymmetric, diverging jaws
+  s:Ge/Jaw/Material = "G4_W" #Jaw material 
+  d:Ge/Jaw/SAD = 100 cm #Distance from nominal source position to isocenter along Zb
+  s:Ge/Jaw/JawTravelAxis = "Xb" #Jaw travel is along either IEC Xb or Yb axis.
+  d:Ge/Jaw/LX = 20. cm #Limit of jaw size in direction of travel
+  d:Ge/Jaw/LY = 20. cm # Limit of jaw size orthogonal to direction of travel
+  d:Ge/Jaw/LZ = 7.80 cm  #Jaw thickness in Zb direction (along beam axis)
+  d:Ge/Jaw/SourceToUpstreamSurfaceDistance = 28.26  cm
+  dc:Ge/Jaw/NegativeFieldSetting  = -5. cm #Opening of jaw on negative side (Xb or Yb), projected to isocenter plane; i.e., jaw position setting for negative jaw
+  dc:Ge/Jaw/PositiveFieldSetting  = 5. cm #Opening of jaw on positive side (Xb or Yb), projected to isocenter plane; i.e., jaw position setting for positive jaw
 
 Notes:
 1.	The distance from the origin of the coordinate system to the jaw is calculated from the SAD and SourceToUpstreamSurfaceDistance. This is for consistency with the linear accelerator simulation example where the position of the treatment head components is specified as the distance from the nominal source position to the upstream surface of the component. The nominal source position is a distance of the SAD from the machine isocenter. 
@@ -393,18 +394,20 @@ Notes:
 
 
 Second version of Jaws content that was found at end of this file:
+-----------------------------------------------------------------
 
 TOPAS provides a component to specify a pair of asymmetric, diverging jaws (type = TsJaws), e.g., 
 as part of a linear accelerator treatment head. The component is built from Geant4 trapezoids.
 
 .. image:: Jaws.png
 
-  TsJaws component with select parameters set in the parameter control file shown in orange. In this 
-  case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
-  jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
-  is not present in a parameter control file.
+TsJaws component with select parameters set in the parameter control file shown in orange. In this 
+case there is an asymmetric pair of jaws upstream of a MLC bank. TransZ is at the middle of the 
+jaw (half thickness) and is provided as a changeable parameter in the TOPAS GUI even though it 
+is not present in a parameter control file.
 
-The following parameters are shown in the diagram above:
+The following parameters are shown in the diagram above::
+
   1. The SAD parameter is the source-axis distance; that is, the distance from the nominal source 
      position (x-ray target) to the gantry rotation axis (the machine isocenter).
   2. The distance from the origin of the coordinate system to the jaw is calculated from the 
