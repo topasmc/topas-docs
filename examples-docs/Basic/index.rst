@@ -9,6 +9,10 @@ Basic
 	BatchJob2
 	BatchJobShared
 	BoxRotatedAroundItsCorner
+	DistributedSourcePointsInShell
+	DistributedSourcePointsInSphereGaussian
+	DistributedSourcePointsInSphere
+	DistributedSourcePointsInTwistedTubs
 	DividedComponents
 	DNAModelByRegions
 	Emittance_Gaussian

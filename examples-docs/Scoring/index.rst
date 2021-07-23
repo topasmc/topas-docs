@@ -15,6 +15,7 @@ Scoring
 	EnergyDivisions
 	EnergyInBinnedCylinder
 	Filters
+	FilterByInteractionCount
 	FoilToBox
 	FoilToCylinder
 	FoilToSphere
