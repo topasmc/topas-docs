@@ -1,4 +1,4 @@
-# Write phase space in Limited form
+# Read phase space in Limited form
 
 b:Ge/World/Invisible = "TRUE"
 

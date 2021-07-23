@@ -1,4 +1,30 @@
-# Write phase space in Limited form
+# Reads an example of what we believe to be a malformed file
+# from the IAEA phase space database.
+# https://www-nds.iaea.org/phsp/phsp.htmlx
+#
+# We consider this file malformed because, as far as we can tell,
+# it is entirely missing the required New History flags,
+# and the first particle in the file is a proton,
+# even though the header file indicates that there are no protons.
+#
+# TOPAS is still able to read this file by using the special options:
+# b:So/Example/LimitedAssumeFirstParticleIsNewHistory = "true"
+# and
+# b:So/Example/LimitedAssumePhotonIsNewHistory = "true"
+#
+# You could also make it run by turning off those two options
+# and instead using the special option:
+# b:So/Example/LimitedAssumeEveryParticleIsNewHistory = "true"
+#
+# To run this example:
+# Download the header and phase space files that have the name:
+# Varian_TrueBeam6MV_01
+# Rename the .IAEAheader file to be .header
+# Rename the .IAEAphsp file to be .phsp
+#
+# To make this example run faster, it is set to
+# turn off the PreCheck function
+# and reads only the first 5 histories from the file.
 
 b:Ge/World/Invisible = "TRUE"
 

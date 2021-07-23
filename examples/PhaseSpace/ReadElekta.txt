@@ -1,4 +1,15 @@
-# Write phase space in Limited form
+# Reads an example file from the IAEA phase space database.
+# https://www-nds.iaea.org/phsp/phsp.htmlx
+#
+# To run this example:
+# Download the header and phase space files that have the name:
+# ELEKTA_PRECISE_10mv_part1
+# Rename the .IAEAheader file to be .header
+# Rename the .IAEAphsp file to be .phsp
+#
+# To make this example run faster, it is set to
+# turn off the PreCheck function
+# and reads only the first 5 histories from the file.
 
 b:Ge/World/Invisible = "TRUE"
 
