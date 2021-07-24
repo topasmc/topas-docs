@@ -45,6 +45,8 @@ When using phase space sources, it is important to decide how you want to handle
 * may include only secondary particles, or
 * may include no particles at all. We refer to this last case as an "Empty History."
 
+The Phase Space Source documentation explains the options for whether and how empty histories are recorded in TOPAS Binary and ASCII phase space files.
+
 When you subsequently use this file as a Phase Space Source, you need to decide how you want TOPAS to handle Empty Histories. If you're just calculating sums, it doesn't matter. The Empty Histories contribute nothing to the sum anyway. But if you're calculating statistical quantities, such as Mean, then these Empty Histories matter. Imagine you want to know the mean dose per Original History. If half of the Original Histories never made it to the phase space file, the decision of whether or not to include these Empty Histories will give a factor of two difference in the calculated Mean Dose per History.
 
 Depending on your use case you may or may not want to include these Empty Histories. It comes down to whether the statistics you want to calculate are:
@@ -67,12 +69,23 @@ Limited phase space format header does not give:
 * Number of Original Histories that Reached Phase Space
 * so the only way to get that in Limited format is to first read through the entire phsp file and count how many histories contributed there.
 
+
 TOPAS provides an option to check that the values in the header match what is in the file::
 
     b:So/MySource/PhaseSpacePreCheck = "True" # defaults to true
 
 For TOPAS ASCII and Binary formats, this is a thorough safety check. It will catch any cases where the files have somehow become corrupted (as could happen, for example, if you are doing a very long phase space writing job and the output disk becomes full during some part of the job).
-For Limited format, the check is still helpful but less thorough as the header file provides incomplete information. In Limited format, if you want to include Empty Histories, the check is required as it is the only way TOPAS can figure out how many Empty Histories there were.
+For Limited format, the check is still helpful but less thorough as the header file provides incomplete information.
+
+While we recommend that users leave the PreCheck process in place,
+we accept that the process can be frustratingly slow, as phsp files can be very large.
+If you have already checked a given file once, you may want to turn off PreCheck
+for subsequent uses of the same phase space file.
+
+PreCheck will print out a progress update after a given number of particles are read.
+Default is to print out progress every 1M particles, but this interval can be adjusted with::
+
+    i:So/*/PreCheckShowParticleCountAtInterval = 100000
 
 If the phase space you are replaying came from a TOPAS job, the particle starting positions in that file will have been defined relative to the ``World`` Component. Set the ``Component`` parameter above to ``"World"``. If you want to offset these particles to some other center or orientation, choose a Component that has the new desired center and orientation (reuse some existing Component, or define a new Group Component just for this purpose). If the phase space you are replaying did not come from TOPAS, there is no automatic way to know what coordinate system was used. It will be up to you to choose a Component that has this appropriate coordinate system.
 
@@ -111,21 +124,47 @@ This may mean only partial use of the phase space file, or partial reuse to get 
 * If your data was generated with time dependence, partial reuse of phase space may not give valid results (you may be playing back only a part of the time sequence). Many more details on controlling number of histories are found in :ref:`time_mode`.
 * Partial reuse of phase space can not include Empty Histories. There is no statistically valid way to handle these empty histories when the phase space file is only partially used (since one does not know where in the phase space order these Empty Histories would have occurred).
 
-For efficiency, the phase space file will be read in chunks of 10,000 particles at a time. Advanced users may find some reason to adjust this buffer size (though I can’t think of any)::
-
-    i:So/MySource/PhaseSpaceBufferSize = 1000000
-
 Take care when mixing Phase Space Sources with :ref:`time_feature`.
 While TOPAS can save the current TOPAS time to a phase space file, this time is not automatically applied when reading particles back in from phase space. Thus, if you want to correctly replay source particles that were recorded with time features, it is your responsibility to apply the identical time features during the play back simulation. Some additional notes:
 
 * Do not attempt to change the name of the phase space file over time. Save and replay all particles from a single phase space file.
 * Do not use :ref:`time_mode_random`. The randomly generated times during playback will not necessarily match the randomly generated times that were saved to the phase space. Only use :ref:`time_mode_fixed` or :ref:`time_mode_sequential`.
-* If your intention is to play back with exactly the same sequence as you had when you generated the phase space file, make sure to set::
-
-    b:So/MySource/PhaseSpaceIncludeEmptyHistories = "True"
-
-  otherwise empty histories will put the playback job out of synch with the original job.
 
 A future version of TOPAS will provide more tools to synchronize and check playback time features.
 
-.. todo:: Support time features with phasespace sources
+Handling of Malformed IAEA phase space files:
+---------------------------------------------
+
+Some of the files in the IAEA phase space repository seem to me to be malformed.
+Varian_TrueBeam6MV_01, for example, has no New History flags set at all.
+It also seems to have a proton as its first particle, even though the header says there are
+only photons, electrons and positrons.
+
+We confirmed that some other IAEA files work fine, such as ELEKTA_PRECISE_10mv_part1.
+
+We then added several new features to our reader to be able to read malformed files::
+
+    b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
+    b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+    b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+
+We confirmed that we can read particles from Varian_TrueBeam6MV_01 if we either
+set the one parameter::
+
+    b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+
+or set the two parameters together::
+
+    b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
+    b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+
+We found that if we set only::
+
+    b:So/*/LimitedAssumeFirstParticleIsNewHistory = "true"
+
+the job hangs (it tries to accumulate all of the millions of particles into a single history).
+
+Examples reading IAEA files can be found at:
+
+* examples/PhaseSpace/ReadElekta.txt
+* examples/PhaseSpace/ReadVarian.txt

@@ -1,9 +1,9 @@
 .. _source_volumetric:
 
-volumetric Sources
-------------------
+Volumetric Source
+-----------------
 
-volumetric sources emit particles from randomly sampled starting positions from within the radioactive volume of a given component.
+The Volumetric source emit particles from randomly sampled starting positions from within the radioactive volume of a given component.
 
 This source type has been designed for Brachytherapy applications (though there may be other applications as well).
 

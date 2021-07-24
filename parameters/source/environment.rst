@@ -3,12 +3,8 @@
 Environment Source
 ------------------
 
-Environment sources create an isotropic, uniform radiation field enclosing
-the specified component.
-
-A TOPAS environment is a radiation field that might be experienced, for
-example, by a spacecraft in a radiation belt, or a robot (or, indeed
-a human) in a damaged nuclear reactor.
+The Environment source creates an isotropic, uniform radiation field enclosing a specified component. It provides a radiation field that might be experienced, for example, by a spacecraft in a
+radiation belt, or by a robot (or, indeed a human) in a damaged nuclear reactor.
 
 A notional radiation "cavity" is created enclosing all volumes in a
 component. The cavity is a sphere of radius R.  Primary particles are

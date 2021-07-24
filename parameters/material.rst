@@ -16,6 +16,13 @@ All :ref:`Elements have been pre-defined <parameters_default_elements>` with nat
 
 ``Fractions`` are by weight.
 
+If you set the parameter::
+
+    b:Ma/*/NormalizeFractions = "True" # Defaults to "False"
+
+TOPAS will normalize your Fractions to 1.
+Otherwise, TOPAS will require that the sum of all Fractions is already 1.
+
 ``MeanExcitationEnergy`` is the ``I`` parameter in the Bethe equation, which not only includes ionization, but also inner-atomic excitations, etc.
 
 In the :ref:`parameters_default` section, we show the complete list or pre-defined materials. This basically covers those materials that are used in our included examples.

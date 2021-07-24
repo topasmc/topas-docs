@@ -60,7 +60,7 @@ You must provide appropriate ``StartValue`` and ``Rate`` parameters, such as::
     d:Tf/ArmRot/Rate = 2. deg/ms
     d:Tf/ArmRot/StartValue = 0.0 deg
 
-You must also provide a ``RepetitionInterval``, the time interval after which the function will return to the ``StartValue``.
+``RepetitionInterval``, is the time interval after which the function will reset to the ``StartValue``. If you do not provide this parameter, the function will not reset.
 
 
 

@@ -98,3 +98,11 @@ and a set of parameters that control how the beam spreads out from that start po
 The ``Cutoff`` parameter is applied symmetrically.
 
 You will note that for Gaussian beams, the position and angular distribution are controlled both by ``Spread`` and by ``Cutoff`` parameters. The ``Spread`` control the standard deviation of the Gaussian with zero mean (keep in mind that the position and orientation of the source is controlled by the parameter ``So//Component``), while the ``Cutoff`` cut off the tails (which would otherwise be infinite). Inside TOPAS, when the Gaussian formula generates a starting point outside of this cutoff, that starting point is rejected and instead the random function is thrown again until a value is found that is within the specified cutoff.
+
+If your particle type is Optical Photon, additional parameters let you set the polarization::
+
+    u:So/*/BeamPolarizationX
+    u:So/*/BeamPolarizationY
+    u:So/*/BeamPolarizationZ
+
+If polarization is not set, the Beam will have a uniformly random polarization vector (perpendicular to the initial momentum).

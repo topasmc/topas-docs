@@ -128,6 +128,10 @@ Patient positioning information from the DICOM file is not currently used. You m
     d:Ge/Patient/RotY=0. deg
     d:Ge/Patient/RotZ=0. deg
 
+You can ask TOPAS to print out the slice separation that it finds in in the DICOM series::
+
+    b:Ge/*/ShowSliceSeparations = "True"
+
 TOPAS can read DICOM RT Structure Sets.
 A structure set is an extra file in the DICOM directory that provides information on structures such as organs, tumors, PTVs, etc. that have been outlined (contoured) in the planning process. The data is stored as a set of polygons, up to one per slice for each contoured structure. TOPAS can color code DICOM components according to this structure information and can filter scoring based on these structures (see the filter: OnlyIncludeIfInRTStructure).
 

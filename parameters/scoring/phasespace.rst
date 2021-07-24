@@ -155,3 +155,34 @@ Size            Quantity
 =============   ========================================================
 
 Direction cosines are consistent between Binary, ASCII and Limited formats. Descriptions can be found `on Wikipedia <https://en.wikipedia.org/wiki/Direction_cosine>`_ and `on MathWorld <http://mathworld.wolfram.com/DirectionCosine.html>`_. Direction cosines U, V and W correspond to direction cosines alpha, beta and gamma on those sites.
+
+
+Handling of Empty Histories:
+----------------------------
+
+In order to discuss 4D simulations, with applications to MLC sequences, treatment head or gantry motion, gated scoring, patient motion, etc., it is helpful to define some terms.
+
+"Run": a set of histories for which there is no change in any of the simulation parameters (geometry, particle source characteristics, variance reduction, physics setting or scoring parameters).
+While it is true that VMAT or Tomo has a continuous beam delivery, for simulation purposes it can be useful to approximate even these continuous therapies by breaking the motion into a set of many static Runs.
+
+"Sequence": a complete simulation job consisting of one or more Run.
+
+"Empty History": an original history for which no particles make it into the phsp.
+
+For many simulations, it is not important to know when the empty histories occured during the overall sequence, but only how many empty histories there were. This is Total Empty Histories.
+But for some 4D simulations, it can be necessary to know which run those empty histories belonged to. This can be important for simulations in which one wants to score statistical information per history, or for when one wants to reproduce a 4D simulation. This is Empty Histories per Run.
+For debugging purposes, it may also be helpful to have a way to mark not just how many empty histories there were per run, but exactly which histories during that run were the empty ones. This is Empty Histories in Exact Order.
+
+A parameter allows you to change how empty histories are represented in the phase space file::
+
+    s:Sc/*/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
+
+The options have the following effects:
+
+* The default option, "None", means that there are no lines in the phase space file itself to represent empty histories (but, as before, the phase space header gives you information about the total number of histories and the number of histories that reached the phase space file, so you can decide the number of empty histories from this).
+
+* "InSequence" means that new lines will be added to the phase space file itself to tell you that a given history was empty. The line will have zeros for most values but will have a negative number in the Weight column. A negative 1 here means that there was 1 empty history. A negative N here means that there were N consecutive empty histories.
+
+* "AtEndOfRun" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of each run.
+
+* "AtEndOfSequence" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of the entire simulation sequence (that is, once all runs are complete).

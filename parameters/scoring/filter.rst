@@ -55,7 +55,7 @@ Filter by Kinetic Energy of Particle or its Ancestor when it hit the Scoring Com
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleKEAbove = 10. MeV
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleKENotAbove = 10. MeV
 
-Filter by Initial Momentum of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
+Filter by Momentum of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
 
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleMomentumBelow = 1. MeV
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleMomentumNotBelow = 1. MeV
@@ -63,6 +63,20 @@ Filter by Initial Momentum of Particle or its Ancestor when it hit the Scoring C
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleMomentumNot = 1. MeV
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleMomentumAbove = 10. MeV
     d:Sc/MyScorer/OnlyIncludeIfIncidentParticleMomentumNotAbove = 10. MeV
+
+Filter by Name of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
+
+    sv:Sc//OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
+    sv:Sc//OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
+
+Filter by Origin Process of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
+
+    sv:Sc//OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
+    sv:Sc//OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
+
+Filter by Generation of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
+
+    s:Sc/*/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
 
 Filter by Process that created the particle. Allows one or more process name::
 
@@ -132,6 +146,16 @@ Filter by Particle or its Ancestor Interacted in Volume, Component, or Component
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorNotInteractedInComponent = 1 "Jaws"
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
     sv:Sc/MyScorer/OnlyIncludeIfParticleOrAncestorNotInteractedInComponentOrSubComponentsOf = 1 "Nozzle"
+
+Filter by how many times the particle has Interacted since it was created.
+This allows one to separate, for example, dose from primary, versus first scatter, versus multiple scatter::
+
+    i:Sc//OnlyIncludeParticlesWithInteractionCountBelow
+    i:Sc//OnlyIncludeParticlesWithInteractionCountNotBelow
+    i:Sc//OnlyIncludeParticlesWithInteractionCount
+    i:Sc//OnlyIncludeParticlesWithInteractionCountNot
+    i:Sc//OnlyIncludeParticlesWithInteractionCountAbove
+    i:Sc//OnlyIncludeParticlesWithInteractionCountNotAbove
 
 Filter by whether Particle Traversed Volume, Component, or Component and Subcomponents::
 

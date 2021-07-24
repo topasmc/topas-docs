@@ -8,6 +8,7 @@ Particle Sources
 
     intro
     beam
+    distributed
     emittance
     environment
     isotropic

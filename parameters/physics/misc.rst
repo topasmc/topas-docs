@@ -31,6 +31,12 @@ Production Thresholds and range cuts are discussed in detail in the `Geant4 Appl
     d:Ph/MyPhysics/SetProductionCutLowerEdge = 200 eV
     d:Ph/MyPhysics/SetProductionCutHighEdge = 30 MeV
 
+Region-specific cuts are set to the value for all particles ("CutForAllParticles")
+and for specific particles based on the production cuts set for the general simulation.
+Particle-specific cuts (CutForElectron, CutForGamma, etc.) take precedence over CutForAllParticles.
+
+If setting CutForAllParticles for a region this sets the cuts for all particles in that region;
+particle-specific cuts for a region take precedence over all otherwise specified values in that region.
 
 
 Step Size

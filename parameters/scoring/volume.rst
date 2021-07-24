@@ -18,6 +18,7 @@ Fluence                 sum of step lengths divided by volume
 EnergyFluence           sum of step lengths times energy divided by volume
 StepCount               counting number of Geant4 steps in the volume
 OpticalPhotonCount      fills an ntuple with information about optical photons seen in volume
+OriginCount		counts how many particles originate in a given component
 Charge                  counting method described below
 EffectiveCharge         counting method described below
 ProtonLET               various methods described below
@@ -33,8 +34,8 @@ When your scoring component is the Parent of other components, you have the opti
 
 This action is recursive to all levels of subcomponents.
 
-For DoseToMaterial:
--------------------
+DoseToMaterial:
+---------------
 
 you must also specify the ``Material``::
 
@@ -44,8 +45,8 @@ Note that in this case, the material name must exactly match the case defined in
 
     i:Ma/Verbosity = 1
 
-For TrackLengthEstimator:
--------------------------
+TrackLengthEstimator:
+---------------------
 
 Dose is calculated using a linear Track Length Estimator (TLE).
 The TLE technique approximates the absorbed dose as electronic (collisional) kerma.
@@ -57,8 +58,8 @@ The TOPAS TrackLengthEstimator is further described at:
 
 * Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
     
-For AmbientDoseEquivalent:
---------------------------
+AmbientDoseEquivalent:
+----------------------
 
 Scoring is performed per single particle::
 
@@ -79,8 +80,8 @@ The example AmbientDoseEquivalent.txt provides a complete example for neutron pa
 
 [3] http://www.fluka.org/fluka.php?id=examples&sub=example4  Accessed on March 10, 2021.
 
-For DoseToWater and DoseToMaterial:
------------------------------------
+DoseToWater and DoseToMaterial:
+-------------------------------
 we use energy-dependent stopping power conversion as in:
 
 .. code-block:: c++
@@ -106,8 +107,24 @@ For ``PreCalculateStoppingPowerRatios``, the table of stopping power ratios can 
     Sc/MyScorer/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
     Sc/MyScorer/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
 
-For Charge and EffectiveCharge:
--------------------------------
+OriginCount:
+------------
+
+By combining this scorer with the OnlyIncludeParticlesNamed filter,
+one can create a scorer that tells how many particles of a given type were
+created in the component. That is, one can count reaction products.
+
+So, for example, the following will count how many neutrons were created::
+
+    s:Sc/MyScorer/Quantity = "OriginCount"
+    s:Sc/MyScorer/Component = "MyComponent"
+    sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "neutron"
+
+See example:
+examples/Scoring/OriginCount.txt
+
+Charge and EffectiveCharge:
+---------------------------
 
 * If a particle reaches zero kinetic energy in the scoring volume, its charge is accumulated
 * If a particle is generated in the scoring volume, its charge is subtracted

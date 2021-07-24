@@ -30,3 +30,21 @@ You can optionally specify different materials for each voxel, overriding the va
 
 This means you can create complex phantoms directly from the parameter system.
 ``VoxelMaterials`` works for all three kinds of divided components: TsBox, TsCylinder and TsSphere. See the :ref:`example_scoring_voxelmaterials` example.
+
+
+Radial Binning Options for TsCylinder and TsSphere:
+---------------------------------------------------
+
+If you divide a TsCylinder or TsSphere into RBins,
+by default, all RBins will have the same thickness.
+But options allows you to specify Log binning or custom binning::
+
+    s:Ge/*/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
+
+For the Custom case, you then also specify a set of RBinValues::
+
+    dv:Ge/*/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
+
+The number of RBinValues must be the same as the number of RBins.
+
+The last value must equal the Cylinder or Sphere's RMax.
