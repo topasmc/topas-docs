@@ -132,8 +132,8 @@ While TOPAS can save the current TOPAS time to a phase space file, this time is 
 
 A future version of TOPAS will provide more tools to synchronize and check playback time features.
 
+
 Handling of Malformed IAEA phase space files:
----------------------------------------------
 
 Some of the files in the IAEA phase space repository seem to me to be malformed.
 Varian_TrueBeam6MV_01, for example, has no New History flags set at all.
