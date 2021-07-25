@@ -15,6 +15,7 @@ Geometry Component          Type
 :ref:`geometry_aperture`    TsAperture
 :ref:`geometry_compensator` TsCompensator
 :ref:`geometry_applicator`  TsBrachyApplicator
+:ref:`geometry_pixelbox`    TsPixelatedBox
 =========================== ========================
 
 Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
@@ -727,3 +728,38 @@ They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hol
     d:Ge/Applicator/Hole5/TransY = 0. mm
     d:Ge/Applicator/Hole6/TransX = 0. mm
     d:Ge/Applicator/Hole6/TransY = 0. mm
+
+
+
+
+.. _geometry_pixelbox:
+
+Pixelated box
+~~~~~~~~~~~~~~
+A TsPixelatedBox is a helpful component to simulate pixelated detectors. It consists of a 2D array of rectangular boxes with a constant gap in between. Thus, the pixel size and pitch must be provided, with the sole condition that the pitch values must be greater than the pixel sizes for the corresponding axes. For this component, the whole dimensions (not half lengths) of each pixel must be providen. The associated figure shows the general scheme of a detector array of 4 x 4 pixels. 
+
+.. image:: PixelatedDetector.png
+
+
+The parameters are as follows::
+
+    d:Ge/MyComponent/Type = "TsPixelatedBox"
+    d:Ge/MyComponent/Material = "G4_AIR"
+    s:Ge/MyComponent/Pixel/Material = "G4_WATER"
+    s:Ge/MyComponent/Pixel/Color    = "yellow"
+    d:Ge/MyComponent/PixelSizeZ     = 15 mm # Pixel thickness
+    d:Ge/MyComponent/PixelSizeX     = 2 mm
+    d:Ge/MyComponent/PixelSizeY     = 2 mm
+    d:Ge/MyComponent/PitchX         = 2.1 mm
+    d:Ge/MyComponent/PitchY         = 2.1 mm
+    i:Ge/MyComponent/NumberOfPixelsX= 4 
+    i:Ge/MyComponent/NumberOfPixelsY= 4 
+
+As depicted, two materials must be assigned, one for an envelope volume automatically created to hold the pixels, the other for the pixels. It is also shown the index order with integer numbers for each pixel. Thus, the first pixel is placed on the bottom left. Currently, there is not a dedicated scorer for the TsPixelatedBox component. However, advanced users willing to create their scoring extensions could use the following line of code to access the pixel indices (which start from 1)::
+
+    G4int pixelIndex = aStep->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber();
+
+A sample of use of the TsPixelatedBox can be found in examples/Optical/PixelatedDetector.txt. The scoring in such an example is performed using a phase space placed behind the pixelated detector. 
+
+
+
