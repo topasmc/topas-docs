@@ -140,19 +140,19 @@ the Distributed Source does this sampling only a the construction phase
 
 Parameters for the Distributed Source are::
 
-s:So/Example/Type = "Distributed"
-s:So/Example/Component = "DemoSphere"
-i:So/Example/NumberOfHistoriesInRun = 5
-i:So/Example/NumberOfSourcePoints = 4
-b:So/Example/RedistributePointsOnNewHistory = "False"
-s:So/Example/PointDistribution = "Gaussian" # default to "Flat"
-d:So/Example/PointDistributionSigma = 20. mm
+        s:So/Example/Type = "Distributed"
+	s:So/Example/Component = "DemoSphere"
+	i:So/Example/NumberOfHistoriesInRun = 5
+	i:So/Example/NumberOfSourcePoints = 4
+	b:So/Example/RedistributePointsOnNewHistory = "False"
+	s:So/Example/PointDistribution = "Gaussian" # default to "Flat"
+	d:So/Example/PointDistributionSigma = 20. mm
 
 And then the usual other parameters to control particle type, energy, etc., such as::
 
-s:So/Example/BeamParticle = "gamma"
-d:So/Example/BeamEnergy = 10. keV
-u:So/Example/BeamEnergySpread = 0.
+	s:So/Example/BeamParticle = "gamma"
+	d:So/Example/BeamEnergy = 10. keV
+	u:So/Example/BeamEnergySpread = 0.
 
 New examples:
 
@@ -180,9 +180,9 @@ created in the component. That is, one can count reaction products.
 
 So, for example, the following will count how many neutrons were created::
 
-s:Sc/MyScorer/Quantity = "OriginCount"
-s:Sc/MyScorer/Component = "MyComponent"
-sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "neutron"
+	s:Sc/MyScorer/Quantity = "OriginCount"
+	s:Sc/MyScorer/Component = "MyComponent"
+	sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "neutron"
 
 New example:
 
@@ -231,11 +231,11 @@ These new filters allow you to filter the scorer based on qualities of the Incid
 
 Examples of the new filters are::
 
-sv:Sc//OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
-sv:Sc//OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
-sv:Sc//OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
-sv:Sc//OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
-s:Sc/*/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
+	sv:Sc//OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
+	sv:Sc//OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
+	sv:Sc//OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
+	sv:Sc//OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
+	s:Sc/*/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
 
 Details in the User Guide:
 
@@ -251,12 +251,12 @@ but could not differentiate first scatter from subsequent scatter.
 We now keep count of how many times a particle has interacted, and offer several filters
 based on this count::
 
-i:Sc//OnlyIncludeParticlesWithInteractionCountBelow
-i:Sc//OnlyIncludeParticlesWithInteractionCountNotBelow
-i:Sc//OnlyIncludeParticlesWithInteractionCount
-i:Sc//OnlyIncludeParticlesWithInteractionCountNot
-i:Sc//OnlyIncludeParticlesWithInteractionCountAbove
-i:Sc//OnlyIncludeParticlesWithInteractionCountNotAbove
+	i:Sc//OnlyIncludeParticlesWithInteractionCountBelow
+	i:Sc//OnlyIncludeParticlesWithInteractionCountNotBelow
+	i:Sc//OnlyIncludeParticlesWithInteractionCount
+	i:Sc//OnlyIncludeParticlesWithInteractionCountNot
+	i:Sc//OnlyIncludeParticlesWithInteractionCountAbove
+	i:Sc//OnlyIncludeParticlesWithInteractionCountNotAbove
 
 New example:
 
@@ -283,9 +283,9 @@ The tests are tied to the scoring system. Any scorer can have up to three tests.
 
 New parameters are::
 
-d:Sc/*/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
-d:Sc/*/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
-i:Sc/*/RepeatSequenceUntilCountGreaterThan = 1200
+	d:Sc/*/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
+	d:Sc/*/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
+	i:Sc/*/RepeatSequenceUntilCountGreaterThan = 1200
 
 The second two tests above are necessary because the StandardDeviation is subject to
 statistical noise until a reasonable amount of data has been collected.
@@ -298,16 +298,16 @@ The entire simulation will repeat until All tests on All scorers are satisfied.
 If the scorer has been binned in X, Y, Z, E or T, you must also specify which specific bin
 should be evaluated, using the parameters::
 
-i:Sc/*/RepeatSequenceTestXBin = 2
-i:Sc/*/RepeatSequenceTestYBin = 2
-i:Sc/*/RepeatSequenceTestZBin = 2
-i:Sc/*/RepeatSequenceTestEBin = 5
-i:Sc/*/RepeatSequenceTestTimeBin = 0
+	i:Sc/*/RepeatSequenceTestXBin = 2
+	i:Sc/*/RepeatSequenceTestYBin = 2
+	i:Sc/*/RepeatSequenceTestZBin = 2
+	i:Sc/*/RepeatSequenceTestEBin = 5
+	i:Sc/*/RepeatSequenceTestTimeBin = 0
 
 Remember that the tests will be evaluated only after the entire simulation sequence is complete.
 You should therefore set::
 
-So/*/NumberOfHistoriesInRun
+	So/*/NumberOfHistoriesInRun
 
 to a value small enough that this end of test will be reached in a reasonable time.
 The final total number of histories will be that NumberOfHistoriesInRun times the number of
@@ -332,11 +332,11 @@ which you can then use in a subsequent job to start out right from the relevant 
 
 Set the parameter::
 
-i:Ts/FindSeedForHistory = 9998 # defaults to -1, meaning do not activate this feature
+	i:Ts/FindSeedForHistory = 9998 # defaults to -1, meaning do not activate this feature
 
 And if you have multiple Runs::
 
-i:Ts/FindSeedForRun = 0 # defaults to 0
+	i:Ts/FindSeedForRun = 0 # defaults to 0
 
 When you then run TOPAS, it will "fast forward" through a simulation to get just that history's seed.
 It skips most of the time-consuming parts of the simulation.
@@ -358,11 +358,11 @@ TOPAS will:
 You can then set up a fresh, normal TOPAS session that will starts right from the desired history.
 To do so, remove that FindSeedForHistory parameter, and tell TOPAS to use the saved seed file::
 
-s:Ts/SeedFile = "TopasSeedForRun_0_History_9998.txt" # Seed file saved in fast-forward job above
+	s:Ts/SeedFile = "TopasSeedForRun_0_History_9998.txt" # Seed file saved in fast-forward job above
 
 If the seed file is not in the current directory, you can also specify a seed file directory::
 
-s:Ts/SeedDirectory = "/Applications/tswork/testarea/SkipUntil" # defaults to read from current directory
+	s:Ts/SeedDirectory = "/Applications/tswork/testarea/SkipUntil" # defaults to read from current directory
 
 Details in the User Guide:
 
@@ -409,11 +409,11 @@ A new option allows you to specify Log binning or custom binning.
 
 New Parameter::
 
-s:Ge/*/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
+	s:Ge/*/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
 
 For the Custom case, you then also specify a set of RBinValues::
 
-dv:Ge/*/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
+	dv:Ge/*/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
 
 The number of RBinValues must be the same as the number of RBins.
 
@@ -438,11 +438,13 @@ This flexibility has now also been added to TsImageCube.
 So, for example, for the case of a single slice thickness section of 10 Z slices,
 where one used to have to specify::
 
-iv:Ge/*/NumberOfVoxelsZ = 1 10
-dv:Ge/*/VoxelSizeZ = 1 1. mm
-One can now just specify:
-i:Ge/*/NumberOfVoxelsZ = 10
-d:Ge/*/VoxelSizeZ = 1. mm
+	iv:Ge/*/NumberOfVoxelsZ = 1 10
+	dv:Ge/*/VoxelSizeZ = 1 1. mm
+
+One can now just specify::
+
+	i:Ge/*/NumberOfVoxelsZ = 10
+	d:Ge/*/VoxelSizeZ = 1. mm
 
 
 TsApertureArray no longer limits number of Beamlets
@@ -457,11 +459,11 @@ Verbosity Control for Geometry Construction:
 Verbosity of geometry construction was previously controlled using the same parameter
 as the overall sequence verbosity::
 
-i:Ts/SequenceVerbosity
+	i:Ts/SequenceVerbosity
 
 Geometry verbosity now has its own parameter::
 
-i:Ts/GeometryVerbosity
+	i:Ts/GeometryVerbosity
 
 
 
@@ -472,9 +474,9 @@ Emittance Source now supports Cutoff shape parameters:
 
 The Emittance Source now supports the same Cutoff shape parameters as the Beam source::
 
-s:So//BeamPositionCutoffShape = "Rectangle" # "Rectangle", "Ellipse" or "None". Defaults to "None"
-d:So//BeamPositionCutoffX = 1. cm
-d:So/*/BeamPositionCutoffY = 1. cm
+	s:So//BeamPositionCutoffShape = "Rectangle" # "Rectangle", "Ellipse" or "None". Defaults to "None"
+	d:So//BeamPositionCutoffX = 1. cm
+	d:So/*/BeamPositionCutoffY = 1. cm
 
 
 Fix issues with PhaseSpace source reading TOPAS ASCII format
@@ -482,11 +484,11 @@ Fix issues with PhaseSpace source reading TOPAS ASCII format
 We had some bugs in the update of the PhaseSpace source in release 3.6.1.
 Users have been working around this by replacing::
 
-So/*/Type = "PhaseSpace"
+	So/*/Type = "PhaseSpace"
 
 with::
 
-So/*/Type = "PhaseSpaceOld"
+	So/*/Type = "PhaseSpaceOld"
 
 Users are still welcome to stay with "PhaseSpaceOld" if the want,
 but we believe the new reader is now working correctly.
@@ -506,23 +508,23 @@ We confirmed that some other IAEA files work fine, such as ELEKTA_PRECISE_10mv_p
 
 We then added several new features to our reader to be able to read malformed files::
 
-b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
-b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+	b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+	b:So/*/LimitedAssumePhotonIsNewHistory = "true"
 
 We confirmed that we can read particles from Varian_TrueBeam6MV_01 if we either
 set the one parameter::
 
-b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+	b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
 
 or set the two parameters together::
 
-b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+	b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/*/LimitedAssumePhotonIsNewHistory = "true"
 
 We found that if we set only::
 
-b:So/*/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/*/LimitedAssumeFirstParticleIsNewHistory = "true"
 
 the job hangs (it tries to accumulate all of the millions of particles into a single history).
 
@@ -547,12 +549,12 @@ Therefore, we have made two changes:
 * PreCheck will print out a progress update after a given number of particles are read.
 Default is to print out progress every 1M particles, but this interval can be adjusted with::
 
-i:So/*/PreCheckShowParticleCountAtInterval = 100000
+	i:So/*/PreCheckShowParticleCountAtInterval = 100000
 
 PhaseSpace PreCheck now tests for Excited Ions.
 TOPAS does not allow excited ions in phase space unless the user has set::
 
-Ts/TreatExcitedIonsAsGroundState = "True"
+	Ts/TreatExcitedIonsAsGroundState = "True"
 
 This was causing some simulations to quite part way through simulation since this
 condition was only noted when the given particle was about to be simulated.
@@ -604,14 +606,14 @@ TOPAS had previously required that the sum of all Ma/*/Fractions be exactly 1.
 
 A new option allows any values and then normalizes the fractions to unity for you::
 
-b:Ma/*/NormalizeFractions = "True" # Defaults to "False"
+	b:Ma/*/NormalizeFractions = "True" # Defaults to "False"
 
 
 Physics Setup Verbosity now has its own control
 
 The verbosity of the physics setup can now be controlled by::
 
-i:Ph/Verbosity
+	i:Ph/Verbosity
 
 
 Time Feature RepetitionInterval is no longer always required
