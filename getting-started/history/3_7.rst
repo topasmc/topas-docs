@@ -90,13 +90,13 @@ Comprehensive new MV Linac package:
 
 Package includes new Geometry Components and a detailed example.
 
-"TsJaws" is a new Geometry Component to construct a set of Jaws.
+**"TsJaws" is a new Geometry Component to construct a set of Jaws.**
 
 Details in the User Guide:
 
 * https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#jaws
 
-"TsDivergingMLC" is a new Geometry Component to construct a Doubly Diverging Multi Leaf Collimator.
+**"TsDivergingMLC" is a new Geometry Component to construct a Doubly Diverging Multi Leaf Collimator.**
 
 Details in the User Guide:
 
