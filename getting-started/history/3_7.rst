@@ -35,20 +35,20 @@ an exact match (due to statistical variation).
 
 Installation Notes:
 
-Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
+	Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
 
-Details in the Installation guide:
+	Details in the Installation guide:
 
 * http://www.topasmc.org/user-guides/installation
 
-Users of some Linux versions previously had to download Geant4Headers.zip separately.
+	Users of some Linux versions previously had to download Geant4Headers.zip separately.
 We now include this file directly in all builds, so the separate download is no longer necessary.
 
-Users of some Linux versions, in particular some users on Windows WSL, previously had to issue
+	Users of some Linux versions, in particular some users on Windows WSL, previously had to issue
 "cmake" and "make" commands to use TOPAS even if they did not actually need any extensions.
 We have adjusted the RPATH settings of our build, such that this should no longer be necessary.
 
-Two of our previously supported Linux versions, CentOS6 and Debian8, have reached end of life.
+	Two of our previously supported Linux versions, CentOS6 and Debian8, have reached end of life.
 We are no longer building TOPAS for these versions.
 Supported systems are now:
 
@@ -58,7 +58,7 @@ Supported systems are now:
 * topas_3_7_centos7.tar.gz works for CentOS 7 and RHEL 7.
 * topas_3_7_centos8.tar.gz works for CentOS 8 and RHEL 8.
 
-A comprehensive guide to help users of Windows systems install and run TOPAS using
+	A comprehensive guide to help users of Windows systems install and run TOPAS using
 Windows Subsystem for Linux (WSL) can now be found at:
 
 * http://www.topasmc.org/user-guides
