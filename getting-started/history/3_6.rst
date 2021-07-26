@@ -52,13 +52,15 @@ In the process of fixing the above bug, we conducted a major redesign of the pha
 
     s:Sc/*/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
 
-    The default option, "None", means that there are no lines in the phase space file itself to represent empty histories (but, as before, the phase space header gives you information about the total number of histories and the number of histories that reached the phase space file, so you can decide the number of empty histories from this).
+The options are:
 
-    "InSequence" means that new lines will be added to the phase space file itself to tell you that a given history was empty. The line will have zeros for most values but will have a negative number in the Weight column. A negative 1 here means that there was 1 empty history. A negative N here means that there were N consecutive empty histories.
+* The default option, "None", means that there are no lines in the phase space file itself to represent empty histories (but, as before, the phase space header gives you information about the total number of histories and the number of histories that reached the phase space file, so you can decide the number of empty histories from this).
 
-    "AtEndOfRun" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of each run.
+* "InSequence" means that new lines will be added to the phase space file itself to tell you that a given history was empty. The line will have zeros for most values but will have a negative number in the Weight column. A negative 1 here means that there was 1 empty history. A negative N here means that there were N consecutive empty histories.
 
-    "AtEndOfSequence" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of the entire simulation sequence (that is, once all runs are complete).
+* "AtEndOfRun" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of each run.
+
+* "AtEndOfSequence" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of the entire simulation sequence (that is, once all runs are complete).
 
 Because empty histories can now be assigned to their appropriate runs, it is now also allowed to read phase space that includes empty histories even when time features are present.
 In this case, it is the user’s responsibility to ensure that they have the same set of time features in the phase space reading job as they had in the phase space writing job.
