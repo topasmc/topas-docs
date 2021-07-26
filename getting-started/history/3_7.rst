@@ -34,21 +34,22 @@ an exact match (due to statistical variation).
 
 
 Installation Notes:
+^^^^^^^^^^^^^^^^^^^
 
-	Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
+Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
 
-	Details in the Installation guide:
+Details in the Installation guide:
 
 * http://www.topasmc.org/user-guides/installation
 
-	Users of some Linux versions previously had to download Geant4Headers.zip separately.
+Users of some Linux versions previously had to download Geant4Headers.zip separately.
 We now include this file directly in all builds, so the separate download is no longer necessary.
 
-	Users of some Linux versions, in particular some users on Windows WSL, previously had to issue
+Users of some Linux versions, in particular some users on Windows WSL, previously had to issue
 "cmake" and "make" commands to use TOPAS even if they did not actually need any extensions.
 We have adjusted the RPATH settings of our build, such that this should no longer be necessary.
 
-	Two of our previously supported Linux versions, CentOS6 and Debian8, have reached end of life.
+Two of our previously supported Linux versions, CentOS6 and Debian8, have reached end of life.
 We are no longer building TOPAS for these versions.
 Supported systems are now:
 
@@ -58,7 +59,7 @@ Supported systems are now:
 * topas_3_7_centos7.tar.gz works for CentOS 7 and RHEL 7.
 * topas_3_7_centos8.tar.gz works for CentOS 8 and RHEL 8.
 
-	A comprehensive guide to help users of Windows systems install and run TOPAS using
+A comprehensive guide to help users of Windows systems install and run TOPAS using
 Windows Subsystem for Linux (WSL) can now be found at:
 
 * http://www.topasmc.org/user-guides
@@ -66,6 +67,7 @@ Windows Subsystem for Linux (WSL) can now be found at:
 
 
 Comprehensive new Brachytherapy package:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A major effort led by Francisco Berumen and colleagues at the University of Laval has given
 TOPAS a ready-to-use and well validated set of LDR and HDR brachytherapy source models.
@@ -84,6 +86,7 @@ Details in the User Guide:
 
 
 Comprehensive new MV Linac package:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Package includes new Geometry Components and a detailed example.
 
@@ -110,7 +113,7 @@ Details in the User Guide:
 
 
 New Particle Source Types:
-
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Source Type: Environment
 
@@ -168,7 +171,7 @@ Details in the User Guide:
 
 
 New Scoring Features:
-
+^^^^^^^^^^^^^^^^^^^^^
 
 Scorer: OriginCount
 
@@ -269,6 +272,8 @@ Details in the User Guide:
 
 
 Ability to continue run until a given dose accuracy is achieved.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Users have requested a way to have TOPAS continue running until dose accuracy reaches
 a user-determined limit (rather than just running a pre-determined number of histories).
@@ -320,6 +325,7 @@ Details in the User Guide:
 
 
 Simplified process to find and reuse a specific history's random seed.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When a rare issue is to be debugged, it is easier if one can make the simulation start
 immediately from the problematic history.
@@ -371,6 +377,7 @@ Details in the User Guide:
 
 
 Additional Geometry Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Geometry Component Type: TsPixelatedBox
@@ -468,6 +475,7 @@ Geometry verbosity now has its own parameter::
 
 
 Additional Particle Source Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Emittance Source now supports Cutoff shape parameters:
@@ -563,6 +571,7 @@ We now test and warn about this during PreCheck.
 
 
 Additional Scoring Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Prevent value of NAN from appearing in DoseToMaterial or DoseToWater
@@ -598,6 +607,7 @@ The new method signature is:
 
 
 Other Improvements:
+^^^^^^^^^^^^^^^^^^^
 
 
 Materials no longer need to have Ma/*/Fractions sum to 1
