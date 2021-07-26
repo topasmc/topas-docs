@@ -102,7 +102,7 @@ Details in the User Guide:
 
 * https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#doubly-diverging-multi-leaf-collimator
 
-New example:
+**New example:**
 
 * examples//MVLinac/MainTxHead.txt
 
@@ -115,7 +115,7 @@ Details in the User Guide:
 New Particle Source Types:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Source Type: Environment
+**Source Type: Environment**
 
 The Environment source creates an isotropic, uniform radiation field enclosing a specified component. It provides a radiation field that might be experienced, for example, by a spacecraft in a
 radiation belt, or by a robot (or, indeed a human) in a damaged nuclear reactor.
@@ -129,7 +129,7 @@ Details in the User Guide:
 * https://topas.readthedocs.io/en/latest/parameters/source/environment.html
 
 
-Source Type: Distributed
+**Source Type: Distributed**
 
 The Distributed source represents radioactive material randomly distributed within other material.
 The user specifies how many random source points to sample within the component.
@@ -173,7 +173,7 @@ Details in the User Guide:
 New Scoring Features:
 ^^^^^^^^^^^^^^^^^^^^^
 
-Scorer: OriginCount
+**Scorer: OriginCount**
 
 Scores how many particles originate in a given component.
 
@@ -192,7 +192,7 @@ New example:
 * examples//Scoring/OriginCount.txt
 
 
-Scorer: TrackLengthEstimator
+**Scorer: TrackLengthEstimator**
 
 Provides a more efficient dose calculation method of particular use in Brachytherapy.
 
@@ -205,7 +205,7 @@ Details in the User Guide:
 * https://topas.readthedocs.io/en/latest/parameters/scoring/volume.html#tracklengthestimator
 
 
-Scoring in Group Components
+**Scoring in Group Components**
 
 We have added the ability to score in a Group Component.
 You can attach any Volume Scorer to a Group if that Group has
@@ -213,7 +213,7 @@ b:Ge/*/PropagateToChildren = "True"
 The scorer will accumulate hits in all children (recursively) of the given Group Component
 
 
-Protection against excessive number of bins
+**Protection against excessive number of bins**
 
 Scorers are now protected against the user specifying so many bins that the bin index
 exceeds its allowed bounds, the MAX_INT (2,147,483,647).
@@ -222,7 +222,7 @@ Remember that this number of bins may be larger than just the number of voxel di
 as it may also be multiplied by the number of bins allocated for Energy or Time divisions.
 
 
-Added new Scoring Filters to evaluate the Incident Particle
+**Added new Scoring Filters to evaluate the Incident Particle**
 
 Recall that what TOPAS refers to as the "Incident Particle" is the particle that is first
 incident on the scoring component.
@@ -245,7 +245,7 @@ Details in the User Guide:
 * https://topas.readthedocs.io/en/latest/parameters/scoring/filter.html
 
 
-Added new Scoring Filters to evaluate how many times a particle has interacted
+**Added new Scoring Filters to evaluate how many times a particle has interacted**
 
 Users asked for a way to separate dose from first scatter versus dose from multiple scatter.
 Already existing filters could tell us whether a particle has interacted,
@@ -273,7 +273,6 @@ Details in the User Guide:
 
 Ability to continue run until a given dose accuracy is achieved.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 Users have requested a way to have TOPAS continue running until dose accuracy reaches
 a user-determined limit (rather than just running a pre-determined number of histories).
@@ -379,8 +378,7 @@ Details in the User Guide:
 Additional Geometry Improvements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-Geometry Component Type: TsPixelatedBox
+**Geometry Component Type: TsPixelatedBox**
 
 The TsPixelatedBox constructs a pixelated geometry such as a pixel detector.
 
@@ -393,7 +391,7 @@ Details in the User Guide:
 * https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#pixelated-box
 
 
-Geometry Component Type: G4GenericPolycone
+**Geometry Component Type: G4GenericPolycone**
 
 G4GenericPolycone is a relatively new way to represent a Polycone.
 
@@ -409,7 +407,7 @@ New section in the ShapeTest examples:
 * examples//Basic/ShapeTest*
 
 
-New Radial Binning Options for TsCylinder and TsSphere:
+**New Radial Binning Options for TsCylinder and TsSphere:**
 
 In the past, all RBins of the TsCylinder or TsCylinder had to be the same thickness.
 A new option allows you to specify Log binning or custom binning.
@@ -427,7 +425,7 @@ The number of RBinValues must be the same as the number of RBins.
 Last value must equal the Cylinder or Sphere's RMax.
 
 
-TsVPatient now has Trans and Rot parameters as Optional
+**TsVPatient now has Trans and Rot parameters as Optional**
 
 The parameters TransX, TransY, TransZ, RotX, RotY and RotZ are supposed to be optional
 for all Geometry Components (they all default to zero).
@@ -435,7 +433,7 @@ We found that they were still being required in TsVPatient.
 They are now optional.
 
 
-TsImageCube now allows the non-vector form of NumberOfVoxelsZ and VoxelSizeZ
+**TsImageCube now allows the non-vector form of NumberOfVoxelsZ and VoxelSizeZ**
 
 To support multiple slice thickness patients and phantoms,
 users have been allowed to specify the parameters NumberOfVoxelsZ and VoxelSizeZ
@@ -454,14 +452,14 @@ One can now just specify::
 	d:Ge/*/VoxelSizeZ = 1. mm
 
 
-TsApertureArray no longer limits number of Beamlets
+**TsApertureArray no longer limits number of Beamlets**
 
 TsApertureArray was refusing to run if it had 300 or more Beamlets unless the GeometryMethod was
 not AddBeamlets. This was a protection against creating setups that were too slow to construct.
 This prohibition has now been changed to just a warning.
 
 
-Verbosity Control for Geometry Construction:
+**Verbosity Control for Geometry Construction:**
 
 Verbosity of geometry construction was previously controlled using the same parameter
 as the overall sequence verbosity::
@@ -477,8 +475,7 @@ Geometry verbosity now has its own parameter::
 Additional Particle Source Improvements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-Emittance Source now supports Cutoff shape parameters:
+**Emittance Source now supports Cutoff shape parameters:**
 
 The Emittance Source now supports the same Cutoff shape parameters as the Beam source::
 
@@ -487,7 +484,7 @@ The Emittance Source now supports the same Cutoff shape parameters as the Beam s
 	d:So/*/BeamPositionCutoffY = 1. cm
 
 
-Fix issues with PhaseSpace source reading TOPAS ASCII format
+**Fix issues with PhaseSpace source reading TOPAS ASCII format**
 
 We had some bugs in the update of the PhaseSpace source in release 3.6.1.
 Users have been working around this by replacing::
@@ -505,7 +502,7 @@ such as improved handling of empty histories,
 ability to skip the PreCheck, and better information from PreCheck.
 
 
-Improve handling of Malformed IAEA phase space files:
+**Improve handling of Malformed IAEA phase space files:**
 
 Some of the files in the IAEA phase space repository seem to me to be malformed.
 Varian_TrueBeam6MV_01, for example, has no New History flags set at all.
@@ -542,7 +539,7 @@ New examples:
 * examples//PhaseSpace/ReadVarian.txt
 
 
-Improved PhaseSpace PreCheck Procedure:
+**Improved PhaseSpace PreCheck Procedure:**
 
 The PhaseSpace PreCheck procedure reads the entire phsp file once before any histories are generated.
 This allows us to confirm that the contents of the phsp file properly matches the header file.
@@ -573,8 +570,7 @@ We now test and warn about this during PreCheck.
 Additional Scoring Improvements:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-Prevent value of NAN from appearing in DoseToMaterial or DoseToWater
+**Prevent value of NAN from appearing in DoseToMaterial or DoseToWater**
 
 We found cases where some scoring bins contained the special value NAN (meaning "not a number").
 This was because the scored particle had an energy too low for the given Geant4 stopping power table,
@@ -584,7 +580,7 @@ We now test for this condition, avoid scoring in this case, and give a warning m
 At the end of the session, we report the number of unscored particles and the total unscored energy.
 
 
-Removed Invalid Tags that made our RTDose DICOM output files unreadable by some applications
+**Removed Invalid Tags that made our RTDose DICOM output files unreadable by some applications**
 
 When outputting scored values to RTDose DICOM files, we previously passed along some tags from the
 input DICOM that were invalid for RTDose DICOM files:
@@ -595,7 +591,7 @@ input DICOM that were invalid for RTDose DICOM files:
 Some applications were then failing to read in our files. We no longer include these tags.
 
 
-Added G4Track pointer to Extension Scorer's UserHookForEndOfTrack
+**Added G4Track pointer to Extension Scorer's UserHookForEndOfTrack**
 
 The UserHookforendOfTrack method of a user-written scorer can now be more functional,
 as TOPAS now passes along the pointer to the G4Track.
@@ -609,8 +605,7 @@ The new method signature is:
 Other Improvements:
 ^^^^^^^^^^^^^^^^^^^
 
-
-Materials no longer need to have Ma/*/Fractions sum to 1
+**Materials no longer need to have Ma/*/Fractions sum to 1**
 
 TOPAS had previously required that the sum of all Ma/*/Fractions be exactly 1.
 
@@ -626,7 +621,7 @@ The verbosity of the physics setup can now be controlled by::
 	i:Ph/Verbosity
 
 
-Time Feature RepetitionInterval is no longer always required
+**Time Feature RepetitionInterval is no longer always required**
 
 In the past, Time Feature functions Linear, Sine, Cosine and Sqrt always required the parameter
 Tf/*/RepetitionInterval
@@ -637,14 +632,14 @@ longer than Tf/TimelineEnd.
 Tf/*/RepetitionInterval is now optional, with the default being that there will be no repetition.
 
 
-Bug Fix for Variance Reduction DirectionalRussianRoulette
+**Bug Fix for Variance Reduction DirectionalRussianRoulette**
 
 We found that the variance reduction feature DirectionalRussianRoulette was not taking into account
 the position of the reference component in the calculation of particle direction towards the ROI.
 This has been fixed.
 
 
-Region-specific production cuts
+**Region-specific production cuts**
 
 We have made some refinements to how production cuts are set, in particular when there are
 multiple Regions.
