@@ -1,0 +1,288 @@
+3.6 Series 
+-----------
+
+This release adds a variety of new features, improves speed in certain setups and fixes some rare but annoying bugs. It is recommended that all users update to this new release.
+
+
+3.6.1 (2021-02-01)
+~~~~~~~~~~~~~~~~~~
+
+This is a narrow patch release to fix some issues that affected just a few users.
+
+An unintialized variable situation caused TOPAS to crash in some cases.
+We are only aware of it affecting a few users, and if your previous jobs did not crash, there is no need to re-do those simulations.
+But we do recommend all users upgrade to the new release so they are protected against this bug.
+
+We also fixed an issue affecting ASCII format phase space files.
+We had previously found that ASCII format phase space files that had been writen with the IncludeCreatorProcess option could not be read back in.
+New files written with that option will be readable.
+
+
+
+3.6.0 (2020-12-18)
+~~~~~~~~~~~~~~~~~~
+
+Speed Improvements:
+
+Dramatically increased navigation speed for Spheres on Linux:
+
+User Christian Velten figured out that simulations were orders of magnitude slower on Linux than on Mac for some geometries involving Spheres. The effect could be very dramatic in cases where one had many spheres or a TsSphere was divided into many radial bins.
+The problem was traced to the Linux C++ optimizer not finding a shortcut that the Mac compiler was finding.
+A change Christian submitted to Geant4.10.7 fixed this, and we have patched our built-in Geant4.6.p3 to also include this fix.
+
+
+Volumetric sources now initialize faster:
+
+Our Geant4 collaborator John Allison resolved an issue that was causing each volumetric source to take tens of seconds to initialize when there was complex geometry present (such as in the presence of a patients or phantoms that had a large numbers of voxels). If a simulation had several volumetric sources, or had time features moving the source, the resulting speed penalty could be very significant.
+This initialization time is now negligible.
+
+
+Phase Space Scorer and Phase Space Source improved Handling of Empty Histories:
+
+Fixed a bug that was causing incorrect results when reading Phase Space with the option PhaseSpaceIncludeEmptyHistories = True and Multiple Threads.
+
+In this case, primary particles were sometimes being distributed to wrong threads and either missed or used more than once.
+This bug is now fixed.
+
+
+In the process of fixing the above bug, we conducted a major redesign of the phase space scorer and phase space source. There is no change to the default behavior of the phase space scorer, but a new parameter allows you to change how empty histories are represented in the phase space file itself (as opposed to the phase space header)::
+
+    s:Sc/*/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
+
+    The default option, "None", means that there are no lines in the phase space file itself to represent empty histories (but, as before, the phase space header gives you information about the total number of histories and the number of histories that reached the phase space file, so you can decide the number of empty histories from this).
+
+    "InSequence" means that new lines will be added to the phase space file itself to tell you that a given history was empty. The line will have zeros for most values but will have a negative number in the Weight column. A negative 1 here means that there was 1 empty history. A negative N here means that there were N consecutive empty histories.
+
+    "AtEndOfRun" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of each run.
+
+    "AtEndOfSequence" means that empty histories will not be represented in the exact sequence, but instead they will be represented by a single empty history record at the end of the entire simulation sequence (that is, once all runs are complete).
+
+Because empty histories can now be assigned to their appropriate runs, it is now also allowed to read phase space that includes empty histories even when time features are present.
+In this case, it is the user’s responsibility to ensure that they have the same set of time features in the phase space reading job as they had in the phase space writing job.
+
+
+Phase Space Source is now robust against extra blanks or newlines at the end of the file:
+
+The new reader correctly ignores such junk at the end of the phase space file.
+
+
+Phase Space Source can now include Optical Photons:
+
+Optical Photons (PDG code zero) were not previously supported in phase space reading.
+The new design allows them to be included in the phase space source. Note that polarization will be set to uniformly random polarization vector (perpendicular to the initial momentum).
+
+
+Other New Features:
+
+All Particle Sources have new options to set polarization of Optical Photons:
+In the past, optical photons always had their parameterization set to uniformly random polarization vector (perpendicular to the initial momentum).
+While this remains the default, new parameters allow you to explicitly set the polarization::
+
+    u:So/*/BeamPolarizationX
+    u:So/*/BeamPolarizationY
+    u:So/*/BeamPolarizationZ
+
+
+The DICOM reader now gives the option to print out slice separation information:
+If the separation between slices in a DICOM file is not uniform, the DICOM file can not be used in TOPAS, as we can not tell how thick to make the voxels in the Z coordinate.
+We do allow DICOMs that are made of just a few different slice thicknesses (to accommodate common setups such as where slices are thicker towards the first and last slices and thinner in the central slices). But if the slice thicknesses do not follow some simple pattern, we can not figure out how to turn the slice information into voxels.
+While we have not changed this behavior, we have added an optional new parameter to print out the slice thicknesses to the console so that you can see the slice thickness pattern that TOPAS is dealing with.
+
+The optional new parameter is::
+
+     b:Ge/*/ShowSliceSeparations
+
+
+Variance Reduction now includes option to apply Russian roulette to fat particles (particles with unitary statistical weight):
+
+The following Boolean parameter can be used::
+
+    b:Vr/.../OnlySplitParticlesOfUnitaryWeight = "True" # defaults to "False"
+
+This capability may be of help when combining GeometricalParticleSplit with another splitting technique like secondaryBiasing. For example, fat particles surviving Russian roulette from SecondaryBiasing can be split with a split plane from GeometricalParticleSplit
+
+
+New Filter has been added, FilterByParticleWeight:
+
+This filter is useful to avoid fat particles produced by particle split variance reduction technique.
+When reading back a phase space created with particle splitting, surviving fat particles stored in it may introduce bias in the form of hot spots to e.g. dose distributions. Users can filter these low-frequent particles with this filter. The TOPAS standard paradigm for filter names applies e.g.:
+
+*    OnlyIncludeParticlesWithWeight
+*    OnlyIncludeParticlesWithWeightBelow
+*    OnlyIncludeParticlesWithWeightNotBelow
+*    OnlyIncludeParticlesWithWeightAbove
+*    OnlyInlcudeParticlesWithtWeightNotAbove
+*    And InvertFilter
+
+
+An additional G4Data environment variable is now set:
+
+We now automatically set the variable G4PROTONHPDATA to help with some non-default physics lists.
+
+
+A new Scoring Unit is available, /s:
+
+While the unit is equivalent to Hz, this unit has been added to support Topas-nBio scavenging capacity scorers.
+
+
+Solvated Electron Thermalization Models now offer Five Options:
+
+Five models are now available: "Ritchie", "Terrisol", "Meesungnoen", "MeesungnoenSolid" and "Kreipl". 
+
+A specific model can be selected with:: 
+
+    s:Ph/Default/SolvatedElectronThermalizationModel = "Kreipl" # Default is "Meesungnoen"
+
+
+Removed Restrictions:
+
+Restriction on use of Parallel Worlds with Divided Spheres or Cylinders has been removed:
+We are no longer seeing issues when parallel worlds are used in the presence of divided spheres or cylinders, so this restriction has been removed.
+
+
+Restrictions on which Materials can accept parameters for State, Temperature and or Pressure have been removed:
+
+These parameters were previously supported only for materials defined with certain ways.
+They are now available for all materials.
+
+
+New Capabilities for User-Written Extensions:
+
+Geometry Components now have a method to return their geometric Extent:
+
+The new method returns a bounding box into which all volumes of the component are guaranteed to fit.
+The design works even if the given component is a Group component.
+
+TsVGeometryComponent::GetExtent() returns a const G4VisExtent& from which one can then obtain:
+
+*    GetXmin();
+*    GetXmax();
+*    GetYmin();
+*    GetYmax();
+*    GetZmin();
+*    GetZmax();
+*    GetExtentRadius();
+*    GetExtentCentre();
+
+
+User-written Geometry Components now have the option to set just a subset of volumes to be sensitive:
+
+While some Geometry Components are made of only a single Geant4 volume, others may be made of many volumes. By default, scoring occurs in all volumes of the scorer's Component.
+A new method allows a user-written component to only set a specific subset of volumes to be sensitive.
+
+To do so, call the following method once for each logical volume that you want to be sensitive:
+
+*    void TsVGeometryComponent::SetLogicalVolumeToBeSensitive(G4LogicalVolume* lvol)
+
+If no calls are made to this new method, then, as before, all of the component's volumes will be sensitive.
+
+
+User-written Geometry Components now have additional method signatures to create physical volumes: 
+
+New methods are:
+
+*    G4VPhysicalVolume* CreatePhysicalVolume(const char* subComponentName, G4int copy, G4bool reuseLogical,
+        G4LogicalVolume* lVol, G4RotationMatrix* rot, G4ThreeVector* trans, G4LogicalVolume* parent);
+*    G4VPhysicalVolume* CreatePhysicalVolume(G4String& subComponentName, G4int copy, G4bool reuseLogical,
+        G4LogicalVolume* lVol,    G4RotationMatrix* rot, G4ThreeVector* trans, G4LogicalVolume* parent);
+*    G4VPhysicalVolume* CreatePhysicalVolume(G4String& subComponentName, G4LogicalVolume* lVol,
+        G4VPhysicalVolume* parent, const EAxis pAxis, const G4int nReplicas, G4VPVParameterisation* pParam);
+
+
+User-written Particle Generators no longer require BeamEnergy:
+
+The previous design of our TsVParticleGenerator was such that the parameter BeamEnergy had to be set even if your generator didn't use it.
+This has now been fixed.
+
+
+User written Particle Sources can now access a pointer to their Geometry Component:
+
+The particle source base class, TsSource, now provides the pointer:
+
+*    TsVGeometryComponent* fComponent
+
+
+User-written Particle Sources can now contain a method to be called at End of Run:
+
+At end of each run, TOPAS will call the method:
+
+*    void UpdateForEndOfRun()
+
+
+User-written Scorers can now provide an UpdateForEndOfRun method:
+
+Your scorer can now have a method which will be called at the end of each run:
+
+*    void UpdateForEndOfRun()
+
+
+Added User hook for begin of Chemical Track:
+
+A chemical track can be obtained at exactly their time of creation with the method:
+
+*     void PreUserTrackingAction(const G4Track*)
+
+
+Added User hooks for pre/post timeStepAction (at time of creation/loss of chemical species):
+
+Chemical track information can be accessed at the beginning (before evaluating for reactions) and at the end of individual time steps in the chemical stage. Methods are:
+
+*    void UserPreTimeStepAction()
+*    void UserPostTimeStepAction()
+
+
+Bug Fixes:
+
+Fixed issue of losing warning messages when TOPAS crashes during Qt GUI use:
+
+Because the Qt GUI takes control of console output, and Qt cleans up the console upon finishing, we had a situation in which warning and error messages were lost during a crash.
+This is now solved by echoing all warning and error messages to the terminal console even during Qt GUI usage.
+The result is that they can still be seen after any crash.
+
+
+Fixed a bug that was creating wrong divisions in some parallel scoring components:
+
+There were some cases in which the parallel geometry components automatically created to support certain scoring divisions were done incorrectly. This could result in crashes or dramatically incorrect results.
+It affected cases where a TsBox, TsCylinder or TsSphere was created with divisions (Ge/*/XBins not equal to 1, Ge/*/RBins not equal to 1, etc.) AND a scorer using this component also had divisions (Sc/*/XBins, SC/*/RBins, etc.) AND the binning was set differently between the Geometry and the Scorer.
+The issue is now fixed for all cases.
+
+
+Fixed a bug that was causing occasional navigation issues in TsCylinders that have Rho or Phi divisions:
+
+We have changed our design for how TsCylinders are created when including Rho and Phi divisions.
+The old design cause occasional cases where Geant4 navigation seemed to be lost. This could result in extraneous very low energy hits appearing in the wrong bins or could cause nan values appearing in some bins of dose scorers.
+Because these extraneous hits were always with very low energy, if your previous simulation ran to completion, any occurrences of these very low energy hits are very unlikely to have had a significant effect. However, they did sometimes cause simulations to entirely fail.
+The bug is now fixed.
+
+
+Fixed a bug where changing a material name in the Qt GUI did not actually change the material:
+
+While changing a material from the Qt GUI worked fine for undivided TsBox, TsCylinder and TsSphere,
+the change had no actual effect if the Box, Cylinder or Sphere had divisions.
+The bug is now fixed.
+
+
+Fixed a bug in Trajectory Colors:
+
+Trajectories were not being assigned the correct colors when using user-defined colors (colors created by Gr/Color parameters).
+The bug is now fixed.
+
+
+Parameter names have been fixed to define chemistry time step high edges and resolution:
+
+Vector parameters previously named::
+
+    dv:Ch/.../AddTimeStepHighEdge 
+    dv:Ch/.../AddTimeStepResolution 
+are now changed to match the parameter names in the Topas-nBio user's guide:
+    dv:Ch/.../ChemicalStageTimeStepsHighEdges
+    dv:Ch/.../ChemicalStageTimeStepsResolutions
+
+
+Remove case-sensitivity from Region name "DefaultRegionForTheWorld":
+
+Simulation previously crashed if case was not an exact match in the parameter::
+
+    s:Ge/.../AssignToRegionNamed = "DefaultRegionForTheWorld"
+
+The region name can now be specified with any case.
