@@ -39,11 +39,11 @@ If you divide a TsCylinder or TsSphere into RBins,
 by default, all RBins will have the same thickness.
 But options allows you to specify Log binning or custom binning::
 
-    s:Ge/*/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
+    s:Ge/MyComponent/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
 
 For the Custom case, you then also specify a set of RBinValues::
 
-    dv:Ge/*/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
+    dv:Ge/MyComponent/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
 
 The number of RBinValues must be the same as the number of RBins.
 

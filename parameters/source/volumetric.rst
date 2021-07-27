@@ -13,15 +13,15 @@ Specify source type as::
 
 And then add an additional required parameter:
 
-    s:So/*/ActiveMaterial
+    s:So/MySource/ActiveMaterial
 
 to specify which material within the given component should be considered radioactive.
 
 So, for example, if you have:
 
-    s:So/Example/Type                = "Volumetric"
-    s:So/Example/Component       = "ActiveSource"
-    sc:So/Example/ActiveMaterial = "G4_Ir"
+    s:So/MySource/Type                = "Volumetric"
+    s:So/MySource/Component       = "ActiveSource"
+    sc:So/MySource/ActiveMaterial = "G4_Ir"
 
 particles will start from randomly sampled positions within the Iridium parts of the component named ActiveSource.
 

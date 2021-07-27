@@ -76,7 +76,7 @@ Filter by Origin Process of Particle or its Ancestor when it hit the Scoring Com
 
 Filter by Generation of Particle or its Ancestor when it hit the Scoring Component (excludes any particles descended from primaries that originated in the component)::
 
-    s:Sc/*/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
+    s:Sc/MyScorer/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
 
 Filter by Process that created the particle. Allows one or more process name::
 

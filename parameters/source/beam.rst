@@ -80,20 +80,20 @@ The beam is emitted along the Z axis of the beam’s ``Component`` and may have 
 
 For ``Type = "Beam"``, the beam shape can be further described by a set of parameters that control the position distribution of the start of the beam::
 
-    s:So/Demo/BeamPositionDistribution = "Gaussian" # None, Flat or Gaussian
-    s:So/Demo/BeamPositionCutoffShape = "Ellipse" # Rectangle or Ellipse (if Flat or Gaussian)
-    d:So/Demo/BeamPositionCutoffX = 10. cm # X extent of position (if Flat or Gaussian)
-    d:So/Demo/BeamPositionCutoffY = 10. cm # Y extent of position (if Flat or Gaussian)
-    d:So/Demo/BeamPositionSpreadX = 0.65 cm # X standard deviation (used only if Gaussian)
-    d:So/Demo/BeamPositionSpreadY = 0.65 cm # Y standard deviation (used only if Gaussian)
+    s:So/MySource/BeamPositionDistribution = "Gaussian" # None, Flat or Gaussian
+    s:So/MySource/BeamPositionCutoffShape = "Ellipse" # Rectangle or Ellipse (if Flat or Gaussian)
+    d:So/MySource/BeamPositionCutoffX = 10. cm # X extent of position (if Flat or Gaussian)
+    d:So/MySource/BeamPositionCutoffY = 10. cm # Y extent of position (if Flat or Gaussian)
+    d:So/MySource/BeamPositionSpreadX = 0.65 cm # X standard deviation (used only if Gaussian)
+    d:So/MySource/BeamPositionSpreadY = 0.65 cm # Y standard deviation (used only if Gaussian)
 
 and a set of parameters that control how the beam spreads out from that start position::
 
-    s:So/Demo/BeamAngularDistribution = "Gaussian" # None, Flat or Gaussian
-    d:So/Demo/BeamAngularCutoffX = 90. deg # X cutoff of angular distrib (if Flat or Gaussian)
-    d:So/Demo/BeamAngularCutoffY = 90. deg # Y cutoff of angular distrib (if Flat or Gaussian)
-    d:So/Demo/BeamAngularSpreadX = 0.0032 rad # X standard deviation of angular distribution (used only if Gaussian)
-    d:So/Demo/BeamAngularSpreadY = 0.0032 rad # Y standard deviation of angular distribution (used only if Gaussian)
+    s:So/MySource/BeamAngularDistribution = "Gaussian" # None, Flat or Gaussian
+    d:So/MySource/BeamAngularCutoffX = 90. deg # X cutoff of angular distrib (if Flat or Gaussian)
+    d:So/MySource/BeamAngularCutoffY = 90. deg # Y cutoff of angular distrib (if Flat or Gaussian)
+    d:So/MySource/BeamAngularSpreadX = 0.0032 rad # X standard deviation of angular distribution (used only if Gaussian)
+    d:So/MySource/BeamAngularSpreadY = 0.0032 rad # Y standard deviation of angular distribution (used only if Gaussian)
 
 The ``Cutoff`` parameter is applied symmetrically.
 
@@ -101,8 +101,8 @@ You will note that for Gaussian beams, the position and angular distribution are
 
 If your particle type is Optical Photon, additional parameters let you set the polarization::
 
-    u:So/*/BeamPolarizationX
-    u:So/*/BeamPolarizationY
-    u:So/*/BeamPolarizationZ
+    u:So/MySource/BeamPolarizationX
+    u:So/MySource/BeamPolarizationY
+    u:So/MySource/BeamPolarizationZ
 
 If polarization is not set, the Beam will have a uniformly random polarization vector (perpendicular to the initial momentum).

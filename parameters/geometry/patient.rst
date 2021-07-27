@@ -70,12 +70,12 @@ The following will result in a display that shows 27 pixels comprising the bound
 You have the Option to Load a Truncated DICOM, XiO or ImageCube.
 Parameters to restrict which voxels of a patient image are loaded are:
 
-    i:Ge/*/RestrictVoxelsXMin
-    i:Ge/*/RestrictVoxelsYMin
-    i:Ge/*/RestrictVoxelsZMin
-    i:Ge/*/RestrictVoxelsXMax
-    i:Ge/*/RestrictVoxelsYMax
-    i:Ge/*/RestrictVoxelsZMax
+    i:Ge/MyComponent/RestrictVoxelsXMin
+    i:Ge/MyComponent/RestrictVoxelsYMin
+    i:Ge/MyComponent/RestrictVoxelsZMin
+    i:Ge/MyComponent/RestrictVoxelsXMax
+    i:Ge/MyComponent/RestrictVoxelsYMax
+    i:Ge/MyComponent/RestrictVoxelsZMax
 
 The previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.
 The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
@@ -130,7 +130,7 @@ Patient positioning information from the DICOM file is not currently used. You m
 
 You can ask TOPAS to print out the slice separation that it finds in in the DICOM series::
 
-    b:Ge/*/ShowSliceSeparations = "True"
+    b:Ge/MyComponent/ShowSliceSeparations = "True"
 
 TOPAS can read DICOM RT Structure Sets.
 A structure set is an extra file in the DICOM directory that provides information on structures such as organs, tumors, PTVs, etc. that have been outlined (contoured) in the planning process. The data is stored as a set of polygons, up to one per slice for each contoured structure. TOPAS can color code DICOM components according to this structure information and can filter scoring based on these structures (see the filter: OnlyIncludeIfInRTStructure).

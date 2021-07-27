@@ -6,8 +6,8 @@ Additional Control of Number of Histories
 
 Because TOPAS supports both sequential and random time, there are additional parameters that can control the number of histories in random mode. Read :ref:`time_mode` before using these parameters::
 
-    i:So/Demo/NumberOfHistoriesInRandomJob = 100
-    d:So/Demo/ProbabilityOfUsingAGivenRandomTime = 1.
+    i:So/MySource/NumberOfHistoriesInRandomJob = 100
+    d:So/MySource/ProbabilityOfUsingAGivenRandomTime = 1.
 
 
 

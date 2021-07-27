@@ -175,7 +175,7 @@ For debugging purposes, it may also be helpful to have a way to mark not just ho
 
 A parameter allows you to change how empty histories are represented in the phase space file::
 
-    s:Sc/*/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
+    s:Sc/MyScorer/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
 
 The options have the following effects:
 

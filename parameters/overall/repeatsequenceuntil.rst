@@ -14,9 +14,9 @@ evaluates the tests, and repeats the entire run sequence until all tests have be
 The tests are tied to the scoring system. Any scorer can have up to three tests.
 New parameters are::
 
-    d:Sc/*/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
-    d:Sc/*/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
-    i:Sc/*/RepeatSequenceUntilCountGreaterThan = 1200
+    d:Sc/MyScorer/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
+    d:Sc/MyScorer/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
+    i:Sc/MyScorer/RepeatSequenceUntilCountGreaterThan = 1200
 
 The second two tests above are necessary because the StandardDeviation is subject to
 statistical noise until a reasonable amount of data has been collected.
@@ -29,15 +29,15 @@ The entire simulation will repeat until All tests on All scorers are satisfied.
 If the scorer has been binned in X, Y, Z, E or T, you must also specify which specific bin
 should be evaluated, using the parameters::
 
-    i:Sc/*/RepeatSequenceTestXBin = 2
-    i:Sc/*/RepeatSequenceTestYBin = 2
-    i:Sc/*/RepeatSequenceTestZBin = 2
-    i:Sc/*/RepeatSequenceTestEBin = 5
-    i:Sc/*/RepeatSequenceTestTimeBin = 0
+    i:Sc/MyScorer/RepeatSequenceTestXBin = 2
+    i:Sc/MyScorer/RepeatSequenceTestYBin = 2
+    i:Sc/MyScorer/RepeatSequenceTestZBin = 2
+    i:Sc/MyScorer/RepeatSequenceTestEBin = 5
+    i:Sc/MyScorer/RepeatSequenceTestTimeBin = 0
 
 Remember that the tests will be evaluated only after the entire simulation sequence is complete.
 You should therefore set
-So/*/NumberOfHistoriesInRun
+So/MySource/NumberOfHistoriesInRun
 to a value small enough that this end of test will be reached in a reasonable time.
 The final total number of histories will be that NumberOfHistoriesInRun times the number of
 times the testing process causes TOPAS to re-run the entire sequence.

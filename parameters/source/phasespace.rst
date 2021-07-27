@@ -23,7 +23,7 @@ We support three formats for Phase Space (and TOPAS automatically figures out th
 
 Some users have found legacy phase space files that were unreadable in the Limited format because, though they were supposed to contain information about which particles represent a new history, there was in fact no new history information. In such cases, it seems that all photons were to be considered new histories. To read such files, use the Limited format with the additional TOPAS parameter::
 
-   b:So/MyPhaseSpaceSource/LimitedAssumePhotonIsNewHistory = "true"
+   b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
 
 Note that while our Phase Space Scorer lets you also write phase space to `ROOT files <https://root.cern.ch>`_, we do not provide the capability read phase space back in from this format.
 For more details, see :ref:`phasespace_format`.
@@ -85,7 +85,7 @@ for subsequent uses of the same phase space file.
 PreCheck will print out a progress update after a given number of particles are read.
 Default is to print out progress every 1M particles, but this interval can be adjusted with::
 
-    i:So/*/PreCheckShowParticleCountAtInterval = 100000
+    i:So/MySource/PreCheckShowParticleCountAtInterval = 100000
 
 If the phase space you are replaying came from a TOPAS job, the particle starting positions in that file will have been defined relative to the ``World`` Component. Set the ``Component`` parameter above to ``"World"``. If you want to offset these particles to some other center or orientation, choose a Component that has the new desired center and orientation (reuse some existing Component, or define a new Group Component just for this purpose). If the phase space you are replaying did not come from TOPAS, there is no automatic way to know what coordinate system was used. It will be up to you to choose a Component that has this appropriate coordinate system.
 
@@ -144,23 +144,23 @@ We confirmed that some other IAEA files work fine, such as ELEKTA_PRECISE_10mv_p
 
 We then added several new features to our reader to be able to read malformed files::
 
-    b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-    b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
-    b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+    b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+    b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
+    b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
 
 We confirmed that we can read particles from Varian_TrueBeam6MV_01 if we either
 set the one parameter::
 
-    b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+    b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
 
 or set the two parameters together::
 
-    b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-    b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+    b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+    b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
 
 We found that if we set only::
 
-    b:So/*/LimitedAssumeFirstParticleIsNewHistory = "true"
+    b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
 
 the job hangs (it tries to accumulate all of the millions of particles into a single history).
 
