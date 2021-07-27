@@ -69,8 +69,8 @@ Windows Subsystem for Linux (WSL) can now be found at:
 Comprehensive new Brachytherapy package:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A major effort led by Francisco Berumen and colleagues at the University of Laval has given
-TOPAS a ready-to-use and well validated set of LDR and HDR brachytherapy source models.
+A major effort led by colleagues at Université Laval has given TOPAS a ready-to-use
+and well validated set of LDR and HDR brachytherapy source models.
 
 The team also provided a new scorer, TrackLengthEstimator, which uses the
 Track Length Estimator method to efficiently calculate dose in these simulations.
