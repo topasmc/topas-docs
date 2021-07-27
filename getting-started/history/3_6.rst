@@ -50,7 +50,7 @@ This bug is now fixed.
 
 In the process of fixing the above bug, we conducted a major redesign of the phase space scorer and phase space source. There is no change to the default behavior of the phase space scorer, but a new parameter allows you to change how empty histories are represented in the phase space file itself (as opposed to the phase space header)::
 
-    s:Sc/*/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
+    s:Sc/MyScorer/IncludeEmptyHistories = "None" # "None", "InSequence", "AtEndOfRun" or "AtEndOfFile"
 
 The options are:
 
@@ -85,9 +85,9 @@ Other New Features:
 In the past, optical photons always had their parameterization set to uniformly random polarization vector (perpendicular to the initial momentum).
 While this remains the default, new parameters allow you to explicitly set the polarization::
 
-    u:So/*/BeamPolarizationX
-    u:So/*/BeamPolarizationY
-    u:So/*/BeamPolarizationZ
+    u:So/MySource/BeamPolarizationX
+    u:So/MySource/BeamPolarizationY
+    u:So/MySource/BeamPolarizationZ
 
 
 **The DICOM reader now gives the option to print out slice separation information:**
@@ -98,7 +98,7 @@ While we have not changed this behavior, we have added an optional new parameter
 
 The optional new parameter is::
 
-     b:Ge/*/ShowSliceSeparations
+     b:Ge/MyComponent/ShowSliceSeparations
 
 
 **Variance Reduction now includes option to apply Russian roulette to fat particles (particles with unitary statistical weight):**
@@ -255,7 +255,8 @@ The result is that they can still be seen after any crash.
 **Fixed a bug that was creating wrong divisions in some parallel scoring components:**
 
 There were some cases in which the parallel geometry components automatically created to support certain scoring divisions were done incorrectly. This could result in crashes or dramatically incorrect results.
-It affected cases where a TsBox, TsCylinder or TsSphere was created with divisions (Ge/*/XBins not equal to 1, Ge/*/RBins not equal to 1, etc.) AND a scorer using this component also had divisions (Sc/*/XBins, SC/*/RBins, etc.) AND the binning was set differently between the Geometry and the Scorer.
+
+It affected cases where a TsBox, TsCylinder or TsSphere was created with divisions (Ge/MyComponent/XBins not equal to 1, Ge/MyComponent/RBins not equal to 1, etc.) AND a scorer using this component also had divisions (Sc/MyScorer/XBins, Sc/MyScorer/RBins, etc.) AND the binning was set differently between the Geometry and the Scorer.
 The issue is now fixed for all cases.
 
 
@@ -295,6 +296,6 @@ are now changed to match the parameter names in the Topas-nBio user's guide:
 
 Simulation previously crashed if case was not an exact match in the parameter::
 
-    s:Ge/.../AssignToRegionNamed = "DefaultRegionForTheWorld"
+    s:Ge/MyComponent/AssignToRegionNamed = "DefaultRegionForTheWorld"
 
 The region name can now be specified with any case.

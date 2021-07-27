@@ -77,7 +77,7 @@ Track Length Estimator method to efficiently calculate dose in these simulations
 
 New examples:
 
-* examples//Brachytherapy
+* examples/Brachytherapy
 
 Details in the User Guide:
 
@@ -104,7 +104,7 @@ Details in the User Guide:
 
 **New example:**
 
-* examples//MVLinac/MainTxHead.txt
+* examples/MVLinac/MainTxHead.txt
 
 Details in the User Guide:
 
@@ -122,7 +122,7 @@ radiation belt, or by a robot (or, indeed a human) in a damaged nuclear reactor.
 
 New example:
 
-* examples//Basic/EnvironmentSource.txt
+* examples/Basic/EnvironmentSource.txt
 
 Details in the User Guide:
 
@@ -159,10 +159,10 @@ And then the usual other parameters to control particle type, energy, etc., such
 
 New examples:
 
-* examples//Basic/DistributedSourcePointsInShell.txt
-* examples//Basic/DistributedSourcePointsInSphere.txt
-* examples//Basic/DistributedSourcePointsInSphereGaussian.txt
-* examples//Basic/DistributedSourcePointsInTwistedTubs.txt
+* examples/Basic/DistributedSourcePointsInShell.txt
+* examples/Basic/DistributedSourcePointsInSphere.txt
+* examples/Basic/DistributedSourcePointsInSphereGaussian.txt
+* examples/Basic/DistributedSourcePointsInTwistedTubs.txt
 
 Details in the User Guide:
 
@@ -189,7 +189,7 @@ So, for example, the following will count how many neutrons were created::
 
 New example:
 
-* examples//Scoring/OriginCount.txt
+* examples/Scoring/OriginCount.txt
 
 
 **Scorer: TrackLengthEstimator**
@@ -198,7 +198,7 @@ Provides a more efficient dose calculation method of particular use in Brachythe
 
 New example:
 
-* examples//Brachytherapy/DoseTLE.txt
+* examples/Brachytherapy/DoseTLE.txt
 
 Details in the User Guide:
 
@@ -209,7 +209,7 @@ Details in the User Guide:
 
 We have added the ability to score in a Group Component.
 You can attach any Volume Scorer to a Group if that Group has
-b:Ge/*/PropagateToChildren = "True"
+b:Ge/MyComponent/PropagateToChildren = "True"
 The scorer will accumulate hits in all children (recursively) of the given Group Component
 
 
@@ -234,11 +234,11 @@ These new filters allow you to filter the scorer based on qualities of the Incid
 
 Examples of the new filters are::
 
-	sv:Sc//OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
-	sv:Sc//OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
-	sv:Sc//OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
-	sv:Sc//OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
-	s:Sc/*/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
+	s:Sc/MyScorer/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
 
 Details in the User Guide:
 
@@ -254,16 +254,16 @@ but could not differentiate first scatter from subsequent scatter.
 We now keep count of how many times a particle has interacted, and offer several filters
 based on this count::
 
-	i:Sc//OnlyIncludeParticlesWithInteractionCountBelow
-	i:Sc//OnlyIncludeParticlesWithInteractionCountNotBelow
-	i:Sc//OnlyIncludeParticlesWithInteractionCount
-	i:Sc//OnlyIncludeParticlesWithInteractionCountNot
-	i:Sc//OnlyIncludeParticlesWithInteractionCountAbove
-	i:Sc//OnlyIncludeParticlesWithInteractionCountNotAbove
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountBelow
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNotBelow
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCount
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNot
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountAbove
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNotAbove
 
 New example:
 
-* examples//Scoring/FilterByInteractionCount.txt
+* examples/Scoring/FilterByInteractionCount.txt
 
 Details in the User Guide:
 
@@ -287,9 +287,9 @@ The tests are tied to the scoring system. Any scorer can have up to three tests.
 
 New parameters are::
 
-	d:Sc/*/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
-	d:Sc/*/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
-	i:Sc/*/RepeatSequenceUntilCountGreaterThan = 1200
+	d:Sc/MyScorer/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
+	d:Sc/MyScorer/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
+	i:Sc/MyScorer/RepeatSequenceUntilCountGreaterThan = 1200
 
 The second two tests above are necessary because the StandardDeviation is subject to
 statistical noise until a reasonable amount of data has been collected.
@@ -302,16 +302,16 @@ The entire simulation will repeat until All tests on All scorers are satisfied.
 If the scorer has been binned in X, Y, Z, E or T, you must also specify which specific bin
 should be evaluated, using the parameters::
 
-	i:Sc/*/RepeatSequenceTestXBin = 2
-	i:Sc/*/RepeatSequenceTestYBin = 2
-	i:Sc/*/RepeatSequenceTestZBin = 2
-	i:Sc/*/RepeatSequenceTestEBin = 5
-	i:Sc/*/RepeatSequenceTestTimeBin = 0
+	i:Sc/MyScorer/RepeatSequenceTestXBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestYBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestZBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestEBin = 5
+	i:Sc/MyScorer/RepeatSequenceTestTimeBin = 0
 
 Remember that the tests will be evaluated only after the entire simulation sequence is complete.
 You should therefore set::
 
-	So/*/NumberOfHistoriesInRun
+	So/MySource/NumberOfHistoriesInRun
 
 to a value small enough that this end of test will be reached in a reasonable time.
 The final total number of histories will be that NumberOfHistoriesInRun times the number of
@@ -384,7 +384,7 @@ The TsPixelatedBox constructs a pixelated geometry such as a pixel detector.
 
 New example:
 
-* examples//Optical/PixelatedDetector.txt
+* examples/Optical/PixelatedDetector.txt
 
 Details in the User Guide:
 
@@ -404,7 +404,7 @@ outer surfaces, and issues an error if not."
 
 New section in the ShapeTest examples:
 
-* examples//Basic/ShapeTest*
+* examples/Basic/ShapeTest*
 
 
 **New Radial Binning Options for TsCylinder and TsSphere:**
@@ -414,11 +414,11 @@ A new option allows you to specify Log binning or custom binning.
 
 New Parameter::
 
-	s:Ge/*/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
+	s:Ge/MyComponent/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
 
 For the Custom case, you then also specify a set of RBinValues::
 
-	dv:Ge/*/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
+	dv:Ge/MyComponent/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
 
 The number of RBinValues must be the same as the number of RBins.
 
@@ -443,13 +443,13 @@ This flexibility has now also been added to TsImageCube.
 So, for example, for the case of a single slice thickness section of 10 Z slices,
 where one used to have to specify::
 
-	iv:Ge/*/NumberOfVoxelsZ = 1 10
-	dv:Ge/*/VoxelSizeZ = 1 1. mm
+	iv:Ge/MyComponent/NumberOfVoxelsZ = 1 10
+	dv:Ge/MyComponent/VoxelSizeZ = 1 1. mm
 
 One can now just specify::
 
-	i:Ge/*/NumberOfVoxelsZ = 10
-	d:Ge/*/VoxelSizeZ = 1. mm
+	i:Ge/MyComponent/NumberOfVoxelsZ = 10
+	d:Ge/MyComponent/VoxelSizeZ = 1. mm
 
 
 **TsApertureArray no longer limits number of Beamlets**
@@ -479,9 +479,9 @@ Additional Particle Source Improvements:
 
 The Emittance Source now supports the same Cutoff shape parameters as the Beam source::
 
-	s:So//BeamPositionCutoffShape = "Rectangle" # "Rectangle", "Ellipse" or "None". Defaults to "None"
-	d:So//BeamPositionCutoffX = 1. cm
-	d:So/*/BeamPositionCutoffY = 1. cm
+	s:So/MySource/BeamPositionCutoffShape = "Rectangle" # "Rectangle", "Ellipse" or "None". Defaults to "None"
+	d:So/MySource/BeamPositionCutoffX = 1. cm
+	d:So/MySource/BeamPositionCutoffY = 1. cm
 
 
 **Fix issues with PhaseSpace source reading TOPAS ASCII format**
@@ -489,11 +489,11 @@ The Emittance Source now supports the same Cutoff shape parameters as the Beam s
 We had some bugs in the update of the PhaseSpace source in release 3.6.1.
 Users have been working around this by replacing::
 
-	So/*/Type = "PhaseSpace"
+	So/MySource/Type = "PhaseSpace"
 
 with::
 
-	So/*/Type = "PhaseSpaceOld"
+	So/MySource/Type = "PhaseSpaceOld"
 
 Users are still welcome to stay with "PhaseSpaceOld" if the want,
 but we believe the new reader is now working correctly.
@@ -513,30 +513,30 @@ We confirmed that some other IAEA files work fine, such as ELEKTA_PRECISE_10mv_p
 
 We then added several new features to our reader to be able to read malformed files::
 
-	b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-	b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
-	b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
 
 We confirmed that we can read particles from Varian_TrueBeam6MV_01 if we either
 set the one parameter::
 
-	b:So//LimitedAssumeEveryParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
 
 or set the two parameters together::
 
-	b:So//LimitedAssumeFirstParticleIsNewHistory = "true"
-	b:So/*/LimitedAssumePhotonIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
 
 We found that if we set only::
 
-	b:So/*/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
 
 the job hangs (it tries to accumulate all of the millions of particles into a single history).
 
 New examples:
 
-* examples//PhaseSpace/ReadElekta.txt
-* examples//PhaseSpace/ReadVarian.txt
+* examples/PhaseSpace/ReadElekta.txt
+* examples/PhaseSpace/ReadVarian.txt
 
 
 **Improved PhaseSpace PreCheck Procedure:**
@@ -554,7 +554,7 @@ Therefore, we have made two changes:
 * PreCheck will print out a progress update after a given number of particles are read.
 Default is to print out progress every 1M particles, but this interval can be adjusted with::
 
-	i:So/*/PreCheckShowParticleCountAtInterval = 100000
+	i:So/MySource/PreCheckShowParticleCountAtInterval = 100000
 
 PhaseSpace PreCheck now tests for Excited Ions.
 TOPAS does not allow excited ions in phase space unless the user has set::
@@ -605,13 +605,13 @@ The new method signature is:
 Other Improvements:
 ^^^^^^^^^^^^^^^^^^^
 
-**Materials no longer need to have Ma/*/Fractions sum to 1**
+**Materials no longer need to have Ma/MyMaterial/Fractions sum to 1**
 
-TOPAS had previously required that the sum of all Ma/*/Fractions be exactly 1.
+TOPAS had previously required that the sum of all Ma/MyMaterial/Fractions be exactly 1.
 
 A new option allows any values and then normalizes the fractions to unity for you::
 
-	b:Ma/*/NormalizeFractions = "True" # Defaults to "False"
+	b:Ma/MyMaterial/NormalizeFractions = "True" # Defaults to "False"
 
 
 Physics Setup Verbosity now has its own control
@@ -624,12 +624,12 @@ The verbosity of the physics setup can now be controlled by::
 **Time Feature RepetitionInterval is no longer always required**
 
 In the past, Time Feature functions Linear, Sine, Cosine and Sqrt always required the parameter
-Tf/*/RepetitionInterval
+Tf/MyFunction/RepetitionInterval
 
 To make a time feature not repeat, it was necessary to set this value to a value
 longer than Tf/TimelineEnd.
 
-Tf/*/RepetitionInterval is now optional, with the default being that there will be no repetition.
+Tf/MyFunction/RepetitionInterval is now optional, with the default being that there will be no repetition.
 
 
 **Bug Fix for Variance Reduction DirectionalRussianRoulette**
