@@ -50,25 +50,25 @@ The built-in Geant4 visualization tools do not perform well when a complex voxel
 
 There is generally little value in showing all pixels of the image at once. Each slice just covers up the last slice. To instead show only a specific set of slices in any dimension::
 
-    iv:Gr/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
+    iv:Ge/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
 
 Number of slices begins at number 1.
 
 Similar slicing is allowed in X and Y.
 Three special values are also allowed::
 
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 0 # means show all slices
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -1 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 0 # means show all slices
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -1 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
 
 The following will result in a display that shows 27 pixels comprising the boundaries and center of the image. This allows you to see the overall placement of the image and see the individual voxel size::
 
-    iv:Gr/Patient/ShowSpecificSlicesX = 1 -2 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesX = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
 
 You have the Option to Load a Truncated DICOM, XiO or ImageCube.
-Parameters to restrict which voxels of a patient image are loaded are:
+Parameters to restrict which voxels of a patient image are loaded are::
 
     i:Ge/*/RestrictVoxelsXMin
     i:Ge/*/RestrictVoxelsYMin
