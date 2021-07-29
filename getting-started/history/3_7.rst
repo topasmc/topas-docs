@@ -1,0 +1,654 @@
+3.7 Series 
+----------
+
+This release adds many new features and fixes some rare bugs.
+It is recommended that all users update to this new release.
+
+
+3.7.0 (2021-07-26)
+~~~~~~~~~~~~~~~~~~
+
+TOPAS Version 3.7 is Released (26 July 2021)
+
+This release adds many new features and fixes some rare bugs.
+It is recommended that all users update to this new release.
+
+Among the New Features are:
+
+* Comprehensive Brachytherapy package.
+* Comprehensive MV Linac package.
+* New Particle Source Types: "Environment" and "Distributed".
+* New Scorers: "OriginCount" and "TrackLengthEstimator".
+* Ability to continue run until a given dose accuracy is achieved.
+* Simplified process to find and reuse a specific history's random seed.
+
+These and many other new features and fixes are detailed below.
+
+The underlying Geant4 toolkit has been upgraded to the latest version, Geant4.10.07.p2.
+
+As this is a minor TOPAS release, any setup that worked previously should continue
+to work with no changes needed to your parameter control files.
+However, as the underlying Geant4 version has changed, results may not be
+an exact match (due to statistical variation).
+
+
+
+Installation Notes:
+^^^^^^^^^^^^^^^^^^^
+
+Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
+
+Details in the Installation guide:
+
+* http://www.topasmc.org/user-guides/installation
+
+Users of some Linux versions previously had to download Geant4Headers.zip separately.
+We now include this file directly in all builds, so the separate download is no longer necessary.
+
+Users of some Linux versions, in particular some users on Windows WSL, previously had to issue
+"cmake" and "make" commands to use TOPAS even if they did not actually need any extensions.
+We have adjusted the RPATH settings of our build, such that this should no longer be necessary.
+
+Two of our previously supported Linux versions, CentOS6 and Debian8, have reached end of life.
+We are no longer building TOPAS for these versions.
+Supported systems are now:
+
+* topas_3_7_osx10_14.zip works for MacOS 10.12 through 10.14.
+* topas_3_7_osx10_15.zip works for MacOS 10.15 and newer (both Intel and M1 chip sets).
+* topas_3_7_debian9.tar.gz works for Debian 9, Debian 10, Ubuntu 18, Ubuntu 19 and Ubuntu 20.
+* topas_3_7_centos7.tar.gz works for CentOS 7 and RHEL 7.
+* topas_3_7_centos8.tar.gz works for CentOS 8 and RHEL 8.
+
+A comprehensive guide to help users of Windows systems install and run TOPAS using
+Windows Subsystem for Linux (WSL) can now be found at:
+
+* http://www.topasmc.org/user-guides
+
+
+
+Comprehensive new Brachytherapy package:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A major effort led by colleagues at Université Laval has given TOPAS a ready-to-use
+and well validated set of LDR and HDR brachytherapy source models.
+
+The team also provided a new scorer, TrackLengthEstimator, which uses the
+Track Length Estimator method to efficiently calculate dose in these simulations.
+
+New examples:
+
+* examples/Brachytherapy
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/examples-docs/Brachytherapy/index.html
+
+
+
+Comprehensive new MV Linac package:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Package includes new Geometry Components and a detailed example.
+
+**"TsJaws" is a new Geometry Component to construct a set of Jaws.**
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#jaws
+
+**"TsDivergingMLC" is a new Geometry Component to construct a Doubly Diverging Multi Leaf Collimator.**
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#doubly-diverging-multi-leaf-collimator
+
+**New example:**
+
+* examples/MVLinac/MainTxHead.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/examples-docs/MVLinac/index.html
+
+
+
+New Particle Source Types:
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Source Type: Environment**
+
+The Environment source creates an isotropic, uniform radiation field enclosing a specified component. It provides a radiation field that might be experienced, for example, by a spacecraft in a
+radiation belt, or by a robot (or, indeed a human) in a damaged nuclear reactor.
+
+New example:
+
+* examples/Basic/EnvironmentSource.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/source/environment.html
+
+
+**Source Type: Distributed**
+
+The Distributed source represents radioactive material randomly distributed within other material.
+The user specifies how many random source points to sample within the component.
+The particle generator will then start equal numbers of histories from each of these source points.
+
+The Distributed Source is in many ways similar to the Volumetric Source.
+But whereas the Volumetric Source samples a new point every time it generates a particle
+(to simulate random activity within a volume of radioactive material),
+the Distributed Source does this sampling only a the construction phase
+(to simulate a random distribution of radioactive particles within some other material).
+
+Parameters for the Distributed Source are::
+
+        s:So/Example/Type = "Distributed"
+	s:So/Example/Component = "DemoSphere"
+	i:So/Example/NumberOfHistoriesInRun = 5
+	i:So/Example/NumberOfSourcePoints = 4
+	b:So/Example/RedistributePointsOnNewHistory = "False"
+	s:So/Example/PointDistribution = "Gaussian" # default to "Flat"
+	d:So/Example/PointDistributionSigma = 20. mm
+
+And then the usual other parameters to control particle type, energy, etc., such as::
+
+	s:So/Example/BeamParticle = "gamma"
+	d:So/Example/BeamEnergy = 10. keV
+	u:So/Example/BeamEnergySpread = 0.
+
+New examples:
+
+* examples/Basic/DistributedSourcePointsInShell.txt
+* examples/Basic/DistributedSourcePointsInSphere.txt
+* examples/Basic/DistributedSourcePointsInSphereGaussian.txt
+* examples/Basic/DistributedSourcePointsInTwistedTubs.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/source/distributed.html
+
+
+
+New Scoring Features:
+^^^^^^^^^^^^^^^^^^^^^
+
+**Scorer: OriginCount**
+
+Scores how many particles originate in a given component.
+
+By combining this scorer with the OnlyIncludeParticlesNamed filter,
+one can create a scorer that tells how many particles of a given type were
+created in the component. That is, one can count reaction products.
+
+So, for example, the following will count how many neutrons were created::
+
+	s:Sc/MyScorer/Quantity = "OriginCount"
+	s:Sc/MyScorer/Component = "MyComponent"
+	sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "neutron"
+
+New example:
+
+* examples/Scoring/OriginCount.txt
+
+
+**Scorer: TrackLengthEstimator**
+
+Provides a more efficient dose calculation method of particular use in Brachytherapy.
+
+New example:
+
+* examples/Brachytherapy/DoseTLE.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/scoring/volume.html#tracklengthestimator
+
+
+**Scoring in Group Components**
+
+We have added the ability to score in a Group Component.
+You can attach any Volume Scorer to a Group if that Group has
+b:Ge/MyComponent/PropagateToChildren = "True"
+The scorer will accumulate hits in all children (recursively) of the given Group Component
+
+
+**Protection against excessive number of bins**
+
+Scorers are now protected against the user specifying so many bins that the bin index
+exceeds its allowed bounds, the MAX_INT (2,147,483,647).
+
+Remember that this number of bins may be larger than just the number of voxel divisions,
+as it may also be multiplied by the number of bins allocated for Energy or Time divisions.
+
+
+**Added new Scoring Filters to evaluate the Incident Particle**
+
+Recall that what TOPAS refers to as the "Incident Particle" is the particle that is first
+incident on the scoring component.
+For example, if a proton hits s TsBox of water, this proton is the Incident Particle,
+while the final scored particles may be this proton or any secondary of this proton
+(such as a delta ray produced by this proton).
+
+These new filters allow you to filter the scorer based on qualities of the Incident Particle.
+
+Examples of the new filters are::
+
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNamed = 1 "proton"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNotNamed = 1 "proton"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesFromProcess = 1 "hIoni"
+	sv:Sc/MyScorer/OnlyIncludeIfIncidentParticlesNotFromProcess = 1 "hIoni"
+	s:Sc/MyScorer/OnlyIncludeIfIncidentParticlesOfGeneration = "Primary"
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/scoring/filter.html
+
+
+**Added new Scoring Filters to evaluate how many times a particle has interacted**
+
+Users asked for a way to separate dose from first scatter versus dose from multiple scatter.
+Already existing filters could tell us whether a particle has interacted,
+but could not differentiate first scatter from subsequent scatter.
+
+We now keep count of how many times a particle has interacted, and offer several filters
+based on this count::
+
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountBelow
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNotBelow
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCount
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNot
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountAbove
+	i:Sc/MyScorer/OnlyIncludeParticlesWithInteractionCountNotAbove
+
+New example:
+
+* examples/Scoring/FilterByInteractionCount.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/scoring/filter.html
+
+
+
+Ability to continue run until a given dose accuracy is achieved.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users have requested a way to have TOPAS continue running until dose accuracy reaches
+a user-determined limit (rather than just running a pre-determined number of histories).
+This feature is now available, and we have done it in a general purpose way, such that
+run duration tests can depend upon any scored quantity (dose or otherwise).
+
+Because TOPAS supports time features, any accuracy test is only meaningful once the
+entire run sequence has occurred. Accordingly, the new system works by evaluating various
+tests only after the entire run sequence is complete (all Histories of all Runs). TOPAS then evaluates the tests, and repeats the entire run sequence until all tests have been satisfied.
+
+The tests are tied to the scoring system. Any scorer can have up to three tests.
+
+New parameters are::
+
+	d:Sc/MyScorer/RepeatSequenceUntilSumGreaterThan = 1. MeV # type can be d, u or i depending on scoring quantity
+	d:Sc/MyScorer/RepeatSequenceUntilStandardDeviationLessThan = .004 MeV # type can be d, u or i
+	i:Sc/MyScorer/RepeatSequenceUntilCountGreaterThan = 1200
+
+The second two tests above are necessary because the StandardDeviation is subject to
+statistical noise until a reasonable amount of data has been collected.
+By requiring a minimum Sum or minimum number of Counts, one can insure that there is
+enough data to use the StandardDeviation.
+
+Tests can be applied to as many scorers as you wish.
+The entire simulation will repeat until All tests on All scorers are satisfied.
+
+If the scorer has been binned in X, Y, Z, E or T, you must also specify which specific bin
+should be evaluated, using the parameters::
+
+	i:Sc/MyScorer/RepeatSequenceTestXBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestYBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestZBin = 2
+	i:Sc/MyScorer/RepeatSequenceTestEBin = 5
+	i:Sc/MyScorer/RepeatSequenceTestTimeBin = 0
+
+Remember that the tests will be evaluated only after the entire simulation sequence is complete.
+You should therefore set::
+
+	So/MySource/NumberOfHistoriesInRun
+
+to a value small enough that this end of test will be reached in a reasonable time.
+The final total number of histories will be that NumberOfHistoriesInRun times the number of
+times the testing process causes TOPAS to re-run the entire sequence.
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/overall/repeatsequenceuntil.html
+
+
+
+Simplified process to find and reuse a specific history's random seed.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When a rare issue is to be debugged, it is easier if one can make the simulation start
+immediately from the problematic history.
+To do this, one needs to know the seed number of that particular history.
+But if this issue causes a crash, it is then too late then to ask TOPAS to write out the seed.
+
+A new technique can help with this situation.
+For a given history number, TOPAS can quickly find you the appropriate seed,
+which you can then use in a subsequent job to start out right from the relevant history.
+
+Set the parameter::
+
+	i:Ts/FindSeedForHistory = 9998 # defaults to -1, meaning do not activate this feature
+
+And if you have multiple Runs::
+
+	i:Ts/FindSeedForRun = 0 # defaults to 0
+
+When you then run TOPAS, it will "fast forward" through a simulation to get just that history's seed.
+It skips most of the time-consuming parts of the simulation.
+Its only job is to find and write out the random seed.
+The seed information will be written to the console, and will also be written to a "seed file" such as:
+TopasSeedForRun_0_History_9998.txt
+
+This simulation will not be useful for anything else, but it will be very fast.
+TOPAS will:
+
+* Disable graphics
+* Disable GUI
+* Set physics to transportation_only
+* Disable setting of cuts
+* Disable variance reduction
+* Disable generators
+* Disable most UpdateForNewRun functions
+
+You can then set up a fresh, normal TOPAS session that will starts right from the desired history.
+To do so, remove that FindSeedForHistory parameter, and tell TOPAS to use the saved seed file::
+
+	s:Ts/SeedFile = "TopasSeedForRun_0_History_9998.txt" # Seed file saved in fast-forward job above
+
+If the seed file is not in the current directory, you can also specify a seed file directory::
+
+	s:Ts/SeedDirectory = "/Applications/tswork/testarea/SkipUntil" # defaults to read from current directory
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/overall/seed.html#how-to-save-and-reuse-random-seed-of-a-problematic-history
+
+
+
+Additional Geometry Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Geometry Component Type: TsPixelatedBox**
+
+The TsPixelatedBox constructs a pixelated geometry such as a pixel detector.
+
+New example:
+
+* examples/Optical/PixelatedDetector.txt
+
+Details in the User Guide:
+
+* https://topas.readthedocs.io/en/latest/parameters/geometry/specialized.html#pixelated-box
+
+
+**Geometry Component Type: G4GenericPolycone**
+
+G4GenericPolycone is a relatively new way to represent a Polycone.
+
+From the Geant4.10.0 release notes:
+"The G4Polycone solid no longer supports the case in which either the outer or the inner surface
+has more than one cone or tube section over a finite interval of Z values. These shapes must use
+the new class G4GenericPolycone instead. The general constructor of G4Polycone, which uses a
+series of vertices, includes a check whether the vertices are monotonic along Z for its inner and
+outer surfaces, and issues an error if not."
+
+New section in the ShapeTest examples:
+
+* examples/Basic/ShapeTest*
+
+
+**New Radial Binning Options for TsCylinder and TsSphere:**
+
+In the past, all RBins of the TsCylinder or TsCylinder had to be the same thickness.
+A new option allows you to specify Log binning or custom binning.
+
+New Parameter::
+
+	s:Ge/MyComponent/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
+
+For the Custom case, you then also specify a set of RBinValues::
+
+	dv:Ge/MyComponent/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
+
+The number of RBinValues must be the same as the number of RBins.
+
+Last value must equal the Cylinder or Sphere's RMax.
+
+
+**TsVPatient now has Trans and Rot parameters as Optional**
+
+The parameters TransX, TransY, TransZ, RotX, RotY and RotZ are supposed to be optional
+for all Geometry Components (they all default to zero).
+We found that they were still being required in TsVPatient.
+They are now optional.
+
+
+**TsImageCube now allows the non-vector form of NumberOfVoxelsZ and VoxelSizeZ**
+
+To support multiple slice thickness patients and phantoms,
+users have been allowed to specify the parameters NumberOfVoxelsZ and VoxelSizeZ
+either as dimensioned (d:) or dimensioned vector (dv:) parameters.
+This flexibility has now also been added to TsImageCube.
+
+So, for example, for the case of a single slice thickness section of 10 Z slices,
+where one used to have to specify::
+
+	iv:Ge/MyComponent/NumberOfVoxelsZ = 1 10
+	dv:Ge/MyComponent/VoxelSizeZ = 1 1. mm
+
+One can now just specify::
+
+	i:Ge/MyComponent/NumberOfVoxelsZ = 10
+	d:Ge/MyComponent/VoxelSizeZ = 1. mm
+
+
+**TsApertureArray no longer limits number of Beamlets**
+
+TsApertureArray was refusing to run if it had 300 or more Beamlets unless the GeometryMethod was
+not AddBeamlets. This was a protection against creating setups that were too slow to construct.
+This prohibition has now been changed to just a warning.
+
+
+**Verbosity Control for Geometry Construction:**
+
+Verbosity of geometry construction was previously controlled using the same parameter
+as the overall sequence verbosity::
+
+	i:Ts/SequenceVerbosity
+
+Geometry verbosity now has its own parameter::
+
+	i:Ts/GeometryVerbosity
+
+
+
+Additional Particle Source Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Emittance Source now supports Cutoff shape parameters:**
+
+The Emittance Source now supports the same Cutoff shape parameters as the Beam source::
+
+	s:So/MySource/BeamPositionCutoffShape = "Rectangle" # "Rectangle", "Ellipse" or "None". Defaults to "None"
+	d:So/MySource/BeamPositionCutoffX = 1. cm
+	d:So/MySource/BeamPositionCutoffY = 1. cm
+
+
+**Fix issues with PhaseSpace source reading TOPAS ASCII format**
+
+We had some bugs in the update of the PhaseSpace source in release 3.6.1.
+Users have been working around this by replacing::
+
+	So/MySource/Type = "PhaseSpace"
+
+with::
+
+	So/MySource/Type = "PhaseSpaceOld"
+
+Users are still welcome to stay with "PhaseSpaceOld" if the want,
+but we believe the new reader is now working correctly.
+The new reader also adds some functionality not present in the older reader,
+such as improved handling of empty histories,
+ability to skip the PreCheck, and better information from PreCheck.
+
+
+**Improve handling of Malformed IAEA phase space files:**
+
+Some of the files in the IAEA phase space repository seem to me to be malformed.
+Varian_TrueBeam6MV_01, for example, has no New History flags set at all.
+It also seems to have a proton as its first particle, even though the header says there are
+only photons, electrons and positrons.
+
+We confirmed that some other IAEA files work fine, such as ELEKTA_PRECISE_10mv_part1.
+
+We then added several new features to our reader to be able to read malformed files::
+
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
+
+We confirmed that we can read particles from Varian_TrueBeam6MV_01 if we either
+set the one parameter::
+
+	b:So/MySource/LimitedAssumeEveryParticleIsNewHistory = "true"
+
+or set the two parameters together::
+
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+	b:So/MySource/LimitedAssumePhotonIsNewHistory = "true"
+
+We found that if we set only::
+
+	b:So/MySource/LimitedAssumeFirstParticleIsNewHistory = "true"
+
+the job hangs (it tries to accumulate all of the millions of particles into a single history).
+
+New examples:
+
+* examples/PhaseSpace/ReadElekta.txt
+* examples/PhaseSpace/ReadVarian.txt
+
+
+**Improved PhaseSpace PreCheck Procedure:**
+
+The PhaseSpace PreCheck procedure reads the entire phsp file once before any histories are generated.
+This allows us to confirm that the contents of the phsp file properly matches the header file.
+
+While we continue to recommend that users leave this process in place,
+we accept that the process can be frustratingly slow, as phsp files can be very large.
+
+Therefore, we have made two changes:
+
+* It is now always permitted to turn off the PreCheck (limited used to always require PreCheck).
+
+* PreCheck will print out a progress update after a given number of particles are read.
+Default is to print out progress every 1M particles, but this interval can be adjusted with::
+
+	i:So/MySource/PreCheckShowParticleCountAtInterval = 100000
+
+PhaseSpace PreCheck now tests for Excited Ions.
+TOPAS does not allow excited ions in phase space unless the user has set::
+
+	Ts/TreatExcitedIonsAsGroundState = "True"
+
+This was causing some simulations to quite part way through simulation since this
+condition was only noted when the given particle was about to be simulated.
+We now test and warn about this during PreCheck.
+
+
+
+Additional Scoring Improvements:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Prevent value of NAN from appearing in DoseToMaterial or DoseToWater**
+
+We found cases where some scoring bins contained the special value NAN (meaning "not a number").
+This was because the scored particle had an energy too low for the given Geant4 stopping power table,
+resulting in a divide by zero in our stopping power conversion.
+
+We now test for this condition, avoid scoring in this case, and give a warning message.
+At the end of the session, we report the number of unscored particles and the total unscored energy.
+
+
+**Removed Invalid Tags that made our RTDose DICOM output files unreadable by some applications**
+
+When outputting scored values to RTDose DICOM files, we previously passed along some tags from the
+input DICOM that were invalid for RTDose DICOM files:
+
+* (0028, 1052) Rescale intercept
+* (0028, 1053) Rescale slope
+
+Some applications were then failing to read in our files. We no longer include these tags.
+
+
+**Added G4Track pointer to Extension Scorer's UserHookForEndOfTrack**
+
+The UserHookforendOfTrack method of a user-written scorer can now be more functional,
+as TOPAS now passes along the pointer to the G4Track.
+
+The new method signature is:
+
+* void UserHookForEndOfTrack(const G4Track *)
+
+
+
+Other Improvements:
+^^^^^^^^^^^^^^^^^^^
+
+**Materials no longer need to have Ma/MyMaterial/Fractions sum to 1**
+
+TOPAS had previously required that the sum of all Ma/MyMaterial/Fractions be exactly 1.
+
+A new option allows any values and then normalizes the fractions to unity for you::
+
+	b:Ma/MyMaterial/NormalizeFractions = "True" # Defaults to "False"
+
+
+Physics Setup Verbosity now has its own control
+
+The verbosity of the physics setup can now be controlled by::
+
+	i:Ph/Verbosity
+
+
+**Time Feature RepetitionInterval is no longer always required**
+
+In the past, Time Feature functions Linear, Sine, Cosine and Sqrt always required the parameter
+Tf/MyFunction/RepetitionInterval
+
+To make a time feature not repeat, it was necessary to set this value to a value
+longer than Tf/TimelineEnd.
+
+Tf/MyFunction/RepetitionInterval is now optional, with the default being that there will be no repetition.
+
+
+**Bug Fix for Variance Reduction DirectionalRussianRoulette**
+
+We found that the variance reduction feature DirectionalRussianRoulette was not taking into account
+the position of the reference component in the calculation of particle direction towards the ROI.
+This has been fixed.
+
+
+**Region-specific production cuts**
+
+We have made some refinements to how production cuts are set, in particular when there are
+multiple Regions.
+
+Previous behavior: Region-specific production cuts were set to 0.05 mm unless specifically set
+for each particle, regardless of production cuts set for the general simulation.
+
+New behavior: Region-specific cuts are now set to the value for all particles ("CutForAllParticles")
+and for specific particles based on the production cuts set for the general simulation.
+Particle-specific cuts (CutForElectron, CutForGamma, etc.) take precedence over CutForAllParticles.
+If setting CutForAllParticles for a region this sets the cuts for all particles in that region;
+particle-specific cuts for a region take precedence over all otherwise specified values in that region.

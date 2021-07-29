@@ -9,4 +9,5 @@ Overall Control
     mode
     multithreading
     seed
+    repeatsequenceuntil
     misc

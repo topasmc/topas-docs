@@ -70,12 +70,12 @@ The following will result in a display that shows 27 pixels comprising the bound
 You have the Option to Load a Truncated DICOM, XiO or ImageCube.
 Parameters to restrict which voxels of a patient image are loaded are::
 
-    i:Ge/*/RestrictVoxelsXMin
-    i:Ge/*/RestrictVoxelsYMin
-    i:Ge/*/RestrictVoxelsZMin
-    i:Ge/*/RestrictVoxelsXMax
-    i:Ge/*/RestrictVoxelsYMax
-    i:Ge/*/RestrictVoxelsZMax
+    i:Ge/MyComponent/RestrictVoxelsXMin
+    i:Ge/MyComponent/RestrictVoxelsYMin
+    i:Ge/MyComponent/RestrictVoxelsZMin
+    i:Ge/MyComponent/RestrictVoxelsXMax
+    i:Ge/MyComponent/RestrictVoxelsYMax
+    i:Ge/MyComponent/RestrictVoxelsZMax
 
 The previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.
 The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
@@ -127,6 +127,10 @@ Patient positioning information from the DICOM file is not currently used. You m
     d:Ge/Patient/RotX=0. deg
     d:Ge/Patient/RotY=0. deg
     d:Ge/Patient/RotZ=0. deg
+
+You can ask TOPAS to print out the slice separation that it finds in in the DICOM series::
+
+    b:Ge/MyComponent/ShowSliceSeparations = "True"
 
 TOPAS can read DICOM RT Structure Sets.
 A structure set is an extra file in the DICOM directory that provides information on structures such as organs, tumors, PTVs, etc. that have been outlined (contoured) in the planning process. The data is stored as a set of polygons, up to one per slice for each contoured structure. TOPAS can color code DICOM components according to this structure information and can filter scoring based on these structures (see the filter: OnlyIncludeIfInRTStructure).
@@ -400,7 +404,7 @@ The second set of parameters in the HU file are used to calculate material name 
 
 * Specifies how to break up the entire set of HU units into several material name assignment sections.
 * The total range (last value minus first value) must equal the number of values in ``DensityCorrection``.
-* In the above example, the 26 values define 7 material name assignment sections:
+* In the above example, the 26 values define 25 material name assignment sections:
 
     * Section 1: -1000 to -949
     * Section 2: -50 to -119
@@ -426,10 +430,10 @@ The second set of parameters in the HU file are used to calculate material name 
 * You may optionally provide this parameter to override the default mean excitation energies of some or all of the materials.
 * There should be one value for each material name assignment section.
 * To use the default mean excitation energy for a particular material, enter that value as 0.
-* For example, the following just overrides defaults for two out of 26 assignment sections::
+* For example, the following just overrides defaults for two out of 25 assignment sections::
 
-    dv:Ge/Patient/SchneiderMaterialMeanExcitationEnergy = 26 88.8 0. 77.7. 0. 0. 0. 0. 0.
-    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. eV
+    dv:Ge/Patient/SchneiderMaterialMeanExcitationEnergy = 25 88.8 0. 77.7 0. 0. 0. 0. 0.
+    0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. eV
 
 ``iv:Gr/Color/PatientTissue1``:
 

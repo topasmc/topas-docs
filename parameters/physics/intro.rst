@@ -10,6 +10,8 @@ but which can no longer be used since that list corresponded to a much earlier G
 
 The choice of physics list generally depends on the accuracy required for the scored quantities and the speed of the calculation. The Geant4 Medical Simulation Benchmark Group (G4MSBG) has collected a comprehensive set of mainly measured benchmarks that are run at the time of each Geant4 release. Results may be viewed at https://geant-val.cern.ch/ (see Arce et al, “Report on G4-Med, a Geant4 benchmarking system for medical physics applications developed by the Geant4 Medical Physics Benchmarking Group,” In press, Med Phys, April 2020). Future benchmarks will include the trade-off with speed. 
 
+The default list we provide is a Modular physics list. It is specified by the parameters described :ref:`here <parameters_default_physics>`.
+
 Advanced users can set their own parameters to override some of these default settings, or can specify entirely different physics lists.
 
 You can choose from two general types of physics lists:

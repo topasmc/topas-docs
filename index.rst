@@ -42,7 +42,9 @@ Welcome to the TOPAS documentation!
     :caption: Example Parameter Files
 
     examples-docs/Basic/index
+    examples-docs/Brachytherapy/index
     examples-docs/Graphics/index
+    examples-docs/MVLinac/index
     examples-docs/Nozzle/index
     examples-docs/Optical/index
     examples-docs/Outcome/index
@@ -69,7 +71,7 @@ Welcome to the TOPAS documentation!
     extension-docs/field
     extension-docs/imaging
     extension-docs/user_hook
-
+ 
 
 .. toctree::
     :maxdepth: 1

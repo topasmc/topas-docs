@@ -60,7 +60,7 @@ You must provide appropriate ``StartValue`` and ``Rate`` parameters, such as::
     d:Tf/ArmRot/Rate = 2. deg/ms
     d:Tf/ArmRot/StartValue = 0.0 deg
 
-You must also provide a ``RepetitionInterval``, the time interval after which the function will return to the ``StartValue``.
+``RepetitionInterval``, is the time interval after which the function will reset to the ``StartValue``. If you do not provide this parameter, the function will not reset.
 
 
 
@@ -75,10 +75,15 @@ Here is an example of a Step time feature that controls a String::
     dv:Tf/ImageName/Times = 3 10 20 30 ms
     sv:Tf/ImageName/Values = 3 "lung-1" "lung-2" "lung-3"
 
-* The first value is used for times 0 to 10 ms.
+* The first value is used for times ``Tf/TimelineStart`` to 10 ms.
+* If ``Tf/TimelineStart`` was not specified, it defaults to 0, so that first value will be used for times 0 to 10 ms.
 * The second value is used for times 10 to 20 ms.
 * The third value is used for times 20 to 30 ms.
 * After 30 ms, the value cycles back to the first value.
+
+Note that the first member of Values is not the time that the first Value should be used.
+It is the time that the first Change of value should be made.
+The first Value will be used for the time between ``Tf/TimelineStart`` and that first member of Tf/*/Times.
 
 Note that whereas continuous functions (Linear, Sine, Cosine and Sqrt) include a ``RepetitionInterval``, Step Functions do not. They just cycle back to the first ``Value`` after the last of the ``Times`` is reached.
 

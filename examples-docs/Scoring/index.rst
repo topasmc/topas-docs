@@ -15,6 +15,7 @@ Scoring
 	EnergyDivisions
 	EnergyInBinnedCylinder
 	Filters
+	FilterByInteractionCount
 	FoilToBox
 	FoilToCylinder
 	FoilToSphere
@@ -24,6 +25,7 @@ Scoring
 	Inactive
 	Ion
 	Origin
+	OriginCount
 	ParallelBoxRebinned
 	SplitByTimeFeature
 	Surfaces

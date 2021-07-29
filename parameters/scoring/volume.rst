@@ -5,27 +5,39 @@ Volume Scorers
 
 Here are the available volume scorers:
 
-==================  =======================================
-Quantity            Description
-==================  =======================================
-DoseToMedium        sum of energy deposits divided by mass
-DoseToWater         from energy-dependent stopping power conversion (see below)
-DoseToMaterial      from energy-dependent stopping power conversion (see below)
-EnergyDeposit       sum of energy deposits
-Fluence             sum of step lengths divided by volume
-EnergyFluence       sum of step lengths times energy divided by volume
-StepCount           counting number of Geant4 steps in the volume
-OpticalPhotonCount  fills an ntuple with information about optical photons seen in volume
-Charge              counting method described below
-EffectiveCharge     counting method described below
-ProtonLET           various methods described below
-==================  =======================================
+=====================  =======================================
+Quantity               Description
+=====================  =======================================
+DoseToMedium            sum of energy deposits divided by mass
+DoseToWater             from energy-dependent stopping power conversion (see below)
+DoseToMaterial          from energy-dependent stopping power conversion (see below)
+TrackLengthEstimator    dose calculated using the track-length etimator technique
+AmbientDoseEquivalent   sum of fluence times fluence-to-effective dose conversion coefficients
+EnergyDeposit           sum of energy deposits
+Fluence                 sum of step lengths divided by volume
+EnergyFluence           sum of step lengths times energy divided by volume
+StepCount               counting number of Geant4 steps in the volume
+OpticalPhotonCount      fills an ntuple with information about optical photons seen in volume
+OriginCount		counts how many particles originate in a given component
+Charge                  counting method described below
+EffectiveCharge         counting method described below
+ProtonLET               various methods described below
+=====================  =======================================
 
 Volume Scorers must indicate the relevant ``Component``::
 
     s:Sc/MyScorer/Component = "Phantom"
 
-For DoseToMaterial, you must also specify the ``Material``::
+When your scoring component is the Parent of other components, you have the option to set scoring to record particles not only in the parent component, but also in its children::
+
+    b:Sc/MyScorer/PropagateToChildren = "True"
+
+This action is recursive to all levels of subcomponents.
+
+DoseToMaterial:
+---------------
+
+you must also specify the ``Material``::
 
     s:Sc/MyScorer/Material = "SomeMaterial"
 
@@ -33,7 +45,44 @@ Note that in this case, the material name must exactly match the case defined in
 
     i:Ma/Verbosity = 1
 
-For DoseToWater and DoseToMaterial, we use energy-dependent stopping power conversion as in:
+TrackLengthEstimator:
+---------------------
+
+Dose is calculated using a linear Track Length Estimator (TLE).
+The TLE technique approximates the absorbed dose as electronic (collisional) kerma.
+The dose along the voxels a photon encounters in its path between successive collisions is accounted for, resulting in a drastic variance reduction.
+
+Use of this scorer is demonstrated in examples/Brachytherapy/DoseTLE.txt
+
+The TOPAS TrackLengthEstimator is further described at:
+
+* Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
+    
+AmbientDoseEquivalent:
+----------------------
+
+Scoring is performed per single particle::
+
+    s:Sc/MyScorer/Quantity = "AmbientDoseEquivalent"
+    s:Sc/MyScorer/Component = "MyDetectorComponent"
+    s:Sc/MyScorer/GetAmbientDoseEquivalentForParticleNamed = 1 “neutron”
+
+The scorer uses a track-length estimator, a variance reduction technique that consists of retrieving the absorbed dose at the scoring regions (voxels) located along the particle path until the point of interaction. That improves the computational efficiency substantially for neutral particles.  To that end, the ambient dose equivalent is obtained by folding the incident particle fluence, defined as the particle’s track-length divided by the scorer’s volume [1], with linearly-interpolated fluence-to-effective dose conversion coefficients. Then, the user needs to provide the corresponding fluence-to-effective dose conversion coefficients for a range of incident energy values using a couple of dimensioned double vectors::
+
+    dv:Sc/MyScorer/FluenceToDoseConversionEnergies = 30 ... MeV
+    dv:Sc/MyScorer/FluenceToDoseConversionValues = 30 ... Sv*mm2
+    
+The example AmbientDoseEquivalent.txt provides a complete example for neutron particles. It uses the fluence-to-effective dose conversion coefficients from reference [2], downloaded from reference [3].
+
+[1] Attix FH, Introduction to radiological physics and radiation dosimetry, 1986 Wyley-VCH, Chapter 1, Section III.D. 
+
+[2] Pelliccioni, M. Overview of Fluence-to-Effective Dose and Fluence-to-Ambient Dose Equivalent Conversion Coefficients for High Energy Radiation Calculated Using the FLUKA Code, Radiat. Prot. Dosim. 88(4), 279-297 (2000).
+
+[3] http://www.fluka.org/fluka.php?id=examples&sub=example4  Accessed on March 10, 2021.
+
+DoseToWater and DoseToMaterial:
+-------------------------------
+we use energy-dependent stopping power conversion as in:
 
 .. code-block:: c++
 
@@ -58,7 +107,24 @@ For ``PreCalculateStoppingPowerRatios``, the table of stopping power ratios can 
     Sc/MyScorer/MinElectronEnergyForStoppingPowerRatio # default is 1 keV
     Sc/MyScorer/MaxElectronEnergyForStoppingPowerRatio # default is 1 MeV
 
-For Charge and EffectiveCharge:
+OriginCount:
+------------
+
+By combining this scorer with the OnlyIncludeParticlesNamed filter,
+one can create a scorer that tells how many particles of a given type were
+created in the component. That is, one can count reaction products.
+
+So, for example, the following will count how many neutrons were created::
+
+    s:Sc/MyScorer/Quantity = "OriginCount"
+    s:Sc/MyScorer/Component = "MyComponent"
+    sv:Sc/MyScorer/OnlyIncludeParticlesNamed = 1 "neutron"
+
+See example:
+examples/Scoring/OriginCount.txt
+
+Charge and EffectiveCharge:
+---------------------------
 
 * If a particle reaches zero kinetic energy in the scoring volume, its charge is accumulated
 * If a particle is generated in the scoring volume, its charge is subtracted

@@ -70,12 +70,12 @@ Fixed: Reading of XCAT Phantoms and other simple ImageCube implementations
 *Improved:* Option to Load a Truncated DICOM, XiO or ImageCube
      The previous parameters, ``ShowSpecificSlicesVoxels``, affected only the graphical output of the voxels. The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics. These new parameters, ``RestrictVoxels``, have a much more significant effect: they cause TOPAS to not even load some parts of the patient. This can save a lot of time and allow you to test things on DICOM or other image formats quickly, as you only have to load whatever part of the DICOM you actually want to use. But beware: if you use this option, you will change your results. It does not only affect graphics, it actually avoids creating the given voxels at all. Though our main motivation for this work was to get a way to do more rapid development (testing on real patients without the slowdown of loading everything), there may be a value also for our brachytherapy users. They may only need to load the part of the image that is near the brachy source. New parameters allow you to restrict which voxels of a patient image are loaded::
 
-        i:Ge/*/RestrictVoxelsXMin
-        i:Ge/*/RestrictVoxelsYMin
-        i:Ge/*/RestrictVoxelsZMin
-        i:Ge/*/RestrictVoxelsXMax
-        i:Ge/*/RestrictVoxelsYMax
-        i:Ge/*/RestrictVoxelsZMax
+        i:Ge/MyComponent/RestrictVoxelsXMin
+        i:Ge/MyComponent/RestrictVoxelsYMin
+        i:Ge/MyComponent/RestrictVoxelsZMin
+        i:Ge/MyComponent/RestrictVoxelsXMax
+        i:Ge/MyComponent/RestrictVoxelsYMax
+        i:Ge/MyComponent/RestrictVoxelsZMax
 
 *Improved:* ``ViewAbdoment.txt`` Example has been Sped Up
      We have modified our simplest example of viewing a DICOM, ``examples/Patient/ViewAbdomen.txt`` by applying the new ``RestrictVoxels`` parameters described above.
@@ -86,7 +86,7 @@ Fixed: Reading of XCAT Phantoms and other simple ImageCube implementations
 *Improved:* Energy Binning
      We have understood that some users want to use our energy binning (EBins) for a different thing than we designed. From our proton therapy dose calculation roots, the energy binning that we currently do is based not on the energy of the final particle at hit deposition time but instead on the incident particle energy. This is the energy of the final scored particle, or its ancestor, when that particle or ancestor was first incident on the scoring volume. However, users who have been trying to use this feature to get a spectrum instead need the particle's energy at the current step. So we have now added a parameter to control what kind of energy we use for this binning::
 
-        s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
+        s:Sc/MyScorer/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
         
 * "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
 * "PreStep" is the track's energy at the start of the current step.
@@ -113,7 +113,7 @@ Fixed: Reading of XCAT Phantoms and other simple ImageCube implementations
 *Added:* Volumetric Particle Source
      A new Particle Source type, Volumetric, has been designed for Brachytherapy applications (though there may be other applications as well). It randomly samples particle starting positions from within the radioactive volume of a given component. When you have a Source of Type "Volumetric", Topas will expect a second parameter::
      
-        s:Sc/*/ActiveMaterial
+        s:Sc/MyScorer/ActiveMaterial
         
      to specify which material within the given component should be considered radioactive. So, for example, if you have:: 
 
@@ -184,19 +184,19 @@ Fixed: Reading of XCAT Phantoms and other simple ImageCube implementations
 *Added:* Centering Graphics on a Given Component
      A new graphics parameter allows you to center the view on a given component::
 
-        s:Gr/*/CenterOn = "MyComponent"
+        s:Gr/MyView/CenterOn = "MyComponent"
         
-     Topas will then ignore any parameters of the form: ``Gr/*/TransX`` or ``Gr/*/TransY``
+     Topas will then ignore any parameters of the form: ``Gr/MyView/TransX`` or ``Gr/MyView/TransY``
 
 *Added:* Scaling Graphics by Different Amounts in X, Y an Z
      New parameters allow you to scale by different amounts in each dimension::
 
-        uv:Gr/*/Scale = 3 1. 2. 3.
+        uv:Gr/MyView/Scale = 3 1. 2. 3.
         
      would scale by 1 in X, by 2 in Y and by 3 in Z.
 
 *Improved:* Zooming to the Nanometer Scale
-     With very large ``Gr/*/Zoom`` values, as one might use to zoom into the nano scale, floating point errors in the graphics card lead to discontinuous jumps in the image position. This makes it difficult to center or size the view as one wishes, but an easy workaround has been understood. If one simply makes the world invisible, then because the initial graphics extent only includes the nanometer scale components, one doesn't need much zoom. This effect and its solution are demonstrated in the new example ``examples/Graphics/NanoMeterScaleTest.txt``
+     With very large ``Gr/MyView/Zoom`` values, as one might use to zoom into the nano scale, floating point errors in the graphics card lead to discontinuous jumps in the image position. This makes it difficult to center or size the view as one wishes, but an easy workaround has been understood. If one simply makes the world invisible, then because the initial graphics extent only includes the nanometer scale components, one doesn't need much zoom. This effect and its solution are demonstrated in the new example ``examples/Graphics/NanoMeterScaleTest.txt``
 
 *Improvemed:* Controlling Console Output
      You can add time stamps to the history count::

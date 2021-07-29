@@ -1,0 +1,9 @@
+# TOPAS Version: 1.2_expanded
+# Parameter File: TestOutcomeModel.txt
+# Results for scorer OAR1
+# Scored in component: WaterPhantom/OAR1
+# X in 20 bins of 0.1 cm
+# Y in 20 bins of 0.1 cm
+# Z in 44 bins of 0.1 cm
+# DoseToMedium ( Gy ) : Sum   
+# Binary file: DoseAtOAR1.bin

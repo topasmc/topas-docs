@@ -49,8 +49,7 @@ d:Ge/MonitorChamber1/RotY     = 0.0 deg
 d:Ge/MonitorChamber1/RotZ     = 0.0 deg
 d:Ge/MonitorChamber1/TransX   = 0.0 mm
 d:Ge/MonitorChamber1/TransY   = 0.0 mm
-d:Ge/MonitorChamber1/MinusHL  = Ge/MonitorChamber1/HL mm * -1.0
-d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 + Ge/MonitorChamber1/MinusHL mm
+d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 - Ge/MonitorChamber1/HL mm
 b:Ge/MonitorChamber1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer1/Parent   = "MonitorChamber1"
@@ -103,7 +102,7 @@ b:Ge/MonitorChamber1/Layer3/Include  = "TRUE"
 
 #Distance calculation for Pipe
 d:Ge/DistanceOf_BottomMon1_To_TopPipe = -20.0 mm
-d:Ge/ZMinusOf_Mon1  = Ge/MonitorChamber1/TransZ + Ge/MonitorChamber1/MinusHL mm
+d:Ge/ZMinusOf_Mon1  = Ge/MonitorChamber1/TransZ - Ge/MonitorChamber1/HL mm
 d:Ge/ZPlusOf_Pipe   = Ge/ZMinusOf_Mon1 + Ge/DistanceOf_BottomMon1_To_TopPipe mm
 
 ############################################
@@ -142,8 +141,6 @@ d:Ge/DistanceOf_BottomPipeExtension_To_BPM2         = -0.0 mm
 
 d:Ge/HLOf_DipoleCoil1             = Ge/HLOf_Dipole1 + Ge/DistanceOf_Coil1_Dipole1 cm
 d:Ge/HLOf_DipoleCoil2             = Ge/HLOf_Dipole2 + Ge/DistanceOf_Coil2_Dipole2 cm
-d:Ge/MinusHLOf_DipoleCoil1        = Ge/HLOf_DipoleCoil1 cm * -1.0
-d:Ge/MinusHLOf_DipoleCoil2        = Ge/HLOf_DipoleCoil2 cm * -1.0
 
 d:Ge/FLOf_DipoleCoil1             = Ge/HLOf_DipoleCoil1 cm * 2.0
 d:Ge/FLOf_DipoleCoil2             = Ge/HLOf_DipoleCoil2 cm * 2.0
@@ -152,11 +149,9 @@ d:Ge/FLOf_DipoleCoil1_DipoleCoil2 = Ge/FLOf_DipoleCoil1 + Ge/FLOf_DipoleCoil2  c
 d:Ge/FLOf_PipeInQuads             = 2.0 * Ge/HLOf_PipeInQuads cm
 
 d:Ge/HLOf_PipeConnector           = Ge/FLOf_PipeConnector cm * 0.5
-d:Ge/MinusHLOf_PipeConnector      = Ge/FLOf_PipeConnector cm * -0.5
 
 d:Ge/FLOf_PipeInDipoles           = Ge/FLOf_DipoleCoil1_DipoleCoil2 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
 d:Ge/HLOf_PipeInDipoles           = Ge/FLOf_PipeInDipoles cm * 0.5
-d:Ge/MinusHLOf_PipeInDipoles      = Ge/FLOf_PipeInDipoles cm * -0.5
 
 d:Ge/FLOf_QuadsDipoles            = Ge/FLOf_PipeInDipoles + Ge/FLOf_PipeInQuads cm
 
@@ -258,7 +253,7 @@ d:Ge/PipeConnector/HLY1     = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
 d:Ge/PipeConnector/HLZ      = Ge/HLOf_PipeConnector  mm
 d:Ge/PipeConnector/TransX   = 0.0 mm
 d:Ge/PipeConnector/TransY   = 0.0 mm
-d:Ge/PipeConnector/TransZ   = Ge/ZPlusPipeConnector + Ge/MinusHLOf_PipeConnector mm
+d:Ge/PipeConnector/TransZ   = Ge/ZPlusPipeConnector - Ge/HLOf_PipeConnector mm
 d:Ge/PipeConnector/RotX     = 0.0 deg
 d:Ge/PipeConnector/RotY     = 0.0 deg
 d:Ge/PipeConnector/RotZ     = 0.0 deg
@@ -280,7 +275,7 @@ d:Ge/PipeConnector/Gas/RotY     = 0.0 deg
 d:Ge/PipeConnector/Gas/RotZ     = 0.0 deg
 b:Ge/PipeConnector/Gas/Include  = "TRUE"
 
-d:Ge/ZPlusPipeInDipoles = Ge/PipeConnector/TransZ + Ge/MinusHLOf_PipeConnector cm
+d:Ge/ZPlusPipeInDipoles = Ge/PipeConnector/TransZ - Ge/HLOf_PipeConnector cm
 
 s:Ge/PipeInDipoles/Parent   = "BeamPipeInQuadsDipoles"
 s:Ge/PipeInDipoles/Type     = "TsBox"
@@ -290,7 +285,7 @@ d:Ge/PipeInDipoles/HLY      = Ge/HLxyOf_Dipoles + Ge/ThicknessOf_Pipe mm
 d:Ge/PipeInDipoles/HLZ      = Ge/HLOf_PipeInDipoles cm
 d:Ge/PipeInDipoles/TransX   = 0.0 mm
 d:Ge/PipeInDipoles/TransY   = 0.0 mm
-d:Ge/PipeInDipoles/TransZ   = Ge/ZPlusPipeInDipoles + Ge/MinusHLOf_PipeInDipoles cm
+d:Ge/PipeInDipoles/TransZ   = Ge/ZPlusPipeInDipoles - Ge/HLOf_PipeInDipoles cm
 d:Ge/PipeInDipoles/RotX     = 0.0 deg
 d:Ge/PipeInDipoles/RotY     = 0.0 deg
 d:Ge/PipeInDipoles/RotZ     = 0.0 deg
@@ -321,7 +316,7 @@ d:Ge/Dipole1/HLY           = Ge/PipeInDipoles/Gas/HLY mm
 d:Ge/Dipole1/HLZ           = Ge/HLOf_Dipole1 mm
 d:Ge/Dipole1/TransX        = 0.0 cm
 d:Ge/Dipole1/TransY        = 0.0 cm
-d:Ge/Dipole1/TransZ        = Ge/HLOf_PipeInDipoles + Ge/MinusHLOf_DipoleCoil1  mm
+d:Ge/Dipole1/TransZ        = Ge/HLOf_PipeInDipoles - Ge/HLOf_DipoleCoil1  mm
 d:Ge/Dipole1/RotX          = 0.0 deg
 d:Ge/Dipole1/RotY          = 0.0 deg
 d:Ge/Dipole1/RotZ          = 0.0 deg
@@ -331,7 +326,7 @@ u:Ge/Dipole1/MagneticFieldDirectionY    = 0.0
 u:Ge/Dipole1/MagneticFieldDirectionZ    = 0.0
 d:Ge/Dipole1/MagneticFieldStrength      = 0.0 tesla
 
-d:Ge/ZMinusOf_Dipole1 = Ge/Dipole1/TransZ + Ge/MinusHLOf_DipoleCoil1 mm
+d:Ge/ZMinusOf_Dipole1 = Ge/Dipole1/TransZ - Ge/HLOf_DipoleCoil1 mm
 d:Ge/ZPlusOf_Dipole2  = Ge/ZMinusOf_Dipole1 + Ge/DistanceOf_BottomDipoleCoil1_To_TopDipoleCoil2 cm
 
 s:Ge/Dipole2/Type          = "TsBox"
@@ -342,7 +337,7 @@ d:Ge/Dipole2/HLY           = Ge/PipeInDipoles/Gas/HLY mm
 d:Ge/Dipole2/HLZ           = Ge/HLOf_Dipole2 mm
 d:Ge/Dipole2/TransX        = 0.0 cm
 d:Ge/Dipole2/TransY        = 0.0 cm
-d:Ge/Dipole2/TransZ        = Ge/ZPlusOf_Dipole2 + Ge/MinusHLOf_DipoleCoil2  mm
+d:Ge/Dipole2/TransZ        = Ge/ZPlusOf_Dipole2 - Ge/HLOf_DipoleCoil2  mm
 d:Ge/Dipole2/RotX          = 0.0 deg
 d:Ge/Dipole2/RotY          = 0.0 deg
 d:Ge/Dipole2/RotZ          = 0.0 deg
@@ -367,10 +362,9 @@ s:Ge/BeamProfileMonitor1/Material = "NiGas"
 d:Ge/BeamProfileMonitor1/HLX      = 92.0 mm
 d:Ge/BeamProfileMonitor1/HLY      = 92.0 mm
 d:Ge/BeamProfileMonitor1/HLZ      = 22.0 mm
-d:Ge/BeamProfileMonitor1/MinusHL  = Ge/BeamProfileMonitor1/HLZ mm * -1.0
 d:Ge/BeamProfileMonitor1/TransX   = 0.0   mm
 d:Ge/BeamProfileMonitor1/TransY   = 0.0   mm
-d:Ge/BeamProfileMonitor1/TransZ   = Ge/ZPlusOf_BPM1 + Ge/BeamProfileMonitor1/MinusHL cm
+d:Ge/BeamProfileMonitor1/TransZ   = Ge/ZPlusOf_BPM1 - Ge/BeamProfileMonitor1/HLZ cm
 d:Ge/BeamProfileMonitor1/RotX     = 0.0 deg
 d:Ge/BeamProfileMonitor1/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor1/RotZ     = 0.0 deg
@@ -451,12 +445,11 @@ dv:Ge/MWC_In_BPM1/Layer2/Displacement = 72
  48.0145  50.0145  52.0145  54.0145  56.0145 58.0145  60.0145  62.0145  64.0145  66.0145
  68.0145  70.0145 mm
 
-d:Ge/ZMinusOf_BPM1         = Ge/BeamProfileMonitor1/TransZ + Ge/BeamProfileMonitor1/MinusHL mm
+d:Ge/ZMinusOf_BPM1         = Ge/BeamProfileMonitor1/TransZ - Ge/BeamProfileMonitor1/HLZ mm
 d:Ge/ZPlusOf_PipeExtension =  Ge/ZMinusOf_BPM1  + Ge/DistanceOf_BottomBPM1_To_PipeExtension mm
 
 d:Ge/FLOf_PipeExtension      = 80.0 cm
 d:Ge/HLOf_PipeExtension      = Ge/FLOf_PipeExtension cm * 0.5
-d:Ge/MinusHLOf_PipeExtension = Ge/FLOf_PipeExtension cm * -0.5
 
 
 ########################################
@@ -476,7 +469,7 @@ d:Ge/PipeExtension/HLY1     = 122.0   mm
 d:Ge/PipeExtension/HLZ      = Ge/HLOf_PipeExtension  mm
 d:Ge/PipeExtension/TransX   = 0.0 mm
 d:Ge/PipeExtension/TransY   = 0.0 mm
-d:Ge/PipeExtension/TransZ   = Ge/ZPlusOf_PipeExtension + Ge/MinusHLOf_PipeExtension mm
+d:Ge/PipeExtension/TransZ   = Ge/ZPlusOf_PipeExtension - Ge/HLOf_PipeExtension mm
 d:Ge/PipeExtension/RotX     = 0.0 deg
 d:Ge/PipeExtension/RotY     = 0.0 deg
 d:Ge/PipeExtension/RotZ     = 0.0 deg
@@ -498,7 +491,7 @@ d:Ge/PipeExtension/Gas/RotY     = 0.0 deg
 d:Ge/PipeExtension/Gas/RotZ     = 0.0 deg
 b:Ge/PipeExtension/Gas/Include  = "TRUE"
 
-d:Ge/ZMinusOf_PipeExtension = Ge/PipeExtension/TransZ + Ge/MinusHLOf_PipeExtension mm
+d:Ge/ZMinusOf_PipeExtension = Ge/PipeExtension/TransZ - Ge/HLOf_PipeExtension mm
 d:Ge/ZPlusOf_BPM2 = Ge/ZMinusOf_PipeExtension  + Ge/DistanceOf_BottomPipeExtension_To_BPM2 mm
 
 ########################################
@@ -512,10 +505,9 @@ s:Ge/BeamProfileMonitor2/Material = "NiGas"
 d:Ge/BeamProfileMonitor2/HLX      = 152.0 mm
 d:Ge/BeamProfileMonitor2/HLY      = 152.0 mm
 d:Ge/BeamProfileMonitor2/HLZ      = 25.0 mm
-d:Ge/BeamProfileMonitor2/MinusHL  = Ge/BeamProfileMonitor2/HLZ mm * -1.0
 d:Ge/BeamProfileMonitor2/TransX   = 0.0   mm
 d:Ge/BeamProfileMonitor2/TransY   = 0.0   mm
-d:Ge/BeamProfileMonitor2/TransZ   = Ge/ZPlusOf_BPM2 + Ge/BeamProfileMonitor2/MinusHL mm
+d:Ge/BeamProfileMonitor2/TransZ   = Ge/ZPlusOf_BPM2 - Ge/BeamProfileMonitor2/HLZ mm
 d:Ge/BeamProfileMonitor2/RotX     = 0.0 deg
 d:Ge/BeamProfileMonitor2/RotY     = 0.0 deg
 d:Ge/BeamProfileMonitor2/RotZ     = 0.0 deg

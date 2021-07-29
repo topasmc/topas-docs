@@ -35,7 +35,8 @@ Additional parameters specify the TWISS alpha, beta and gamma as shown in the fo
     u:So/MySource/ParticleFractionX = 0.90
     u:So/MySource/ParticleFractionY = 0.90
 
-The energies and species of the emitted particles can be specified using the same parameters available to the :ref:`source_beam`.
+The energies and species of the emitted particles and the Cutoff Shape Parameters
+can be specified using the same parameters available to the :ref:`source_beam`.
 
 The following images based on the :ref:`example_basic_emittance_twiss` example show how particle position and momentum directions are sampled and the shape of the beam spots (purple). The blue solid lines in X (red dots) and Y (green dots) represent the Courant-Snyder invariant ellipse. For example, 90% of particles are sampled from the given emittance ellipse in (a).
 

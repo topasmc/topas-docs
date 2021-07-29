@@ -3,7 +3,7 @@
 
 s:Ge/MyBox/Type     = "TsBox"
 sc:Ge/MyBox/Material = "G4_WATER"
-sc:Ge/MyBox/Parent   = "World"
+s:Ge/MyBox/Parent   = "World"
 dc:Ge/MyBox/HLX      = 1.5 m
 dc:Ge/MyBox/HLY      = 1. m
 dc:Ge/MyBox/HLZ      = 1. m

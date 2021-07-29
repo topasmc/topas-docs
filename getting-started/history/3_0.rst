@@ -28,7 +28,7 @@ We took the opportunity of a major release to revise some parameter names with t
     Can now add multiple filter extensions simultaneously.
 
 *Improved:* geometry component types now case-insensitive
-    It no longer matters what case you use in ``Ge/*/Type`` values. So, for example, you could use ``"tsBox"``, ``"TsBox"`` or ``"tsbox"``. This also applies to user-supplied extension components.
+    It no longer matters what case you use in ``Ge/MyComponent/Type`` values. So, for example, you could use ``"tsBox"``, ``"TsBox"`` or ``"tsbox"``. This also applies to user-supplied extension components.
 
 
 
@@ -272,7 +272,7 @@ We took the opportunity of a major release to revise some parameter names with t
     * We removed the requirement that some water be present in the simulation when using the DoseToWater and DoseToMaterial scorers.
     * In time feature random time mode, ``Ts/ShowHistoryCountAtInterval`` now counts runs rather than events.
     * The material name ``Flourine`` has been corrected to ``Fluorine``.
-    * The parameter ``Ph/*/LamdaBins`` has been corrected to ``Ph/*/LambdaBins``.
+    * The parameter ``Ph/MyPhysicsList/LamdaBins`` has been corrected to ``Ph/MyPhysicsList/LambdaBins``.
     * ``PhaseSpaceBufferSize`` is now called ``OutputBufferSize``. We renamed this parameter as it now applies not just to phase space but also to n-tuples.
     * Sources now move correctly when the source component's parent component is moving. This situation used to work only when the source component's parent was a group component. It now works correctly for all cases. Thanks to Christian Sommer for showing us this bug.
     * Phase space source now correctly handles all ions. Some ions were previously being forbidden in the phase space source. Thanks to Vadim Moskvin for reporting this bug.

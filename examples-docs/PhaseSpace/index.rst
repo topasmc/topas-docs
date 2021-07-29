@@ -8,6 +8,8 @@ PhaseSpace
     ReadASCII
     ReadBinary
     ReadLimited
+    ReadElekta
+    ReadVarian
     WriteASCII
     WriteBinary
     WriteIonsASCII

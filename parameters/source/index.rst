@@ -8,7 +8,9 @@ Particle Sources
 
     intro
     beam
+    distributed
     emittance
+    environment
     isotropic
     volumetric
     phasespace

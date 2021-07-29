@@ -58,7 +58,7 @@ However, users who have been trying to use this feature to get a spectrum instea
 
 So we have now have a parameter to control what kind of Energy we use for this binning.::
 
-    s:Sc/*/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
+    s:Sc/MyScorer/EBinEnergy = "IncidentTrack" # "IncidentTrack", "PreStep" or "DepositedInStep"
     
 * "IncidentTrack" is the behavior we have had in the past, the energy that the particle or its ancestor had when it first was incident on the scoring component. This remains the default.
 * "PreStep" is the track's energy at the start of the current step.

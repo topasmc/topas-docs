@@ -9,13 +9,14 @@ We provide four different types of particle sources, each with many options:
 
 * :ref:`Beam Parameterization <source_beam>`
 * :ref:`Emittance Parameterization <source_emittance>`
+* :ref:`Environment <source_environment>`
 * :ref:`Isotropic <source_isotropic>`
 * :ref:`Volumetric <source_volumetric>`
 * :ref:`Phase Space <source_phasespace>`
 
 And you may also write your own entirely new particle source (see :ref:`extension_source`).
 
-The position of the source is always the center of an associated Geometry Component. This is in keeping with the general TOPAS paradigm that all geometrical information resides in Geometry Components. We know that this may feel odd to experienced Geant4 users who are used to setting beam directions irrespective of any geometry volumes, but the TOPAS paradigm enables sources, components, scorers and even fields to all move together in an internally consistent manner.
+The position of the source is always centered on an associated Geometry Component. This is in keeping with the general TOPAS paradigm that all geometrical information resides in Geometry Components. We know that this may feel odd to experienced Geant4 users who are used to setting beam directions irrespective of any geometry volumes, but the TOPAS paradigm enables sources, components, scorers and even fields to all move together in an internally consistent manner.
 
 The Geometry Component associated with a Particle Source is often a Group Component. Such components have a center position and orientation but no actual shape or extent. The Particle Source is placed at this center position and orientation. If the Component is some other Type, such as a TsBox or TsCylinder, the Particle Source still only takes center position and orientation from this Component. None of the other aspects of the Component, such as the Component's shape or size, have any impact on the Particle Source. So, for example, the shape and size of a Beam source is set by various ``BeamPosition`` parameters, not by the Component's shape or size.
 

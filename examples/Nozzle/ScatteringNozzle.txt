@@ -47,8 +47,7 @@ d:Ge/MonitorChamber1/RotY     = 0.0 deg
 d:Ge/MonitorChamber1/RotZ     = 0.0 deg
 d:Ge/MonitorChamber1/TransX   = 0.0 mm
 d:Ge/MonitorChamber1/TransY   = 0.0 mm
-d:Ge/MonitorChamber1/MinusHL  = Ge/MonitorChamber1/HL mm * -1.0
-d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 + Ge/MonitorChamber1/MinusHL mm
+d:Ge/MonitorChamber1/TransZ   = Ge/ZPlusOf_Mon1 - Ge/MonitorChamber1/HL mm
 b:Ge/MonitorChamber1/Include  = "TRUE"
 
 s:Ge/MonitorChamber1/Layer1/Parent   = "MonitorChamber1"

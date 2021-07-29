@@ -93,6 +93,10 @@ G4SPolycone         | PhiStart      | d         | 0 deg
                     | PhiTotal      | d         | 360 deg
                     | R             | dv (N)    |
                     | Z             | dv (N)    |
+G4GenericPolycone   | PhiStart      | d         | 0 deg
+                    | PhiTotal      | d         | 360 deg
+                    | R             | dv (N)    |
+                    | Z             | dv (N)    |
 G4HPolyhedra        | PhiSTart      | d         | 0 deg
                     | PhiTotal      | d         | 360 deg
                     | NSides        | i         |

@@ -38,6 +38,12 @@ If you have any other value in ``Field``, TOPAS will look in your extensions to 
 
 Field orientation is set by rotating the component.
 
+You can visualize magnetic fields, with field intensity and direction depicted through a set of arrows::
+
+    i:Gr/ViewA/MagneticFieldArrowDensity = 10
+
+Use with caution. When combined with rotation seems to sometimes cause crashes in polycone drawing (involved in drawing the arrowheads).
+
 As with almost any TOPAS parameter, the Electric Field Strength, Dipole Magnet Strength, Quadrupole Magnet Gradient or Mapped Magnetic Field file can be set to change over time by using :ref:`time_feature` such as (see :ref:`example_special_quadanddipole`)::
 
     d:Ge/MyComponent/MagneticFieldStrength = Tf/BField1st/Value tesla

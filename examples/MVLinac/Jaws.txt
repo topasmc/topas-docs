@@ -1,0 +1,29 @@
+# Jaws for Siemens Oncor: Uses TOPAS component Jaws
+# Reference for geometry: Jabbari et al, J Med Signal Sens 3(3):172-179
+
+############################# Parameter Descriptions #################################
+# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
+# SourceToUpstreamSurfaceDistance: Distance from x-ray target to jaw
+# PositiveFieldSetting: Positive jaw position projected to isocenter 
+# NegativeFieldSetting: NegativeFieldSetting <= PositiveFieldSetting
+#######################################################################################
+
+includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
+
+#######################################################################################
+s:Ge/Jaw/JawTravelAxis  = "Y" # Jaw travel axis, "X" or "Y"
+dc:Ge/Jaw/PositiveFieldSetting  = 20 cm
+dc:Ge/Jaw/NegativeFieldSetting  = -20 cm
+
+s:Ge/Jaw/Parent         = "IEC_B"
+s:Ge/Jaw/Type           = "TsJaws"
+s:Ge/Jaw/Material       = "G4_W"
+
+d:Ge/Jaw/LX             = 20. cm  # Actual jaw width along JawTravelAxis
+d:Ge/Jaw/LY             = 20. cm  # Actual jaw length perpendicular to JawTravelAxis
+d:Ge/Jaw/LZ             = 7.80 cm # Jaw thickness along IEC Zb axis
+dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from x-ray target to jaw 
+d:Ge/Jaw/SAD        	= Ge/SAD cm
+
+s:Ge/Jaw/DrawingStyle   = "Solid"
+#######################################################################################
