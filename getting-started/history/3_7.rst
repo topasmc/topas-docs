@@ -24,7 +24,8 @@ Among the New Features are:
 
 These and many other new features and fixes are detailed below.
 
-The underlying Geant4 toolkit has been upgraded to the latest version, Geant4.10.07.p2.
+Since there has been no change to the underlying Geant4 version,
+there is no need to update the Geant4 data files.
 
 As this is a minor TOPAS release, any setup that worked previously should continue
 to work with no changes needed to your parameter control files.
@@ -35,12 +36,6 @@ an exact match (due to statistical variation).
 
 Installation Notes:
 ^^^^^^^^^^^^^^^^^^^
-
-Since the underlying Geant4 version has changed, you will need to install new Geant4 data files.
-
-Details in the Installation guide:
-
-* http://www.topasmc.org/user-guides/installation
 
 Users of some Linux versions previously had to download Geant4Headers.zip separately.
 We now include this file directly in all builds, so the separate download is no longer necessary.
@@ -405,24 +400,6 @@ outer surfaces, and issues an error if not."
 New section in the ShapeTest examples:
 
 * examples/Basic/ShapeTest*
-
-
-**New Radial Binning Options for TsCylinder and TsSphere:**
-
-In the past, all RBins of the TsCylinder or TsCylinder had to be the same thickness.
-A new option allows you to specify Log binning or custom binning.
-
-New Parameter::
-
-	s:Ge/MyComponent/RadialBinning = "Log" # "Log", "Custom" or "Equal", defaults to "Equal"
-
-For the Custom case, you then also specify a set of RBinValues::
-
-	dv:Ge/MyComponent/RBinValues = 4 1. 2. 3. 4. cm # Gives outer radius per bin
-
-The number of RBinValues must be the same as the number of RBins.
-
-Last value must equal the Cylinder or Sphere's RMax.
 
 
 **TsVPatient now has Trans and Rot parameters as Optional**
