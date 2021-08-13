@@ -5,10 +5,10 @@ This release adds many new features and fixes some rare bugs.
 It is recommended that all users update to this new release.
 
 
-3.7.0 (2021-07-26)
+3.7.0 (2021-08-12)
 ~~~~~~~~~~~~~~~~~~
 
-TOPAS Version 3.7 is Released (26 July 2021)
+TOPAS Version 3.7 is Released (12 August 2021)
 
 This release adds many new features and fixes some rare bugs.
 It is recommended that all users update to this new release.
