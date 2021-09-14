@@ -52,7 +52,7 @@ There is generally little value in showing all pixels of the image at once. Each
 
     iv:Ge/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
 
-Number of slices begins at number 1.
+Number of slices begins at number 1. Note that the slice specification uses the `patient coordinate system <http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.6.2.html>`_, not the topas coordinate system.
 
 Similar slicing is allowed in X and Y.
 Three special values are also allowed::
@@ -76,6 +76,7 @@ Parameters to restrict which voxels of a patient image are loaded are::
     i:Ge/MyComponent/RestrictVoxelsXMax
     i:Ge/MyComponent/RestrictVoxelsYMax
     i:Ge/MyComponent/RestrictVoxelsZMax
+
 
 The previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.
 The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.
