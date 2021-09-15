@@ -50,25 +50,25 @@ The built-in Geant4 visualization tools do not perform well when a complex voxel
 
 There is generally little value in showing all pixels of the image at once. Each slice just covers up the last slice. To instead show only a specific set of slices in any dimension::
 
-    iv:Gr/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
+    iv:Ge/Patient/ShowSpecificSlicesZ = 4 1 3 9 12 # will only show slices 1, 3, 9 and 12.
 
-Number of slices begins at number 1.
+Number of slices begins at number 1. Note that the slice specification uses the `patient coordinate system <http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.6.2.html>`_, not the topas coordinate system.
 
 Similar slicing is allowed in X and Y.
 Three special values are also allowed::
 
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 0 # means show all slices
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -1 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 0 # means show all slices
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -1 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -2 # means only first, center and last slice
 
 The following will result in a display that shows 27 pixels comprising the boundaries and center of the image. This allows you to see the overall placement of the image and see the individual voxel size::
 
-    iv:Gr/Patient/ShowSpecificSlicesX = 1 -2 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
-    iv:Gr/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesX = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesY = 1 -2 # means only show center slice
+    iv:Ge/Patient/ShowSpecificSlicesZ = 1 -2 # means only show center slice
 
 You have the Option to Load a Truncated DICOM, XiO or ImageCube.
-Parameters to restrict which voxels of a patient image are loaded are:
+Parameters to restrict which voxels of a patient image are loaded are::
 
     i:Ge/MyComponent/RestrictVoxelsXMin
     i:Ge/MyComponent/RestrictVoxelsYMin
@@ -76,6 +76,7 @@ Parameters to restrict which voxels of a patient image are loaded are:
     i:Ge/MyComponent/RestrictVoxelsXMax
     i:Ge/MyComponent/RestrictVoxelsYMax
     i:Ge/MyComponent/RestrictVoxelsZMax
+
 
 The previously mentioned parameters, ShowSpecificSlicesVoxels, affect only the graphical output of the voxels.
 The voxels were still all loaded, and all affected the physics results, but only specific voxels were shown in graphics.

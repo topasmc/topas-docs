@@ -8,6 +8,7 @@ Introduction to Parameter System
 
     design
     syntax
+    syntax_highlighting
     relative
     hierarchy
     batch_jobs
