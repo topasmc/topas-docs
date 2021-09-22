@@ -51,7 +51,7 @@ Throughout TOPAS, particle names can take the following forms (case does not mat
 
     * Characters 4-6 give Z
     * Characters 7-9 give A
-    * Character 10 gives Isomer level (not used)
+    * Character 10 gives Isomer level
 
 The full set of known particles depends on the physics you have defined. Here are some common values, with associated PDG codes:
 
@@ -63,10 +63,10 @@ Particle            PDG code
 "e-"                "11"
 "e+"                "-11"
 "gamma"             "22"
-"He3"               "100002003"
-"alpha"             "100002004"
-"deuteron"          "100001002"
-"triton"            "100001003"
+"He3"               "1000020030"
+"alpha"             "1000020040"
+"deuteron"          "1000010020"
+"triton"            "1000010030"
 "opticalphoton"     "0" (PDG group has no code for this particle)
 "geantino"          "0" (sees transportation processes but no physics, no PDG code)
 "chargedgeantino"   "0" (same as above but with charge, no PDG code)
