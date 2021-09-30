@@ -34,10 +34,27 @@ This tells TOPAS that your class defines a Geometry Component, and that this com
 
     s:Ge/something/Type = "MyComponent1"
 
-C++ does not require that a give file, such as MyComponent1.cc, contain a class of the same name. However the Topas make system DOES require that this file name and class name match. So, for example, a file named MyComponent1.cc and is corresponding MyComponent1.hh must contain a class named MyComponent1.
+C++ does not require that a given file, such as MyComponent1.cc, contain a class of the same name. However the Topas make system DOES require that this file name and class name match. So, for example, a file named MyComponent1.cc and is corresponding MyComponent1.hh must contain a class named MyComponent1.
 
 You can find a set of example extensions on the `topasmc.org <http://topasmc.org>`_ code repository page.
 You can see there what the special comment string is for each type of class (Geometry Component, Scorer, Filter, etc.).
+
+While it is beyond the scope of this User Guide to teach C++ programming, one issue that has come up a few times might be worth mentioning.
+Any time you see an example use a variable with a name starting with f, such as fEnvelopeLog or fEnevelopePhys,
+you should be careful not to redeclare your own local version of this variable.
+So go ahead and set them as::
+
+	fEnvelopeLog = CreateLogicalVolume(something);
+	fEnvelopePhys = CreatePhysicalVolume(fEnvelopeLog);
+
+Do <b>not</b> set them as::
+
+	G4LogicalVolume* fEnvelopeLog = CreateLogicalVolume(something);
+	G4VPhysicalVolume* fEnvelopePhys = CreatePhysicalVolume(fEnvelopeLog);
+
+The latter case would create a new, local copy of the variable, and would mean that when the base classes go to do other work with
+these objects, they would find them to be unset, giving various crashes (probably segmentation faults).
+You can read more elsewhere about this general topic, <a href="https://en.wikipedia.org/wiki/Variable_shadowing">Variable Shadowing</a>.
 
 To build your new TOPAS executable that incorporates all of your extensions, you run CMake with an argument that tells it the location of your extensions. Your extensions then coexist with the rest of the TOPAS code.
 
