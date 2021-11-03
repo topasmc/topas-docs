@@ -150,6 +150,10 @@ The following is a plot of the electron energy distributions for the legacy file
 
 .. image:: PhaseSpaceElectron.png
 
+The following is a plot of the x-ray energy distributions for the legacy files that can be read with TOPAS. 
+
+.. image:: PhaseSpaceXRays.png
+
 =============================================   ======================================================================================
 Phase-space file in IAEA repository 	         Reason the file is not read with TOPAS
 X-ray beams…                                    
