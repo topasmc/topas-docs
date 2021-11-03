@@ -148,6 +148,8 @@ All files that conform to the revised IAEA phase-space file format specification
 
 The following is a plot of the electron energy distributions for the legacy files that can be read with TOPAS. 
 
+.. image:: PhaseSpaceElectron.png
+
 =============================================   ======================================================================================
 Phase-space file in IAEA repository 	         Reason the file is not read with TOPAS
 X-ray beams…                                    
