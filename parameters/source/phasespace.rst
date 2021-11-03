@@ -156,10 +156,9 @@ The following is a plot of the x-ray energy distributions for the legacy files t
 
 The following legacy phase-space files from the repository require special handling to run with TOPAS:
 
-
-=================================================   ========================================================================= 
+=================================================   ======================================
 Phase-space file in IAEA repository (X-ray beams)   Comment
-=================================================   =========================================================================                             
+=================================================   ======================================                          
 Elekta_Precise_25mv_part(1a-b,2a-b,3a-b,4a-b)	    download file a and b, and join in terminal before running with Topas:   
                                                     cat ELEKTA_PRECISE_25mv_part1_a.IAEAphsp ELEKTA_PRECISE_25mv_part1_b.IAEA
                                                     phsp > ELEKTA_PRECISE_25mv_part1.IAEAphsp
