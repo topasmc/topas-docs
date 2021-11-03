@@ -157,10 +157,26 @@ The following is a plot of the x-ray energy distributions for the legacy files t
 The following legacy phase-space files from the repository require special handling to run with TOPAS:
 
 =================================================   ======================================
-Phase-space file in IAEA repository (X-ray beams)   Comment
+Phase-space file in IAEA repository                 Comment
 =================================================   ======================================                          
+X-ray beams
 Elekta_Precise_25mv_part(1a-b,2a-b,3a-b,4a-b)	    download file a and b, and join in terminal before running with Topas:   
                                                     cat ELEKTA_PRECISE_25mv_part1_a.IAEAphsp ELEKTA_PRECISE_25mv_part1_b.IAEAphsp > ELEKTA_PRECISE_25mv_part1.IAEAphsp
+=================================================   ======================================
+
+The following legacy phase-space files are not able to be read by TOPAS. Comment shows what type of error TOPAS reports when trying to read the file, but some of these files have additional issues beyond that shown in the comment:
+
+=================================================   ======================================
+Phase-space file in IAEA repository                 Comment
+=================================================   ======================================                          
+X-ray beams               
+Siemens_Primus_6mv_1.2x1.2                          First Particle is not a new history
+Siemens_Primus_6mv_ 1x1                             First Particle is not a new history
+Varian_Clinac_600C_6MV_ 10x10                       Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
+Varian_TrueBeam6MV_(1,2,3,4,5,6)                    First Particle does not have the new history flag set
+Electron beams
+Varian_Clinac_2100CD_6MeV_10x10                     Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
+Varian_Clinac_2100CD_9MeV_10x10                     Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
 =================================================   ======================================
 
 Handling of Malformed IAEA phase space files:
