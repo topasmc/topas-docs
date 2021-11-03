@@ -171,8 +171,8 @@ Phase-space file in IAEA repository                 Comment
 =================================================   ======================================                          
 X-ray beams               
 Siemens_Primus_6mv_1.2x1.2                          First Particle is not a new history
-Siemens_Primus_6mv_ 1x1                             First Particle is not a new history
-Varian_Clinac_600C_6MV_ 10x10                       Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
+Siemens_Primus_6mv_1x1                              First Particle is not a new history
+Varian_Clinac_600C_6MV_10x10                        Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
 Varian_TrueBeam6MV_(1,2,3,4,5,6)                    First Particle does not have the new history flag set
 Electron beams
 Varian_Clinac_2100CD_6MeV_10x10                     Number of scored particles listed in the header does not match the number of particles counted in the phase-space file
