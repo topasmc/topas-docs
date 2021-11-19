@@ -101,6 +101,10 @@ To create the overall physical volume for your component, use::
 
 Be sure that the value on the left side of the above is exactly ``fEnvelopePhys``. This insures that TOPAS knows the overall physical volume’s name and is essential for TOPAS to support your component in 4D.
 
+Use only the above method to create this overall physical volume. Do not use any of the methods below,
+or else the rotation and translation specified in your Rot and Trans parameters will not be properly applied
+(and you will see some very strange behavior, where the component suddely shifts position, just before the first run).
+
 Additional forms of CreatePhysicalVolume allow you to place subcomponents within your component.
 
 To place a subcomponent in the center of your logical volume lVol::
