@@ -27,7 +27,7 @@ Here is an example, a Time Feature called ``ArmRot`` that describes a constant r
 
 TOPAS automatically creates another parameter::
 
-    s:Tf/ArmRot/Value
+    d:Tf/ArmRot/Value
 
 and updates this parameter to the appropriate value for a given time.
 
