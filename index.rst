@@ -35,6 +35,7 @@ Welcome to the TOPAS documentation!
     parameters/variance/index
     parameters/outcome
     parameters/GUI
+    parameters/parameter_optimization
 
 
 .. toctree::
