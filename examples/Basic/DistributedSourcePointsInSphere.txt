@@ -27,7 +27,7 @@ d:So/Example/BeamEnergy               = 10. keV
 u:So/Example/BeamEnergySpread         = 0.
 ic:So/Example/NumberOfHistoriesInRun   = 5
 ic:So/Example/NumberOfSourcePoints     = 4
-bc:So/Example/RedistributePointsOnNewHistory = "False"
+bc:So/Example/RedistributePointsOnNewRun = "False"
 
 sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
 

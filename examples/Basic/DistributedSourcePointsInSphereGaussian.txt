@@ -27,7 +27,7 @@ d:So/Example/BeamEnergy               = 10. keV
 u:So/Example/BeamEnergySpread         = 0.
 ic:So/Example/NumberOfHistoriesInRun  = 5
 ic:So/Example/NumberOfSourcePoints    = 4
-bc:So/Example/RedistributePointsOnNewHistory = "False"
+bc:So/Example/RedistributePointsOnNewRun = "False"
 s:So/Example/PointDistribution        = "Flat" # default to "Flat"
 dc:So/Example/PointDistributionSigma   = 20. mm
 

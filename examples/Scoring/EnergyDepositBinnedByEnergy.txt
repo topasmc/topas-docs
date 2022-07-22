@@ -16,6 +16,10 @@
 # DepositedInStep means we bin based on the energy that was deposited in the step.
 # You can use this setting to see that almost all actual energy deposits occur
 # in small amounts spread along the track.
+#
+# PrimaryTrack means we bin based on the energy of the primary track from which this
+# track is descended.
+# You can use this setting to separate the effects of different energy primaries.
 
 s:Ge/World/Material  = "Vacuum"
 d:Ge/World/HLX       = 2.0 m
@@ -57,6 +61,15 @@ i:Sc/Case3BinnedByEnergyDepositedInStep/EBins                     = 4
 d:Sc/Case3BinnedByEnergyDepositedInStep/EBinMin                   = 0. MeV
 d:Sc/Case3BinnedByEnergyDepositedInStep/EBinMax                   = 200. MeV
 sc:Sc/Case3BinnedByEnergyDepositedInStep/EBinEnergy               = "DepositedInStep"
+
+s:Sc/Case3BinnedByPrimaryTrackEnergy/Quantity                  = "EnergyDeposit"
+s:Sc/Case3BinnedByPrimaryTrackEnergy/Component                 = "Phantom"
+b:Sc/Case3BinnedByPrimaryTrackEnergy/OutputToConsole           = "TRUE"
+s:Sc/Case3BinnedByPrimaryTrackEnergy/IfOutputFileAlreadyExists = "Overwrite"
+i:Sc/Case3BinnedByPrimaryTrackEnergy/EBins                     = 4
+d:Sc/Case3BinnedByPrimaryTrackEnergy/EBinMin                   = 0. MeV
+d:Sc/Case3BinnedByPrimaryTrackEnergy/EBinMax                   = 200. MeV
+sc:Sc/Case3BinnedByPrimaryTrackEnergy/EBinEnergy               = "PrimaryTrack"
 
 #s:Gr/ViewA/Type                            = "OpenGL"
 i:Gr/ViewA/WindowSizeX                      = 900

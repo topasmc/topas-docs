@@ -6,8 +6,6 @@ d:Ge/RMW_1/RotZ = Tf/RMW_Rotation/Value deg
 
 i:So/Example/NumberOfHistoriesInRun = 3
 
-b:Ge/CheckForOverlaps = "t"
-
 d:Tf/TimelineEnd             = 100.0 ms
 i:Tf/NumberOfSequentialTimes = 100
 

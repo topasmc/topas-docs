@@ -103,22 +103,22 @@ s:Ge/GoldCylinder/Color        = "red"
 #Pure Pyrex housing
 #====================
 
-#s:Ge/PurePyrexHousing/Type         = "TsCylinder"
-#s:Ge/PurePyrexHousing/Parent       = "ArgonFilling"
-#s:Ge/PurePyrexHousing/Material     = "PurePyrex"
-#d:Ge/PurePyrexHousing/RMin         = 0.15 mm
-#d:Ge/PurePyrexHousing/RMax         = 0.2 mm
-#d:Ge/PurePyrexHousing/SPhi         = 0. deg
-#d:Ge/PurePyrexHousing/DPhi         = 360. deg
-#d:Ge/PurePyrexHousing/HL           = 2 mm
-#d:Ge/PurePyrexHousing/TransX       = 0. mm
-#d:Ge/PurePyrexHousing/TransY       = 0. mm
-#d:Ge/PurePyrexHousing/TransZ       = 0. mm
-#d:Ge/PurePyrexHousing/RotX         = 0. deg
-#d:Ge/PurePyrexHousing/RotY         = 0. deg
-#d:Ge/PurePyrexHousing/RotZ         = 0. deg
-#s:Ge/PurePyrexHousing/DrawingStyle = "FullWireFrame"
-#s:Ge/PurePyrexHousing/Color        = "purple"
+s:Ge/PurePyrexHousing/Type         = "TsCylinder"
+s:Ge/PurePyrexHousing/Parent       = "ArgonFilling"
+s:Ge/PurePyrexHousing/Material     = "PurePyrex"
+d:Ge/PurePyrexHousing/RMin         = 0.15 mm
+d:Ge/PurePyrexHousing/RMax         = 0.2 mm
+d:Ge/PurePyrexHousing/SPhi         = 0. deg
+d:Ge/PurePyrexHousing/DPhi         = 360. deg
+d:Ge/PurePyrexHousing/HL           = 2 mm
+d:Ge/PurePyrexHousing/TransX       = 0. mm
+d:Ge/PurePyrexHousing/TransY       = 0. mm
+d:Ge/PurePyrexHousing/TransZ       = 0. mm
+d:Ge/PurePyrexHousing/RotX         = 0. deg
+d:Ge/PurePyrexHousing/RotY         = 0. deg
+d:Ge/PurePyrexHousing/RotZ         = 0. deg
+s:Ge/PurePyrexHousing/DrawingStyle = "FullWireFrame"
+s:Ge/PurePyrexHousing/Color        = "purple"
 
 #==========================
 #Radioactive Pyrex cylinder

@@ -5,6 +5,7 @@ Patient
 	:maxdepth: 1
 
 	Applicator
+	DicomCutaway
 	DoseTo4DCT
 	DoseToCT
 	HUtoMaterialSchneider

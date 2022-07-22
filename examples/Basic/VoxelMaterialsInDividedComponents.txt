@@ -6,9 +6,6 @@ d:Ge/World/HLY       = 2.0 m
 d:Ge/World/HLZ       = 2.0 m
 b:Ge/World/Invisible = "True"
 
-# Save time by turning off overlap check
-b:Ge/CheckForOverlaps = "False"
-
 s:Ge/TestBox/Parent   = "World"
 s:Ge/TestBox/Type     = "TsBox"
 s:Ge/TestBox/Material = "G4_WATER"

@@ -17,12 +17,14 @@ For any presentation or publication using the track-length estimator or brachyth
 * Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
 * Audran Poher, Francisco Berumen, Yunzhi Ma, Joseph Perl, and Luc Beaulieu. "Characterization of LDR brachytherapy sources using the TOPAS Monte Carlo toolkit", COMP annual meeting 2021.
 
-The Brachytherapy TOPAS package includes 4 examples:
+The Brachytherapy TOPAS package includes 6 examples:
 
 * DoseTLE.txt
 * HDRSource.txt
 * HDRSourceInApplicator.txt
 * LDRSource.txt
+* EyeModel.txt
+* COMSEyePlaque.txt
 
 These examples in turn use sources and seeds found in topas/examples/LDR and topas/examples/HDR:
 

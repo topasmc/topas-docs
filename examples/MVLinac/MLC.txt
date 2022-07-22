@@ -24,10 +24,17 @@ s:Ge/MLC/Material         = "G4_W"
 d:Ge/MLC/SAD              = Ge/SAD cm 
 
 d:Ge/MLC/SourceToUpstreamSurfaceDistance = 28.26  cm # Distance from source to MLC bank
-s:Ge/MLC/LeafTravelAxis   = "X" # Leaf travel axis, "X" or "Y"
 d:Ge/MLC/MaximumLeafOpen  = 20.0 cm # Actual limit of leaf travel
 d:Ge/MLC/Thickness        = 7.56 cm # Actual thickness of MLC leaves along IEC Zb
 d:Ge/MLC/Length           = 20.0 cm # Length of MLC leaves in direction of travel
+
+d:Ge/MLC/DistSourceToSAD = Ge/MLC/SAD - Ge/MLC/SourceToUpstreamSurfaceDistance cm
+d:Ge/MLC/HalfThickness = 0.5 * Ge/MLC/Thickness cm
+d:Ge/MLC/TransZ = Ge/MLC/DistSourceToSAD - Ge/MLC/HalfThickness cm
+
+d:Ge/MLC/LeafTravelAxisX = 0. deg # Constant to help remember angle for X Axis Travel
+d:Ge/MLC/LeafTravelAxisY = 90. deg # Constant to help remember angle for Y Axis Travel
+d:Ge/MLC/RotZ = Ge/MLC/LeafTravelAxisX deg # Set to one of the above two constants
 
 # MLC leaf widths and positions, projected to isocenter for 10 cm x 20 cm field
 dv:Ge/MLC/LeafWidths           = 42 5. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 5. cm
@@ -36,5 +43,3 @@ dv:Ge/MLC/PositiveFieldSetting = 42 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 5. 5. 5. 5.
 
 s:Ge/MLC/DrawingStyle     = "Solid"
 b:Ge/MLC/PrintInformation = "True"
-
-

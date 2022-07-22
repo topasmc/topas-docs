@@ -25,3 +25,5 @@ Brachytherapy
 	Pd103_IAPd103A
 	Pd103_Theraseed200Heavy
 	Pd103_Theraseed200Light
+	EyeModel
+	COMSEyePlaque

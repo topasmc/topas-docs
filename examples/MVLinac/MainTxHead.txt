@@ -77,8 +77,6 @@ b:Gr/ViewA/IncludeAxes       = "True"
 d:Gr/ViewA/AxesSize          = 10 cm
 
 # Geometry
-b:Ge/CheckForOverlaps       = "True"
-
 s:Ge/World/Material         = "Air"
 d:Ge/World/HLX              = 1.25 m
 d:Ge/World/HLY              = 1.25 m

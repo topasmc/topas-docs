@@ -19,6 +19,9 @@ Basic
 	Emittance_Twiss
 	EmModelByRegions
 	EnvironmentSource
+	ExtraSequence1
+	ExtraSequence2
+	ExtraSequences
 	FlatteningFilter
 	Isotope
 	LayeredMassGeometry

@@ -6,6 +6,7 @@ Scoring
 
 	ChargeInSphere
 	Complex
+	DepthDose
 	Dose
 	DoseInVoxelMaterials
 	DoseToMediumVsWater
@@ -14,8 +15,8 @@ Scoring
 	EnergyDepositBinnedByEnergy
 	EnergyDivisions
 	EnergyInBinnedCylinder
-	Filters
 	FilterByInteractionCount
+	Filters
 	FoilToBox
 	FoilToCylinder
 	FoilToSphere
@@ -27,6 +28,7 @@ Scoring
 	Origin
 	OriginCount
 	ParallelBoxRebinned
+	SparsifyAndSingleIndex
 	SplitByTimeFeature
 	Surfaces
 	VoxelMaterials

@@ -81,7 +81,6 @@ d:Gr/view/Phi         = 45 deg
 u:Gr/view/Zoom        = 1.8
 
 sv:Ph/Default/Modules = 1 "g4em-standard_opt0"
-b:Ge/CheckForOverlaps = "False"
 
 b:Ts/PauseBeforeQuit = "True"
 

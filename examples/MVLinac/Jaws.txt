@@ -10,8 +10,6 @@
 
 includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
 
-#######################################################################################
-s:Ge/Jaw/JawTravelAxis  = "Y" # Jaw travel axis, "X" or "Y"
 dc:Ge/Jaw/PositiveFieldSetting  = 20 cm
 dc:Ge/Jaw/NegativeFieldSetting  = -20 cm
 
@@ -25,5 +23,12 @@ d:Ge/Jaw/LZ             = 7.80 cm # Jaw thickness along IEC Zb axis
 dc:Ge/Jaw/SourceToUpstreamSurfaceDistance = 19.73 cm #Distance from x-ray target to jaw 
 d:Ge/Jaw/SAD        	= Ge/SAD cm
 
+d:Ge/Jaw/DistSourceToSAD = Ge/Jaw/SAD - Ge/Jaw/SourceToUpstreamSurfaceDistance cm
+d:Ge/Jaw/HalfThickness = 0.5 * Ge/Jaw/LZ cm
+d:Ge/Jaw/TransZ = Ge/Jaw/DistSourceToSAD - Ge/Jaw/HalfThickness cm
+
+d:Ge/Jaw/TravelAxisX = 0. deg # Constant to help remember angle for X Axis Travel
+d:Ge/Jaw/TravelAxisY = 90. deg # Constant to help remember angle for Y Axis Travel
+d:Ge/Jaw/RotZ = Ge/Jaw/TravelAxisX deg # Set to one of the above two constants
+
 s:Ge/Jaw/DrawingStyle   = "Solid"
-#######################################################################################

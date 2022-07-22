@@ -23,6 +23,7 @@ Graphics
 	FilterByParticleCharge
 	FilerByParticleType
 	NanoMeterScaleTest
+	ParticleFlight
 	QtTest
 	SolidSphere
 	TestGraphics
