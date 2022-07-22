@@ -1,4 +1,4 @@
 EyeModel.txt
 ---------------------
 
-.. literalinclude:: /examples/Basic/EyeModel.txt
+.. literalinclude:: /examples/Brachytherapy/EyeModel.txt

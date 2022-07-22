@@ -1,4 +1,4 @@
 COMSEyePlaque.txt
 ---------------------
 
-.. literalinclude:: /examples/Basic/COMSEyePlaque.txt
+.. literalinclude:: /examples/Brachytherapy/COMSEyePlaque.txt
