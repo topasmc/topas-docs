@@ -16,6 +16,8 @@ Geometry Component          Type
 :ref:`geometry_compensator` TsCompensator
 :ref:`geometry_applicator`  TsBrachyApplicator
 :ref:`geometry_pixelbox`    TsPixelatedBox
+:ref:`geometry_eyemodel`    TsEye
+:ref:`geometry_eyeplaque`   TsEyePlaque
 =========================== ========================
 
 Each of the specialized components has its own set of special parameters. Usage is best learned by studying the relevant examples parameter files included in TOPAS.
@@ -495,6 +497,8 @@ is Y, the leaf numbering is from positive to negative along X.::
 				      0. 0. 0. Cm
   s:Ge/MLC/DrawingStyle = "Solid"
 
+
+
 .. _geometry_cad:
 
 CAD (Computer Aided Design)
@@ -673,7 +677,7 @@ A typical compensator has the following parameters (see :ref:`example_nozzle_sca
 .. _geometry_applicator:
 
 BrachyApplicator
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 A BrachyApplicator is a component that is used to precisely place
 source wires for brachytherapy applications.
@@ -731,15 +735,14 @@ They must run from Hole0 (for the central hole) to HoleN, for the Nth radial hol
 
 
 
-
 .. _geometry_pixelbox:
 
 Pixelated box
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+
 A TsPixelatedBox is a helpful component to simulate pixelated detectors. It consists of a 2D array of rectangular boxes with a constant gap in between. Thus, the pixel size and pitch must be provided, with the sole condition that the pitch values must be greater than the pixel sizes for the corresponding axes. For this component, the whole dimensions (not half lengths) of each pixel must be providen. The associated figure shows the general scheme of a detector array of 4 x 4 pixels. 
 
 .. image:: PixelatedDetector.png
-
 
 The parameters are as follows::
 
@@ -763,3 +766,59 @@ A sample of use of the TsPixelatedBox can be found in examples/Optical/Pixelated
 
 
 
+.. _geometry_eye:
+
+Eye Model
+~~~~~~~~~
+
+The TsEye component provides a configurable model of the human eye.
+
+.. image:: EyeModel.png
+
+The model lets you configure various parts as well as a tumor in the eye.
+The full set of configurable parts is:
+
+* Tumor
+* Sclera
+* Vitreous Humor
+* Aqueuous Humor
+* Cornea
+* Iris
+* Lens
+* Optic Nerve
+
+For an example of how to use this component, see:
+
+examples/Brachytherapy/EyeModel.txt
+
+
+
+.. _geometry_eyeplaqe:
+
+Eye Plaque
+~~~~~~~~~~
+
+The TsEyePlaque component provides a configurable model of an eye plaque.
+
+.. image:: EyePlaque.png
+
+The model consists of a back and a lip, such that it can be configured
+to represent any of the standard COMS eye plaques.
+
+To use the model, see:
+
+examples/Brachtherapy/COMSEyePlaque.txt
+
+One adjusts the following parameters to set the specific sizes for the plaque::
+
+	Ge/EyePlaque/SphereCutCylinder/RInner
+	Ge/EyePlaque/Cylinder/ROuter
+	Ge/EyePlaque/Cylinder/RInner
+
+The example already has helper parameters that contain the relevant sizes.
+So one can adjust the choice of plaque by simply changing the numbers in the plaque names
+in the right side of the expressions::
+
+	dc:Ge/EyePlaque/SphereCutCylinder/RInner = Ge/COMSEyePlaque22mmSphereCutCylinderRInner mm
+	dc:Ge/EyePlaque/Cylinder/ROuter		 = Ge/COMSEyePlaque22mmCylinderROuter mm
+	dc:Ge/EyePlaque/Cylinder/RInner		 = Ge/COMSEyePlaque22mmCylinderRInner mm
