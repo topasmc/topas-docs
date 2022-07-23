@@ -56,17 +56,20 @@ Geometry:
 ^^^^^^^^^
 
 **Added new Component Type: TsEye (Topas Issue #621)**
+
 This component provides a detailed, configurable model of the eye,
 including all major eye structures and a configurable tumor.
 See new example: examples/Brachytherapy/EyeModel.txt
 
 
 **Added new Component Type: TsEyePlaque (Topas Issue #622)**
+
 This component provides the ability to model any of the COMS eye plaques.
 See new example: examples/Brachytherapy/COMSEyePlaque.txt
 
 
 **Added ability to override voxel materials based on RT Structures (Topas Issue #401)**
+
 For any voxels within the given structure contour, a specified material can be
 assigned for use in place of the material that would have come from HU conversion.
 Syntax for the new feature is::
@@ -76,6 +79,7 @@ Syntax for the new feature is::
 
 
 **Added an additional optical surface finish: GroundFrontPainted.**
+
 This surface finish option had been accidentally left out of supported options.
 An example of using this new parameter is::
 
@@ -83,6 +87,7 @@ An example of using this new parameter is::
 
 
 **Added ability to set optical properties for patient materials (Topas Issue #581)**
+
 This was previously not possible as TOPAS avoided searching for such properties
 (as a way to keep setup fast).
 A new parameter allows you to have TOPAS read optical parameters for patient materials::
@@ -91,6 +96,7 @@ A new parameter allows you to have TOPAS read optical parameters for patient mat
 
 
 **Simplified the method to set MaxStepSize for divided components (Topas Issue #583)**
+
 For the divided components (TsBox, TsCylinder and TsSphere), the only way to
 set MaxStepSize in the past was to explicitly set it for the relevant subvolume,
 such as::
@@ -106,6 +112,7 @@ as the subvolume MaxStepSize will override the value set fo the overall componen
 
 
 **Added check against user trying to apply Field to World (Topas Issue #383)**
+
 The only component in TOPAS that can not be assigned a Field is the World.
 This error is now caught on startup.
 Note that if you want a Field to cover essentially the entire World,
@@ -115,11 +122,13 @@ and then put the rest of your simulation geometry within that subcomponent.
 
 
 **Enhanced checks against invalid parameter values in TsCompensator (Topas Issue #254)**
+
 Checks are now in place to report an error if the compensator is set to have
 0 rows, 0 thickness or 0 drill hole radius
 
 
 **Reduced sensitivity of test on sum of material fractions (Topas Issue #607)**
+
 When you define a material using the most common method, elemental fractions,
 TOPAS checks that the sum of the fractions is unity.
 We found that the test was too tight given the floating point math behavior
@@ -134,6 +143,7 @@ Note that one can also provide factions that do not sum to unity by setting::
 
 
 **Improved efficiency when only component in parallel world is Group (Topas Issue #630)**
+
 There are situations in which the only component in a TOPAS Parallel World is
 a Group component. This might occur, for example, if one uses the Group component
 to specify the position of an isotropic particle source.
@@ -142,6 +152,7 @@ there is no need to invoke Geant4's parallel world physics or navigation systems
 
 
 **Removed all cases where CheckForOverlap was adjusted in examples.**
+
 The CheckForOverlap parameter should almost always be left at its default value, True.
 Turning it off disables one of the most important integrity checks of the simulation.
 We noted that some examples included unnecessary adjustment of this parameter.
@@ -150,6 +161,7 @@ Adjustment of this parameter has now been removed from all examples.
 
 
 **Fixed bug in TsJaws and TsDivergingMLC position behavior (Topas Issue #578)**
+
 These two component types exhibited strange visual behavior in that they
 appeared at one position during startup, and then jumped suddenly to their
 correct position only right before the first history was generated.
@@ -158,6 +170,7 @@ The issue has been fixed.
 
 
 **Restored missing Pyrex housing in the Cs-131 LDR source (Topas Issue #637)**
+
 This LDR brachytherapy source design was missing one part, the Pyrex housing,
 due to the relevant lines being accidentally commented out.
 The relevant lines of the parameter file have now been restored::
@@ -170,6 +183,7 @@ Particle Sources:
 ^^^^^^^^^^^^^^^^^
 
 **Redesigned option that makes Distributed Source select new points (Topas Issue #599)**
+
 By default, the Distributed Source selects a sample of points at the start
 of the simulation, and then generates all histories from the same points
 for the entire simulation.
@@ -187,6 +201,7 @@ A better option has now been introduced::
 
 
 **Removed need for extra zero bins for Continuous Spectrum (Topas Issue #600)**
+
 A user has shown that when defining a continuous spectrum,
 it was necessary to provide extra zeros at the start of
 BeamEnergySpectrumValues and BeamEnergySpectrumWeights.
@@ -199,6 +214,7 @@ The intended simple design now works correctly, such as::
 
 
 **Fixed bug that sometimes caused Volumetric Source to fail (Topas Issue #580)**
+
 In some cases, the Volumetric Source failed to find any possible starting points
 for histories, or did not sample from the entire active material volume.
 The cause was our incorrect use of the method by which Geant4 provides
@@ -206,6 +222,7 @@ the appropriate volume extent. This has been corrected.
 
 
 **Fixed bug that sometimes caused Distributed Source to crash (Topas Issue #582)**
+
 The source was not handling the case where the associated Component was parameterized.
 This case is now handled correctly.
 
@@ -214,6 +231,7 @@ Scoring:
 ^^^^^^^^
 
 **Added option to "Sparsify" csv files from binned scorers (Topas Issue #585)**
+
 This new option gives you a way to reduce the size of a binned scorer's csv output
 by omitting rows for which the accumulated Sum is zero.
   b:Sc/MyScorer/Sparsify = "True"
@@ -227,6 +245,7 @@ See new example: examples/Scoring/SparsifyAndSingleIndex.txt
 
 
 **Added option to for csv output to use single index rather than i,j,k (Topas Issue #585)**
+
 Normally, each line of the csv file for a binned scorer begins with three indices
 for the three coordinates (x,y,z or rho,phi,theta or rho,phi,z).
 A new option has TOPAS combine these three into a single index,
@@ -239,6 +258,7 @@ See new example: examples/Scoring/SparsifyAndSingleIndex.txt
 
 
 **Added option to bin output based on Primary Track kinetic energy (Topas Issue #291)**
+
 There were already three options for what energy should be used when you enable
 energy binning::
 
@@ -248,6 +268,7 @@ A fourth option has now been added: "PrimaryTrack"
 
 
 **Adjusted control of when to mark some bins as "not in given RTStruct" (Topas Issue #626)**
+
 In the previous release, when FilterByRTStructure is used, scoring output marked
 any bins that were not in the requested RTStruct by setting their output to -1.
 This behavior needed to be reconsidered now that FilterByRTStructure works
@@ -263,10 +284,12 @@ To enable this feature::
 
 
 **Added simple example of depth dose scoring.**
+
 See new example: examples/Scoring/DepthDose.txt
 
 
 **Improved error message for case of invalid value for scorer report (Topas Issue #298)**
+
 Error message now lists the allowed values.
 
 
@@ -274,6 +297,7 @@ Filtering:
 ^^^^^^^^^^
 
 **Redesigned FilterByRTStructure to support parallel worlds such as RTDoseGrid (Topas Issue #353)**
+
 The usefulness of FilterByRTStructure was previously limited as it could not
 be used on parallel world components such as the RTDoseGrid.
 The filter logic has been extensively redesigned.
@@ -281,10 +305,12 @@ It now works in all cases including RTDoseGrid.
 
 
 **Added filter information to scoring output (Topas Issue #370)**
+
 The header section of output files now includes notes on any filters that were used.
 
 
 **Added new filters for ancestor atomic number (Topas Issue #373)**
+
 While we previously had filters that looked at the current particle's atomic number::
 
   OnlyIncludeParticlesOfAtomicNumber
@@ -299,6 +325,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added new filters for ancestor atomic mass (Topas Issue #374)**
+
 While we previously had filters that looked at the current particle's atomic mass::
 
   OnlyIncludeParticlesOfAtomicMass
@@ -313,6 +340,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added new filters by time of flight (Topas Issue #371)**
+
 New options are::
 
   OnlyIncludeParticlesWithTimeOfFlightBelow
@@ -322,6 +350,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added new filters for KE rather than incident particle KE (Topas Issue #369)**
+
 We previously had a filter on the KE of the incident particle,
 that is, the KE a particle had when it first hit the scoring component, such as::
 
@@ -348,6 +377,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added new filters for Momentum rather than incident particle Momentum (Topas Issue #369)**
+
 We previously had a filter on the Momentum of the incident particle,
 that is, the Momentum a particle had when it first hit the scoring component, such as::
 
@@ -374,6 +404,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added filtering by primary track kinetic energy (Topas Issue #291)**
+
 New options allow filtering based not on the current track but on the Primary track::
 
   OnlyIncludeIfPrimaryParticleKEBelow
@@ -387,6 +418,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Added filters for last volume or component interacted in or traversed (Topas Issue #368)**
+
 We previously had many filters on what volumes or components a particle interacted in.
 These were sensitive to all of the volumes or components the particle encountered.
 New filters restrict this sensitivity to only the Last volume or component encountered,
@@ -400,6 +432,7 @@ See updated example: examples/Scoring/Filters.txt
 
 
 **Fixed a bug that sometimes prevented some combinations of filters (Topas Issue #579)**
+
 In some complex cases involving multiple filters, the attempt to use a filter such as::
 
   Sc/MyScorer/OnlyIncludeParticlesOfAtomicNumber
@@ -416,6 +449,7 @@ Graphics:
 ^^^^^^^^^
 
 **Added ability to zoom directly to a given component (Topas Issue #283)**
+
 For several years, we've had been able to center the view on the given component::
 
   s:Gr/MyComponent/CenterOn = "SomeComponent"
@@ -431,6 +465,7 @@ the other zoom parameter, Gr/MyView/Zoom, will be ignored.
 
 
 **Added support for Cutaway Planes in OpenGL graphics (Topas Issue #594)**
+
 This feature was previously available only if you issued Geant4 commands directly.
 The feature can now be controlled by TOPAS parameters, such as::
 
@@ -450,6 +485,7 @@ The feature can now be controlled by TOPAS parameters, such as::
 
 
 **Added ability to visualize animation of particle flight (Topas Issue #608)**
+
 This feature was previously available only if you issued Geant4 commands directly.
 The feature can now be controlled by TOPAS parameters, such as::
 
@@ -465,6 +501,7 @@ See new example: examples/Graphics/PartcleFlight.txt
 
 
 **Added TOPAS vis parameter to control up direction (Topas Issue #302)**
+
 This feature was previously available only if you issued Geant4 commands directly.
 The feature can now be controlled by the TOPAS parameter::
 
@@ -472,6 +509,7 @@ The feature can now be controlled by the TOPAS parameter::
 
 
 **Added TOPAS vis parameter to control rotation style (Topas Issue #302)**
+
 This feature was previously available only if you issued Geant4 commands directly.
 The feature can now be controlled by the TOPAS parameter::
 
@@ -479,6 +517,7 @@ The feature can now be controlled by the TOPAS parameter::
 
 
 **Fixed issue where Step Points failed to draw (Topas Issue #613)**
+
 To have TOPAS draw step points, we have long supported the parameter::
 
   b:Gr/MyView/IncludeStepPoints = "True"
@@ -492,6 +531,7 @@ Step points can now be included whether or not trajectories are included.
 
 
 **Added ability to set width of trajectory lines (Topas Issue #286)**
+
 For some time, we have had the ability to set the width of geometry lines::
 
   i:Gr/MyView/LineWidth = 4
@@ -502,6 +542,7 @@ We now also have the ability to control the width of trajectory lines::
 
 
 **Extended Qt GUI Save button to include the OpenGL view information (Topas Issue #522)**
+
 The Qt GUI's Save button stores any changes from the Qt parameter control widget
 back into a new TOPAS parameter file.
 These saved values did not previously include the OpenGL view information.
@@ -521,6 +562,7 @@ TargetPoint overrides any values you have set for the view's CenterOn, TransX or
 
 
 **Fixed bug in Gr/MyView/CopyOpenGLToPDF (Topas Issue #614)**
+
 This feature was not working as intended when combined with::
 
   s:Gr/RefreshEvery = "Run"
@@ -530,6 +572,7 @@ The feature now correctly works for RefreshEvery = "Run".
 
 
 **Fixed bug in use of multiple color models (Topas Issue #616)**
+
 TOPAS Graphics supports many options for how color should be assigned to trajectories
 and steps. The intention was that if you had multiple graphics views, each view could
 have its own separate color model. This was not working properly, with the last
@@ -543,6 +586,7 @@ Overall Program FLow:
 ^^^^^^^^^^^^^^^^^^^^^
 
 **Added new option to RepeatSequence logic (Topas Issue #296)**
+
 The previous TOPAS version added the ability to tell TOPAS to repeat the
 entire simulation sequence until a given standard deviation was reached::
 
@@ -555,6 +599,7 @@ We have now added::
 
 
 **Added a way to have TOPAS pause program to wait for Extra Sequence files (Topas Issue #587)**
+
 A user applying TOPAS to small animal studies needed to be able to run a TOPAS calculation
 while the animal was still under sedation (using TOPAS in a chain of imaging, planning and
 treating an animal during single sedation session). For this user, the time TOPAS spent in
@@ -581,6 +626,7 @@ See new example: examples/Basic/ExtraSequences.txt
 
 
 **Improved control over verbosity of Sources, Scoring and Filtering (Topas Issue #592)**
+
 All had previously been getting their verbosity settings from::
 
   i:Ts/SequenceVerbosity
@@ -592,6 +638,7 @@ Now have separate settings::
 
 
 **Added ability to limit output to only a single thread (Topas Issue #293)**
+
 In some cases when users were trying to study verbose physics output,
 it was annoying that multiple threads repeated the same information.
 A new option sets TOPAS so that output is only provided by the first worker thread
@@ -601,6 +648,7 @@ A new option sets TOPAS so that output is only provided by the first worker thre
 
 
 **Added ability to set Integer parameters from Unitless parameters (Topas Issue #611)**
+
 This was needed for cases where one might use the new Exponential time feature function
 described below to set NumberOfHistoriesInRun.
 Result is rounded appropriately.
@@ -612,6 +660,7 @@ New parameter forms::
 
 
 **Added new Time Feature Function: Exponential (Topas Issue #611)**
+
 The new function can be specified as::
 
   s:Tf/Decay/Function = "Exponent"
@@ -628,15 +677,18 @@ One can use this to set, for example, an exponential decay rate for a particle s
 
 
 **Improved error message for String Vector parameter (Topas Issue #618)**
+
 A String Vector can not be set from a single String value,
 but the error message given in this case was not helpful. It has been improved.
 
 
 **Corrected warning message for non-existent parameter after equals sign (Topas Issue #390)**
+
 The error message for this case was not helpful. It has been improved.
 
 
 **Adjusted handling of some errors so that they don't hang in Qt GUI (Topas Issue #641)**
+
 Many error cases that would be fatal if not in the Qt GUI (such as an overlap error),
 are handled differently when in the Qt GUI.
 We are report these errors but then return control to the GUI so that the
@@ -646,6 +698,7 @@ returning control to the Qt GUI. This has been fixed.
 
 
 **Improved handling of anomalous tracks and hits (Topas Issue #640)**
+
 There are some situations in which TOPAS detects anomalies in Geant4 performance.
 These anomalies involve situations such as tracks no longer having any hits
 for the entire rest of the simulation, or scorers being called for steps that do
@@ -679,6 +732,7 @@ Extensions:
 ^^^^^^^^^^^
 
 **Added a way for extension scorers to directly control the bin index (Topas Issue #598)**
+
 Previously the index was always calculated as a function of the step's touchable,
 so the only method to AccumulateHit was::
 
@@ -692,6 +746,7 @@ Accordingly, we now provide an alternate method that lets you specify whatever i
 
 
 **Added protection against shadowing variables in extension components (Topas Issue #615)**
+
 Users writing Geometry Components have sometimes had issues when they accidentally
 introduced local variables for fEnvelopePhys and fEnvelopeLog that shadowed the ones
 declared in TsVGeometryComponent.hh.
@@ -699,6 +754,7 @@ This issue now triggers warnings both during compilation and run.
 
 
 **Added protection against creating fEnvelopePhys by wrong method (Topas Issue #578)**
+
 Users have reported issues where a custom Geometry Component initially showed up with
 correct placement, but then moved to a different, wrong placement just as the run began.
 This was caused by setting fEnvelopePhys with the wrong CreatePhysicalVolume method.
@@ -709,6 +765,7 @@ This situation is now caught automatically and reported during geometry construc
 
 
 **Improved CMakeLists.txt to provide more warnings against user errors (Topas Issue #619)**
+
 Potential issues are automatically highlighted during the build.
 
 
