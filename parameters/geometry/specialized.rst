@@ -773,7 +773,7 @@ Eye Model
 
 The TsEye component provides a configurable model of the human eye.
 
-.. image:: EyeModel.png
+.. image:: Eye.png
 
 The model lets you configure various parts as well as a tumor in the eye.
 The full set of configurable parts is:
