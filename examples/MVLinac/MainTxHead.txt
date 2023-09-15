@@ -15,14 +15,16 @@
 # Example prepared by KyungDon Choi, Jose Ramos Mendez and Bruce Faddegon. May 28, 2021.
 
 # Uncomment one and only one of the following four includeFile lines:
-includeFile = FullTxHeadField.txt
+includeFile = FullTxHead.txt
 #includeFile = FixedTxHead.txt
 #includeFile = Field.txt
 #includeFile = TestComponent.txt
 #
-# FullTxHeadField.txt
+# FullTxHead.txt
 #    Simulates the full treatment head, from the exit window of the waveguide
-#    through to the isocenter. Does not contain any scoring.
+#    through to the isocenter. Change gantry, collimator and couch angles and
+#    field size settings from defaults set in the includeFile files included
+#    in FullTxHead.txt. Does not contain any scoring.
 #
 # FixedTxHead.txt
 #    Simulates the fixed components of the treatment head from the exit window
@@ -30,10 +32,13 @@ includeFile = FullTxHeadField.txt
 #
 # Field.txt
 #    Simulates the movable components of the treatment head, including Gantry,
-#    collimator angle, jaw and MLC leaves. Scores dose distributions.
+#    collimator angle, jaw and MLC leaves. Change gantry, collimator and couch 
+#    angles and field size settings from defaults set in the includeFile files 
+#    included in Field.txt. Scores dose distributions.
 #
 # TestComponent.txt
-#    Displays one or more of the linac components in the GUI.
+#    Displays one or more of the linac components in the GUI. Change parameter
+#    values in the includeFile files (these contain the default values). 
 
 # The above four includeFiles in turn include one or more of the following:
 # Target.txt: Exit window and target
