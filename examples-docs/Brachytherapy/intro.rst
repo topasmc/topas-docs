@@ -15,7 +15,7 @@ Collaborators:
 For any presentation or publication using the track-length estimator or brachytherapy related calculation, please cite the following published works:
 
 * Francisco Berumen, Yunzhi Ma, José Ramos-Méndez, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for HDR brachytherapy simulations", Brachytherapy (2021) https://doi.org/10.1016/j.brachy.2020.12.007
-* Audran Poher, Francisco Berumen, Yunzhi Ma, Joseph Perl, and Luc Beaulieu. "Characterization of LDR brachytherapy sources using the TOPAS Monte Carlo toolkit", COMP annual meeting 2021.
+* Audran Poher, Francisco Berumen, Yunzhi Ma, Joseph Perl, and Luc Beaulieu. "Validation of the TOPAS Monte Carlo toolkit for LDR brachytherapy simulations", Physica Medica. 2023 Mar 1;107:102516 https://doi.org/10.1016/j.ejmp.2022.102516
 
 The Brachytherapy TOPAS package includes 6 examples:
 
