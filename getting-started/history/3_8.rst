@@ -624,11 +624,15 @@ If the normal TOPAS run sequence was set to have no histories, this amounts to h
 TOPAS perform all of its initialization and then wait for further instructions.
 If the file is found, TOPAS will adjust parameters as found in that file and then
 run the simulation according to that file.
-If the file is not found, TOPAS will sleep for a given interval and then check again.
+If the file is not found, TOPAS will sleep for a given interval and then check again::
+
   d:Ts/ExtraSequenceSleepInterval = 10. s
   d:Ts/ExtraSequenceSleepLimit = 36000. s # Default is 10 hours
-Multiple such files can be specified, with subsequent files use on subsequent iterations.
+
+Multiple such files can be specified, with subsequent files use on subsequent iterations::
+
   sv:Ts/ExtraSequenceFiles = 2 "ExtraSequence1.txt" "ExtraSequence2.txt"
+
 See new example: examples/Basic/ExtraSequences.txt
 
 
@@ -783,8 +787,10 @@ Geant4 Patch:
 The included version of Geant4 includes a patch to one G4DNA class intended to improve
 accuracy of chemistry. This will have no effect outside of G4DNA chemistry.
 The patch is mentioned here merely as a documentation detail.
-The changed file is
+The changed file is::
+
   G4DNAWaterDissociationDisplacer.cc
+
 For the exact details of the patch, see::
 
   topas/geant4_10_07_p03.patch
