@@ -10,7 +10,9 @@ build:
     python: "3.8"
 
 sphinx:
+  builder: html
   configuration: conf.py
+  fail_on_warning: true
 
 python:
   install:
