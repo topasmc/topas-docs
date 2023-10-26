@@ -41,7 +41,8 @@ Installation Notes:
 
 TOPAS 3.8 upgrades the Geant4 version to Geant4.10.07.p03.
 Since the underlying Geant4 version has changed,
-you will need to install new Geant4 data files.See the installation guide or README.txt for the complete set of required
+you will need to install new Geant4 data files.
+See the installation guide or README.txt for the complete set of required
 Geant4 data files.
 
 Users who build TOPAS with extensions should note that the minimum
@@ -133,10 +134,14 @@ When you define a material using the most common method, elemental fractions,
 TOPAS checks that the sum of the fractions is unity.
 We found that the test was too tight given the floating point math behavior
 on some machines.
-We had been requiring
+We had been requiring::
+
   .99999 > totalFractions > 1.00001
-We now instead require
+
+We now instead require::
+
   .9999 > totalFractions > 1.0001
+
 Note that one can also provide factions that do not sum to unity by setting::
 
   b:Ma/MyMaterial/NormalizeFractions = "True"
@@ -233,8 +238,10 @@ Scoring:
 **Added option to "Sparsify" csv files from binned scorers (Topas Issue #585)**
 
 This new option gives you a way to reduce the size of a binned scorer's csv output
-by omitting rows for which the accumulated Sum is zero.
+by omitting rows for which the accumulated Sum is zero::
+
   b:Sc/MyScorer/Sparsify = "True"
+
 You can also set the limit to be not zero but some factor of the highest bin Sum::
 
   u:Sc/MyScorer/SparsifyFactor = .5 # Defaults to 0.
