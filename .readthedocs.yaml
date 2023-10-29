@@ -12,6 +12,8 @@ build:
 sphinx:
   configuration: conf.py
 
+formats: all
+
 python:
   install:
   - requirements: requirements.txt
