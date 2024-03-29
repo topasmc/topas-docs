@@ -2,16 +2,21 @@
 # Reference for geometry: Jabbari et al, J Med Signal Sens 3(3):172-179
 
 ############################# Parameter Descriptions #################################
-# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
+# The parameters in Jaws.txt are intended as defaults to be adjusted in higher level
+# parameter control files FullTxHead.txt or Field.txt
+#
+# Parameters available for adjustment...
 # SourceToUpstreamSurfaceDistance: Distance from x-ray target to jaw
-# PositiveFieldSetting: Positive jaw position projected to isocenter 
-# NegativeFieldSetting: NegativeFieldSetting <= PositiveFieldSetting
+# Jaw/RotZ: Jaw orientation, dependent on direction of jaw travel along IEC_B
+# NegativeFieldSetting: NegativeFieldSetting <= PositiveFieldSetting (IEC X1)
+# PositiveFieldSetting: Positive jaw position projected to isocenter (IEC X2) 
+#
+# Parameters calculated from other parameters...
+# SAD: Source axis distance (nominal distance from x-ray target to gantry rotation axis)
 #######################################################################################
 
 includeFile = LinacDefaults.txt #Values in LinacDafaults.txt may be overriden
 
-dc:Ge/Jaw/PositiveFieldSetting  = 20 cm
-dc:Ge/Jaw/NegativeFieldSetting  = -20 cm
 
 s:Ge/Jaw/Parent         = "IEC_B"
 s:Ge/Jaw/Type           = "TsJaws"
@@ -27,8 +32,10 @@ d:Ge/Jaw/DistSourceToSAD = Ge/Jaw/SAD - Ge/Jaw/SourceToUpstreamSurfaceDistance c
 d:Ge/Jaw/HalfThickness = 0.5 * Ge/Jaw/LZ cm
 d:Ge/Jaw/TransZ = Ge/Jaw/DistSourceToSAD - Ge/Jaw/HalfThickness cm
 
-d:Ge/Jaw/TravelAxisX = 0. deg # Constant to help remember angle for X Axis Travel
-d:Ge/Jaw/TravelAxisY = 90. deg # Constant to help remember angle for Y Axis Travel
-d:Ge/Jaw/RotZ = Ge/Jaw/TravelAxisX deg # Set to one of the above two constants
+dc:Ge/Jaw/NegativeFieldSetting  = -10 cm #Field setting along negative IEC_B axis
+dc:Ge/Jaw/PositiveFieldSetting  = 10 cm #Field setting along positive IEC_B axis
+d:Ge/Jaw/JawRotZforTravelAlongIECX = 0. deg # Constant for jaw travel along IEC X axis – DO NOT CHANGE
+d:Ge/Jaw/JawRotZforTravelAlongIECY = -90. deg # Constant for jaw travel along IEC Y axis – DO NOT CHANGE
+d:Ge/Jaw/RotZ = Ge/Jaw/JawRotZforTravelAlongIECX deg # Set to JawRotZforTravelAlongIECX or JawRotZforTravelAlongIECY
 
 s:Ge/Jaw/DrawingStyle   = "Solid"
