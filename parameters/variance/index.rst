@@ -7,10 +7,9 @@ Variance Reduction
     :maxdepth: 2
 
     intro
-    geometrical_particle_split
-    importance_sampling
-    weight_window
+    topas_split_geometry_vr
     specific_particles
     secondary_biasing
+    directional_filter
     forced_interaction
     crosssection_enhancement
